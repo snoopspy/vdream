@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Widget</class>
+ <widget class="QWidget" name="Widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>595</width>
+    <height>332</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>WebProxy</string>
+  </property>
+  <layout class="QGridLayout" name="mainLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <layout class="QGridLayout" name="mainLayout_2">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="QFrame" name="frame">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <layout class="QGridLayout" name="gridLayout">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <item row="0" column="2">
+         <widget class="QPushButton" name="pbClose">
+          <property name="text">
+           <string>C&amp;lose</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QPushButton" name="pbOpen">
+          <property name="text">
+           <string>&amp;Open</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="4">
+         <widget class="QPushButton" name="pbOption">
+          <property name="text">
+           <string>O&amp;ption</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="5">
+         <widget class="QCheckBox" name="chkShowMsg">
+          <property name="text">
+           <string>ShowMsg</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QPushButton" name="pbClear">
+          <property name="text">
+           <string>&amp;Clear</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="6">
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPlainTextEdit" name="pteMsg">
+       <property name="font">
+        <font>
+         <family>Courier New</family>
+        </font>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>pbOpen</tabstop>
+  <tabstop>pbClose</tabstop>
+  <tabstop>pbClear</tabstop>
+  <tabstop>pbOption</tabstop>
+  <tabstop>chkShowMsg</tabstop>
+  <tabstop>pteMsg</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

@@ -31,7 +31,7 @@ public:
 		static Log log;
 		return log;
 	}
-	void write(char* msg)
+	void write(const char* msg)
 	{
 		printf("%s\n", msg);
 	}

@@ -20,30 +20,30 @@
 class VTcpClient : public VNetClient, protected VStateLockable
 {
 public:
-  VTcpClient(void* owner = NULL);
-  virtual ~VTcpClient();
+	VTcpClient(void* owner = NULL);
+	virtual ~VTcpClient();
 
 public:
-  virtual bool close();
+	virtual bool close();
 
 protected:
-  virtual bool doOpen();
-  virtual bool doClose();
-  virtual int  doRead(char* buf, int size);
-  virtual int  doWrite(char* buf, int size);
+	virtual bool doOpen();
+	virtual bool doClose();
+	virtual int  doRead(char* buf, int size);
+	virtual int  doWrite(char* buf, int size);
 
 public:
-  /// read only
-  VTcpSession *tcpSession;
+	/// read only
+	VTcpSession *tcpSession;
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
 
 #ifdef QT_GUI_LIB
 public: // for VOptionable
-  virtual void optionAddWidget(QLayout* layout);
-  virtual void optionSaveDlg(QDialog* dialog);
+	virtual void optionAddWidget(QLayout* layout);
+	virtual void optionSaveDlg(QDialog* dialog);
 #endif // QT_GUI_LIB
 };
 

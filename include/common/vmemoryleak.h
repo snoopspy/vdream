@@ -19,10 +19,10 @@
 // ----------------------------------------------------------------------------
 typedef struct
 {
-  void*  p;
-  size_t size;
-  char*  file;
-  int    line;
+	void*  p;
+	size_t size;
+	char*  file;
+	int    line;
 } VMemoryLeakInfo;
 
 // ----------------------------------------------------------------------------
@@ -30,35 +30,35 @@ typedef struct
 // ----------------------------------------------------------------------------
 class VMemoryLeak
 {
-  friend void* debug_add(size_t size, const char* file, const int line, void* p);
-  friend void  debug_del(void* p,     const char* file, const int line);
+	friend void* debug_add(size_t size, const char* file, const int line, void* p);
+	friend void  debug_del(void* p,     const char* file, const int line);
 
 protected:
-  VMemoryLeakInfo* m_info;
-  bool             m_del_check;
-  int              m_cnt;
-  int              m_cur_max_cnt;
+	VMemoryLeakInfo* m_info;
+	bool             m_del_check;
+	int              m_cnt;
+	int              m_cur_max_cnt;
 
 public:
-  static const int MEMORY_LEAK_CNT = 65536;
+	static const int MEMORY_LEAK_CNT = 65536;
 
 public:
-  VMemoryLeak();
-  virtual ~VMemoryLeak();
+	VMemoryLeak();
+	virtual ~VMemoryLeak();
 
 protected:
-  void _start(bool del_check, int cnt);
-  int  _stop(bool auto_free);
+	void _start(bool del_check, int cnt);
+	int  _stop(bool auto_free);
 
 protected:
-  VMemoryLeakInfo* find(void* p);
-  VMemoryLeakInfo* add (void* p, size_t size, char* file, int line);
-  VMemoryLeakInfo* del (void* p);
+	VMemoryLeakInfo* find(void* p);
+	VMemoryLeakInfo* add (void* p, size_t size, char* file, int line);
+	VMemoryLeakInfo* del (void* p);
 
 public:
-  static VMemoryLeak& instance();
-  static void start(bool del_check = true, int cnt = MEMORY_LEAK_CNT);
-  static int  stop(bool auto_free = true);
+	static VMemoryLeak& instance();
+	static void start(bool del_check = true, int cnt = MEMORY_LEAK_CNT);
+	static int  stop(bool auto_free = true);
 };
 
 #endif // __V_MEMORY_LEAK_H__

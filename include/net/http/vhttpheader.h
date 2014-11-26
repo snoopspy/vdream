@@ -19,22 +19,22 @@
 class VHttpHeader
 {
 public:
-  VHttpHeader();
+	VHttpHeader();
 
 public:
-  typedef QPair<QByteArray /*key*/, QByteArray /*value*/> Item;
-  typedef QList<Item> Items;
-  Items items;
+	typedef QPair<QByteArray /*key*/, QByteArray /*value*/> Item;
+	typedef QList<Item> Items;
+	Items items;
 
 public:
-  QByteArray value(QByteArray key);
-  void       setValue(QByteArray key, QByteArray value);
-  void       addValue(QByteArray key, QByteArray value);
+	QByteArray value(QByteArray key);
+	void       setValue(QByteArray key, QByteArray value);
+	void       addValue(QByteArray key, QByteArray value);
 
 public:
-  void clear();
-  bool parse(QByteArray& buffer);
-  QByteArray toByteArray();
+	void clear();
+	bool parse(QByteArray& buffer);
+	QByteArray toByteArray();
 };
 
 #endif // __V_HTTP_HEADER_H__

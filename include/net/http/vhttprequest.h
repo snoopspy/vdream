@@ -19,17 +19,17 @@
 class VHttpRequestLine
 {
 public:
-  VHttpRequestLine();
+	VHttpRequestLine();
 
 public:
-  QByteArray method;
-  QByteArray path;
-  QByteArray version;
+	QByteArray method;
+	QByteArray path;
+	QByteArray version;
 
 public:
-  void clear();
-  bool parse(QByteArray& buffer);
-  QByteArray toByteArray();
+	void clear();
+	bool parse(QByteArray& buffer);
+	QByteArray toByteArray();
 };
 
 // ----------------------------------------------------------------------------
@@ -38,19 +38,19 @@ public:
 class VHttpRequest
 {
 public:
-  VHttpRequest();
+	VHttpRequest();
 
 public:
-  VHttpRequestLine requestLine;
-  VHttpHeader      header;
+	VHttpRequestLine requestLine;
+	VHttpHeader      header;
 
 public:
-  void clear();
-  bool parse(QByteArray& buffer);
-  QByteArray toByteArray();
+	void clear();
+	bool parse(QByteArray& buffer);
+	QByteArray toByteArray();
 
 public:
-  bool findHost(QString& host, int& port);
+	bool findHost(QString& host, int& port);
 };
 
 #endif // __V_HTTP_REQUEST_H__

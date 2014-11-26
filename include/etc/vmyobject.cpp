@@ -21,27 +21,27 @@ REGISTER_METACLASS(VCC, VC)
 // ----------------------------------------------------------------------------
 void VMyObject::explicitLink()
 {
-  // ----- by gilgil 2014.03.25 -----
-  /*
-  VAA aa;
-  VAB ab;
-  VAC ac;
-  VBA ba;
-  VBB bb;
-  VBC bc;
-  VCA ca;
-  VCB cb;
-  VCC cc;
-  */
-  // --------------------------------
+	// ----- by gilgil 2014.03.25 -----
+	/*
+	VAA aa;
+	VAB ab;
+	VAC ac;
+	VBA ba;
+	VBB bb;
+	VBC bc;
+	VCA ca;
+	VCB cb;
+	VCC cc;
+	*/
+	// --------------------------------
 }
 
 void VMyObject::foo(int i)
 {
-  emit send(i);
+	emit send(i);
 }
 
 void VMyObject::recv(int i)
 {
-  LOG_DEBUG("recv i=%d", i);
+	LOG_DEBUG("recv i=%d", i);
 }

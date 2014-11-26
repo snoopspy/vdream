@@ -21,31 +21,31 @@ class VLogHttpTcpServer;
 class VLogHttp : public VLog
 {
 public:
-  static const int DEFAULT_PORT;
+	static const int DEFAULT_PORT;
 
 public:
-  VLogHttp(const int port = DEFAULT_PORT);
-  virtual ~VLogHttp();
+	VLogHttp(const int port = DEFAULT_PORT);
+	virtual ~VLogHttp();
 
 public:
-  int     port;
+	int     port;
 
 protected:
-  virtual bool open();
-  virtual bool close();
+	virtual bool open();
+	virtual bool close();
 
 protected:
-  virtual void write(const char* buf, int len);
+	virtual void write(const char* buf, int len);
 
 public:
-  virtual VLog* createByURI(const QString& uri);
+	virtual VLog* createByURI(const QString& uri);
 
 protected:
-  VLogHttpTcpServer* m_tcpServer;
+	VLogHttpTcpServer* m_tcpServer;
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
 };
 
 // ----------------------------------------------------------------------------
@@ -53,14 +53,14 @@ public:
 // ----------------------------------------------------------------------------
 class VLogHttpTcpServer : public VTcpServer
 {
-  Q_OBJECT
+	Q_OBJECT
 
 public:
-  VLogHttpTcpServer(void* owner = NULL);
-  virtual ~VLogHttpTcpServer();
+	VLogHttpTcpServer(void* owner = NULL);
+	virtual ~VLogHttpTcpServer();
 
 protected slots:
-  void run(VTcpSession* tcpSession);
+	void run(VTcpSession* tcpSession);
 };
 
 #endif // __V_LOG_HTTP_H__

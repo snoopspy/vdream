@@ -22,8 +22,8 @@
 // Link Library
 // ----------------------------------------------------------------------------
 #ifdef _MSC_VER
-  #pragma comment(lib, "libeay32.lib")
-  #pragma comment(lib, "ssleay32.lib")
+	#pragma comment(lib, "libeay32.lib")
+	#pragma comment(lib, "ssleay32.lib")
 #endif // _MSC_VER
 
 // ----------------------------------------------------------------------------
@@ -32,23 +32,23 @@
 class VSslCommon
 {
 public:
-  static const int DEFAULT_SSL_PORT        = 443;
-  static const int DEFAULT_SSL_PROXY_PORT  = 4433;
+	static const int DEFAULT_SSL_PORT        = 443;
+	static const int DEFAULT_SSL_PROXY_PORT  = 4433;
 
 private: // singleton
-  VSslCommon();
-  virtual ~VSslCommon();
+	VSslCommon();
+	virtual ~VSslCommon();
 
 protected:
-  static int numLock;
-  static VCS *lockCs;
+	static int numLock;
+	static VCS *lockCs;
 
 protected:
-  static unsigned long threadIdCallback(void);
-  static void lockingCallback(int mode, int type, const char* file, int line);
+	static unsigned long threadIdCallback(void);
+	static void lockingCallback(int mode, int type, const char* file, int line);
 
 public:
-  static VSslCommon& instance();
+	static VSslCommon& instance();
 };
 
 // ----------------------------------------------------------------------------
@@ -57,30 +57,30 @@ public:
 class VSslMethodType
 {
 public:
-  enum _VSslMethodType
-  {
-    mtNone,    // 0
-    mtSSLv2,   // 1
-    mtSSLv3,   // 2
-    mtSSLv23,  // 3
-    mtTLSv1,   // 4
-    mtTLSv1_1, // 5
-    mtTLSv1_2, // 6
-    mtDTLSv1   // 7
-  };
+	enum _VSslMethodType
+	{
+		mtNone,    // 0
+		mtSSLv2,   // 1
+		mtSSLv3,   // 2
+		mtSSLv23,  // 3
+		mtTLSv1,   // 4
+		mtTLSv1_1, // 5
+		mtTLSv1_2, // 6
+		mtDTLSv1   // 7
+	};
 
 protected:
-  _VSslMethodType value;
+	_VSslMethodType value;
 
 public:
-  VSslMethodType()                            {                      } // default ctor
-  VSslMethodType(const _VSslMethodType value) { this->value = value; } // conversion ctor
-  operator _VSslMethodType() const            { return value;        } // cast operator
+	VSslMethodType()                            {                      } // default ctor
+	VSslMethodType(const _VSslMethodType value) { this->value = value; } // conversion ctor
+	operator _VSslMethodType() const            { return value;        } // cast operator
 
 public:
-  VSslMethodType(const int i)                 { value = (_VSslMethodType)i; }
-  VSslMethodType(const QString s);
-  QString str() const;
+	VSslMethodType(const int i)                 { value = (_VSslMethodType)i; }
+	VSslMethodType(const QString s);
+	QString str() const;
 };
 
 // ----------------------------------------------------------------------------

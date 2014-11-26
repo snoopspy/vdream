@@ -55,9 +55,9 @@ const char* __extractFuncName__(const char* funcName);
 
 #ifndef ASSERT
 #ifdef _DEBUG
-  #define ASSERT(a) LOG_ASSERT(a)
+	#define ASSERT(a) LOG_ASSERT(a)
 #else
-  #define ASSERT(a)
+	#define ASSERT(a)
 #endif // _DEBUG
 #endif // ASSERT
 
@@ -73,10 +73,10 @@ QString getClassName(const char* value);
 // ----------------------------------------------------------------------------
 namespace vd
 {
-  static const int      DEFAULT_BUF_SIZE          = 65536;  // bytes
-  static const VTimeout DEFAULT_TIMEOUT           = 10000; // 10 sec
-  static const int      DEFAULT_PORT              = 10065;
-  static const int      DEFAULT_MEDIAGATEWAY_PORT = 10066;
+	static const int      DEFAULT_BUF_SIZE          = 65536;  // bytes
+	static const VTimeout DEFAULT_TIMEOUT           = 10000; // 10 sec
+	static const int      DEFAULT_PORT              = 10065;
+	static const int      DEFAULT_MEDIAGATEWAY_PORT = 10066;
 };
 
 // ----------------------------------------------------------------------------
@@ -85,26 +85,26 @@ namespace vd
 class VState
 {
 public:
-  enum _VState
-  {
-    None,    // 0
-    Closed,  // 1
-    Opening, // 2
-    Opened,  // 3
-    Closing  // 4
-  };
+	enum _VState
+	{
+		None,    // 0
+		Closed,  // 1
+		Opening, // 2
+		Opened,  // 3
+		Closing  // 4
+	};
 
 protected:
-  _VState value;
+	_VState value;
 
 public:
-  VState()                    {                      } // default ctor
-  VState(const _VState value) { this->value = value; } // conversion ctor
-  operator _VState() const    { return value;        } // cast operator
+	VState()                    {                      } // default ctor
+	VState(const _VState value) { this->value = value; } // conversion ctor
+	operator _VState() const    { return value;        } // cast operator
 
 public:
-  VState(const QString s);
-  QString str() const;
+	VState(const QString s);
+	QString str() const;
 };
 
 // ----------------------------------------------------------------------------
@@ -112,25 +112,25 @@ public:
 // ----------------------------------------------------------------------------
 class VMode
 {
-  enum _VMode
-  {
-    None,     // 0
-    Read,     // 1
-    Write,    // 2
-    ReadWrite // 3
-  };
+	enum _VMode
+	{
+		None,     // 0
+		Read,     // 1
+		Write,    // 2
+		ReadWrite // 3
+	};
 
 protected:
-  _VMode value;
+	_VMode value;
 
 public:
-  VMode()                   {                      } // default ctor
-  VMode(const _VMode value) { this->value = value; } // conversion ctor
-  operator _VMode() const   { return value;        } // cast operator
+	VMode()                   {                      } // default ctor
+	VMode(const _VMode value) { this->value = value; } // conversion ctor
+	operator _VMode() const   { return value;        } // cast operator
 
 public:
-  VMode(const QString s);
-  QString str() const;
+	VMode(const QString s);
+	QString str() const;
 };
 
 #endif // __V_COMMON_H__

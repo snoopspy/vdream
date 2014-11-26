@@ -12,13 +12,13 @@
 #define __V_SYSTEM_H__
 
 #ifdef WIN32
-  #define NOMINMAX
-  #include <winsock2.h>
-  #define WIN32_LEAN_AND_MEAN
-  #include <windows.h>
+	#define NOMINMAX
+	#include <winsock2.h>
+	#define WIN32_LEAN_AND_MEAN
+	#include <windows.h>
 #endif // WIN32
 #ifdef linux
-  #include <unistd.h>
+	#include <unistd.h>
 #endif // linux
 #include <VLinkLibrary>
 
@@ -45,7 +45,7 @@ void usleep(VTimeout usecs);
 class VCS : public QMutex
 {
 public:
-  VCS() : QMutex(Recursive) {}
+	VCS() : QMutex(Recursive) {}
 };
 
 // ----------------------------------------------------------------------------
@@ -53,12 +53,12 @@ public:
 // ----------------------------------------------------------------------------
 class VLockable
 {
-  friend class VLock;
+	friend class VLock;
 protected:
-  VCS m_cs;
+	VCS m_cs;
 public:
-  void lock()   { m_cs.lock();   }
-  void unlock() { m_cs.unlock(); }
+	void lock()   { m_cs.lock();   }
+	void unlock() { m_cs.unlock(); }
 };
 
 // ----------------------------------------------------------------------------
@@ -66,12 +66,12 @@ public:
 // ----------------------------------------------------------------------------
 class VStateLockable
 {
-  friend class VLock;
+	friend class VLock;
 protected:
-  VCS stateOpenCs;
-  VCS stateCloseCs;
-  VCS stateReadCs;
-  VCS stateWriteCs;
+	VCS stateOpenCs;
+	VCS stateCloseCs;
+	VCS stateReadCs;
+	VCS stateWriteCs;
 };
 
 // ----------------------------------------------------------------------------
@@ -80,12 +80,12 @@ protected:
 class VLock
 {
 protected:
-  VCS& m_cs;
+	VCS& m_cs;
 
 public:
-  VLock(VLockable& lockable) : m_cs(lockable.m_cs) { m_cs.lock();   }
-  VLock(VCS& cs)             : m_cs(cs)            { m_cs.lock();   }
-  virtual ~VLock()                                 { m_cs.unlock(); }
+	VLock(VLockable& lockable) : m_cs(lockable.m_cs) { m_cs.lock();   }
+	VLock(VCS& cs)             : m_cs(cs)            { m_cs.lock();   }
+	virtual ~VLock()                                 { m_cs.unlock(); }
 };
 
 // ----------------------------------------------------------------------------
@@ -94,20 +94,20 @@ public:
 class VEvent
 {
 protected:
-  QMutex         m_mutex;
-  QWaitCondition m_cond;
-  bool           m_manualReset;
-  bool           m_state;
+	QMutex         m_mutex;
+	QWaitCondition m_cond;
+	bool           m_manualReset;
+	bool           m_state;
 
 public:
-  VEvent(bool manualReset = false, bool initialState = false);
-  virtual ~VEvent();
+	VEvent(bool manualReset = false, bool initialState = false);
+	virtual ~VEvent();
 
 public:
-  bool state() { return m_state; }
-  void setEvent();
-  void resetEvent();
-  bool wait(VTimeout timeout = ULONG_MAX);
+	bool state() { return m_state; }
+	void setEvent();
+	void resetEvent();
+	bool wait(VTimeout timeout = ULONG_MAX);
 };
 
 // ----------------------------------------------------------------------------
@@ -116,7 +116,7 @@ public:
 class VProcess
 {
 public:
-  static bool run(const char* command);
+	static bool run(const char* command);
 };
 
 #endif // __V_SYSTEM_H__

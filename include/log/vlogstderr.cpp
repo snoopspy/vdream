@@ -8,7 +8,7 @@ REGISTER_METACLASS(VLogStderr, VLog)
 // ----------------------------------------------------------------------------
 VLogStderr::VLogStderr()
 {
-  autoFlush = true;
+	autoFlush = true;
 }
 
 VLogStderr::~VLogStderr()
@@ -17,30 +17,30 @@ VLogStderr::~VLogStderr()
 
 void VLogStderr::write(const char* buf, int len)
 {
-  Q_UNUSED(len)
-  fprintf_s(stderr, "%s\n", buf);
-  if (autoFlush) fflush(stderr);
+	Q_UNUSED(len)
+	fprintf_s(stderr, "%s\n", buf);
+	if (autoFlush) fflush(stderr);
 }
 
 VLog* VLogStderr::createByURI(const QString& uri)
 {
-  if (uri == "stderr")
-  {
-    return new VLogStderr;
-  }
-  return NULL;
+	if (uri == "stderr")
+	{
+		return new VLogStderr;
+	}
+	return NULL;
 }
 
 void VLogStderr::load(VXml xml)
 {
-  VLog::load(xml);
+	VLog::load(xml);
 
-  autoFlush = xml.getBool("autoFlush", autoFlush);
+	autoFlush = xml.getBool("autoFlush", autoFlush);
 }
 
 void VLogStderr::save(VXml xml)
 {
-  VLog::save(xml);
+	VLog::save(xml);
 
-  xml.setBool("autoFlush", autoFlush);
+	xml.setBool("autoFlush", autoFlush);
 }

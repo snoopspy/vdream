@@ -21,32 +21,32 @@ class VGraph;
 class VGraphObjectList : public QList<VObject*>, public VXmlable
 {
 protected:
-  VGraph* m_graph;
+	VGraph* m_graph;
 
 public:
-  VGraphObjectList(VGraph* graph);
-  virtual ~VGraphObjectList();
+	VGraphObjectList(VGraph* graph);
+	virtual ~VGraphObjectList();
 
 public:
-  void clear();
+	void clear();
 
 public:
-  bool addObject(VObject* object);
-  bool delObject(VObject* object);
+	bool addObject(VObject* object);
+	bool delObject(VObject* object);
 
 public:
-  VObject* findByName(QString name);
-  VObject* findByClassName(QString className);
+	VObject* findByName(QString name);
+	VObject* findByClassName(QString className);
 
-  QList<VObject*> findObjectsByClassName(QString className);
-  QList<VObject*> findObjectsByCategoryName(QString categoryName);
+	QList<VObject*> findObjectsByClassName(QString className);
+	QList<VObject*> findObjectsByCategoryName(QString categoryName);
 
-  QStringList findNamesByClassName(QString className);
-  QStringList findNamesByCategoryName(QString categoryName);
+	QStringList findNamesByClassName(QString className);
+	QStringList findNamesByCategoryName(QString categoryName);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
 };
 
 // ----------------------------------------------------------------------------
@@ -55,21 +55,21 @@ public:
 class VGraphConnect : public VXmlable
 {
 public:
-  VGraphConnect();
-  virtual ~VGraphConnect();
+	VGraphConnect();
+	virtual ~VGraphConnect();
 
 public:
-  QString sender;
-  QString signal;
-  QString receiver;
-  QString slot;
+	QString sender;
+	QString signal;
+	QString receiver;
+	QString slot;
 
 public:
-  bool operator == (const VGraphConnect& rhs);
+	bool operator == (const VGraphConnect& rhs);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
 };
 
 // ----------------------------------------------------------------------------
@@ -78,22 +78,22 @@ public:
 class VGraphConnectList : public QList<VGraphConnect>, public VXmlable
 {
 protected:
-  VGraph* m_graph;
+	VGraph* m_graph;
 
 public:
-  VGraphConnectList(VGraph* graph);
-  virtual ~VGraphConnectList();
+	VGraphConnectList(VGraph* graph);
+	virtual ~VGraphConnectList();
 
 public:
-  void clear();
+	void clear();
 
 public:
-  bool addConnect(VGraphConnect connect);
-  bool delConnect(VGraphConnect connect);
+	bool addConnect(VGraphConnect connect);
+	bool delConnect(VGraphConnect connect);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
 };
 
 // ----------------------------------------------------------------------------
@@ -101,32 +101,32 @@ public:
 // ----------------------------------------------------------------------------
 class VGraph : public VObject
 {
-  Q_OBJECT
+	Q_OBJECT
 
 public:
-  VGraph(void* owner = NULL);
-  virtual ~VGraph();
+	VGraph(void* owner = NULL);
+	virtual ~VGraph();
 
 public:
-  void clear();
+	void clear();
 
 public:
-  virtual bool doOpen();
-  virtual bool doClose();
+	virtual bool doOpen();
+	virtual bool doClose();
 
 public:
-  VGraphObjectList  objectList;
-  VGraphConnectList connectList;
+	VGraphObjectList  objectList;
+	VGraphConnectList connectList;
 
 protected:
-  static QStringList methodList(VObject* object, QMetaMethod::MethodType methodType);
+	static QStringList methodList(VObject* object, QMetaMethod::MethodType methodType);
 public:
-  static QStringList signalList(VObject* object);
-  static QStringList slotList(VObject* object);
+	static QStringList signalList(VObject* object);
+	static QStringList slotList(VObject* object);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
 };
 
 #endif // __V_GRAPH_H__

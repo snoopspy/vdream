@@ -13,17 +13,17 @@
 // ----------------------------------------------------------------------------
 void VNetFactory::explicitLink()
 {
-  VTcpClient tcpClient;
-  VTcpServer tcpServer;
-  VUdpClient udpClient;
-  VUdpServer udpServer;
-  VSslClient sslClient;
-  VSslServer sslServer;
-  VWebProxy  webProxy;
+	VTcpClient tcpClient;
+	VTcpServer tcpServer;
+	VUdpClient udpClient;
+	VUdpServer udpServer;
+	VSslClient sslClient;
+	VSslServer sslServer;
+	VWebProxy  webProxy;
 }
 
 VNet* VNetFactory::createByClassName(const QString& className)
 {
-  return VFactory<VNet>::createByClassName(className);
+	return VFactory<VNet>::createByClassName(className);
 }
 

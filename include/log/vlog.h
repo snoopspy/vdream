@@ -49,120 +49,120 @@
 class VShowDateTime
 {
 public:
-  enum _VShowDateTime
-  {
-    None,
-    Time,
-    DateTime
-  };
+	enum _VShowDateTime
+	{
+		None,
+		Time,
+		DateTime
+	};
 
 protected:
-  _VShowDateTime value;
+	_VShowDateTime value;
 
 public:
-  VShowDateTime()                           {                      } // default ctor
-  VShowDateTime(const _VShowDateTime value) { this->value = value; } // conversion ctor
-  operator _VShowDateTime() const           { return value;        } // cast operator
+	VShowDateTime()                           {                      } // default ctor
+	VShowDateTime(const _VShowDateTime value) { this->value = value; } // conversion ctor
+	operator _VShowDateTime() const           { return value;        } // cast operator
 
 public:
-  VShowDateTime(const QString s);
-  QString str() const;
+	VShowDateTime(const QString s);
+	QString str() const;
 };
 
 class VLog :
-  public VXmlable
-  // public VClassInitialize<VLog> // gilgil temp 2012.11.01
+	public VXmlable
+	// public VClassInitialize<VLog> // gilgil temp 2012.11.01
 {
-  friend class VLogList;
-  friend class VLogFactory;
+	friend class VLogList;
+	friend class VLogFactory;
 
 public:
-  static const int LEVEL_DEBUG = 0;
-  static const int LEVEL_INFO  = 1;
-  static const int LEVEL_WARN  = 2;
-  static const int LEVEL_ERROR = 3;
-  static const int LEVEL_FATAL = 4;
-  static const int LEVEL_NONE  = 5;
+	static const int LEVEL_DEBUG = 0;
+	static const int LEVEL_INFO  = 1;
+	static const int LEVEL_WARN  = 2;
+	static const int LEVEL_ERROR = 3;
+	static const int LEVEL_FATAL = 4;
+	static const int LEVEL_NONE  = 5;
 
 public:
-  static const int DEFAULT_LOG_BUF_SIZE = 65536;
+	static const int DEFAULT_LOG_BUF_SIZE = 65536;
 
-  //
-  // Option
-  //
+	//
+	// Option
+	//
 public:
-  int           level;
-  VShowDateTime showDateTime;
-  bool          showThreadID;
+	int           level;
+	VShowDateTime showDateTime;
+	bool          showThreadID;
 
-  //
-  // Constructor and destructor
-  //
+	//
+	// Constructor and destructor
+	//
 public:
-  VLog();
-  virtual ~VLog();
+	VLog();
+	virtual ~VLog();
 
-  //
-  // Used internally
-  //
+	//
+	// Used internally
+	//
 protected:
-  int makeBuf(const char* buf, int len, const char* fmt, va_list args); // dateTime, threadID, args
+	int makeBuf(const char* buf, int len, const char* fmt, va_list args); // dateTime, threadID, args
 
-  //
-  // VLog function
-  //
+	//
+	// VLog function
+	//
 public:
-  virtual void debug(const char* fmt, ...) __attribute__((format(printf, 2, 3)));
-  virtual void info (const char* fmt, ...) __attribute__((format(printf, 2, 3)));
-  virtual void warn (const char* fmt, ...) __attribute__((format(printf, 2, 3)));
-  virtual void error(const char* fmt, ...) __attribute__((format(printf, 2, 3)));
-  virtual void fatal(const char* fmt, ...) __attribute__((format(printf, 2, 3)));
-  virtual void trace(const char* fmt, ...) __attribute__((format(printf, 2, 3)));
-
-protected:
-  virtual void doDebug(const char *fmt, va_list args);
-  virtual void doInfo (const char *fmt, va_list args);
-  virtual void doWarn (const char *fmt, va_list args);
-  virtual void doError(const char *fmt, va_list args);
-  virtual void doFatal(const char *fmt, va_list args);
-  virtual void doTrace(const char *fmt, va_list args);
-
-  //
-  // Virtual function
-  //
-protected:
-  virtual bool open();
-  virtual bool close();
+	virtual void debug(const char* fmt, ...) __attribute__((format(printf, 2, 3)));
+	virtual void info (const char* fmt, ...) __attribute__((format(printf, 2, 3)));
+	virtual void warn (const char* fmt, ...) __attribute__((format(printf, 2, 3)));
+	virtual void error(const char* fmt, ...) __attribute__((format(printf, 2, 3)));
+	virtual void fatal(const char* fmt, ...) __attribute__((format(printf, 2, 3)));
+	virtual void trace(const char* fmt, ...) __attribute__((format(printf, 2, 3)));
 
 protected:
-  virtual void write(const char* buf, int len) = 0; // gilgil temp 2012.11.16
-  // virtual void write(const char* buf, int len){ Q_UNUSED(buf); Q_UNUSED(len); }
+	virtual void doDebug(const char *fmt, va_list args);
+	virtual void doInfo (const char *fmt, va_list args);
+	virtual void doWarn (const char *fmt, va_list args);
+	virtual void doError(const char *fmt, va_list args);
+	virtual void doFatal(const char *fmt, va_list args);
+	virtual void doTrace(const char *fmt, va_list args);
 
-public:
-  virtual VLog* createByURI(const QString& uri);
-
-  //
-  // XML
-  //
-public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
-
-  //
-  // Global
-  //
+	//
+	// Virtual function
+	//
 protected:
-  static VLog* g_log;
+	virtual bool open();
+	virtual bool close();
+
+protected:
+	virtual void write(const char* buf, int len) = 0; // gilgil temp 2012.11.16
+	// virtual void write(const char* buf, int len){ Q_UNUSED(buf); Q_UNUSED(len); }
+
 public:
-  static VLog* getLog();             //{                                                         return g_log;  } // gilgil temp 2012.11.01
-  static VLog* setLog(VLog* log);    //{ VLog* oldLog = g_log; g_log = log;                      return oldLog; } // gilgil temp 2012.11.01
-  static VLog* changeLog(VLog* log); //{ VLog* oldLog = g_log; g_log = log; SAFE_DELETE(oldLog); return oldLog; } // gilgil temp 2012.11.01
+	virtual VLog* createByURI(const QString& uri);
+
+	//
+	// XML
+	//
+public:
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
+
+	//
+	// Global
+	//
+protected:
+	static VLog* g_log;
+public:
+	static VLog* getLog();             //{                                                         return g_log;  } // gilgil temp 2012.11.01
+	static VLog* setLog(VLog* log);    //{ VLog* oldLog = g_log; g_log = log;                      return oldLog; } // gilgil temp 2012.11.01
+	static VLog* changeLog(VLog* log); //{ VLog* oldLog = g_log; g_log = log; SAFE_DELETE(oldLog); return oldLog; } // gilgil temp 2012.11.01
 
 private:
-  // friend class VClassInitialize<VLog>; // gilgil temp 2012.11.01
-  // static void doClassInitialize(); // gilgil temp 2012.11.01
-  // static void doClassFinalize(); // gilgil temp 2012.11.01
-  friend class VLogInstance;
+	// friend class VClassInitialize<VLog>; // gilgil temp 2012.11.01
+	// static void doClassInitialize(); // gilgil temp 2012.11.01
+	// static void doClassFinalize(); // gilgil temp 2012.11.01
+	friend class VLogInstance;
 };
 
 // ----------------------------------------------------------------------------
@@ -180,9 +180,9 @@ inline VLog* changeLog(VLog* log) { return VLog::changeLog(log); }
 class IVGetLoggable
 {
 public:
-  virtual VLog* getLog()             = 0;
-  virtual VLog* setLog(VLog* log)    = 0;
-  virtual VLog* changeLog(VLog* log) = 0;
+	virtual VLog* getLog()             = 0;
+	virtual VLog* setLog(VLog* log)    = 0;
+	virtual VLog* changeLog(VLog* log) = 0;
 };
 
 // ----------------------------------------------------------------------------
@@ -191,13 +191,13 @@ public:
 class VGetLoggable : public IVGetLoggable
 {
 private:
-  VLog* m_log;
+	VLog* m_log;
 public:
-  VGetLoggable()                     { m_log = VLog::getLog();                                                }
-  virtual ~VGetLoggable()            {  do not delete m_log                                                   }
-  virtual VLog* getLog()             {                                                         return m_log;  }
-  virtual VLog* setLog(VLog* log)    { VLog* oldLog = m_log; m_log = log;                      return oldLog; }
-  virtual VLog* changeLog(VLog* log) { VLog* oldLog = m_log; m_log = log; SAFE_DELETE(oldLog); return oldLog; }
+	VGetLoggable()                     { m_log = VLog::getLog();                                                }
+	virtual ~VGetLoggable()            {  do not delete m_log                                                   }
+	virtual VLog* getLog()             {                                                         return m_log;  }
+	virtual VLog* setLog(VLog* log)    { VLog* oldLog = m_log; m_log = log;                      return oldLog; }
+	virtual VLog* changeLog(VLog* log) { VLog* oldLog = m_log; m_log = log; SAFE_DELETE(oldLog); return oldLog; }
 };
 */
 // ----------------------------

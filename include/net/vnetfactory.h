@@ -20,8 +20,8 @@
 class VNetFactory : public VFactory<VNet>
 {
 public:
-  static void explicitLink();
-  static VNet* createByClassName(const QString& className);
+	static void explicitLink();
+	static VNet* createByClassName(const QString& className);
 };
 
 #endif // __V_NET_FACTORY_H__

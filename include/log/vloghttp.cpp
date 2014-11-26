@@ -10,64 +10,64 @@ const int VLogHttp::DEFAULT_PORT = 8908;
 
 VLogHttp::VLogHttp(const int port)
 {
-  showDateTime = VShowDateTime::Time;
-  this->port = port;
-  m_tcpServer = new VLogHttpTcpServer;
+	showDateTime = VShowDateTime::Time;
+	this->port = port;
+	m_tcpServer = new VLogHttpTcpServer;
 
-  open();
+	open();
 }
 
 VLogHttp::~VLogHttp()
 {
-  close();
-  SAFE_DELETE(m_tcpServer);
+	close();
+	SAFE_DELETE(m_tcpServer);
 }
 
 bool VLogHttp::open()
 {
-  m_tcpServer->port = port;
-  return m_tcpServer->open();
+	m_tcpServer->port = port;
+	return m_tcpServer->open();
 }
 
 bool VLogHttp::close()
 {
-  return m_tcpServer->close();
+	return m_tcpServer->close();
 }
 
 void VLogHttp::write(const char* buf, int len)
 {
-  m_tcpServer->write(buf, len);
-  m_tcpServer->write("\r\n");
+	m_tcpServer->write(buf, len);
+	m_tcpServer->write("\r\n");
 }
 
 VLog* VLogHttp::createByURI(const QString& uri)
 {
-  QUrl _url(uri);
-  if (uri == "http" || _url.scheme() == "http")
-  {
-    int port = _url.port();
-    if (port == 0 || port == -1) port = DEFAULT_PORT;
+	QUrl _url(uri);
+	if (uri == "http" || _url.scheme() == "http")
+	{
+		int port = _url.port();
+		if (port == 0 || port == -1) port = DEFAULT_PORT;
 
-    VLogHttp* logHTTP= new VLogHttp(port);
-    return logHTTP;
-  }
-  return NULL;
+		VLogHttp* logHTTP= new VLogHttp(port);
+		return logHTTP;
+	}
+	return NULL;
 }
 
 void VLogHttp::load(VXml xml)
 {
-  VLog::load(xml);
+	VLog::load(xml);
 
-  port = xml.getInt("port", port);
-  close();
-  open();
+	port = xml.getInt("port", port);
+	close();
+	open();
 }
 
 void VLogHttp::save(VXml xml)
 {
-  VLog::save(xml);
+	VLog::save(xml);
 
-  xml.setInt("port", port);
+	xml.setInt("port", port);
 }
 
 
@@ -76,29 +76,29 @@ void VLogHttp::save(VXml xml)
 // ----------------------------------------------------------------------------
 VLogHttpTcpServer::VLogHttpTcpServer(void* owner) : VTcpServer(owner)
 {
-  VObject::connect(this, SIGNAL(runned(VTcpSession*)), this, SLOT(run(VTcpSession*)), Qt::DirectConnection);
+	VObject::connect(this, SIGNAL(runned(VTcpSession*)), this, SLOT(run(VTcpSession*)), Qt::DirectConnection);
 }
 
 VLogHttpTcpServer::~VLogHttpTcpServer()
 {
-  close();
+	close();
 }
 
 void VLogHttpTcpServer::run(VTcpSession* tcpSession)
 {
-  static QString httpResponse = \
+	static QString httpResponse = \
 "HTTP/1.1 200 OK\r\n"\
 "Content-Type: text/html;charset=utf-8\r\n"\
 "Connection: Keep-Alive\r\n"\
 "\r\n"\
 "<html><head><title>vlog</title></head><body><pre>";
-  int size = httpResponse.size();
-  tcpSession->write(qPrintable(httpResponse), size);
+	int size = httpResponse.size();
+	tcpSession->write(qPrintable(httpResponse), size);
 
-  while (true)
-  {
-    char buf[256];
-    int readLen = tcpSession->read(buf, 256);
-    if (readLen == VERR_FAIL) break;
-  }
+	while (true)
+	{
+		char buf[256];
+		int readLen = tcpSession->read(buf, 256);
+		if (readLen == VERR_FAIL) break;
+	}
 }

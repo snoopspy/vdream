@@ -19,9 +19,9 @@
 #define SET_ERROR(CLASS, MSG, CODE)                                               \
 if (error.code == VERR_OK)                                                        \
 {                                                                                 \
-  setError<CLASS>(error, MSG, CODE);                                              \
-  LOG_ERROR("%s type=%s code=%u(0x%X)",                                           \
-  error.msg, qPrintable(getClassName(error.ti->name())), error.code, error.code); \
+	setError<CLASS>(error, MSG, CODE);                                              \
+	LOG_ERROR("%s type=%s code=%u(0x%X)",                                           \
+	error.msg, qPrintable(getClassName(error.ti->name())), error.code, error.code); \
 }
 
 // ----------------------------------------------------------------------------
@@ -30,9 +30,9 @@ if (error.code == VERR_OK)                                                      
 #define SET_DEBUG_ERROR(CLASS, MSG, CODE)                                         \
 if (error.code == VERR_OK)                                                        \
 {                                                                                 \
-  setError<CLASS>(error, MSG, CODE);                                              \
-  LOG_DEBUG("%s type=%s code=%u(0x%X)",                                           \
-  error.msg, qPrintable(getClassName(error.ti->name())), error.code, error.code); \
+	setError<CLASS>(error, MSG, CODE);                                              \
+	LOG_DEBUG("%s type=%s code=%u(0x%X)",                                           \
+	error.msg, qPrintable(getClassName(error.ti->name())), error.code, error.code); \
 }
 
 // ----------------------------------------------------------------------------
@@ -93,22 +93,22 @@ static const int VERR_CAN_NOT_FIND_OBJECT   = VERR_CATEGORY_COMMON + 23;
 // ----------------------------------------------------------------------------
 class VError
 {
-  static const int DEFAULT_ERR_BUF_SIZE = 512;
+	static const int DEFAULT_ERR_BUF_SIZE = 512;
 
 public:
-  std::type_info* ti;
-  char            msg[DEFAULT_ERR_BUF_SIZE];
-  int             code;
-  QString         className();
+	std::type_info* ti;
+	char            msg[DEFAULT_ERR_BUF_SIZE];
+	int             code;
+	QString         className();
 
 public:
-  VError(const char* msg = NULL, const int code = VERR_OK);
-  VError& operator = (const VError& error);
+	VError(const char* msg = NULL, const int code = VERR_OK);
+	VError& operator = (const VError& error);
 
 public:
-  void clear();
-  void setErrorMsg(const char* msg);
-  void setErrorCode(int code);
+	void clear();
+	void setErrorMsg(const char* msg);
+	void setErrorCode(int code);
 };
 
 // ----------------------------------------------------------------------------
@@ -118,11 +118,11 @@ public:
 class ERROR_CLASS_NAME : public VError                               \
 {                                                                    \
 public:                                                              \
-  ERROR_CLASS_NAME(const char* msg = NULL, const int code = VERR_OK) \
-    : VError(msg, code)                                              \
-  {                                                                  \
-    this->ti = (std::type_info*)&typeid(*this);                      \
-  }                                                                  \
+	ERROR_CLASS_NAME(const char* msg = NULL, const int code = VERR_OK) \
+		: VError(msg, code)                                              \
+	{                                                                  \
+		this->ti = (std::type_info*)&typeid(*this);                      \
+	}                                                                  \
 };
 
 VDECLARE_ERROR_CLASS(VStdError)
@@ -133,11 +133,11 @@ VDECLARE_ERROR_CLASS(VStdError)
 #define VCATCH                                          \
 catch (std::exception& e)                               \
 {                                                       \
-  SET_ERROR(VStdError, e.what(), GetLastError());       \
+	SET_ERROR(VStdError, e.what(), GetLastError());       \
 }                                                       \
 catch (...)                                             \
 {                                                       \
-  SET_ERROR(VError, "exceptin occurred", VERR_UNKNOWN); \
+	SET_ERROR(VError, "exceptin occurred", VERR_UNKNOWN); \
 }
 
 // ----------------------------------------------------------------------------
@@ -146,17 +146,17 @@ catch (...)                                             \
 template <class T>
 void setError(VError& error, const char* msg = NULL, const int code = VERR_UNKNOWN)
 {
-  error.ti = (std::type_info*)&typeid(T);
-  error.setErrorMsg(msg);
-  error.setErrorCode(code);
+	error.ti = (std::type_info*)&typeid(T);
+	error.setErrorMsg(msg);
+	error.setErrorCode(code);
 }
 
 template <class T>
 void setError(VError& error, const QString& msg, const int code = VERR_UNKNOWN)
 {
-  error.ti = (std::type_info*)&typeid(T);
-  error.setErrorMsg(qPrintable(msg));
-  error.setErrorCode(code);
+	error.ti = (std::type_info*)&typeid(T);
+	error.setErrorMsg(qPrintable(msg));
+	error.setErrorCode(code);
 }
 
 #endif // __V_ERROR_H__

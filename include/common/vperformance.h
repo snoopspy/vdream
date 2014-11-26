@@ -20,9 +20,9 @@
 class VPerformanceVerbose
 {
 public:
-  int       begMilestone;
-  int       endMilestone;
-  VDuration duration;
+	int       begMilestone;
+	int       endMilestone;
+	VDuration duration;
 };
 
 // ----------------------------------------------------------------------------
@@ -38,9 +38,9 @@ class VPerformanceVerboseList : public QList<VPerformanceVerbose>
 class VPerformanceReportKey
 {
 public:
-  int begMilestone;
-  int endMileseone;
-  bool operator < (const VPerformanceReportKey& rhs) const;
+	int begMilestone;
+	int endMileseone;
+	bool operator < (const VPerformanceReportKey& rhs) const;
 };
 
 // ----------------------------------------------------------------------------
@@ -49,8 +49,8 @@ public:
 class VPerformanceReportData
 {
 public:
-  int       count;
-  VDuration totalDuration;
+	int       count;
+	VDuration totalDuration;
 };
 
 // ----------------------------------------------------------------------------
@@ -66,33 +66,33 @@ class VPerformanceReportMap : public QMap<VPerformanceReportKey, VPerformanceRep
 class VPerformance
 {
 public:
-  VPerformance();
-  virtual ~VPerformance();
+	VPerformance();
+	virtual ~VPerformance();
 
 public:
-  bool verbose;
+	bool verbose;
 
 protected:
-  VLog* m_log;
+	VLog* m_log;
 
 public:
-  VLog* log()            { return m_log; }
-  void setLog(VLog *log) { m_log = log;  }
+	VLog* log()            { return m_log; }
+	void setLog(VLog *log) { m_log = log;  }
 
 public:
-  VPerformanceVerboseList  verboseList;
-  VPerformanceReportMap    reportMap;
+	VPerformanceVerboseList  verboseList;
+	VPerformanceReportMap    reportMap;
 
-  void report();
+	void report();
 
 protected:
-  int   lastMilestone;
-  VTick lastTick;
+	int   lastMilestone;
+	VTick lastTick;
 
 public:
-  void clear();
-  void check(int milestone);
-  void check(int milestone, VTick now);
+	void clear();
+	void check(int milestone);
+	void check(int milestone, VTick now);
 };
 
 #endif // __V_PERFORMANCE_H__

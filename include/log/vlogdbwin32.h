@@ -21,10 +21,10 @@
 class VLogDBWin32 : public VLog
 {
 protected:
-  virtual void write(const char* buf, int len);
+	virtual void write(const char* buf, int len);
 
 public:
-  virtual VLog* createByURI(const QString& uri);
+	virtual VLog* createByURI(const QString& uri);
 };
 
 #endif // WIN32

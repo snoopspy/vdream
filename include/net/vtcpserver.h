@@ -22,15 +22,15 @@ class VTcpServer;
 class VTcpSessionThread : public VThread
 {
 public:
-  VTcpServer*  tcpServer;  // read only
-  VTcpSession* tcpSession; // read only
+	VTcpServer*  tcpServer;  // read only
+	VTcpSession* tcpSession; // read only
 
 public:
-  VTcpSessionThread(VTcpServer* owner, VTcpSession* tcpSession);
-  virtual ~VTcpSessionThread();
+	VTcpSessionThread(VTcpServer* owner, VTcpSession* tcpSession);
+	virtual ~VTcpSessionThread();
 
 protected:
-  virtual void run();
+	virtual void run();
 };
 
 // ----------------------------------------------------------------------------
@@ -45,41 +45,41 @@ class VTcpSessionThreadList : public QList<VTcpSessionThread*>, public VLockable
 // ----------------------------------------------------------------------------
 class VTcpServer : public VNetServer, public VRunnable, protected VStateLockable
 {
-  Q_OBJECT
+	Q_OBJECT
 
-  friend class VTcpSessionThread;
-
-public:
-  VTcpServer(void* owner = NULL);
-  virtual ~VTcpServer();
-
-protected:
-  virtual bool doOpen();
-  virtual bool doClose();
-  virtual int  doRead(char* buf, int size);
-  virtual int  doWrite(char* buf, int size);
-
-protected:
-  VTcpSession* accept();
-  virtual void run(); // for accept thread
+	friend class VTcpSessionThread;
 
 public:
-  /// read only(for accept)
-  VTcpSession*          acceptSession;
-  /// tcp client thread list
-  VTcpSessionThreadList threadList;
+	VTcpServer(void* owner = NULL);
+	virtual ~VTcpServer();
+
+protected:
+	virtual bool doOpen();
+	virtual bool doClose();
+	virtual int  doRead(char* buf, int size);
+	virtual int  doWrite(char* buf, int size);
+
+protected:
+	VTcpSession* accept();
+	virtual void run(); // for accept thread
+
+public:
+	/// read only(for accept)
+	VTcpSession*          acceptSession;
+	/// tcp client thread list
+	VTcpSessionThreadList threadList;
 
 signals:
-  void runned(VTcpSession* tcpSession);
+	void runned(VTcpSession* tcpSession);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
 
 #ifdef QT_GUI_LIB
 public: // for VOptionable
-  virtual void optionAddWidget(QLayout* layout);
-  virtual void optionSaveDlg(QDialog* dialog);
+	virtual void optionAddWidget(QLayout* layout);
+	virtual void optionSaveDlg(QDialog* dialog);
 #endif // QT_GUI_LIB
 };
 

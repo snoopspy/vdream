@@ -24,16 +24,16 @@
 class VObjectConnection
 {
 public:
-  VObjectConnection(QByteArray  signal, QObject* receiver, QByteArray  slot);
-  VObjectConnection(const char* signal, QObject* receiver, const char* slot);
+	VObjectConnection(QByteArray  signal, QObject* receiver, QByteArray  slot);
+	VObjectConnection(const char* signal, QObject* receiver, const char* slot);
 
 public:
-  QByteArray signal;
-  QObject*   receiver;
-  QByteArray slot;
+	QByteArray signal;
+	QObject*   receiver;
+	QByteArray slot;
 
 public:
-  bool operator == (const VObjectConnection& r) const;
+	bool operator == (const VObjectConnection& r) const;
 };
 
 // ----------------------------------------------------------------------------
@@ -47,73 +47,73 @@ class VObjectConnections : public QList<VObjectConnection>
 // VObject
 // ----------------------------------------------------------------------------
 class VObject :
-  public QObject,
-  // public VGetLoggable, // gilgil temp 2012.09.18
-  public VXmlable
+	public QObject,
+	// public VGetLoggable, // gilgil temp 2012.09.18
+	public VXmlable
 {
-  Q_OBJECT
+	Q_OBJECT
 
 public:
-  //
-  // constructor and destructor
-  //
+	//
+	// constructor and destructor
+	//
 public:
-  void* owner;
+	void* owner;
 
 public:
-  VObject(void* owner = NULL);
-  virtual ~VObject();
+	VObject(void* owner = NULL);
+	virtual ~VObject();
 
 public:
 
-  VObjectConnections connections;
-  static bool connect(QObject* sender, const char* signal, QObject* receiver, const char* slot, Qt::ConnectionType type = Qt::AutoConnection);
-  static bool connect(QObject *sender, const QMetaMethod &signal, QObject *receiver, const QMetaMethod &slot, Qt::ConnectionType type = Qt::AutoConnection);
-  static bool disconnect(QObject* sender, const char* signal, QObject* receiver, const char* slot);
-  static bool disconnect(QObject *sender, const QMetaMethod &signal, QObject *receiver, const QMetaMethod &slot);
-  static QMetaMethod findMethod(QObject* object, QString methodName);
+	VObjectConnections connections;
+	static bool connect(QObject* sender, const char* signal, QObject* receiver, const char* slot, Qt::ConnectionType type = Qt::AutoConnection);
+	static bool connect(QObject *sender, const QMetaMethod &signal, QObject *receiver, const QMetaMethod &slot, Qt::ConnectionType type = Qt::AutoConnection);
+	static bool disconnect(QObject* sender, const char* signal, QObject* receiver, const char* slot);
+	static bool disconnect(QObject *sender, const QMetaMethod &signal, QObject *receiver, const QMetaMethod &slot);
+	static QMetaMethod findMethod(QObject* object, QString methodName);
 
 protected:
-  VState m_state;
+	VState m_state;
 
 public:
-  int     tag; // used for debugging
-  QString name;
-  VState  state()     { return m_state;                   }
-  QString className() { return CLASS_NAME(*this);         }
-  bool    active()    { return m_state == VState::Opened; }
+	int     tag; // used for debugging
+	QString name;
+	VState  state()     { return m_state;                   }
+	QString className() { return CLASS_NAME(*this);         }
+	bool    active()    { return m_state == VState::Opened; }
 
-  //
-  // error
-  //
+	//
+	// error
+	//
 public:
-  VError error;
+	VError error;
 
-  //
-  // open and close
-  //
+	//
+	// open and close
+	//
 public slots:
-  virtual bool open();
-  virtual bool close();
+	virtual bool open();
+	virtual bool close();
 
 public:
-  virtual bool close(bool wait, VTimeout timeout = vd::DEFAULT_TIMEOUT);
-  virtual bool wait(VTimeout timeout = vd::DEFAULT_TIMEOUT);
+	virtual bool close(bool wait, VTimeout timeout = vd::DEFAULT_TIMEOUT);
+	virtual bool wait(VTimeout timeout = vd::DEFAULT_TIMEOUT);
 
 protected:
-  virtual bool doOpen();
-  virtual bool doClose();
+	virtual bool doOpen();
+	virtual bool doClose();
 
 signals:
-  void opened();
-  void closed();
+	void opened();
+	void closed();
 
-  //
-  // load and save
-  //
+	//
+	// load and save
+	//
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
 };
 
 #endif // __V_OBJECT_H__

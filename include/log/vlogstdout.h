@@ -19,21 +19,21 @@
 class VLogStdout : public VLog
 {
 public:
-  VLogStdout();
-  virtual ~VLogStdout();
+	VLogStdout();
+	virtual ~VLogStdout();
 
 public:
-  bool autoFlush;
+	bool autoFlush;
 
 protected:
-  virtual void write(const char* buf, int len);
+	virtual void write(const char* buf, int len);
 
 public:
-  virtual VLog* createByURI(const QString& uri);
+	virtual VLog* createByURI(const QString& uri);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
 };
 
 #endif // __V_LOG_STDOUT_H__

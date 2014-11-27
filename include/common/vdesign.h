@@ -146,25 +146,4 @@ public:
 	virtual ~VDependencyWith() {}
 };
 
-// ----------------------------------------------------------------------------
-// VAutoClassInitializer
-// ----------------------------------------------------------------------------
-//
-// NO_USE_AUTO_CLASS_INITIALIZER is used to not to use
-// initialize and finalize class automatically.
-// #define NO_USE_AUTO_CLASS_INITIALIZER
-//
-#ifndef NO_USE_AUTO_CLASS_INITIALIZER
-template <class T>
-class VAutoClassInitializer
-{
-public:
-	VAutoClassInitializer()          { T::classInitialize(); }
-	virtual ~VAutoClassInitializer() { T::classFinalize();   }
-};
-#else
-template <class T>
-class VAutoClassInitializer {};
-#endif // NO_USE_AUTO_CLASS_INITIALIZER
-
 #endif // __V_DESIGN_H__

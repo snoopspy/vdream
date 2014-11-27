@@ -301,8 +301,6 @@ bool VLog::saveToDefaultDoc(const QString& path)
 */
 // -----------------------------------
 
-// static VAutoClassInitializer<VLog> g; // gilgil temp 2012.11.01
-
 #ifdef GTEST
 #include <gtest/gtest.h>
 

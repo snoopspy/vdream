@@ -89,26 +89,6 @@ public:
 	const    T* operator &() const { return &base;        }
 };
 
-// ----------------------------------------------------------------------------
-// Property
-// ----------------------------------------------------------------------------
-#define EXPORT_PROPERTY(InType,inName,OutType,outName)                                              \
-	inline OutType __________get_##outName()           { return (OutType)inName; }                    \
-	inline void __________set_##outName(OutType value) { inName = (InType)value; }                    \
-	__declspec (property (get=__________get_##outName, put=__________set_##outName)) OutType outName;
-
-#define EXPORT_READ_PROPERTY(InType,inName,OutType,outName)                                         \
-	inline OutType __________get_##outName()           { return (OutType)inName; }                    \
-	__declspec (property (get=__________get_##outName)) OutType outName;
-
-#define EXPORT_WRITE_PROPERTY(InType,inName,OutType,outName)                                        \
-	inline void __________set_##outName(OutType value) { inName = (InType)value; }                    \
-	__declspec (property (put=__________set_##outName)) OutType outName;
-
-#define EXPORT_POINTER_PROPERTY(InType,inName,OutType,outName)                                      \
-	inline OutType* __________get_##outName()        { return (OutType*)&inName; }                    \
-	__declspec (property (get=__________get_##outName)) OutType* ##outName;
-
 // ----- gilgil temp 2012.11.01 -----
 /*
 // ----------------------------------------------------------------------------

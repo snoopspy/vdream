@@ -17,10 +17,6 @@
 #include <stdarg.h>  // for va_list
 #include <stdlib.h>  // for malloc
 
-#ifdef WIN32
-// #pragma warning( disable : 4100 ) // gilgil temp 2012..5.20
-#endif // WIN32
-
 // ----------------------------------------------------------------------------
 // VInt
 // ----------------------------------------------------------------------------
@@ -134,7 +130,7 @@ public:
 		#ifdef __STDC_WANT_SECURE_LIB__
 			int len = vsprintf_s(buf, BUF_SIZE, fmt, args);
 		#else
-			int len = vsprintf(buf, fmt, args);
+			int len = vsnprintf(buf, BUF_SIZE, fmt, args);
 		#endif // __STDC_WANT_SECURE_LIB__
 		if (len != -1) printf("%s", buf);
 		va_end(args);
@@ -142,7 +138,7 @@ public:
 	#else // _DEBUG
 	static void D(const char* fmt, ...)
 	{
-		(void)fmt; // Q_UNUSED(fmt);
+		(void)fmt;
 	}
 	#endif // _DEBUG
 };

@@ -11,9 +11,9 @@
 // vdream Version
 // ----------------------------------------------------------------------------
 #ifdef _DEBUG
-const char* VDREAM_VERSION = "VDream 9.0 Debug   Build( " __DATE__ " " __TIME__ " )";
+const char* VDREAM_VERSION = "VDream 9.1 Debug   Build( " __DATE__ " " __TIME__ " )";
 #else // RELEASE
-const char* VDREAM_VERSION = "VDream 9.0 Release Build( " __DATE__ " " __TIME__ " )";
+const char* VDREAM_VERSION = "VDream 9.1 Release Build( " __DATE__ " " __TIME__ " )";
 #endif // _DEBUG
 
 // ----------------------------------------------------------------------------

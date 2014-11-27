@@ -49,8 +49,7 @@ protected:
 class VThread :
 	public  VObject,
 	public  VLockable,
-	public  IVRunnable,
-	private VNonCopyable
+	public  IVRunnable
 {
 	friend class VQThread;
 
@@ -88,6 +87,9 @@ public:
 public:
 	virtual void load(VXml xml);
 	virtual void save(VXml xml);
+
+private:
+	Q_DISABLE_COPY(VThread)
 };
 #ifdef WIN32
 extern __declspec( thread ) int threadTag;

@@ -18,7 +18,7 @@
 // ----------------------------------------------------------------------------
 // VApp
 // ----------------------------------------------------------------------------
-class VApp : private VNonCopyable
+class VApp
 {
 private: // singleton
 	VApp();
@@ -54,6 +54,9 @@ public:
 		static VApp app;
 		return app;
 	}
+
+private:
+	Q_DISABLE_COPY(VApp)
 };
 
 #endif // __V_APP_H__

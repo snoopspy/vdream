@@ -85,7 +85,7 @@ public:
 // ----------------------------------------------------------------------------
 // VNetInstance
 // ----------------------------------------------------------------------------
-class VNetInstance : private VNonCopyable
+class VNetInstance
 {
 private: // singleton
 	VNetInstance();
@@ -93,6 +93,9 @@ private: // singleton
 
 public:
 	static VNetInstance& instance();
+
+private:
+	Q_DISABLE_COPY(VNetInstance)
 };
 
 // ----------------------------------------------------------------------------

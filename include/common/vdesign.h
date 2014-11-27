@@ -14,19 +14,6 @@
 #include <typeinfo>
 
 // ----------------------------------------------------------------------------
-// VNonCopyable
-// ----------------------------------------------------------------------------
-class VNonCopyable
-{
-protected:
-	VNonCopyable()  {}
-	~VNonCopyable() {}
-private:
-	VNonCopyable(const VNonCopyable&);
-	const VNonCopyable& operator = (const VNonCopyable&);
-};
-
-// ----------------------------------------------------------------------------
 // VLocalInstance (lazy initialization)
 // ----------------------------------------------------------------------------
 template <class T>

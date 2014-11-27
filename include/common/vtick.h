@@ -12,7 +12,6 @@
 #define __V_TICK_H__
 
 #include <QtGlobal>
-#include <VLinkLibrary>
 
 // ----------------------------------------------------------------------------
 // VTick

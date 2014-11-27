@@ -81,32 +81,36 @@ TEST( Design, basePointerTest )
 {
 	MyInt a = 1;
 	int *b = &a;
+	a++;
 	MyInt c = a + *b;
-	EXPECT_TRUE(c == 3);
+	EXPECT_TRUE(c == 4);
 }
 
 TEST( Design, baseConstPointerTest )
 {
 	MyInt a = 1;
 	const int *b = &a;
+	a++;
 	MyInt c = a + *b;
-	EXPECT_TRUE(c == 3);
+	EXPECT_TRUE(c == 4);
 }
 
 TEST( Design, baseReferenceTest )
 {
 	MyInt a = 1;
 	int& b = a;
+	a++;
 	MyInt c = a + b;
-	EXPECT_TRUE(c == 3);
+	EXPECT_TRUE(c == 4);
 }
 
 TEST( Design, baseConstReferenceTest )
 {
 	MyInt a = 1;
 	const int& b = a;
+	a++;
 	MyInt c = a + b;
-	EXPECT_TRUE(c == 3);
+	EXPECT_TRUE(c == 4);
 }
 
 #endif // GTEST

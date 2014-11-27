@@ -14,7 +14,6 @@
 #ifdef _DEBUG
 
 #include <stdio.h> // for size_t
-#include <VLinkLibrary>
 
 // ----------------------------------------------------------------------------
 // Overload functions

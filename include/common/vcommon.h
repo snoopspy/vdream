@@ -23,7 +23,6 @@
 #ifdef linux
 #include <VLinux>
 #endif // linux
-#include <VLinkLibrary>
 
 // ----------------------------------------------------------------------------
 // VDream Version

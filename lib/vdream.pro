@@ -98,7 +98,6 @@ HEADERS += \
 	../include/common/vmetaclass.h \
 	../include/common/vstring.h \
 	../include/common/veventhandler.h \
-	../include/common/vlinklibrary.h \
 	../include/common/vtick.h \
 	../include/common/vsystem.h \
 	../include/common/vcommon.h \

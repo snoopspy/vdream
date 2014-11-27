@@ -20,7 +20,6 @@
 #ifdef linux
 	#include <unistd.h>
 #endif // linux
-#include <VLinkLibrary>
 
 // ----------------------------------------------------------------------------
 // VTimeout

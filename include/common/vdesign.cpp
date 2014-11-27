@@ -67,24 +67,46 @@ TEST( Design, dependencyTest )
 	App::instance().foo();
 }
 
+typedef VPrimitive<int> MyInt;
+
 TEST( Design, primitiveTest )
 {
-	typedef VPrimitive<int> MyInt;
-
 	MyInt a = 1;
 	MyInt b = 2;
 	MyInt c = a + b;
 	EXPECT_EQ(c, 3);
 }
 
-TEST( Design, baseTest )
+TEST( Design, primitivePointerTest )
 {
-	typedef VBase<int> MyInt;
-
 	MyInt a = 1;
-	MyInt b = 2;
+	int *b = &a;
+	MyInt c = a + *b;
+	EXPECT_TRUE(c == 3);
+}
+
+TEST( Design, primitiveConstPointerTest )
+{
+	MyInt a = 1;
+	const int *b = &a;
+	MyInt c = a + *b;
+	EXPECT_TRUE(c == 3);
+}
+
+TEST( Design, primitiveReferenceTest )
+{
+	MyInt a = 1;
+	int& b = a;
 	MyInt c = a + b;
-	EXPECT_EQ(c, 3);
+	EXPECT_TRUE(c == 3);
+}
+
+TEST( Design, primitiveConstReferenceTest )
+{
+	MyInt a = 1;
+	const int& b = a;
+	MyInt c = a + b;
+	EXPECT_TRUE(c == 3);
 }
 
 #endif // GTEST

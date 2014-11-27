@@ -11,49 +11,19 @@
 #ifndef __V_DESIGN_H__
 #define __V_DESIGN_H__
 
-#include <typeinfo>
-
 // ----------------------------------------------------------------------------
-// VLocalInstance (lazy initialization)
+// VInstance (lazy initialization)
 // ----------------------------------------------------------------------------
 template <class T>
-class VLocalInstance : private T
+class VInstance : private T
 {
 public:
 	inline static T& instance()
 	{
-		// static local object(lazy initialization)
-		static VLocalInstance<T> g_instance;
+		static VInstance<T> g_instance;
 		return  g_instance;
 	}
 };
-
-// ----------------------------------------------------------------------------
-// VInstance (= VLocalInstance)
-// ----------------------------------------------------------------------------
-template <class T>
-class VInstance : public VLocalInstance<T>
-{
-};
-
-// ----------------------------------------------------------------------------
-// VGlobalInstance (non-lazy initialization)
-// ----------------------------------------------------------------------------
-#ifdef WIN32
-template <class T>
-class VGlobalInstance : private T
-{
-protected:
-	// static member object(non-lazy initialization)
-	static VGlobalInstance<T> g_instance;
-public:
-	inline static T& instance()
-	{
-		return g_instance;
-	}
-};
-template <class T> T VGlobalInstance<T>::g_instance;
-#endif // WIN32
 
 // ----------------------------------------------------------------------------
 // VPrimitive
@@ -62,31 +32,15 @@ template <class T>
 class VPrimitive
 {
 protected:
-	T value;
-public:
-	VPrimitive()                        {                        }
-	VPrimitive(const VPrimitive& b)     { this->value = b.value; }
-	VPrimitive(const T           value) { this->value = value;   }
-	~VPrimitive()                       {                        } // do not declare as virtual
-	operator T()             const      { return value;          }
-	const    T* operator &() const      { return &value;         }
-};
-
-// ----------------------------------------------------------------------------
-// VBase
-// ----------------------------------------------------------------------------
-template <class T>
-class VBase
-{
-protected:
 	T base;
 public:
-	VBase()                        {                      }
-	VBase(const VBase& b)          { this->base = b.base; }
-	VBase(const T&  base)          { this->base = base;   }
-	~VBase()                       {                      } // do not declare as virtual
-	operator T&()            const { return (T&)base;     }
-	const    T* operator &() const { return &base;        }
+	VPrimitive() {}
+	VPrimitive(const VPrimitive& b) : base(b.base) {}
+	VPrimitive(const T& _base) : base(_base) {}
+	// ~VPrimitive() {} // do not declare as virtual // gilgil temp 2014.11.27
+	// operator T&() { return (T&)m_value; } // gilgil temp 2014.11.27
+	operator T&() const { return (T&)base; }
+	T* operator &() const { return (T*)&base; }
 };
 
 // ----------------------------------------------------------------------------

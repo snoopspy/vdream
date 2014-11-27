@@ -11,6 +11,7 @@
 #ifndef __V_ERROR_H__
 #define __V_ERROR_H__
 
+#include <typeinfo>
 #include <VCommon>
 
 // ----------------------------------------------------------------------------

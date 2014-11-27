@@ -1,3 +1,4 @@
+DEFINES += GTEST # gilgil temp 2014.11.28
 CONFIG += VDREAM_LIB_BUILD
 QT -= gui
 #QT += gui widgets

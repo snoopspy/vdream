@@ -18,7 +18,7 @@
 // ----------------------------------------------------------------------------
 // VFile
 // ----------------------------------------------------------------------------
-class VFile : public VRwObject, public VPrimitive<QFile>
+class VFile : public VRwObject, public VBase<QFile>
 {
 public:
 	VFile(void* owner = NULL);

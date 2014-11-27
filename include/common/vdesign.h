@@ -26,18 +26,18 @@ public:
 };
 
 // ----------------------------------------------------------------------------
-// VPrimitive
+// VBase
 // ----------------------------------------------------------------------------
 template <class T>
-class VPrimitive
+class VBase
 {
 protected:
 	T base;
 public:
-	VPrimitive() {}
-	VPrimitive(const VPrimitive& b) : base(b.base) {}
-	VPrimitive(const T& _base) : base(_base) {}
-	// ~VPrimitive() {} // do not declare as virtual // gilgil temp 2014.11.27
+	VBase() {}
+	VBase(const VBase& b) : base(b.base) {}
+	VBase(const T& _base) : base(_base) {}
+	// ~VBase() {} // do not declare as virtual // gilgil temp 2014.11.27
 	// operator T&() { return (T&)m_value; } // gilgil temp 2014.11.27
 	operator T&() const { return (T&)base; }
 	T* operator &() const { return (T*)&base; }

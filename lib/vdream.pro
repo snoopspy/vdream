@@ -1,8 +1,8 @@
-DEFINES += GTEST # gilgil temp 2014.11.28
 CONFIG += VDREAM_LIB_BUILD
 QT -= gui
 #QT += gui widgets
 
+include (../../../etc/gtest/gtest.pri) # gilgil temp 2014.11.28
 include (vdream.pri)
 
 TARGET   = $${VDREAM_LIB_NAME}

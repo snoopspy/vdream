@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------------
 //
-// VDream Component Suite version 9.0
+// VDream Component Suite version 9.0.1
 //
 // http://www.gilgil.net
 //
@@ -13,7 +13,7 @@
 
 #define WIN32_LEAN_AND_MEAN
 #include <QtCore>
-#include <VDesign>
+// #include <VDesign> // gilgil temp 2014.11.27
 #include <VSecureLib>
 #include <VString>
 #include <VSystem>

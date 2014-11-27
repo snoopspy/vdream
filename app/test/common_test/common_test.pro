@@ -12,8 +12,9 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     test1.cpp \
-	../../../include/etc/vmyobject.cpp \
-    ../../../include/common/vdesign.cpp
+	../../../include/common/vbase.cpp \
+	../../../include/common/vdependency.cpp \
+	../../../include/common/vinstance.cpp
 
 HEADERS += \
 	../../../include/etc/vmyobject.h

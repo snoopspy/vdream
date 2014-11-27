@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------------
 //
-// VDream Component Suite version 9.0
+// VDream Component Suite version 9.0.1
 //
 // http://www.gilgil.net
 //
@@ -12,7 +12,7 @@
 #define __V_FILE_H__
 
 #include <QFile>
-#include <VDesign>
+#include <VBase>
 #include <VRwObject>
 
 // ----------------------------------------------------------------------------

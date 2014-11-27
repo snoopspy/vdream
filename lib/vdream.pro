@@ -47,7 +47,9 @@ SOURCES += \
 	../include/common/vxml.cpp \
 	../include/common/vfile.cpp \
 	../include/common/vobject.cpp \
-	../include/common/vdesign.cpp \
+	../include/common/vinstance.cpp \
+	../include/common/vbase.cpp \
+	../include/common/vdependency.cpp \
 	../include/common/vcommon.cpp \
 	../include/common/verror.cpp \
 	../include/net/vnetclient.cpp \
@@ -93,7 +95,9 @@ HEADERS += \
 	../include/log/vlogdbwin32.h \
 	../include/common/vmemoryleak.h \
 	../include/common/verror.h \
-	../include/common/vdesign.h \
+	../include/common/vinstance.h \
+	../include/common/vbase.h \
+	../include/common/vdependency.h \
 	../include/common/vlinux.h \
 	../include/common/vmetaclass.h \
 	../include/common/vstring.h \

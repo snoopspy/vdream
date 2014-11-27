@@ -69,9 +69,7 @@ public:
 	QString str() const;
 };
 
-class VLog :
-	public VXmlable
-	// public VClassInitialize<VLog> // gilgil temp 2012.11.01
+class VLog : public VXmlable
 {
 	friend class VLogList;
 	friend class VLogFactory;
@@ -159,9 +157,6 @@ public:
 	static VLog* changeLog(VLog* log); //{ VLog* oldLog = g_log; g_log = log; SAFE_DELETE(oldLog); return oldLog; } // gilgil temp 2012.11.01
 
 private:
-	// friend class VClassInitialize<VLog>; // gilgil temp 2012.11.01
-	// static void doClassInitialize(); // gilgil temp 2012.11.01
-	// static void doClassFinalize(); // gilgil temp 2012.11.01
 	friend class VLogInstance;
 };
 

@@ -89,31 +89,6 @@ public:
 	const    T* operator &() const { return &base;        }
 };
 
-// ----- gilgil temp 2012.11.01 -----
-/*
-// ----------------------------------------------------------------------------
-// VClassInitialize
-// ----------------------------------------------------------------------------
-//
-// Class T must have the following methods.
-// private:
-//   friendclass VClassInitialize<T>;
-//   static void doClassInitialize();
-//   static void doClassFinalize();
-//
-template <class T>
-class VClassInitialize
-{
-private:
-	static int classRefCount;
-public:
-	static void classInitialize() { if (classRefCount++ == 0) T::doClassInitialize(); }
-	static void classFinalize()   { if (--classRefCount == 0) T::doClassFinalize();   }
-};
-template <class T> int VClassInitialize<T>::classRefCount = 0;
-*/
-// ----------------------------------
-
 // ----------------------------------------------------------------------------
 // VDependencyWith
 // ----------------------------------------------------------------------------

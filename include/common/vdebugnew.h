@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------------
 //
-// VDream Component Suite version 9.1
+// VDream Component Suite version 9.0
 //
 // http://www.gilgil.net
 //

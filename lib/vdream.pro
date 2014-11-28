@@ -112,6 +112,7 @@ HEADERS += \
 	../include/common/vfactory.h \
 	../include/common/vfile.h \
 	../include/common/vdebugnew.h \
+	../include/common/vdebugnewcancel.h \
 	../include/common/vobjectwidget.h \
 	../include/common/vrwobject.h \
 	../include/common/vapp.h \

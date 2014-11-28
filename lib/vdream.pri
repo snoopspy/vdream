@@ -33,13 +33,14 @@ VDREAM_PATH            =   $$PWD/..
 INCLUDEPATH           +=   $${VDREAM_PATH}/include
 INCLUDEPATH           +=   $${VDREAM_PATH}/lib
 DEPENDPATH            +=   $${VDREAM_PATH}
-CONFIG(VDREAM_LIB_BUILD) {
-} else {
-	LIBS                       += -L$${VDREAM_PATH}/lib -l$${VDREAM_LIB_NAME}
-	win32:PRE_TARGETDEPS       +=  $${VDREAM_PATH}/lib/$${VDREAM_LIB_NAME}.lib
-	linux-g++:PRE_TARGETDEPS   +=  $${VDREAM_PATH}/lib/lib$${VDREAM_LIB_NAME}.a
-	android-g++:PRE_TARGETDEPS +=  $${VDREAM_PATH}/lib/lib$${VDREAM_LIB_NAME}.so
-}
+# gilgil temp 2014.11.28
+# CONFIG(VDREAM_LIB_BUILD) {
+# } else {
+# 	LIBS                       += -L$${VDREAM_PATH}/lib -l$${VDREAM_LIB_NAME}
+# 	win32:PRE_TARGETDEPS       +=  $${VDREAM_PATH}/lib/$${VDREAM_LIB_NAME}.lib
+# 	linux-g++:PRE_TARGETDEPS   +=  $${VDREAM_PATH}/lib/lib$${VDREAM_LIB_NAME}.a
+# 	android-g++:PRE_TARGETDEPS +=  $${VDREAM_PATH}/lib/lib$${VDREAM_LIB_NAME}.so
+# }
 
 #-------------------------------------------------
 # openssl

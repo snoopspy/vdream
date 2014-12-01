@@ -29,7 +29,7 @@ CONFIG(release, debug|release) {
 #-------------------------------------------------
 # vdream
 #-------------------------------------------------
-VDREAM_PATH            =   $$PWD/..
+VDREAM_PATH            =   $${PWD}/..
 INCLUDEPATH           +=   $${VDREAM_PATH}/include
 INCLUDEPATH           +=   $${VDREAM_PATH}/lib
 DEPENDPATH            +=   $${VDREAM_PATH}

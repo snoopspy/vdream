@@ -32,13 +32,13 @@ linux {
 #-------------------------------------------------
 VDREAM_LIB_NAME = vdream
 CONFIG(debug, debug|release) {
-	VDREAM_LIB_NAME=$${VDREAM_LIB_NAME}_d
+	VDREAM_LIB_NAME = $${VDREAM_LIB_NAME}_d
 }
 contains(QT, gui) {
-	VDREAM_LIB_NAME=$${VDREAM_LIB_NAME}_gui
+	VDREAM_LIB_NAME = $${VDREAM_LIB_NAME}_gui
 }
 android-g++ {
-	VDREAM_LIB_NAME=$${VDREAM_LIB_NAME}_android
+	VDREAM_LIB_NAME = $${VDREAM_LIB_NAME}_android
 }
 
 #-------------------------------------------------

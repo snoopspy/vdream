@@ -1,22 +1,6 @@
 QT += core xml
 
 #-------------------------------------------------
-# VDREAM_LIB_NAME
-#-------------------------------------------------
-VDREAM_LIB_NAME=vdream
-CONFIG(debug, debug|release) {
-	VDREAM_LIB_NAME=$${VDREAM_LIB_NAME}_d
-}
-
-contains(QT, gui) {
-	VDREAM_LIB_NAME=$${VDREAM_LIB_NAME}_gui
-}
-
-android-g++ {
-	VDREAM_LIB_NAME=$${VDREAM_LIB_NAME}_android
-}
-
-#-------------------------------------------------
 # debug and release
 #-------------------------------------------------
 CONFIG(debug, debug|release) {
@@ -24,18 +8,6 @@ CONFIG(debug, debug|release) {
 }
 CONFIG(release, debug|release) {
 	DEFINES += _RELEASE
-}
-
-#-------------------------------------------------
-# vdream
-#-------------------------------------------------
-VDREAM_PATH  = $${PWD}/..
-INCLUDEPATH += $${VDREAM_PATH}/include
-# DEPENDPATH  += $${VDREAM_PATH} ## gilgil temp 2014.12.02
-!CONFIG(VDREAM_LIB_BUILD) {
-	win32-msvc*:PRE_TARGETDEPS +=  $${VDREAM_PATH}/lib/$${VDREAM_LIB_NAME}.lib
-	gcc:PRE_TARGETDEPS         +=  $${VDREAM_PATH}/lib/lib$${VDREAM_LIB_NAME}.a
-	LIBS                       += -L$${VDREAM_PATH}/lib -l$${VDREAM_LIB_NAME}
 }
 
 #-------------------------------------------------
@@ -53,4 +25,30 @@ win32 {
 }
 linux {
 	LIBS        += -lssl -lcrypto
+}
+
+#-------------------------------------------------
+# VDREAM_LIB_NAME
+#-------------------------------------------------
+VDREAM_LIB_NAME = vdream
+CONFIG(debug, debug|release) {
+	VDREAM_LIB_NAME=$${VDREAM_LIB_NAME}_d
+}
+contains(QT, gui) {
+	VDREAM_LIB_NAME=$${VDREAM_LIB_NAME}_gui
+}
+android-g++ {
+	VDREAM_LIB_NAME=$${VDREAM_LIB_NAME}_android
+}
+
+#-------------------------------------------------
+# vdream
+#-------------------------------------------------
+VDREAM_PATH  = $${PWD}/..
+INCLUDEPATH += $${VDREAM_PATH}/include
+# DEPENDPATH  += $${VDREAM_PATH} ## gilgil temp 2014.12.02
+!CONFIG(VDREAM_LIB_BUILD) {
+	win32-msvc*:PRE_TARGETDEPS +=  $${VDREAM_PATH}/lib/$${VDREAM_LIB_NAME}.lib
+	gcc:PRE_TARGETDEPS         +=  $${VDREAM_PATH}/lib/lib$${VDREAM_LIB_NAME}.a
+	LIBS                       += -L$${VDREAM_PATH}/lib -l$${VDREAM_LIB_NAME}
 }

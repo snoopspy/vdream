@@ -28,7 +28,7 @@ linux {
 }
 
 #-------------------------------------------------
-# VDREAM_LIB_NAME
+# library name
 #-------------------------------------------------
 VDREAM_LIB_NAME = vdream
 CONFIG(debug, debug|release) {
@@ -51,4 +51,5 @@ INCLUDEPATH += $${VDREAM_PATH}/include
 	win32-msvc*:PRE_TARGETDEPS +=  $${VDREAM_PATH}/lib/$${VDREAM_LIB_NAME}.lib
 	gcc:PRE_TARGETDEPS         +=  $${VDREAM_PATH}/lib/lib$${VDREAM_LIB_NAME}.a
 	LIBS                       += -L$${VDREAM_PATH}/lib -l$${VDREAM_LIB_NAME}
+	LIBS                       += -l$${VDREAM_LIB_NAME}
 }

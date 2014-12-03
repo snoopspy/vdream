@@ -8,8 +8,8 @@ Cross platform C++ library based on Qt.
 
 ## Windows
 * [openssl](http://slproweb.com/products/Win32OpenSSL.html)
-  * win32 : Win32OpenSSL-1_0_1j.exe or higher version
-  * win64 : Win64OpenSSL-1_0_1j.exe or higher version
+  * win32 : Win32OpenSSL-1_0_1i.exe or higher version
+  * win64 : Win64OpenSSL-1_0_1i.exe or higher version
 
 ## Linux
 * libgl-dev : apt-get install libgl-dev

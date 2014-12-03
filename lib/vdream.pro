@@ -9,7 +9,7 @@ include (vdream.pri)
 TARGET   = $${VDREAM_LIB_NAME}
 TEMPLATE = lib
 CONFIG  += staticlib
-DESTDIR  = ../lib
+DESTDIR  = $${PWD}
 
 SOURCES += \
 	../include/etc/vdatafind.cpp \

@@ -1,5 +1,10 @@
-QT -= gui
-#QT += gui widgets
+CONFIG(VDREAM_LIB_BUILD_GUI) {
+	message("VDREAM_LIB_BUILD_GUI") # gilgil temp 2014.12.07
+	QT += gui widgets
+} else {
+	message("not VDREAM_LIB_BUILD_GUI")  # gilgil temp 2014.12.07
+	QT -= gui
+}
 
 include (../../../etc/gtest/gtest.pri) # gilgil temp 2014.11.28
 

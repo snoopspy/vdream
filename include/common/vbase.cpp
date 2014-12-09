@@ -1,7 +1,6 @@
 #ifdef GTEST
 #include <gtest/gtest.h>
 #include <VBase>
-#include <VDebugNew>
 
 typedef VBase<int> MyInt;
 

@@ -2,7 +2,6 @@
 #include <gtest/gtest.h>
 #include <VInt>
 #include <VInstance>
-#include <VDebugNew>
 
 TEST( Design, instanceTest )
 {

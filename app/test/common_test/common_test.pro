@@ -10,7 +10,7 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
-SOURCES += main.cpp \
+SOURCES += \
     test1.cpp \
 	../../../include/common/vbase.cpp \
 	../../../include/common/vdebugnew.cpp \

@@ -1,7 +1,6 @@
 #ifdef GTEST
 #include <gtest/gtest.h>
 #include <VDependency>
-#include <VDebugNew>
 
 class Log
 {

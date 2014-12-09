@@ -33,9 +33,9 @@ QString VApp::fileName()
 
 #ifdef linux
 
-#ifndef min
-#define min(A,B) (A)>(B)?(A):(B)
-#endif // min
+#ifndef MIN
+#define MIN(a,b) (((a)<(b))?(a):(b))
+#endif // MIN
 
 QString VApp::fileName()
 {
@@ -46,7 +46,7 @@ QString VApp::fileName()
 		memset(buf, 0, vd::DEFAULT_BUF_SIZE);
 		char tmp[256];
 		sprintf(tmp, "/proc/%d/exe", getpid());
-		int res = min(readlink(tmp, buf, vd::DEFAULT_BUF_SIZE), vd::DEFAULT_BUF_SIZE - 1);
+		int res = MIN(readlink(tmp, buf, vd::DEFAULT_BUF_SIZE), vd::DEFAULT_BUF_SIZE - 1);
 		if(res >= 0)
 			buf[res] = '\0';
 		fileName = QString(buf);
@@ -130,11 +130,12 @@ void VApp::finalize(bool xml)
 }
 
 #ifdef GTEST
+#include <VDebugNewCancel>
 #include <gtest/gtest.h>
 
 TEST( App, filePathTest )
 {
-	QString filePath = VApp::filePath();
+	QString filePath = VApp::fileName();
 	qDebug() << "filePath=" << filePath;
 	QString fileName = QFileInfo(filePath).fileName();
 #ifdef WIN32

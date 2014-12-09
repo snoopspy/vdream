@@ -51,10 +51,6 @@ void VError::setErrorCode(int code)
 #include <gtest/gtest.h>
 #include <VLog>
 
-#ifdef _MSC_VER
-#include <windows.h> // gilgil temp 2012.04.30 for GetLastError used in VCATCH_STD
-#endif // _MSC_VER
-
 TEST( Error, defaultTest )
 {
 	VError error;

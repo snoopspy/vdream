@@ -2,6 +2,8 @@
 #include <VEventHandler>
 #include <VDebugNew>
 
+// ----- gilgil temp 2014.12.09 -----
+/*
 #ifdef _MSC_VER
 #pragma pack(push, 1)
 typedef struct
@@ -33,6 +35,8 @@ static void _setCurrentThreadName(const char* name) // for debugging
 	Q_UNUSED(name)
 #endif // _MSC_VER
 }
+*/
+// ----------------------------------
 
 // ----------------------------------------------------------------------------
 // VQThread
@@ -88,7 +92,7 @@ void VQThread::run()
 		if (thread->name == "") thread->name = thread->className();
 		strcpy_s(threadName, vd::DEFAULT_BUF_SIZE, qPrintable(thread->name));
 		strcpy_s(className,  vd::DEFAULT_BUF_SIZE, qPrintable(thread->className()));
-		_setCurrentThreadName((char*)threadName);
+		// _setCurrentThreadName((char*)threadName); // gilgil temp 2014.12.09
 
 		thread->m_id = VThread::currentID();
 
@@ -412,6 +416,7 @@ void VSimpleThread::run()
 }
 
 #ifdef GTEST
+#include <VDebugNewCancel>
 #include <gtest/gtest.h>
 #include <VMemoryLeak>
 

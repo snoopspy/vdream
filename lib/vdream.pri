@@ -48,8 +48,7 @@ VDREAM_PATH  = $${PWD}/..
 INCLUDEPATH += $${VDREAM_PATH}/include
 # DEPENDPATH  += $${VDREAM_PATH} ## gilgil temp 2014.12.02
 !CONFIG(VDREAM_LIB_BUILD) {
-	win32-msvc*:PRE_TARGETDEPS +=  $${VDREAM_PATH}/lib/$${VDREAM_LIB_NAME}.lib
-	gcc:PRE_TARGETDEPS         +=  $${VDREAM_PATH}/lib/lib$${VDREAM_LIB_NAME}.a
-	LIBS                       += -L$${VDREAM_PATH}/lib -l$${VDREAM_LIB_NAME}
-	LIBS                       += -l$${VDREAM_LIB_NAME}
+	gcc:PRE_TARGETDEPS +=  $${VDREAM_PATH}/lib/lib$${VDREAM_LIB_NAME}.a
+	LIBS               += -L$${VDREAM_PATH}/lib -l$${VDREAM_LIB_NAME}
+	LIBS               += -l$${VDREAM_LIB_NAME}
 }

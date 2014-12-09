@@ -15,6 +15,8 @@
 
 #undef debug_new
 #define debug_new new
+#undef malloc
+#undef free
 
 #endif // _DEBUG
 

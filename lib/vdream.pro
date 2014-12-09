@@ -6,8 +6,6 @@ CONFIG(VDREAM_LIB_BUILD_GUI) {
 	QT -= gui
 }
 
-include (../../../etc/gtest/gtest.pri) # gilgil temp 2014.11.28
-
 CONFIG += VDREAM_LIB_BUILD
 include (vdream.pri)
 

@@ -17,21 +17,7 @@
 // ----------------------------------------------------------------------------
 // Define
 // ----------------------------------------------------------------------------
-#ifdef _MSC_VER
- //
- // You must set compile option (/EHa) to use this TRY EXCEPT mechanism
- //
-#define NOMINMAX
-#include <winsock2.h>
-#include <windows.h>
-	int evalException(const int exception, const EXCEPTION_POINTERS* pinfo);
-	#ifndef TRY
-	#define TRY    __try
-	#define EXCEPT __except( evalException(GetExceptionCode(), GetExceptionInformation()) )
-	#endif  // TRY
-#else // WIN32
-	#define TRY try
-	#define EXCEPT catch(...)
-#endif // _MSC_VER
+#define TRY try
+#define EXCEPT catch(...)
 
 #endif // __V_EXCEPTION_H__

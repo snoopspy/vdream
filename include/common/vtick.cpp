@@ -23,6 +23,7 @@ VTick tick()
 }
 
 #ifdef GTEST
+#include <VDebugNewCancel>
 #include <gtest/gtest.h>
 #include <VSystem>
 #include <iostream>

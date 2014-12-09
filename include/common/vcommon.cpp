@@ -48,20 +48,10 @@ const char* __extractFuncName__(const char* funcName)
 // ----------------------------------------------------------------------------
 QString getClassName(const char* value)
 {
-	QString res = value;
-#ifdef _MSC_VER
-	if (res.left(6) == "class ")  res = res.mid(6);
-	else
-	if (res.left(7) == "struct ") res = res.mid(7);
-#endif // _MSC_VER
-
-#ifdef linux
 	int status;
 	char *realname = abi::__cxa_demangle(value, 0, 0, &status);
-	res = realname;
-#endif // linux
-
-	int pos = res.lastIndexOf("::");     // gilgil temp 2012.04.16
+	QString res = realname;
+	int pos = res.lastIndexOf("::");
 	if (pos != -1) res = res.mid(pos + 2);
 	return res;
 }

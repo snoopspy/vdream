@@ -13,17 +13,6 @@
 
 #include <VRwObject>
 
-// ----------------------------------------------------------------------------
-// Link Library
-// ----------------------------------------------------------------------------
-#ifdef _MSC_VER
-	#ifdef WINCE
-		#pragma comment(lib, "ws2.lib")
-	#else
-		#pragma comment(lib, "ws2_32.lib")
-	#endif // WINCE
-#endif // _MSC_VER
-
 #ifdef WIN32
 	#define NOMINMAX
 	#include <winSock2.h>

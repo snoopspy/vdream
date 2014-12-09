@@ -13,7 +13,7 @@
 
 #ifdef _DEBUG
 
-#include <stdio.h> // for size_t
+#include <new> // for size_t
 
 // ----------------------------------------------------------------------------
 // Overload functions
@@ -24,12 +24,12 @@ void  debug_del         (void* p,     const char* file, const int line);
 void* debug_malloc      (size_t size, const char* file, const int line);
 void  debug_free        (void* p,     const char* file, const int line);
 
-void* operator new      (size_t size, const char* file, const int line);
-void  operator delete   (void* p,     const char* file, const int line);
-void  operator delete   (void* p);
-void* operator new[]    (size_t size, const char* file, const int line);
-void  operator delete[] (void* p,     const char* file, const int line);
-void  operator delete[] (void* p);
+void* operator new      (size_t size, const char* file, const int line) throw(std::bad_alloc);
+void  operator delete   (void* p,     const char* file, const int line) throw();
+void  operator delete   (void* p) throw();
+void* operator new[]    (size_t size, const char* file, const int line) throw(std::bad_alloc);
+void  operator delete[] (void* p,     const char* file, const int line) throw();
+void  operator delete[] (void* p) throw();
 
 // ----------------------------------------------------------------------------
 // Macros

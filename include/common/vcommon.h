@@ -47,18 +47,6 @@ const char* __extractFuncName__(const char* funcName);
 #define SAFE_FREE(A)   { if(A != NULL) { free(A); A = NULL; } }
 #endif // SAFE_FREE
 
-#ifndef CRLF
-#define CRLF "\r\n"
-#endif // CRLF
-
-#ifndef ASSERT
-#ifdef _DEBUG
-	#define ASSERT(a) LOG_ASSERT(a)
-#else
-	#define ASSERT(a)
-#endif // _DEBUG
-#endif // ASSERT
-
 // ----------------------------------------------------------------------------
 // Class
 // ----------------------------------------------------------------------------

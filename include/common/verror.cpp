@@ -37,7 +37,7 @@ void VError::clear()
 void VError::setErrorMsg(const char* msg)
 {
 	if (msg != NULL)
-		strcpy_s(this->msg, DEFAULT_ERR_BUF_SIZE, msg);
+		strncpy(this->msg, msg, DEFAULT_ERR_BUF_SIZE);
 	else
 		memset((void*)this->msg, 0, DEFAULT_ERR_BUF_SIZE);
 }

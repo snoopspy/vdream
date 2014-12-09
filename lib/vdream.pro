@@ -39,7 +39,6 @@ SOURCES += \
 	../include/common/vtick.cpp \
 	../include/common/vperformance.cpp \
 	../include/common/vexception.cpp \
-	../include/common/vsecurelib.cpp \
 	../include/common/vthread.cpp \
 	../include/common/vsystem.cpp \
 	../include/common/vdebugnew.cpp \
@@ -111,7 +110,6 @@ HEADERS += \
 	../include/common/vsystem.h \
 	../include/common/vcommon.h \
 	../include/common/vobject.h \
-	../include/common/vsecurelib.h \
 	../include/common/vwindows.h \
 	../include/common/vfactory.h \
 	../include/common/vfile.h \

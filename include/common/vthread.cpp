@@ -90,8 +90,8 @@ void VQThread::run()
 	try
 	{
 		if (thread->name == "") thread->name = thread->className();
-		strcpy_s(threadName, vd::DEFAULT_BUF_SIZE, qPrintable(thread->name));
-		strcpy_s(className,  vd::DEFAULT_BUF_SIZE, qPrintable(thread->className()));
+		strncpy(threadName, qPrintable(thread->name), vd::DEFAULT_BUF_SIZE);
+		strncpy(className, qPrintable(thread->className()), vd::DEFAULT_BUF_SIZE);
 		// _setCurrentThreadName((char*)threadName); // gilgil temp 2014.12.09
 
 		thread->m_id = VThread::currentID();

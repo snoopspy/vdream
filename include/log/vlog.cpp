@@ -96,12 +96,12 @@ int VLog::makeBuf(const char* buf, int len, const char* fmt, va_list args)
 			case VShowDateTime::None: // for remove warning
 				break;
 			case VShowDateTime::Time:
-				i = sprintf_s(p, len, "%02d:%02d:%02d %03d : ",
+				i = snprintf(p, len, "%02d:%02d:%02d %03d : ",
 						now.time().hour(), now.time().minute(), now.time().second(), now.time().msec());
 				res += i; p += i; len -= i;
 				break;
 			case VShowDateTime::DateTime:
-				i= sprintf_s(p, len, "%02d.%02d %02d:%02d:%02d %03d : ",
+				i= snprintf(p, len, "%02d.%02d %02d:%02d:%02d %03d : ",
 					now.date().month(), now.date().day(),
 					now.time().hour(), now.time().minute(), now.time().second(), now.time().msec());
 				res += i; p += i; len -= i;
@@ -116,8 +116,8 @@ int VLog::makeBuf(const char* buf, int len, const char* fmt, va_list args)
 	{
 		Qt::HANDLE id = QThread::currentThreadId();
 		// ----- gilgil temp 2015.09.18 -----
-		// i = sprintf_s(p, len, "%08lX ", id);
-		i = sprintf_s(p, len, "%p ", id);
+		// i = snprintf(p, len, "%08lX ", id);
+		i = snprintf(p, len, "%p ", id);
 		// ----------------------------------
 		res += i; p += i; len -= i;
 	}
@@ -125,7 +125,7 @@ int VLog::makeBuf(const char* buf, int len, const char* fmt, va_list args)
 	//
 	// args
 	//
-	i = vsprintf_s(p, len, fmt, args);
+	i = vsnprintf(p, len, fmt, args);
 	res += i; len -= i;
 
 	LOG_ASSERT(len >= 0);

@@ -12,7 +12,9 @@
 #define __V_SYSTEM_H__
 
 #ifdef WIN32
+	#ifndef NOMINMAX
 	#define NOMINMAX
+	#endif // NOMINMAX
 	#include <winsock2.h>
 	#define WIN32_LEAN_AND_MEAN
 	#include <windows.h>

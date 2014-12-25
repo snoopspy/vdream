@@ -1,8 +1,8 @@
 QT += core
 QT -= gui
 
-include (../../../lib/vdream.pri)
 include (../../../../../etc/gtest/gtest.pri)
+include (../../../lib/vdream.pri)
 
 TARGET = common_test
 CONFIG   += console
@@ -16,11 +16,13 @@ SOURCES += \
 	../../../include/common/vdebugnew.cpp \
 	../../../include/common/vdependency.cpp \
 	../../../include/common/vmemoryleak.cpp \
-	../../../include/common/vinstance.cpp
+	../../../include/common/vinstance.cpp \
+	../../../include/common/vthread.cpp
 
 HEADERS += \
 	../../../include/common/vbase.h \
 	../../../include/common/vdebugnew.h \
 	../../../include/common/vdependency.h \
 	../../../include/common/vmemoryleak.h \
-	../../../include/common/vinstance.h
+	../../../include/common/vinstance.h \
+	../../../include/common/vthread.h

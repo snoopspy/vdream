@@ -91,12 +91,17 @@ public:
 private:
 	Q_DISABLE_COPY(VThread)
 };
+// ----- gilgil temp 2014.12.25 -----
+/*
 #ifdef WIN32
 extern __declspec( thread ) int threadTag;
 #endif // WIN32
 #ifdef linux
 extern __thread int threadTag;
 #endif // linux
+*/
+//extern __thread int threadTag;
+// ----------------------------------
 
 // ----------------------------------------------------------------------------
 // VThreadMgr

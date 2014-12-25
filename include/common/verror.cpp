@@ -109,12 +109,17 @@ public:
 	{
 		try
 		{
-#ifdef WIN32
-			throw std::exception("std exception");
-#endif // WIN32
-#ifdef linux
+			// ----- gilgil temp 2014.12.25 -----
+			/*
+			#ifdef WIN32
+						throw std::exception("std exception");
+			#endif // WIN32
+			#ifdef linux
+						throw std::exception();
+			#endif // linux
+			*/
 			throw std::exception();
-#endif // linux
+			// ----------------------------------
 		}
 		VCATCH;
 	}

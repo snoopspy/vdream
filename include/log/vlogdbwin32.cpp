@@ -13,9 +13,19 @@ REGISTER_METACLASS(VLogDBWin32, VLog)
 void VLogDBWin32::write(const char* buf, int len)
 {
 #ifdef UNICODE
+	wchar_t wcs[len + 2];
+	mbstowcs(wcs, buf, len);
+	wcs[len] = '\n';
+	wcs[len + 1] = '\0';
+	OutputDebugString(wcs);
+
+	// ----- gilgil temp 2014.12.25 -----
+	/*
 	std::wstring ws = char_to_wcs(buf, len);
 	OutputDebugString(ws.c_str());
 	OutputDebugString(L"\n");
+	*/
+	// ----------------------------------
 #else
 	OutputDebugString(buf);
 	OutputDebugString("\n");

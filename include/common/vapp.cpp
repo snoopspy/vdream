@@ -15,7 +15,9 @@ VApp::~VApp()
 }
 
 #ifdef WIN32
+#ifndef NOMINMAX
 #define NOMINMAX
+#endif // NOMINMAX
 #include <winsock2.h>
 #include <windows.h>
 

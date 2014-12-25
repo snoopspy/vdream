@@ -2,6 +2,20 @@
 #include <VEventHandler>
 #include <VDebugNew>
 
+// ----- gilgil temp 2014.12.25 -----
+/*
+#ifdef WIN32
+__declspec( thread ) int threadTag = 0;
+#endif // WIN32
+#ifdef linux
+__thread int threadTag = 0;
+#endif // linux
+*/
+__thread int threadTag = 0;
+// ----------------------------------
+
+
+
 // ----- gilgil temp 2014.12.09 -----
 /*
 #ifdef _MSC_VER
@@ -279,12 +293,6 @@ void VThread::save(VXml xml)
 	xml.setBool("freeOnTerminate", freeOnTerminate);
 	xml.setInt("threadPriority", (int)threadPriority);
 }
-#ifdef WIN32
-__declspec( thread ) int threadTag = 0;
-#endif // WIN32
-#ifdef linux
-__thread int threadTag = 0;
-#endif // linux
 
 // ----------------------------------------------------------------------------
 // VThreadMgr

@@ -1,9 +1,14 @@
 #include <VCommon>
 #include <VDebugNew>
 
+// ----- gilgil temp 2014.12.25 -----
+/*
 #ifdef linux
 #include <cxxabi.h> // for __cxa_demangle
 #endif // lunux
+*/
+#include <cxxabi.h> // for __cxa_demangle
+// ----------------------------------
 
 #include <VDebugNew>
 

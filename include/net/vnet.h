@@ -14,7 +14,9 @@
 #include <VRwObject>
 
 #ifdef WIN32
+	#ifndef NOMINMAX
 	#define NOMINMAX
+	#endif // NOMINMAX
 	#include <winSock2.h>
 	#include <windows.h>
 #endif // WIN32

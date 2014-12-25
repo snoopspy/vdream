@@ -11,23 +11,6 @@ CONFIG(release, debug|release) {
 }
 
 #-------------------------------------------------
-# openssl
-#-------------------------------------------------
-win32 {
-	contains(QMAKE_TARGET.arch, x86_64) {
-		OPENSSL_PATH = C:/OpenSSL-Win64
-	} else {
-		OPENSSL_PATH = C:/OpenSSL-Win32
-	}
-	INCLUDEPATH += $${OPENSSL_PATH}/include
-	LIBS        += -L$${OPENSSL_PATH}/lib
-	LIBS        += -llibeay32 -lssleay32
-}
-linux {
-	LIBS        += -lssl -lcrypto
-}
-
-#-------------------------------------------------
 # library name
 #-------------------------------------------------
 VDREAM_LIB_NAME = vdream
@@ -51,4 +34,28 @@ INCLUDEPATH += $${VDREAM_PATH}/include
 	gcc:PRE_TARGETDEPS +=  $${VDREAM_PATH}/lib/lib$${VDREAM_LIB_NAME}.a
 	LIBS               += -L$${VDREAM_PATH}/lib -l$${VDREAM_LIB_NAME}
 	LIBS               += -l$${VDREAM_LIB_NAME}
+}
+
+#-------------------------------------------------
+# winsock
+#-------------------------------------------------
+win32 {
+	LIBS += -lws2_32
+}
+
+#-------------------------------------------------
+# openssl
+#-------------------------------------------------
+win32 {
+	contains(QMAKE_TARGET.arch, x86_64) {
+		OPENSSL_PATH = C:/OpenSSL-Win64
+	} else {
+		OPENSSL_PATH = C:/OpenSSL-Win32
+	}
+	INCLUDEPATH += $${OPENSSL_PATH}/include
+	LIBS        += -L$${OPENSSL_PATH}/lib
+	LIBS        += -llibeay32 -lssleay32
+}
+linux {
+	LIBS        += -lssl -lcrypto
 }

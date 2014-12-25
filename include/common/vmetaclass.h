@@ -98,10 +98,10 @@ public:
 		return g_instance;
 	}
 
-	static VMetaClassList& getList(char* categoryName)
+	static VMetaClassList& getList(const char* categoryName)
 	{
 		VMetaClassMap& map = instance();
-		return map[categoryName];
+		return map[(char*)categoryName];
 	}
 };
 

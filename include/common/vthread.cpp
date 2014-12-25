@@ -444,7 +444,7 @@ protected:
 		for (int i = 0; i < 3; i ++)
 		{
 			msleep(100);
-			printf("%08lX thread %d\n", VThread::currentID(), m_n);
+			printf("%p thread %d\n", VThread::currentID(), m_n);
 		}
 	}
 };
@@ -459,13 +459,13 @@ TEST( Thread, basicThreadTest )
 		myThread[i] = new MyThread(i);
 		myThread[i]->open();
 	}
-	printf("%08lX closing all threads...\n", VThread::currentID());
+	printf("%p closing all threads...\n", VThread::currentID());
 	for (int i = 0; i < THREAD_CNT; i++)
 	{
 		myThread[i]->close();
 		delete myThread[i];
 	}
-	printf("%08lX all threads closed\n", VThread::currentID());
+	printf("%p all threads closed\n", VThread::currentID());
 }
 
 // ----------------------------------------------------------------------------
@@ -588,6 +588,8 @@ TEST( Thread, timeoutTest )
 	}
 }
 
+// ----- gilgil temp 2014.12.25 -----
+/*
 // --------------------------------------------------------------------------
 // exception
 // --------------------------------------------------------------------------
@@ -617,6 +619,8 @@ TEST( Thread, exceptionTest )
 	EXPECT_TRUE( res == true );
 	EXPECT_EQ( thread.tag , 300 );
 }
+*/
+// ----------------------------------
 
 // --------------------------------------------------------------------------
 // multiWait

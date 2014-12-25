@@ -165,6 +165,7 @@ _error:
 }
 
 #ifdef GTEST
+#include <VDebugNewCancel>
 #include <gtest/gtest.h>
 
 TEST( Net, ipTest )

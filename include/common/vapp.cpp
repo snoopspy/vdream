@@ -6,14 +6,14 @@
 // ----------------------------------------------------------------------------
 VApp::VApp()
 {
-	m_argc = 0;
-	m_argv = NULL;
 }
 
 VApp::~VApp()
 {
 }
 
+// ----- gilgil temp 2014.12.25 -----
+/*
 #ifdef WIN32
 #ifndef NOMINMAX
 #define NOMINMAX
@@ -76,6 +76,8 @@ bool VApp::setCurrentPath(QString path)
 {
 	return QDir::setCurrent(path);
 }
+*/
+// ----------------------------------
 
 void VApp::initialize(bool path, bool xml, QString uri)
 {
@@ -84,7 +86,8 @@ void VApp::initialize(bool path, bool xml, QString uri)
 	//---------------------------------------------------------------------------
 	if (path)
 	{
-		VApp::setCurrentPath(VApp::_filePath());
+		// VApp::setCurrentPath(VApp::_filePath()); // gilgil temp 2014.12.25
+		QDir::setCurrent(QCoreApplication::applicationDirPath());
 	}
 
 	//---------------------------------------------------------------------------
@@ -135,66 +138,74 @@ void VApp::finalize(bool xml)
 #include <VDebugNewCancel>
 #include <gtest/gtest.h>
 
-TEST( App, filePathTest )
+class AppTest : public ::testing::Test
 {
-	QString filePath = VApp::fileName();
-	qDebug() << "filePath=" << filePath;
-	QString fileName = QFileInfo(filePath).fileName();
-#ifdef WIN32
-	EXPECT_TRUE( fileName == "unittest.exe" );
-#endif // WIN32
-#ifdef linux
-	EXPECT_TRUE( fileName == "unittest" );
-#endif // linux
-}
-
-TEST( App, pathTest )
-{
-	QString rootFileName    = "__root__.txt";
-	QString currentFileName = "__current__.txt";
-
-	QString path = VApp::currentPath();
-	qDebug() << "current path=" << path;
-
+	QCoreApplication* app;
+	virtual void SetUp()
 	{
-		EXPECT_TRUE( VApp::setCurrentPath("/") == true );
-		FILE* fp;
-		fopen_s(&fp, rootFileName.toLatin1().data(), "wb");
-		fclose(fp);
-		EXPECT_TRUE( QFile::exists(rootFileName) );
-		QFile::remove(rootFileName);
+		int argc = 0;
+		app = new QCoreApplication(argc, NULL);
 	}
-	{
-		EXPECT_TRUE( VApp::setCurrentPath(path) == true );
-		FILE* fp;
-		fopen_s(&fp, currentFileName.toLatin1().data(), "wb");
-		fclose(fp);
-		EXPECT_TRUE( QFile::exists(currentFileName) );
-		QFile::remove(currentFileName);
-	}
-}
 
-static char *argv[] =
-{
-	"test.exe",
-	"argument1",
-	"argument2"
+	virtual void TearDown()
+	{
+		delete app;
+	}
 };
 
-TEST( App, argumentsTest )
+TEST_F( AppTest, filePathTest )
 {
-	VApp::instance().initialize(0, NULL);
+	QString filePath = QCoreApplication::applicationFilePath();
+	qDebug() << "filePath=" << filePath;
+	QString fileName = QFileInfo(filePath).fileName();
+	qDebug() << "fileName=" << fileName;
+}
 
-	VApp& app = VApp::instance();
-	app.setArguments(3, argv);
+TEST_F( AppTest, pathTest )
+{
+	QString path = QDir::currentPath();
 
-	QString s;
-	char** argv = app.argv();
-	s = argv[0]; EXPECT_TRUE(  s == "test.exe"  );
-	s = argv[1]; EXPECT_TRUE(  s == "argument1" );
-	s = argv[2]; EXPECT_TRUE(  s == "argument2" );
+	{
+		QString path = QDir::currentPath();
+		QString fileName = "__current__.txt";
 
-	VApp::instance().initialize(0, NULL);
+		qDebug() << "QDir::currentPath() =" << path;
+		EXPECT_TRUE( QDir::setCurrent(path) == true );
+
+		QFile file(fileName);
+		EXPECT_TRUE( file.open(QFile::WriteOnly) );
+		file.close();
+		EXPECT_TRUE( QFile::exists(fileName) );
+		EXPECT_TRUE( QFile::remove(fileName) );
+	}
+	{
+		QString path = "/";
+		QString fileName = "__root__.txt";
+
+		qDebug() << "rootPath =" << path;
+		EXPECT_TRUE( QDir::setCurrent(path) == true );
+
+		QFile file(fileName);
+		EXPECT_TRUE( file.open(QFile::WriteOnly) );
+		file.close();
+		EXPECT_TRUE( QFile::exists(fileName) );
+		EXPECT_TRUE( QFile::remove(fileName) );
+	}
+	{
+		QString path = QCoreApplication::applicationDirPath();
+		QString fileName = "__application__.txt";
+
+		qDebug() << "QCoreApplication::applicationDirPath() =" << path;
+		EXPECT_TRUE( QDir::setCurrent(path) == true );
+
+		QFile file(fileName);
+		EXPECT_TRUE( file.open(QFile::WriteOnly) );
+		file.close();
+		EXPECT_TRUE( QFile::exists(fileName) );
+		EXPECT_TRUE( QFile::remove(fileName) );
+	}
+
+	QDir::setCurrent(path);
 }
 
 #endif // GTEST

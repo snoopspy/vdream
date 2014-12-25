@@ -24,6 +24,8 @@ private: // singleton
 	VApp();
 	virtual ~VApp();
 
+// ----- gilgil temp 2014.12.25 -----
+/*
 protected:
 	int    m_argc;
 	char** m_argv;
@@ -34,10 +36,12 @@ public:
 	char** argv()                               { return m_argv;                }
 
 public:
-	static QString fileName();
-	static QString _filePath();
-	static QString currentPath();
-	static bool    setCurrentPath(QString path);
+	static QString fileName();                   > QCoreApplication::applicationFilePath()
+	static QString _filePath();                  > QCoreApplication::applicationDirPath()
+	static QString currentPath();                > QDir::currentPath()
+	static bool    setCurrentPath(QString path); > QDir::setCurrent(path)
+*/
+// ----------------------------------
 
 public:
 #ifdef QT_GUI_LIB

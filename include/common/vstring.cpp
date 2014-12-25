@@ -22,6 +22,7 @@ QString qformat(const char* fmt, ...)
 }
 
 #ifdef GTEST
+#include <VDebugNewCancel>
 #include <gtest/gtest.h>
 
 TEST( String, ss_to_vs )

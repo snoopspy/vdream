@@ -143,6 +143,7 @@ void VFile::save(VXml xml)
 }
 
 #ifdef GTEST
+#include <VDebugNewCancel>
 #include <gtest/gtest.h>
 
 const static QString FILE_NAME = "abcd.txt";

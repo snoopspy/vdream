@@ -1,4 +1,5 @@
 #ifdef GTEST
+#include <VDebugNewCancel>
 #include <gtest/gtest.h>
 #include <VInt>
 #include <VInstance>

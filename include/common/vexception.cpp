@@ -2,6 +2,7 @@
 #include <VDebugNew>
 
 #ifdef GTEST
+#include <VDebugNewCancel>
 #include <gtest/gtest.h>
 
 int divideByZero()

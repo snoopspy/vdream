@@ -109,7 +109,8 @@ bool VSslServer::doOpen()
 	{
 		QString fileName = certificatePath;
 		QFileInfo fi(fileName);
-		if (!fi.isAbsolute()) fileName = VApp::_filePath() + fileName;
+		// if (!fi.isAbsolute()) fileName = VApp::_filePath() + fileName; // gilgil temp 2014.12.25
+		if (!fi.isAbsolute()) fileName = QCoreApplication::applicationDirPath() + QDir::separator() + fileName; // gilgil temp 2014.12.25
 		if (!fileName.endsWith('/') && !fileName.endsWith('\\'))
 		{
 			fileName += QDir::separator();
@@ -225,7 +226,8 @@ int VSslServer::ssl_servername_cb(SSL *con, int *ad, void *arg)
 	QFileInfo fi(path);
 	if (!fi.isAbsolute())
 	{
-		path = VApp::_filePath() + path;
+		// path = VApp::_filePath() + path; // gilgil temp 2014.12.25
+		path = QCoreApplication::applicationDirPath() + QDir::separator() + path;
 	}
 	if (!path.endsWith('/') && !path.endsWith('\\')) path += QDir::separator();
 

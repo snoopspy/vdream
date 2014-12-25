@@ -99,6 +99,7 @@ bool VProcess::run(const char* command)
 }
 
 #ifdef GTEST
+#include <VDebugNewCancel>
 #include <gtest/gtest.h>
 #include <VTick>
 

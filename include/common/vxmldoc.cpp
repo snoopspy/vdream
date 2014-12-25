@@ -1,5 +1,5 @@
 #include <VXmlDoc>
-#include <VApp>    // for filePath
+// #include <VApp>    // for filePath // gilgil temp 2014.12.25
 #include <VLog>       // for LOG_ERROR
 #include <VDebugNew>
 
@@ -139,7 +139,7 @@ bool VXmlDoc::saveToFile(QString fileName)
 
 QString VXmlDoc::defaultFileName()
 {
-	QString fileName         = VApp::fileName();
+	QString fileName         = QCoreApplication::applicationFilePath();
 	QString path             = QFileInfo(fileName).path();
 	QString completeBaseName = QFileInfo(fileName).completeBaseName();
 	QString res              = path + QDir::separator() + completeBaseName + ".xml";
@@ -152,6 +152,7 @@ VXmlDoc& VXmlDoc::instance()
 }
 
 #ifdef GTEST
+#include <VDebugNewCancel>
 #include <gtest/gtest.h>
 
 TEST ( XML, testSizeTest )

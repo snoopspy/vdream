@@ -302,6 +302,7 @@ bool VLog::saveToDefaultDoc(const QString& path)
 // -----------------------------------
 
 #ifdef GTEST
+#include <VDebugNewCancel>
 #include <gtest/gtest.h>
 
 #include <VLogFactory>

@@ -115,6 +115,7 @@ QString VMode::str() const
 }
 
 #ifdef GTEST
+#include <VDebugNewCancel>
 #include <gtest/gtest.h>
 
 TEST( Common, versionTest )

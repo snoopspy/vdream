@@ -48,6 +48,7 @@ void VError::setErrorCode(int code)
 }
 
 #ifdef GTEST
+#include <VDebugNewCancel>
 #include <gtest/gtest.h>
 #include <VLog>
 

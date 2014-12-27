@@ -67,7 +67,8 @@ void App::inputAndSend()
 void App::recvAndOutput()
 {
   LOG_DEBUG("beg");
-  if (IS_CLASS(netClient, VTcpClient*))
+  // if (IS_CLASS(netClient, VTcpClient*)) // gilgil temp 2014.12.28
+  if (dynamic_cast<VTcpClient*>(netClient) != NULL)
   {
     VTcpClient* tcpClient = (VTcpClient*) netClient;
     printf("connected %s\n", qPrintable(tcpClient->tcpSession->getRemoteIP().str()));
@@ -88,7 +89,8 @@ void App::recvAndOutput()
   }
   delete[] buf;
 
-  if (IS_CLASS(netClient, VTcpClient*))
+  //if (IS_CLASS(netClient, VTcpClient*)) // gilgil temp 2014.12.28
+  if (dynamic_cast<VTcpClient*>(netClient) != NULL)
   {
     VTcpClient* tcpClient = (VTcpClient*) netClient;
     printf("disconnected %s\n", qPrintable(tcpClient->tcpSession->getRemoteIP().str()));

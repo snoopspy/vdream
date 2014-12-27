@@ -51,7 +51,7 @@ const char* __extractFuncName__(const char* funcName);
 // Class
 // ----------------------------------------------------------------------------
 QString getClassName(const char* value);
-#define IS_CLASS(obj, type) (dynamic_cast<type>(obj)!=NULL)
+// #define IS_CLASS(obj, type) (dynamic_cast<type>(obj)!=NULL) // gilgil temp 2014.12.28
 #define CLASS_NAME(obj)     getClassName(typeid(obj).name())
 
 // ----------------------------------------------------------------------------

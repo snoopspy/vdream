@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------------
 //
-// VDream Component Suite version 9.0
+// VDream Component Suite version 9.0.1
 //
 // http://www.gilgil.net
 //
@@ -11,13 +11,23 @@
 #ifndef __V_EXCEPTION_H__
 #define __V_EXCEPTION_H__
 
-#include <VCommon>
-#include <VLog>
+#include <exception>
+#include <QString>
 
-// ----------------------------------------------------------------------------
-// Define
-// ----------------------------------------------------------------------------
-#define TRY try
-#define EXCEPT catch(...)
+class VException : public std::exception
+{
+public:
+	VException(int code, QString msg, bool log = true);
+	VException(int errno);
+
+public:
+	int     code;
+	QString msg;
+	virtual const char* what() const throw();
+
+public:
+	static bool initialize();
+	static bool finalize();
+};
 
 #endif // __V_EXCEPTION_H__

@@ -78,7 +78,7 @@ bool VUdpServer::doOpen()
 		Ip ip = VNet::resolve(localHost);
 		if (ip == 0)
 		{
-			SET_ERROR(VNetError, qformat("can not resolve host(%s)", qPrintable(localHost)), VERR_CAN_NOT_RESOLVE_HOST);
+			SET_ERROR(VNetError, QString("can not resolve host(%1)").arg(localHost), VERR_CAN_NOT_RESOLVE_HOST);
 			return false;
 		}
 		udpSession->addr.sin_addr.s_addr = htonl(ip);
@@ -88,7 +88,7 @@ bool VUdpServer::doOpen()
 	int res = ::bind(udpSession->handle, (SOCKADDR*)&udpSession->addr, sizeof(udpSession->addr));
 	if (res == SOCKET_ERROR)
 	{
-		SET_ERROR(VSocketError, qformat("error in bind(%s:%d)", qPrintable(localHost), port), WSAGetLastError());
+		SET_ERROR(VSocketError, QString("error in bind(%1:%2)").arg(localHost).arg(port), WSAGetLastError());
 		return false;
 	}
 

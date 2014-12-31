@@ -29,14 +29,6 @@
 extern const char* VDREAM_VERSION;
 
 // ----------------------------------------------------------------------------
-// __FILENAME__ and __FUNCNANE__ macros
-// ----------------------------------------------------------------------------
-const char* __extractFileName__(const char* fileName);
-const char* __extractFuncName__(const char* funcName);
-#define __FILENAME__ __extractFileName__(__FILE__)
-#define __FUNCNAME__ __extractFuncName__(__FUNCTION__)
-
-// ----------------------------------------------------------------------------
 // Common Define
 // ----------------------------------------------------------------------------
 #ifndef SAFE_DELETE

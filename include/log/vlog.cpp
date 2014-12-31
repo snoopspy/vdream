@@ -63,6 +63,31 @@ public:
 // VLog
 // ----------------------------------------------------------------------------
 VLog* VLog::g_log = NULL;
+
+const char* VLog::__extractFileName__(const char* fileName)
+{
+#ifdef WIN32
+	const char* p1 = strrchr(fileName, '\\');
+	const char* p2 = strrchr(fileName, '/');
+	const char* p  = p1 > p2 ? p1 : p2;
+#endif // WIN32
+#ifdef linux
+	const char* p = strrchr(fileName, '/');
+#endif // linux
+	return (p == NULL ? fileName : p + 1);
+}
+
+const char* VLog::__extractFuncName__(const char* funcName)
+{
+#ifdef WIN32
+	const char* p = strrchr(funcName, ':');
+	return (p == NULL ? funcName : p + 1);
+#endif // WIN32
+#ifdef linux
+	return funcName;
+#endif // linux
+}
+
 VLog::VLog()
 {
 #if _DEBUG
@@ -318,6 +343,22 @@ bool VLog::saveToDefaultDoc(const QString& path)
 #include <VLogList>
 #include <VLogFactory>
 
+TEST( Common, macroTest )
+{
+	qDebug() << "__DATE__    =" << __DATE__;
+	qDebug() << "__TIME__    =" << __TIME__;
+	qDebug() << "__FILE__    =" << __FILE__;
+	qDebug() << "__FUNCTION__=" << __FUNCTION__;
+	qDebug() << "__FILENAME__=" << __FILENAME__;
+	qDebug() << "__FUNCNAME__=" << __FUNCNAME__;
+
+	QString fileName = __FILENAME__;
+	EXPECT_TRUE( fileName == "vlog.cpp" );
+
+	QString funcName = __FUNCNAME__;
+	EXPECT_TRUE( funcName == "macroTest" ); // gilgil temp 2014.12.31
+}
+
 TEST ( Log, defaultTest )
 {
 	LOG_DEBUG("LOG_DEBUG");
@@ -418,7 +459,7 @@ TEST ( Log, logDBWin32Test )
 TEST ( Log, logFileTest )
 {
 	VLog* log = new VLogFile;
-	log->trace("");
+	log->trace(" ");
 	log->trace("[%s:%d] logFileTest", __FILENAME__, __LINE__);
 	delete log;
 }
@@ -426,7 +467,7 @@ TEST ( Log, logFileTest )
 TEST ( Log, logHTTPTest )
 {
 	VLog* log = new VLogHttp;
-	log->trace("");
+	log->trace(" ");
 	log->trace("[%s:%d] logHTTPTest", __FILENAME__, __LINE__);
 	delete log;
 }
@@ -434,7 +475,7 @@ TEST ( Log, logHTTPTest )
 TEST ( Log, logNullTest )
 {
 	VLog* log = new VLogNull;
-	log->trace("");
+	log->trace(" ");
 	log->trace("[%s:%d] ******************************", __FILENAME__, __LINE__);
 	log->trace("[%s:%d] This message must not be shown", __FILENAME__, __LINE__);
 	log->trace("[%s:%d] ******************************", __FILENAME__, __LINE__);
@@ -444,7 +485,7 @@ TEST ( Log, logNullTest )
 TEST ( Log, logStderrTest )
 {
 	VLog* log = new VLogStderr;
-	log->trace("");
+	log->trace(" ");
 	log->trace("[%s:%d] logStderrTest", __FILENAME__, __LINE__);
 	delete log;
 }
@@ -452,7 +493,7 @@ TEST ( Log, logStderrTest )
 TEST ( Log, logStdoutTest )
 {
 	VLog* log = new VLogStdout;
-	log->trace("");
+	log->trace(" ");
 	log->trace("[%s:%d] logStdoutTest", __FILENAME__, __LINE__);
 	delete log;
 }
@@ -460,7 +501,7 @@ TEST ( Log, logStdoutTest )
 TEST ( Log, logUDPTest )
 {
 	VLog* log = new VLogUdp;
-	log->trace("");
+	log->trace(" ");
 	log->trace("[%s:%d] logUDPTest", __FILENAME__, __LINE__);
 	delete log;
 }

@@ -14,6 +14,8 @@
 #include <exception>
 #include <QString>
 
+// ----- gilgil temp 2014.12.31 -----
+/*
 class VException : public std::exception
 {
 public:
@@ -29,5 +31,7 @@ public:
 	static bool initialize();
 	static bool finalize();
 };
+*/
+// ----------------------------------
 
 #endif // __V_EXCEPTION_H__

@@ -84,11 +84,11 @@ VQThread::~VQThread()
 void VQThread::_run()
 {
 	VThread* thread = (VThread*)owner;
-	TRY
+	try
 	{
 		// msleep(1000); // to occur virtual function call error // gilgil temp 2011.10.09
 		thread->run();
-	} EXCEPT
+	} catch (...)
 	{
 		throw std::exception();
 	}

@@ -15,6 +15,12 @@
 #include <VMetaClass>
 #include <VXml>
 
+// ----------------------------------------------------------------------------
+// macros
+// ----------------------------------------------------------------------------
+#define __FILENAME__ VLog::__extractFileName__(__FILE__)
+#define __FUNCNAME__ VLog::__extractFuncName__(__FUNCTION__)
+
 #ifndef LOG_DEBUG
 #define LOG_DEBUG(fmt, ...) { VLog* log = getLog(); if (log != NULL && log->level <= VLog::LEVEL_DEBUG) log->debug("[%s:%d] %s " fmt, __FILENAME__, __LINE__, __FUNCNAME__, ##__VA_ARGS__); }
 #define LOG_INFO(fmt, ...)  { VLog* log = getLog(); if (log != NULL && log->level <= VLog::LEVEL_INFO ) log->info ("[%s:%d] %s " fmt, __FILENAME__, __LINE__, __FUNCNAME__, ##__VA_ARGS__); }
@@ -84,6 +90,10 @@ public:
 
 public:
 	static const int DEFAULT_LOG_BUF_SIZE = 65536;
+
+public:
+	static const char* __extractFileName__(const char* fileName);
+	static const char* __extractFuncName__(const char* funcName);
 
 	//
 	// Option
@@ -166,35 +176,5 @@ private:
 inline VLog* getLog()             { return VLog::getLog();       }
 inline VLog* setLog(VLog* log)    { return VLog::setLog(log);    }
 inline VLog* changeLog(VLog* log) { return VLog::changeLog(log); }
-
-// gilgil temp 2012.09.18 -----
-/*
-// ----------------------------------------------------------------------------
-// IVGetLoggable
-// ----------------------------------------------------------------------------
-class IVGetLoggable
-{
-public:
-	virtual VLog* getLog()             = 0;
-	virtual VLog* setLog(VLog* log)    = 0;
-	virtual VLog* changeLog(VLog* log) = 0;
-};
-
-// ----------------------------------------------------------------------------
-// VGetLoggable
-// ----------------------------------------------------------------------------
-class VGetLoggable : public IVGetLoggable
-{
-private:
-	VLog* m_log;
-public:
-	VGetLoggable()                     { m_log = VLog::getLog();                                                }
-	virtual ~VGetLoggable()            {  do not delete m_log                                                   }
-	virtual VLog* getLog()             {                                                         return m_log;  }
-	virtual VLog* setLog(VLog* log)    { VLog* oldLog = m_log; m_log = log;                      return oldLog; }
-	virtual VLog* changeLog(VLog* log) { VLog* oldLog = m_log; m_log = log; SAFE_DELETE(oldLog); return oldLog; }
-};
-*/
-// ----------------------------
 
 #endif // __V_LOG_H__

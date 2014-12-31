@@ -5,6 +5,8 @@
 #include <VDebugNewCancel>
 #include <gtest/gtest.h>
 
+// ----- gilgil temp 2014.12.31 -----
+/*
 int divideByZero()
 {
 	int i, j, k;
@@ -50,5 +52,7 @@ TEST( Exception, exceptionTest )
 	debug = accessViolation();
 	EXPECT_EQ( debug, 2 );
 }
+*/
+// ----------------------------------
 
 #endif // GTEST

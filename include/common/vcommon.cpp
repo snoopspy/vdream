@@ -22,33 +22,6 @@ const char* VDREAM_VERSION = "VDream 9.1 Release Build( " __DATE__ " " __TIME__ 
 #endif // _DEBUG
 
 // ----------------------------------------------------------------------------
-// __FILENAME__ and __FUNCNANE__ macros
-// ----------------------------------------------------------------------------
-const char* __extractFileName__(const char* fileName)
-{
-#ifdef WIN32
-	const char* p1 = strrchr(fileName, '\\');
-	const char* p2 = strrchr(fileName, '/');
-	const char* p  = p1 > p2 ? p1 : p2;
-#endif // WIN32
-#ifdef linux
-	const char* p = strrchr(fileName, '/');
-#endif // linux
-	return (p == NULL ? fileName : p + 1);
-}
-
-const char* __extractFuncName__(const char* funcName)
-{
-#ifdef WIN32
-	const char* p = strrchr(funcName, ':');
-	return (p == NULL ? funcName : p + 1);
-#endif // WIN32
-#ifdef linux
-	return funcName;
-#endif // linux
-}
-
-// ----------------------------------------------------------------------------
 // Class
 // ----------------------------------------------------------------------------
 QString getClassName(const char* value)
@@ -127,25 +100,11 @@ TEST( Common, versionTest )
 	qDebug() << VDREAM_VERSION;
 }
 
-void testMacro()
-{
-	QString fileName = __FILENAME__;
-	EXPECT_TRUE( fileName == "vcommon.cpp" );
-
-	QString funcName = __FUNCNAME__;
-	EXPECT_TRUE( funcName == "testMacro" );
-}
-
 TEST( Common, macroTest )
 {
 	qDebug() << "__DATE__    =" << __DATE__;
 	qDebug() << "__TIME__    =" << __TIME__;
 	qDebug() << "__FILE__    =" << __FILE__;
-	qDebug() << "__FUNCTION__=" << __FUNCTION__;
-	qDebug() << "__FILENAME__=" << __FILENAME__;
-	qDebug() << "__FUNCNAME__=" << __FUNCNAME__;
-
-	testMacro();
 }
 
 TEST( Common, classNameTest )

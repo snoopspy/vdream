@@ -6,7 +6,7 @@
 
 QT += core gui widgets
 
-include(../../lib/vdream.pri)
+include(../../../lib/vdream.pri)
 
 TARGET   = netserver
 TEMPLATE = app

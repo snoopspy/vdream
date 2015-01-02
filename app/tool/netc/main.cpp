@@ -51,9 +51,9 @@ void App::inputAndSend()
   char* buf = new char[param->bufSize];
   while (runThread().active())
   {
-    char* p = gets_s(buf, param->bufSize);
-    if (p == NULL) break;
-    int readLen = (int)strlen(p);
+	char* p = gets_s(buf, param->bufSize);
+	if (p == NULL) break;
+	int readLen = (int)strlen(p);
     if (readLen == 0) continue;
     buf[readLen] = '\0';
     int writeLen = netClient->write(buf, readLen);

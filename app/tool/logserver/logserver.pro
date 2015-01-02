@@ -7,7 +7,7 @@
 QT += core gui
 QT += widgets
 
-include(../../lib/vdream.pri)
+include(../../../lib/vdream.pri)
 
 TARGET        = logserver
 TEMPLATE      = app

@@ -201,7 +201,7 @@ void MainWindow::on_actionEdit_triggered()
   int index = 0;
   while (true)
   {
-    fileName = VApp::currentPath() + QDir::separator() + completeBaseName;
+	fileName = QDir::currentPath() + QDir::separator() + completeBaseName;
     if (index > 0) 
       fileName += "_" + QString::number(index) + ".log";
     else

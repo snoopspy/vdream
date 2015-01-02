@@ -450,7 +450,7 @@ TEST ( Log, uriTest )
 TEST ( Log, logDBWin32Test )
 {
 	VLog* log = new VLogDBWin32;
-	log->trace("");
+	log->trace(" ");
 	log->trace("[%s:%d] logDBWin32Test", __FILENAME__, __LINE__);
 	delete log;
 }

@@ -1,8 +1,8 @@
 #include <VSslSession>
 
-#ifdef linux
+#ifdef __GNUC__
 #pragma GCC diagnostic ignored "-Wunused-value"
-#endif // linux
+#endif // __GNUC__
 
 // ----------------------------------------------------------------------------
 // VSslSession

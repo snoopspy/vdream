@@ -16,40 +16,6 @@
 #include <VXml>
 
 // ----------------------------------------------------------------------------
-// macros
-// ----------------------------------------------------------------------------
-#define __FILENAME__ VLog::__extractFileName__(__FILE__)
-#define __FUNCNAME__ VLog::__extractFuncName__(__FUNCTION__)
-
-#ifndef LOG_DEBUG
-#define LOG_DEBUG(fmt, ...) { VLog* log = getLog(); if (log != NULL && log->level <= VLog::LEVEL_DEBUG) log->debug("[%s:%d] %s " fmt, __FILENAME__, __LINE__, __FUNCNAME__, ##__VA_ARGS__); }
-#define LOG_INFO(fmt, ...)  { VLog* log = getLog(); if (log != NULL && log->level <= VLog::LEVEL_INFO ) log->info ("[%s:%d] %s " fmt, __FILENAME__, __LINE__, __FUNCNAME__, ##__VA_ARGS__); }
-#define LOG_WARN(fmt, ...)  { VLog* log = getLog(); if (log != NULL && log->level <= VLog::LEVEL_WARN ) log->warn ("[%s:%d] %s " fmt, __FILENAME__, __LINE__, __FUNCNAME__, ##__VA_ARGS__); }
-#define LOG_ERROR(fmt, ...) { VLog* log = getLog(); if (log != NULL && log->level <= VLog::LEVEL_ERROR) log->error("[%s:%d] %s " fmt, __FILENAME__, __LINE__, __FUNCNAME__, ##__VA_ARGS__); }
-#define LOG_FATAL(fmt, ...) { VLog* log = getLog(); if (log != NULL && log->level <= VLog::LEVEL_FATAL) log->fatal("[%s:%d] %s " fmt, __FILENAME__, __LINE__, __FUNCNAME__, ##__VA_ARGS__); }
-#define LOG_TRACE(fmt, ...) { VLog* log = getLog(); if (log != NULL)                                    log->trace("[%s:%d] %s " fmt, __FILENAME__, __LINE__, __FUNCNAME__, ##__VA_ARGS__); }
-#endif // LOG_DEBUG
-
-// gilgil temp 2012.09.18 -----
-/*
-#define _LOG_DEBUG(fmt, ...) { VLog* log = ::getLog(); if (log != NULL && log->level <= VLog::LEVEL_DEBUG) log->debug("[%s:%d] %s " fmt, __FILENAME__, __LINE__, __FUNCNAME__, ##__VA_ARGS__); }
-#define _LOG_INFO(fmt, ...)  { VLog* log = ::getLog(); if (log != NULL && log->level <= VLog::LEVEL_INFO ) log->info ("[%s:%d] %s " fmt, __FILENAME__, __LINE__, __FUNCNAME__, ##__VA_ARGS__); }
-#define _LOG_WARN(fmt, ...)  { VLog* log = ::getLog(); if (log != NULL && log->level <= VLog::LEVEL_WARN ) log->warn ("[%s:%d] %s " fmt, __FILENAME__, __LINE__, __FUNCNAME__, ##__VA_ARGS__); }
-#define _LOG_ERROR(fmt, ...) { VLog* log = ::getLog(); if (log != NULL && log->level <= VLog::LEVEL_ERROR) log->error("[%s:%d] %s " fmt, __FILENAME__, __LINE__, __FUNCNAME__, ##__VA_ARGS__); }
-#define _LOG_FATAL(fmt, ...) { VLog* log = ::getLog(); if (log != NULL && log->level <= VLog::LEVEL_FATAL) log->fatal("[%s:%d] %s " fmt, __FILENAME__, __LINE__, __FUNCNAME__, ##__VA_ARGS__); }
-#define _LOG_TRACE(fmt, ...) { VLog* log = ::getLog(); if (log != NULL)                                    log->trace("[%s:%d] %s " fmt, __FILENAME__, __LINE__, __FUNCNAME__, ##__VA_ARGS__); }
-*/
-// ----------------------------
-
-#define LOG_DEBUG_MEMORY    LOG_DEBUG("%p %d %p", this, sizeof(*this), (char*)this + sizeof(*this))
-
-#ifdef _DEBUG
-#define LOG_ASSERT(expr) if (!(expr)) LOG_FATAL("LOG_ASSERT FAILED(%s)", (#expr))
-#else // _DEBUG
-#define LOG_ASSERT(expr)
-#endif // _DEBUG
-
-// ----------------------------------------------------------------------------
 // VShowDateTime
 // ----------------------------------------------------------------------------
 class VShowDateTime
@@ -176,5 +142,28 @@ private:
 inline VLog* getLog()             { return VLog::getLog();       }
 inline VLog* setLog(VLog* log)    { return VLog::setLog(log);    }
 inline VLog* changeLog(VLog* log) { return VLog::changeLog(log); }
+
+// ----------------------------------------------------------------------------
+// macros
+// ----------------------------------------------------------------------------
+#define __FILENAME__ VLog::__extractFileName__(__FILE__)
+#define __FUNCNAME__ VLog::__extractFuncName__(__FUNCTION__)
+
+#ifndef LOG_DEBUG
+#define LOG_DEBUG(fmt, ...) { VLog* log = getLog(); if (log != NULL && log->level <= VLog::LEVEL_DEBUG) log->debug("[%s:%d] %s " fmt, __FILENAME__, __LINE__, __FUNCNAME__, ##__VA_ARGS__); }
+#define LOG_INFO(fmt, ...)  { VLog* log = getLog(); if (log != NULL && log->level <= VLog::LEVEL_INFO ) log->info ("[%s:%d] %s " fmt, __FILENAME__, __LINE__, __FUNCNAME__, ##__VA_ARGS__); }
+#define LOG_WARN(fmt, ...)  { VLog* log = getLog(); if (log != NULL && log->level <= VLog::LEVEL_WARN ) log->warn ("[%s:%d] %s " fmt, __FILENAME__, __LINE__, __FUNCNAME__, ##__VA_ARGS__); }
+#define LOG_ERROR(fmt, ...) { VLog* log = getLog(); if (log != NULL && log->level <= VLog::LEVEL_ERROR) log->error("[%s:%d] %s " fmt, __FILENAME__, __LINE__, __FUNCNAME__, ##__VA_ARGS__); }
+#define LOG_FATAL(fmt, ...) { VLog* log = getLog(); if (log != NULL && log->level <= VLog::LEVEL_FATAL) log->fatal("[%s:%d] %s " fmt, __FILENAME__, __LINE__, __FUNCNAME__, ##__VA_ARGS__); }
+#define LOG_TRACE(fmt, ...) { VLog* log = getLog(); if (log != NULL)                                    log->trace("[%s:%d] %s " fmt, __FILENAME__, __LINE__, __FUNCNAME__, ##__VA_ARGS__); }
+#endif // LOG_DEBUG
+
+#define LOG_DEBUG_MEMORY    LOG_DEBUG("%p %d %p", this, sizeof(*this), (char*)this + sizeof(*this))
+
+#ifdef _DEBUG
+#define LOG_ASSERT(expr) if (!(expr)) LOG_FATAL("LOG_ASSERT FAILED(%s)", (#expr))
+#else // _DEBUG
+#define LOG_ASSERT(expr)
+#endif // _DEBUG
 
 #endif // __V_LOG_H__

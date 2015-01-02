@@ -1,8 +1,8 @@
 #include <VMemoryLeak>
 
-#ifdef linux
+#ifdef __GNUC__
 #pragma GCC diagnostic ignored "-Wunused-value"
-#endif // linux
+#endif // __GNUC__
 
 #ifdef _DEBUG
 
@@ -79,7 +79,7 @@ void operator delete (void* p)
 void* operator new[] (size_t size, const char* file, const int line)
 {
 	void* p = debug_malloc(size, file, line);
-	debug_new_log("new[](%u, %s, %d) %p\n", size, file, line, p);
+	debug_new_log("new[](%zu, %s, %d) %p\n", size, file, line, p);
 	return p;
 }
 

@@ -35,6 +35,7 @@ INCLUDEPATH += $${VDREAM_PATH}/include
 	LIBS               += -L$${VDREAM_PATH}/lib -l$${VDREAM_LIB_NAME}
 	LIBS               += -l$${VDREAM_LIB_NAME}
 }
+mingw:DEFINES += __USE_MINGW_ANSI_STDIO=1
 
 #-------------------------------------------------
 # winsock

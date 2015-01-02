@@ -34,11 +34,22 @@ void  operator delete[] (void* p) throw();
 // ----------------------------------------------------------------------------
 // Macros
 // ----------------------------------------------------------------------------
+#undef debug_new
 #define debug_new new(__FILE__, __LINE__)
+
+#undef new
 #define new       debug_new
+
+#undef malloc
 #define malloc(A) debug_malloc((A),        __FILE__, __LINE__)
+
+#undef free
 #define free(A)   debug_free((A),          __FILE__, __LINE__)
+
+#undef DEBUG_ADD
 #define DEBUG_ADD debug_add(sizeof(*this), __FILE__, __LINE__, this)
+
+#undef DEBUG_DEL
 #define DEBUG_DEL debug_del(this,          __FILE__, __LINE__)
 
 #endif // _DEBUG

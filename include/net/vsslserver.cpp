@@ -247,7 +247,7 @@ int VSslServer::ssl_servername_cb(SSL *con, int *ad, void *arg)
 			LOG_INFO("command=%s", qPrintable(command));
 
 			process.start(command);
-			LOG_DEBUG("pid=%llx", process.pid());
+			// LOG_DEBUG("pid=%llx", process.pid()); // gilgil temp 2015.01.02
 
 			// *debug = 6000; // gilgil temp 2014.03.14
 			if(!process.waitForStarted())

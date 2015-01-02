@@ -73,10 +73,10 @@ void VUdpSession::logAddr(SOCKADDR_IN* sockAddr)
 	LOG_DEBUG("[VDUDPSession.cpp] logAddr sin_family=%d sin_port=%d sin_addr=%d.%d.%d.%d",
 		sockAddr->sin_family,
 		ntohs(sockAddr->sin_port),
-		(sockAddr->sin_addr.s_addr & 0xFF000000) >> 24,
-		(sockAddr->sin_addr.s_addr & 0x00FF0000) >> 16,
-		(sockAddr->sin_addr.s_addr & 0x0000FF00) >> 8,
-		(sockAddr->sin_addr.s_addr & 0x000000FF) >> 0);
+		(BYTE)((sockAddr->sin_addr.s_addr & 0xFF000000) >> 24),
+		(BYTE)((sockAddr->sin_addr.s_addr & 0x00FF0000) >> 16),
+		(BYTE)((sockAddr->sin_addr.s_addr & 0x0000FF00) >> 8),
+		(BYTE)((sockAddr->sin_addr.s_addr & 0x000000FF) >> 0));
 }
 // ----------------------------------
 

@@ -173,7 +173,7 @@ TEST( Net, ipTest )
 	Ip ip = (QString)"127.0.0.1";
 	QString s1 = ip.str();
 	QString s2 = "127.0.0.1";
-	EXPECT_EQ( s1, s2 );
+	ASSERT_TRUE( s1 == s2 );
 }
 
 TEST( Net, isIPV4AddressTest )
@@ -200,7 +200,7 @@ TEST( Net, resolveTest )
 		Ip ip = (quint32)0x7F000001;
 		//Ip ip = VNet::resolve("127.0.0.1");
 		LOG_DEBUG("ip for 127.0.0.1 is %s", qPrintable(ip.str()));
-		EXPECT_EQ( ip, 0x7F000001 );
+		ASSERT_TRUE( ip == 0x7F000001 );
 	}
 
 	{

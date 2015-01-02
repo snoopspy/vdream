@@ -86,12 +86,12 @@ protected:
 	// VLog function
 	//
 public:
-	virtual void debug(const char* fmt, ...) __attribute__((format(printf, 2, 3)));
-	virtual void info (const char* fmt, ...) __attribute__((format(printf, 2, 3)));
-	virtual void warn (const char* fmt, ...) __attribute__((format(printf, 2, 3)));
-	virtual void error(const char* fmt, ...) __attribute__((format(printf, 2, 3)));
-	virtual void fatal(const char* fmt, ...) __attribute__((format(printf, 2, 3)));
-	virtual void trace(const char* fmt, ...) __attribute__((format(printf, 2, 3)));
+	virtual void debug(const char* fmt, ...) __attribute__((format(gnu_printf, 2, 3)));
+	virtual void info (const char* fmt, ...) __attribute__((format(gnu_printf, 2, 3)));
+	virtual void warn (const char* fmt, ...) __attribute__((format(gnu_printf, 2, 3)));
+	virtual void error(const char* fmt, ...) __attribute__((format(gnu_printf, 2, 3)));
+	virtual void fatal(const char* fmt, ...) __attribute__((format(gnu_printf, 2, 3)));
+	virtual void trace(const char* fmt, ...) __attribute__((format(gnu_printf, 2, 3)));
 
 protected:
 	virtual void doDebug(const char *fmt, va_list args);

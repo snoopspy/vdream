@@ -20,8 +20,8 @@
 // ----------------------------------------------------------------------------
 typedef enum
 {
-  ntTCP,
-  ntUDP
+	ntTCP,
+	ntUDP
 } NetType;
 
 // ----------------------------------------------------------------------------
@@ -30,29 +30,29 @@ typedef enum
 class Param
 {
 public:
-  //
-  // Network
-  //
-  NetType netType;
-  int     port;
-  QString localHost;
-  int     localPort;
+	//
+	// Network
+	//
+	NetType netType;
+	int     port;
+	QString localHost;
+	int     localPort;
 
-  // Other
-  int     bufSize;
-  bool    echo;
-  bool    echoBroadcast;
-  QString log;
+	// Other
+	int     bufSize;
+	bool    echo;
+	bool    echoBroadcast;
+	QString log;
 
 protected:
-  int     argc;
-  char**  argv;
-  QString get(int idx);
+	int     argc;
+	char**  argv;
+	QString get(int idx);
 
 public:
-  Param();
-  virtual ~Param();
-  bool parse(int argc, char* argv[]);
+	Param();
+	virtual ~Param();
+	bool parse(int argc, char* argv[]);
 };
 
 #endif // paramh

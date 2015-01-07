@@ -19,12 +19,12 @@
 
 class MyLogSync : public QObject
 {
-  Q_OBJECT
+	Q_OBJECT
 
-  friend class MyLog;
+	friend class MyLog;
 
 signals:
-  void onMessage(QString s);
+	void onMessage(QString s);
 };
 
 // ----------------------------------------------------------------------------
@@ -33,30 +33,30 @@ signals:
 class MyLog : public VObject, public VRunnable
 {
 public:
-  MyLog();
-  virtual ~MyLog();
+	MyLog();
+	virtual ~MyLog();
 
 public:
-  VUdpServer* udpServer;
-  MyLogSync  sync;
+	VUdpServer* udpServer;
+	MyLogSync  sync;
 
 public: // propertied
-  bool autoOpen;
-  bool timeShow;
+	bool autoOpen;
+	bool timeShow;
 
 protected:
-  VLog* log;
+	VLog* log;
 
 public:
-  virtual bool doOpen();
-  virtual bool doClose();
+	virtual bool doOpen();
+	virtual bool doClose();
 
 protected:
-  virtual void run();
+	virtual void run();
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
 };
 
 #endif // __MY_LOG_H__

@@ -15,52 +15,52 @@ using namespace std;
 
 void changeLog()
 {
-  VLogUdp* logUDP = new VLogUdp;
-  logUDP->showThreadID = false;
-  logUDP->showDateTime = VShowDateTime::None;
+	VLogUdp* logUDP = new VLogUdp;
+	logUDP->showThreadID = false;
+	logUDP->showDateTime = VShowDateTime::None;
 
-  VLogStdout* logStdout = new VLogStdout;
-  logStdout->showThreadID = false;
-  logStdout->showDateTime = VShowDateTime::None;
+	VLogStdout* logStdout = new VLogStdout;
+	logStdout->showThreadID = false;
+	logStdout->showDateTime = VShowDateTime::None;
 
-  VLogFile* logFile = new VLogFile("log/");
-  logFile->showThreadID = false;
-  logFile->showDateTime = VShowDateTime::DateTime;
+	VLogFile* logFile = new VLogFile("log/");
+	logFile->showThreadID = false;
+	logFile->showDateTime = VShowDateTime::DateTime;
 
-  VLogList* logList = new VLogList;
-  logList->showThreadID = false;
-  logList->showDateTime = VShowDateTime::None;
+	VLogList* logList = new VLogList;
+	logList->showThreadID = false;
+	logList->showDateTime = VShowDateTime::None;
 
-  logList->items.append(logUDP);
-  logList->items.append(logStdout);
-  logList->items.append(logFile);
+	logList->items.append(logUDP);
+	logList->items.append(logStdout);
+	logList->items.append(logFile);
 
-  logList->saveToDefaultDoc("log");
-  VLog::changeLog(logList);
+	logList->saveToDefaultDoc("log");
+	VLog::changeLog(logList);
 }
 
 int main()
 {
-  bool fileExist = QFile::exists(VXmlDoc::defaultFileName());
-  VApp::initialize();
-  if (!fileExist) changeLog();
+	bool fileExist = QFile::exists(VXmlDoc::defaultFileName());
+	VApp::initialize();
+	if (!fileExist) changeLog();
 
-  string s;
-  while (true)
-  {
-    getline(cin, s);
-    if (cin.bad())
-    {
-      LOG_DEBUG("cin.bad");
-      break;
-    }
-    VLog::getLog()->trace("%s", s.c_str());
-    if (cin.eof())
-    {
-      LOG_DEBUG("cin.eof");
-      break;
-    }
-  }
-  VApp::finalize();
-  return 0;
+	string s;
+	while (true)
+	{
+		getline(cin, s);
+		if (cin.bad())
+		{
+			LOG_DEBUG("cin.bad");
+			break;
+		}
+		VLog::getLog()->trace("%s", s.c_str());
+		if (cin.eof())
+		{
+			LOG_DEBUG("cin.eof");
+			break;
+		}
+	}
+	VApp::finalize();
+	return 0;
 }

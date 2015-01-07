@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/ico">
-        <file>logserver.ico</file>
-    </qresource>
+		<qresource prefix="/ico">
+				<file>logserver.ico</file>
+		</qresource>
 </RCC>

@@ -2,18 +2,18 @@
 
 Param::Param()
 {
-  // Network
-  netType   = ntTCP;
-  host      = "";
-  port      = 0;
-  localHost = "";
-  localPort = 0;
+	// Network
+	netType   = ntTCP;
+	host      = "";
+	port      = 0;
+	localHost = "";
+	localPort = 0;
 
-  bufSize = DEFAULT_BUF_SIZE;
-  log = "";
+	bufSize = DEFAULT_BUF_SIZE;
+	log = "";
 
-  argc = 0;
-  argv = NULL;
+	argc = 0;
+	argv = NULL;
 }
 
 Param::~Param()
@@ -22,96 +22,96 @@ Param::~Param()
 
 QString Param::get(int idx)
 {
-  if (idx >= 0 && idx < argc) return argv[idx];
-  return "";
+	if (idx >= 0 && idx < argc) return argv[idx];
+	return "";
 }
 
 bool Param::parse(int argc, char* argv[])
 {
-  this->argc = argc;
-  this->argv = argv;
+	this->argc = argc;
+	this->argv = argv;
 
-  int i = 1;
-  QString s, para;
+	int i = 1;
+	QString s, para;
 
-  //
-  // tcp or udp
-  //
-  if (get(i) == "tcp") this->netType = ntTCP, i++;
-  if (get(i) == "udp") this->netType = ntUDP, i++;
-  if (get(i) == "ssl") this->netType = ntSSL, i++;
+	//
+	// tcp or udp
+	//
+	if (get(i) == "tcp") this->netType = ntTCP, i++;
+	if (get(i) == "udp") this->netType = ntUDP, i++;
+	if (get(i) == "ssl") this->netType = ntSSL, i++;
 
-  //
-  // host
-  //
-  s = get(i);
-  if (s == "")
-  {
-    printf("host not specified\n");
-    return false;
-  }
-  this->host = s; i++;
+	//
+	// host
+	//
+	s = get(i);
+	if (s == "")
+	{
+		printf("host not specified\n");
+		return false;
+	}
+	this->host = s; i++;
 
-  //
-  // port
-  //
-  s = get(i);
-  if (s == "")
-  {
-    printf("port not specified\n");
-    return false;
-  }
-  this->port = s.toInt(); i++;
+	//
+	// port
+	//
+	s = get(i);
+	if (s == "")
+	{
+		printf("port not specified\n");
+		return false;
+	}
+	this->port = s.toInt(); i++;
 
-  //
-  // option
-  //
-  while (i < argc)
-  {
-    s = get(i);
-    if (s == "-lh")
-    {
-      para = get(i + 1); if (para == "")
-      {
-        printf("local host not specified\n");
-        return false;
-      }
-      this->localHost = para;
-      i += 2; continue;
-    }
-    if (s == "-lp")
-    {
-      para = get(i + 1); if (para == "")
-      {
-        printf("local port not specified\n");
-        return false;
-      }
-      this->localPort = para.toInt();
-      i += 2; continue;
-    }
-    if (s == "-bs")
-    {
-      para = get(i + 1); if (para == "")
-      {
-        printf("buffer size not specified\n");
-        return false;
-      }
-      this->bufSize = para.toInt();
-      i += 2; continue;
-    }
-    if (s == "-log")
-    {
-      para = get(i + 1); if (para == "")
-      {
-        printf("log not specified\n");
-        return false;
-      }
-      this->log = para;
-      i += 2; continue;
-    }
+	//
+	// option
+	//
+	while (i < argc)
+	{
+		s = get(i);
+		if (s == "-lh")
+		{
+			para = get(i + 1); if (para == "")
+			{
+				printf("local host not specified\n");
+				return false;
+			}
+			this->localHost = para;
+			i += 2; continue;
+		}
+		if (s == "-lp")
+		{
+			para = get(i + 1); if (para == "")
+			{
+				printf("local port not specified\n");
+				return false;
+			}
+			this->localPort = para.toInt();
+			i += 2; continue;
+		}
+		if (s == "-bs")
+		{
+			para = get(i + 1); if (para == "")
+			{
+				printf("buffer size not specified\n");
+				return false;
+			}
+			this->bufSize = para.toInt();
+			i += 2; continue;
+		}
+		if (s == "-log")
+		{
+			para = get(i + 1); if (para == "")
+			{
+				printf("log not specified\n");
+				return false;
+			}
+			this->log = para;
+			i += 2; continue;
+		}
 
-    printf("syntax error(%s)\n", qPrintable(s));
-    return false;
-  }
-  return true;
+		printf("syntax error(%s)\n", qPrintable(s));
+		return false;
+	}
+	return true;
 }

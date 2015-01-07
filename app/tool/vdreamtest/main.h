@@ -3,11 +3,11 @@
 
 class MyServer : public VSslServer
 {
-  Q_OBJECT
+	Q_OBJECT
 
 public:
-  MyServer(void* owner);
+	MyServer(void* owner);
 
 public slots:
-  void run___(VSslSession *sslSession);
+	void run___(VSslSession *sslSession);
 };

@@ -4,16 +4,16 @@
 
 int run(int argc, char* argv[])
 {
-  QApplication a(argc, argv);
-  Widget w;
-  w.show();
-  return a.exec();
+	QApplication a(argc, argv);
+	Widget w;
+	w.show();
+	return a.exec();
 }
 
 int main(int argc, char* argv[])
 {
-  VApp::initialize();
-  int res = run(argc, argv);
-  VApp::finalize();
-  return res;
+	VApp::initialize();
+	int res = run(argc, argv);
+	VApp::finalize();
+	return res;
 }

@@ -11,7 +11,7 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 SOURCES += \
-    test1.cpp \
+		test1.cpp \
 	../../../include/common/vbase.cpp \
 	../../../include/common/vdebugnew.cpp \
 	../../../include/common/vdependency.cpp \

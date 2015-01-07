@@ -15,9 +15,9 @@ TEMPLATE  = app
 DESTDIR   = ../../bin
 
 SOURCES += \
-    main.cpp \
-    param.cpp
+		main.cpp \
+		param.cpp
 
 HEADERS += \
-    param.h \
-    main.h
+		param.h \
+		main.h

@@ -8,62 +8,62 @@
 #include "mylog.h"
 
 namespace Ui {
-  class MainWindow;
+	class MainWindow;
 }
 
 class MainWindow : public QMainWindow, public VXmlable
 {
-  Q_OBJECT
+	Q_OBJECT
 
 public:
-  explicit MainWindow(QWidget *parent = 0);
-  ~MainWindow();
+	explicit MainWindow(QWidget *parent = 0);
+	~MainWindow();
 
 public:
-  void initializeControl();
-  void finalizeControl();
-  void loadControl();
-  void saveControl();
-  void setControl();
+	void initializeControl();
+	void finalizeControl();
+	void loadControl();
+	void saveControl();
+	void setControl();
 
 protected:
-  void showEvent(QShowEvent* showEvent);
+	void showEvent(QShowEvent* showEvent);
 
 public:
-  MyLog* myLog;
+	MyLog* myLog;
 
 public:
-  OptionDlg* optionDlg;
-  AboutDlg*  aboutDlg;
+	OptionDlg* optionDlg;
+	AboutDlg*  aboutDlg;
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
 
 private slots:
-  void _onMessage(QString qs);
+	void _onMessage(QString qs);
 
 private slots:
-  void on_actionOpen_triggered();
+	void on_actionOpen_triggered();
 
-  void on_actionClose_triggered();
+	void on_actionClose_triggered();
 
-  void on_actionEdit_triggered();
+	void on_actionEdit_triggered();
 
-  void on_actionClear_triggered();
+	void on_actionClear_triggered();
 
-  void on_actionExit_triggered();
+	void on_actionExit_triggered();
 
-  void on_actionOption_triggered();
+	void on_actionOption_triggered();
 
-  void on_actionAbout_triggered();
+	void on_actionAbout_triggered();
 
-  void on_actionAlwaysOnTop_triggered();
+	void on_actionAlwaysOnTop_triggered();
 
-  void on_actionWordWrap_triggered();
+	void on_actionWordWrap_triggered();
 
 private:
-  Ui::MainWindow *ui;
+	Ui::MainWindow *ui;
 };
 
 #endif // MAINWINDOW_H

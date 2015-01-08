@@ -164,7 +164,7 @@ void MainWindow::_onMessage(QString qs)
 		static const int BUF_SIZE = 256;
 		char timeBuf[BUF_SIZE];
 		QDateTime now = QDateTime::currentDateTime();
-		int i = sprintf_s(timeBuf, BUF_SIZE - 1, "%02d:%02d:%02d %03d : ",
+		int i = snprintf(timeBuf, BUF_SIZE, "%02d:%02d:%02d %03d : ",
 			now.time().hour(), now.time().minute(), now.time().second(), now.time().msec());
 		timeBuf[i] = '\0';
 		QString ts = timeBuf;

@@ -1,4 +1,5 @@
-#include <stdio.h>
+#include <iostream>
+#include <string>
 #include "main.h"
 
 // ----------------------------------------------------------------------------
@@ -27,18 +28,13 @@ void App::inputAndSend()
 {
 	LOG_DEBUG("beg");
 
-	char* buf = new char[param->bufSize];
 	while (true)
 	{
-		char* p = gets_s(buf, param->bufSize);
-		if (p == NULL) break;
-		int readLen = (int)strlen(p);
-		if (readLen == 0) continue;
-		buf[readLen] = '\0';
-		int writeLen = netServer->write(buf, readLen);
+		std::string s;
+		std::getline(std::cin, s);
+		int writeLen = netServer->write(s.c_str(), s.length());
 		if (writeLen == VERR_FAIL) break;
 	}
-	delete[] buf;
 
 	LOG_DEBUG("end");
 }
@@ -90,13 +86,13 @@ void App::run() // udp
 					if (it == sockAddrList.end()) break;
 					sockAddrList.erase(it);
 				}
-				LOG_DEBUG("count=%d", sockAddrList.size()); // gilgi temp 2009.08.16
+				LOG_DEBUG("count=%zu", sockAddrList.size()); // gilgi temp 2009.08.16
 			} else // other error
 			{
 				VSockAddrList::iterator it = sockAddrList.findBySockAddr(udpSession->addr);
 				if (it != sockAddrList.end())
 					sockAddrList.erase(it);
-				LOG_DEBUG("count=%d", sockAddrList.size()); // gilgi temp 2009.08.16
+				LOG_DEBUG("count=%zu", sockAddrList.size()); // gilgi temp 2009.08.16
 			}
 			udpSession->error.clear();
 			continue;
@@ -110,11 +106,11 @@ void App::run() // udp
 			SOCKADDR_IN* newSockAddr = new SOCKADDR_IN;
 			*newSockAddr = udpSession->addr;
 			sockAddrList.insert(*newSockAddr);
-			LOG_DEBUG("count=%d", sockAddrList.size()); // gilgi temp 2009.08.16
+			LOG_DEBUG("count=%zu", sockAddrList.size()); // gilgi temp 2009.08.16
 		}
 
 		buf[readLen] = '\0';
-		int writeLen = printf_s("%s\n", buf, readLen);
+		int writeLen = printf("%s\n", buf);
 		if (writeLen < 0) break;
 		if (param->echo)
 		{
@@ -149,7 +145,7 @@ void App::runned(VTcpSession* tcpSession) // tcp
 			break;
 		}
 		buf[readLen] = '\0';
-		int writeLen = printf_s("%s\n", buf, readLen);
+		int writeLen = printf("%s\n", buf);
 		if (writeLen < 0) break;
 		if (param->echo)
 		{

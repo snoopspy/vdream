@@ -49,13 +49,13 @@ void UdpServerThread::run()
 					if (it == sockAddrList.end()) break;
 					sockAddrList.erase(it);
 				}
-				LOG_DEBUG("count=%d", sockAddrList.size()); // gilgi temp 2009.08.16
+				LOG_DEBUG("count=%zu", sockAddrList.size()); // gilgi temp 2009.08.16
 			} else // other error
 			{
 				VSockAddrList::iterator it = sockAddrList.findBySockAddr(udpSession->addr);
 				if (it != sockAddrList.end())
 					sockAddrList.erase(it);
-				LOG_DEBUG("count=%d", sockAddrList.size()); // gilgi temp 2009.08.16
+				LOG_DEBUG("count=%zu", sockAddrList.size()); // gilgi temp 2009.08.16
 			}
 			udpSession->error.clear();
 			continue;
@@ -69,7 +69,7 @@ void UdpServerThread::run()
 			SOCKADDR_IN* newSockAddr = new SOCKADDR_IN;
 			*newSockAddr = udpSession->addr;
 			sockAddrList.insert(*newSockAddr);
-			LOG_DEBUG("count=%d", sockAddrList.size()); // gilgi temp 2009.08.16
+			LOG_DEBUG("count=%zu", sockAddrList.size()); // gilgi temp 2009.08.16
 		}
 
 		if (widget->ui->chkShowHexa->checkState() == Qt::Checked)

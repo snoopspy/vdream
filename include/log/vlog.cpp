@@ -343,7 +343,7 @@ bool VLog::saveToDefaultDoc(const QString& path)
 #include <VLogList>
 #include <VLogFactory>
 
-TEST( Common, macroTest )
+TEST( Log, macroTest )
 {
 	qDebug() << "__DATE__    =" << __DATE__;
 	qDebug() << "__TIME__    =" << __TIME__;

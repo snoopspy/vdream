@@ -1,3 +1,5 @@
+#include <iostream>
+#include <string>
 #include <stdio.h>
 #include "main.h"
 
@@ -48,18 +50,14 @@ void App::inputAndSend()
 {
 	LOG_DEBUG("beg");
 
-	char* buf = new char[param->bufSize];
 	while (runThread().active())
 	{
-	char* p = gets_s(buf, param->bufSize);
-	if (p == NULL) break;
-	int readLen = (int)strlen(p);
-		if (readLen == 0) continue;
-		buf[readLen] = '\0';
-		int writeLen = netClient->write(buf, readLen);
+		std::string s;
+		std::getline(std::cin, s);
+		int writeLen = netClient->write(s.c_str(), s.length());
 		if (writeLen == VERR_FAIL) break;
 	}
-	delete[] buf;
+
 
 	LOG_DEBUG("end");
 }
@@ -84,7 +82,7 @@ void App::recvAndOutput()
 			break;
 		}
 		buf[readLen] = '\0';
-		int writeLen = printf_s("%s\n", buf, readLen);
+		int writeLen = printf("%s\n", buf);
 		if (writeLen < 0) break;
 	}
 	delete[] buf;

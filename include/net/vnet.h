@@ -17,7 +17,7 @@
   #ifndef NOMINMAX
   #define NOMINMAX
   #endif // NOMINMAX
-  #include <winSock2.h>
+  #include <winsock2.h>
   #include <windows.h>
 #endif // WIN32
 #ifdef linux

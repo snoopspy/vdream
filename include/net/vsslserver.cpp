@@ -91,7 +91,7 @@ bool VSslServer::doOpen()
     case VSslMethodType::mtDTLSv1  : m_meth = (SSL_METHOD*)DTLSv1_server_method();  break;
     case VSslMethodType::mtNone    :
     default                        :
-      SET_ERROR(VSslError, qformat("client method error(%s)", qPrintable(methodType.str())), VERR_SSL_METHOD);
+      SET_ERROR(VSslError, qformat("client method error(%s)", qPrintable(methodType.str())), VSslError::INVALID_SSL_METHOD);
       return false;
   }
 
@@ -160,7 +160,7 @@ int VSslServer::doRead(char* buf, int size)
 
   Q_UNUSED(buf)
   Q_UNUSED(size)
-  SET_ERROR(VError, "not readable", VERR_NOT_READABLE);
+  SET_ERROR(VError, "not readable", VError::NOT_READABLE);
   return VError::FAIL;
 }
 

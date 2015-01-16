@@ -31,7 +31,7 @@ VLogUdp::~VLogUdp()
 bool VLogUdp::open()
 {
   // ------------------------------------------------------------------------
-  // socket
+  // socketS
   // ------------------------------------------------------------------------
   handle = socket(AF_INET, SOCK_DGRAM, 0);
   if (handle == INVALID_SOCKET)

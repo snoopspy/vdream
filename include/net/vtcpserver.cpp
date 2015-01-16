@@ -62,7 +62,7 @@ bool VTcpServer::doOpen()
 
   if (port == 0)
   {
-    SET_ERROR(VNetError, "port is zero", VERR_PORT_IS_ZERO);
+    SET_ERROR(VNetError, "port is zero", VNetError::PORT_IS_ZERO);
     return false;
   }
 
@@ -89,7 +89,7 @@ bool VTcpServer::doOpen()
     Ip ip = VNet::resolve(localHost);
     if (ip == 0)
     {
-      SET_ERROR(VNetError, qformat("can not resolve host(%s)", qPrintable(localHost)), VERR_CAN_NOT_RESOLVE_HOST);
+      SET_ERROR(VNetError, qformat("can not resolve host(%s)", qPrintable(localHost)), VNetError::CAN_NOT_RESOLVE_HOST);
       return false;
     }
     acceptSession->addr.sin_addr.s_addr = htonl(ip);
@@ -202,7 +202,7 @@ int VTcpServer::doRead(char* buf, int size)
 
   Q_UNUSED(buf)
   Q_UNUSED(size)
-  SET_ERROR(VError, "not readable", VERR_NOT_READABLE);
+  SET_ERROR(VError, "not readable", VError::NOT_READABLE);
   return VError::FAIL;
 }
 
@@ -229,7 +229,7 @@ VTcpSession* VTcpServer::accept()
 
   if (acceptSession->handle == INVALID_SOCKET)
   {
-    SET_ERROR(VError, "invalid handle", VERR_INVALID_HANDLE);
+    SET_ERROR(VError, "invalid handle", VError::INVALID_HANDLE);
     goto _error;
   }
 

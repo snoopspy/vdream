@@ -56,7 +56,7 @@ bool VSslClient::doOpen()
     case VSslMethodType::mtDTLSv1  : m_meth = (SSL_METHOD*)DTLSv1_client_method();  break;
     case VSslMethodType::mtNone    :
     default                        :
-      SET_ERROR(VSslError, qformat("client method error(%s)", qPrintable(methodType.str())), VERR_SSL_METHOD);
+      SET_ERROR(VSslError, qformat("client method error(%s)", qPrintable(methodType.str())), VSslError::INVALID_SSL_METHOD);
       return false;
   }
 

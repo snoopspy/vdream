@@ -11,7 +11,15 @@
 #ifndef __V_LOG_UDP_H__
 #define __V_LOG_UDP_H__
 
-#include <netinet/in.h>
+#ifdef WIN32
+  #ifndef NOMINMAX
+  #define NOMINMAX
+  #endif // NOMINMAX
+  #include <winsock2.h>
+#endif // WIN32
+#ifdef linux
+  #include <netinet/in.h>
+#endif // linux
 #include <VLog>
 
 // ----------------------------------------------------------------------------

@@ -23,7 +23,7 @@ bool VUdpClient::doOpen()
 
   if (port == 0)
   {
-    SET_ERROR(VNetError, "port is zero", VERR_PORT_IS_ZERO);
+    SET_ERROR(VNetError, "port is zero", VNetError::PORT_IS_ZERO);
     return false;
   }
 
@@ -50,7 +50,7 @@ bool VUdpClient::doOpen()
     Ip ip = VNet::resolve(localHost);
     if (ip == 0)
     {
-      SET_ERROR(VNetError, qformat("can not resolve host(%s)", qPrintable(localHost)), VERR_CAN_NOT_RESOLVE_HOST);
+      SET_ERROR(VNetError, qformat("can not resolve host(%s)", qPrintable(localHost)), VNetError::CAN_NOT_RESOLVE_HOST);
       return false;
     }
     udpSession->addr.sin_addr.s_addr = htonl(ip);
@@ -71,13 +71,13 @@ bool VUdpClient::doOpen()
   udpSession->addr.sin_port = htons(quint16(port));
   if (host == "")
   {
-    SET_ERROR(VNetError, "host is invalid", VERR_INVALID_HOST);
+    SET_ERROR(VNetError, "host is invalid", VNetError::INVALID_HOST);
     return false;
   }
   Ip ip = VNet::resolve(host);
   if (ip == 0)
   {
-    SET_ERROR(VNetError, qformat("can not resolve host(%s)", qPrintable(host)), VERR_CAN_NOT_RESOLVE_HOST);
+    SET_ERROR(VNetError, qformat("can not resolve host(%s)", qPrintable(host)), VNetError::CAN_NOT_RESOLVE_HOST);
     return false;
   }
   udpSession->addr.sin_addr.s_addr = htonl(ip);

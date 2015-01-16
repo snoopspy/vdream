@@ -82,7 +82,7 @@ class VSslError : public VError
 {
 public:
   enum {
-    SSL_METHOD = VERR_CATEGORY_SSL,
+    INVALID_SSL_METHOD = VERR_CATEGORY_SSL,
     IN_BIO_S_FILE,
     IN_BIO_READ_FILENAME,
     IN_PEM_READ_BIO_PRIVATEKEY,

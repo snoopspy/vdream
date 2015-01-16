@@ -58,7 +58,6 @@ void App::inputAndSend()
     if (writeLen == VError::FAIL) break;
   }
 
-
   LOG_DEBUG("end");
 }
 
@@ -78,7 +77,7 @@ void App::recvAndOutput()
     int readLen = netClient->read(buf, param->bufSize);
     if (readLen == VError::FAIL)
     {
-      printf("%s\n", netClient->error.msg);
+      printf("%s\n", qPrintable(netClient->error.msg));
       break;
     }
     buf[readLen] = '\0';
@@ -157,7 +156,7 @@ int main(int argc, char* argv[])
   app.createNetClient();
   if (!app.netClient->open())
   {
-    printf("%s\n", app.netClient->error.msg);
+    printf("%s\n", qPrintable(app.netClient->error.msg));
     return -1;
   }
 

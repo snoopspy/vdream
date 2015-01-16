@@ -92,7 +92,7 @@ public:
   { \
     error.ti = (std::type_info*)&typeid(ERROR_CLASS_NAME); \
     error.msg = MSG; \
-    error.msg = MSG; \
+    error.code = CODE; \
     error.dump(__FILE__, __LINE__, __func__); \
   }
 
@@ -100,7 +100,7 @@ public:
   { \
     error.ti = (std::type_info*)&typeid(ERROR_CLASS_NAME); \
     error.msg = MSG; \
-    error.msg = MSG; \
+    error.code = CODE; \
     error.debug(__FILE__, __LINE__, __func__); \
   }
 

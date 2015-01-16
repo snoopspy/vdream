@@ -25,7 +25,7 @@ bool VTcpSession::doOpen()
 
   if (handle == INVALID_SOCKET)
   {
-    SET_ERROR(VError, "handle is zero", VERR_HANDLE_IS_ZERO);
+    SET_ERROR(VError, "handle is zero", VError::HANDLE_IS_ZERO);
     return false;
   }
   return true;
@@ -77,7 +77,7 @@ int VTcpSession::doRead(char* buf, int size)
   // sometimes, read length can be 0(zero), and check if return value is not zero.
   if (res == 0)
   {
-    SET_DEBUG_ERROR(VNetError, "recv return zero", VERR_ERROR_IN_RECV);
+    SET_DEBUG_ERROR(VNetError, "recv return zero", VNetError::ERROR_IN_RECV);
     return VError::FAIL;
   }
   return res;

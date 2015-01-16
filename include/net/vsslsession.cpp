@@ -76,13 +76,13 @@ bool VSslSession::doOpen()
   // --------------------------------------------------------------------------
   if (handle == INVALID_SOCKET)
   {
-    SET_ERROR(VSslError, "INVALID_SOCKET", VERR_HANDLE_IS_ZERO);
+    SET_ERROR(VSslError, "INVALID_SOCKET", VError::HANDLE_IS_ZERO);
     return false;
   }
   */
   if (!tcpSession->active())
   {
-    SET_ERROR(VSslError, "not opened state", VERR_NOT_OPENED_STATE);
+    SET_ERROR(VSslError, "not opened state", VError::NOT_OPENED_STATE);
     return false;
   }
   // ----------------------------------
@@ -92,7 +92,7 @@ bool VSslSession::doOpen()
   // --------------------------------------------------------------------------
   if (ctx == NULL)
   {
-    SET_ERROR(VSslError, "ctx is NULL", VERR_HANDLE_IS_ZERO);
+    SET_ERROR(VSslError, "ctx is NULL", VError::HANDLE_IS_ZERO);
     return false;
   }
 

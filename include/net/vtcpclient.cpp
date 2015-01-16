@@ -81,13 +81,13 @@ bool VTcpClient::doOpen()
   tcpSession->addr.sin_port = htons(quint16(port));
   if (host == "")
   {
-    SET_ERROR(VNetError, "host is invalid", VERR_INVALID_aaHOST);
+    SET_ERROR(VNetError, "host is invalid", VNetError::INVALID_HOST);
     return false;
   }
   Ip ip = VNet::resolve(host);
   if (ip == 0)
   {
-    SET_ERROR(VNetError, qformat("can not resolve host(%s)", qPrintable(host)), VERR_CAN_NOT_RESOLVE_HOST);
+    SET_ERROR(VNetError, qformat("can not resolve host(%s)", qPrintable(host)), VNetError::CAN_NOT_RESOLVE_HOST);
     return false;
   }
   tcpSession->addr.sin_addr.s_addr = htonl(ip);

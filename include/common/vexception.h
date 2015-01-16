@@ -19,17 +19,17 @@
 class VException : public std::exception
 {
 public:
-	VException(int code, QString msg, bool log = true);
-	VException(int errno);
+  VException(int code, QString msg, bool log = true);
+  VException(int errno);
 
 public:
-	int     code;
-	QString msg;
-	virtual const char* what() const throw();
+  int     code;
+  QString msg;
+  virtual const char* what() const throw();
 
 public:
-	static bool initialize();
-	static bool finalize();
+  static bool initialize();
+  static bool finalize();
 };
 */
 // ----------------------------------

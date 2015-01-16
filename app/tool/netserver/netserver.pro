@@ -13,10 +13,10 @@ TEMPLATE = app
 DESTDIR  = ../../bin
 
 SOURCES += main.cpp \
-		widget.cpp
+    widget.cpp
 
 HEADERS  += \
-		widget.h
+    widget.h
 
 FORMS    += \
-		widget.ui
+    widget.ui

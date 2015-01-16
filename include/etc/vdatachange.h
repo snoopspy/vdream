@@ -19,28 +19,28 @@
 class VDataChangeItem : public VRegExp
 {
 public:
-	VDataChangeItem();
+  VDataChangeItem();
 
 public:
-	bool       enabled;
-	bool       log;
-	QByteArray replace;
+  bool       enabled;
+  bool       log;
+  QByteArray replace;
 
 public:
-	int change(QByteArray& ba, int offset = 0);
+  int change(QByteArray& ba, int offset = 0);
 
 public:
-	virtual void load(VXml xml);
-	virtual void save(VXml xml);
+  virtual void load(VXml xml);
+  virtual void save(VXml xml);
 
 #ifdef QT_GUI_LIB
 public:
-	static const int ENABLED_IDX = 4;
-	static const int LOG_IDX     = 5;
-	static const int REPLACE_IDX = 6;
+  static const int ENABLED_IDX = 4;
+  static const int LOG_IDX     = 5;
+  static const int REPLACE_IDX = 6;
 
 public:
-	static void initialize(QTreeWidget* treeWidget);
+  static void initialize(QTreeWidget* treeWidget);
 #endif // QT_GUI_LIB
 };
 
@@ -54,33 +54,33 @@ void operator << (VDataChangeItem& item, QTreeWidgetItem& treeWidgetItem);
 // ----------------------------------------------------------------------------
 class VDataChange : public QObject, public QList<VDataChangeItem>, public VXmlable, public VOptionable, public VListWidgetAccessible
 {
-	Q_OBJECT
+  Q_OBJECT
 
 public:
-	VDataChange();
-	virtual ~VDataChange();
+  VDataChange();
+  virtual ~VDataChange();
 
 public:
-	bool prepare(VError& error);
-	bool change(QByteArray& ba);
+  bool prepare(VError& error);
+  bool change(QByteArray& ba);
 
 public:
-	virtual void load(VXml xml);
-	virtual void save(VXml xml);
+  virtual void load(VXml xml);
+  virtual void save(VXml xml);
 
 #ifdef QT_GUI_LIB
 public: // VOptionable
-	virtual void optionAddWidget(QLayout* layout);
-	virtual void optionSaveDlg(QDialog* dialog);
+  virtual void optionAddWidget(QLayout* layout);
+  virtual void optionSaveDlg(QDialog* dialog);
 
 public: // VListWidgetAccessible
-	virtual void  widgetClear()                                                             { clear();                                    }
-	virtual int   widgetCount()                                                             { return count();                             }
-	virtual void* widgetAt(int i)                                                           { return  (void*)&at(i);                      }
-	virtual void  widgetPushBack(void* item)                                                { push_back(*(const VDataChangeItem*)item);   }
-	virtual void* widgetCeateItem()                                                         { return new VDataChangeItem;                 }
-	virtual void  widgetItemIntoTreeWidgetItem(void* item, QTreeWidgetItem* treeWidgetItem) { *treeWidgetItem << *(VDataChangeItem*)item; }
-	virtual void  widgetTreeWidgetItemIntoItem(QTreeWidgetItem* treeWidgetItem, void* item) { *(VDataChangeItem*)item << *treeWidgetItem; }
+  virtual void  widgetClear()                                                             { clear();                                    }
+  virtual int   widgetCount()                                                             { return count();                             }
+  virtual void* widgetAt(int i)                                                           { return  (void*)&at(i);                      }
+  virtual void  widgetPushBack(void* item)                                                { push_back(*(const VDataChangeItem*)item);   }
+  virtual void* widgetCeateItem()                                                         { return new VDataChangeItem;                 }
+  virtual void  widgetItemIntoTreeWidgetItem(void* item, QTreeWidgetItem* treeWidgetItem) { *treeWidgetItem << *(VDataChangeItem*)item; }
+  virtual void  widgetTreeWidgetItemIntoItem(QTreeWidgetItem* treeWidgetItem, void* item) { *(VDataChangeItem*)item << *treeWidgetItem; }
 #endif // QT_GUI_LIB
 };
 

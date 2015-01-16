@@ -20,11 +20,11 @@
 class VLogFactory : public VFactory<VLog>
 {
 public:
-	static void  explicitLink();
-	static VLog* createByClassName(const QString& className);
-	static VLog* createByDefaultDoc(const QString& path);
-	static VLog* createByURI(const QString& uri);
-	static VLog* createDefaultLog();
+  static void  explicitLink();
+  static VLog* createByClassName(const QString& className);
+  static VLog* createByDefaultDoc(const QString& path);
+  static VLog* createByURI(const QString& uri);
+  static VLog* createDefaultLog();
 };
 
 #endif // __V_LOG_FACTORY_H__

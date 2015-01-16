@@ -21,27 +21,27 @@
 class VFile : public VRwObject, public VBase<QFile>
 {
 public:
-	VFile(void* owner = NULL);
-	VFile(const QString& fileName);
-	VFile(const QString& fileName, QIODevice::OpenMode mode);
-	virtual ~VFile();
+  VFile(void* owner = NULL);
+  VFile(const QString& fileName);
+  VFile(const QString& fileName, QIODevice::OpenMode mode);
+  virtual ~VFile();
 
 public:
-	QString             fileName;
-	QIODevice::OpenMode mode;
+  QString             fileName;
+  QIODevice::OpenMode mode;
 
 protected:
-	bool doOpen();
-	bool doClose();
-	int  doRead(char* buf,  int size);
-	int  doWrite(char* buf, int size);
+  bool doOpen();
+  bool doClose();
+  int  doRead(char* buf,  int size);
+  int  doWrite(char* buf, int size);
 
 public:
-	static bool createFolder(QString folder);
+  static bool createFolder(QString folder);
 
 public:
-	virtual void load(VXml xml);
-	virtual void save(VXml xml);
+  virtual void load(VXml xml);
+  virtual void save(VXml xml);
 };
 
 // ----------------------------------------------------------------------------

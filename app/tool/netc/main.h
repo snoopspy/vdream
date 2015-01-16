@@ -22,21 +22,21 @@
 // ----------------------------------------------------------------------------
 class App : public VObject, public VRunnable
 {
-	Q_OBJECT
+  Q_OBJECT
 
 public:
-	Param*      param;
-	VNetClient* netClient;
+  Param*      param;
+  VNetClient* netClient;
 
-	App();
-	virtual ~App();
-	void createNetClient();
-	void terminate();
+  App();
+  virtual ~App();
+  void createNetClient();
+  void terminate();
 
-	void inputAndSend();
-	void recvAndOutput();
+  void inputAndSend();
+  void recvAndOutput();
 
-	virtual void run();
+  virtual void run();
 };
 
 #endif // __MAIN_H__

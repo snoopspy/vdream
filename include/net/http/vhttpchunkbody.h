@@ -19,17 +19,17 @@
 class VHttpChunkBody
 {
 public:
-	VHttpChunkBody();
+  VHttpChunkBody();
 
 public:
-	typedef QPair<int /*chunkSize*/, QByteArray /*chunkData*/> Item;
-	typedef QList<Item> Items;
-	Items items;
+  typedef QPair<int /*chunkSize*/, QByteArray /*chunkData*/> Item;
+  typedef QList<Item> Items;
+  Items items;
 
 public:
-	void clear();
-	int parse(QByteArray& buffer);
-	QByteArray toByteArray();
+  void clear();
+  int parse(QByteArray& buffer);
+  QByteArray toByteArray();
 };
 
 #endif // __V_HTTP_CHUNK_BODY_H__

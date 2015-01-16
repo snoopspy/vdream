@@ -20,8 +20,8 @@
 class VGraphStream
 {
 public:
-	VGraphStream()          {}
-	virtual ~VGraphStream() {}
+  VGraphStream()          {}
+  virtual ~VGraphStream() {}
 };
 
 // ----------------------------------------------------------------------------

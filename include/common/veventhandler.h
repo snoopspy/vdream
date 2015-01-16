@@ -19,21 +19,21 @@
 class VCustomEvent
 {
 public:
-	enum Type
-	{
-		DeleteObject = 0
-	};
+  enum Type
+  {
+    DeleteObject = 0
+  };
 
 public:
-	bool autoDelete;
+  bool autoDelete;
 
 public:
-	VCustomEvent() { autoDelete = true; }
-	virtual ~VCustomEvent() {}
+  VCustomEvent() { autoDelete = true; }
+  virtual ~VCustomEvent() {}
 
 public:
-	virtual Type type() = 0;
-	virtual void process() = 0;
+  virtual Type type() = 0;
+  virtual void process() = 0;
 };
 
 // ----------------------------------------------------------------------------
@@ -42,14 +42,14 @@ public:
 class VDeleteObjectEvent : public VCustomEvent
 {
 public:
-	QObject* object;
+  QObject* object;
 
 public:
-	VDeleteObjectEvent(QObject* object) { this->object = object; }
+  VDeleteObjectEvent(QObject* object) { this->object = object; }
 
 public:
-	virtual Type type()    { return DeleteObject; }
-	virtual void process();
+  virtual Type type()    { return DeleteObject; }
+  virtual void process();
 };
 
 // ----------------------------------------------------------------------------
@@ -58,22 +58,22 @@ public:
 class VEventHandler : VThread
 {
 private: // singleton
-	VEventHandler();
-	virtual ~VEventHandler();
+  VEventHandler();
+  virtual ~VEventHandler();
 
 public:
-	void postEvent(VCustomEvent*event);
+  void postEvent(VCustomEvent*event);
 
 protected:
-	VCS    cs;
-	VEvent sysEvent;
-	QList<VCustomEvent*> eventList;
+  VCS    cs;
+  VEvent sysEvent;
+  QList<VCustomEvent*> eventList;
 
 protected:
-	virtual void run();
+  virtual void run();
 
 public:
-	static VEventHandler& instance();
+  static VEventHandler& instance();
 };
 
 #endif // __V_EVENT_HANDLER_H__

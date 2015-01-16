@@ -20,36 +20,36 @@
 class VSslClient : public VTcpClient
 {
 public:
-	VSslClient(void* owner = NULL);
-	virtual ~VSslClient();
+  VSslClient(void* owner = NULL);
+  virtual ~VSslClient();
 
 public:
-	virtual bool close();
+  virtual bool close();
 
 protected:
-	virtual bool doOpen();
-	virtual bool doClose();
-	virtual int  doRead(char* buf, int size);
-	virtual int  doWrite(char* buf, int size);
+  virtual bool doOpen();
+  virtual bool doClose();
+  virtual int  doRead(char* buf, int size);
+  virtual int  doWrite(char* buf, int size);
 
 public:
-	VSslSession*   sslSession; // read only
+  VSslSession*   sslSession; // read only
 
 public:
-	VSslMethodType methodType;
+  VSslMethodType methodType;
 
 protected:
-	SSL_METHOD*   m_meth;
-	SSL_CTX*      m_ctx;
+  SSL_METHOD*   m_meth;
+  SSL_CTX*      m_ctx;
 
 public:
-	virtual void load(VXml xml);
-	virtual void save(VXml xml);
+  virtual void load(VXml xml);
+  virtual void save(VXml xml);
 
 #ifdef QT_GUI_LIB
 public: // for VOptionable
-	virtual void optionAddWidget(QLayout* layout);
-	virtual void optionSaveDlg(QDialog* dialog);
+  virtual void optionAddWidget(QLayout* layout);
+  virtual void optionSaveDlg(QDialog* dialog);
 #endif // QT_GUI_LIB
 };
 

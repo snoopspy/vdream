@@ -16,22 +16,22 @@ win32:LIBS   += -lshell32
 win32:RC_FILE = logserver.rc
 
 SOURCES += \
-		main.cpp\
-		mainwindow.cpp \
-		optiondlg.cpp \
-		aboutdlg.cpp \
-		mylog.cpp
+    main.cpp\
+    mainwindow.cpp \
+    optiondlg.cpp \
+    aboutdlg.cpp \
+    mylog.cpp
 
 HEADERS += \
-		mainwindow.h \
-		optiondlg.h \
-		aboutdlg.h \
-		mylog.h
+    mainwindow.h \
+    optiondlg.h \
+    aboutdlg.h \
+    mylog.h
 
 FORMS += \
-		mainwindow.ui \
-		optiondlg.ui \
-		aboutdlg.ui
+    mainwindow.ui \
+    optiondlg.ui \
+    aboutdlg.ui
 
 RESOURCES += \
-		logserver.qrc
+    logserver.qrc

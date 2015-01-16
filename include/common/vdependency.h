@@ -18,8 +18,8 @@ template <class T>
 class VDependency
 {
 public:
-	/// class T must have static void dependency()
-	VDependency() { T::dependency(); }
+  /// class T must have static void dependency()
+  VDependency() { T::dependency(); }
 };
 
 #endif // __V_DENDENCY_H__

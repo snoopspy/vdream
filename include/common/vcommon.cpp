@@ -26,12 +26,12 @@ const char* VDREAM_VERSION = "VDream 9.1 Release Build( " __DATE__ " " __TIME__ 
 // ----------------------------------------------------------------------------
 QString getClassName(const char* value)
 {
-	int status;
-	char *realname = abi::__cxa_demangle(value, 0, 0, &status);
-	QString res = realname;
-	int pos = res.lastIndexOf("::");
-	if (pos != -1) res = res.mid(pos + 2);
-	return res;
+  int status;
+  char *realname = abi::__cxa_demangle(value, 0, 0, &status);
+  QString res = realname;
+  int pos = res.lastIndexOf("::");
+  if (pos != -1) res = res.mid(pos + 2);
+  return res;
 }
 
 // ----------------------------------------------------------------------------
@@ -39,27 +39,27 @@ QString getClassName(const char* value)
 // ----------------------------------------------------------------------------
 VState::VState(const QString s)
 {
-	if (s == "None")         value = None;
-	else if (s == "Closed")  value = Closed;
-	else if (s == "Opening") value = Opening;
-	else if (s == "Opened")  value = Opened;
-	else if (s == "Closing") value = Closing;
-	else value = None;
+  if (s == "None")         value = None;
+  else if (s == "Closed")  value = Closed;
+  else if (s == "Opening") value = Opening;
+  else if (s == "Opened")  value = Opened;
+  else if (s == "Closing") value = Closing;
+  else value = None;
 }
 
 QString VState::str() const
 {
-	QString res;
-	switch (value)
-	{
-		case None:    res = "None";    break;
-		case Closed:  res = "Closed";  break;
-		case Opening: res = "Opening"; break;
-		case Opened:  res = "Opened";  break;
-		case Closing: res = "Closing"; break;
-		default:      res = "None";    break;
-	}
-	return res;
+  QString res;
+  switch (value)
+  {
+    case None:    res = "None";    break;
+    case Closed:  res = "Closed";  break;
+    case Opening: res = "Opening"; break;
+    case Opened:  res = "Opened";  break;
+    case Closing: res = "Closing"; break;
+    default:      res = "None";    break;
+  }
+  return res;
 }
 
 // ----- gilgil temp 2014.12.28 -----
@@ -69,24 +69,24 @@ QString VState::str() const
 // ----------------------------------------------------------------------------
 VMode::VMode(const QString s)
 {
-	if (s == "None")           value = None;
-	else if (s == "Read")      value = Read;
-	else if (s == "Write")     value = Write;
-	else if (s == "ReadWrite") value = ReadWrite;
-	else value = None;
+  if (s == "None")           value = None;
+  else if (s == "Read")      value = Read;
+  else if (s == "Write")     value = Write;
+  else if (s == "ReadWrite") value = ReadWrite;
+  else value = None;
 }
 
 QString VMode::str() const
 {
-	QString res;
-	switch (value)
-	{
-	case None      : res = "None";      break;
-	case Read      : res = "Read";      break;
-	case Write     : res = "Write";     break;
-	case ReadWrite : res = "ReadWrite"; break;
-	}
-	return res;
+  QString res;
+  switch (value)
+  {
+  case None      : res = "None";      break;
+  case Read      : res = "Read";      break;
+  case Write     : res = "Write";     break;
+  case ReadWrite : res = "ReadWrite"; break;
+  }
+  return res;
 }
 */
 // ----------------------------------
@@ -97,23 +97,23 @@ QString VMode::str() const
 
 TEST( Common, versionTest )
 {
-	qDebug() << VDREAM_VERSION;
+  qDebug() << VDREAM_VERSION;
 }
 
 TEST( Common, macroTest )
 {
-	qDebug() << "__DATE__    =" << __DATE__;
-	qDebug() << "__TIME__    =" << __TIME__;
-	qDebug() << "__FILE__    =" << __FILE__;
+  qDebug() << "__DATE__    =" << __DATE__;
+  qDebug() << "__TIME__    =" << __TIME__;
+  qDebug() << "__FILE__    =" << __FILE__;
 }
 
 TEST( Common, classNameTest )
 {
-	class MyObject {};
-	MyObject obj;
-	QString className = CLASS_NAME(obj);
-	qDebug() << "MyObject class name is " << className;
-	EXPECT_TRUE( className == "MyObject" );
+  class MyObject {};
+  MyObject obj;
+  QString className = CLASS_NAME(obj);
+  qDebug() << "MyObject class name is " << className;
+  EXPECT_TRUE( className == "MyObject" );
 }
 
 #endif // GTEST

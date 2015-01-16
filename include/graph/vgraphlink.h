@@ -21,22 +21,22 @@
 class VGraphNode;
 class VGraphLink : public VObject
 {
-	Q_OBJECT
+  Q_OBJECT
 
 public:
-	VGraphLink(void* owner);
-	virtual ~VGraphLink();
+  VGraphLink(void* owner);
+  virtual ~VGraphLink();
 
 protected:
-	virtual bool doOpen();
-	virtual bool doClose();
+  virtual bool doOpen();
+  virtual bool doClose();
 
 public:
-	virtual bool link(VGraphNode* sender, VGraphNode* receiver);
+  virtual bool link(VGraphNode* sender, VGraphNode* receiver);
 
 public:
-	virtual void load(VXml xml);
-	virtual void save(VXml xml);
+  virtual void load(VXml xml);
+  virtual void save(VXml xml);
 };
 */
 // ----------------------------------

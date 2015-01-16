@@ -22,23 +22,23 @@
 // ----------------------------------------------------------------------------
 class App : public VObject, public VRunnable
 {
-	Q_OBJECT
+  Q_OBJECT
 
 public:
-	Param*      param;
-	VNetServer* netServer;
+  Param*      param;
+  VNetServer* netServer;
 
-	App();
-	virtual ~App();
-	void createNetServer();
-	void terminate();
+  App();
+  virtual ~App();
+  void createNetServer();
+  void terminate();
 
-	void inputAndSend();
+  void inputAndSend();
 
-	virtual void run();
+  virtual void run();
 
 public slots:
-	void runned(VTcpSession* tcpSession);
+  void runned(VTcpSession* tcpSession);
 };
 
 #endif // __MAIN_H__

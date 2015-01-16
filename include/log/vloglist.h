@@ -20,37 +20,37 @@
 class VLogList : public VLog
 {
 public:
-	VLogList();
-	virtual ~VLogList();
-	void clear();
+  VLogList();
+  virtual ~VLogList();
+  void clear();
 
 public:
-	QList<VLog*> items;
+  QList<VLog*> items;
 
 public:
-	virtual void debug(const char* fmt, ...);
-	virtual void info (const char* fmt, ...);
-	virtual void warn (const char* fmt, ...);
-	virtual void error(const char* fmt, ...);
-	virtual void fatal(const char* fmt, ...);
-	virtual void trace(const char* fmt, ...);
+  virtual void debug(const char* fmt, ...);
+  virtual void info (const char* fmt, ...);
+  virtual void warn (const char* fmt, ...);
+  virtual void error(const char* fmt, ...);
+  virtual void fatal(const char* fmt, ...);
+  virtual void trace(const char* fmt, ...);
 
 protected:
-	virtual bool open();
-	virtual bool close();
+  virtual bool open();
+  virtual bool close();
 
 protected:
-	virtual void write(const char* buf, int len);
+  virtual void write(const char* buf, int len);
 
 public:
-	virtual VLog*  createByURI(const QString& uri);
+  virtual VLog*  createByURI(const QString& uri);
 
-	//
-	// PTree
-	//
+  //
+  // PTree
+  //
 public:
-	virtual void load(VXml xml);
-	virtual void save(VXml xml);
+  virtual void load(VXml xml);
+  virtual void save(VXml xml);
 };
 
 #endif // __V_LOG_LIST_H__

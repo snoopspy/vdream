@@ -13,12 +13,12 @@ static const int DEFAULT_STR_BUF_SIZE = 4096; // gilgil temp 2014.12.09
 
 QString qformat(const char* fmt, ...)
 {
-	char buf[DEFAULT_STR_BUF_SIZE];
-	va_list args;
-	va_start(args, fmt);
-	vsnprintf(buf, DEFAULT_STR_BUF_SIZE, fmt, args);
-	va_end(args);
-	return QString(buf);
+  char buf[DEFAULT_STR_BUF_SIZE];
+  va_list args;
+  va_start(args, fmt);
+  vsnprintf(buf, DEFAULT_STR_BUF_SIZE, fmt, args);
+  va_end(args);
+  return QString(buf);
 }
 
 #ifdef GTEST
@@ -27,16 +27,16 @@ QString qformat(const char* fmt, ...)
 
 TEST( String, ss_to_vs )
 {
-	std::string ss = "std::string";
-	QString     qs = ss.c_str();
-	printf("%s\n", qPrintable(qs));
+  std::string ss = "std::string";
+  QString     qs = ss.c_str();
+  printf("%s\n", qPrintable(qs));
 }
 
 TEST( String, vs_to_ss )
 {
-	QString qs = "test";
-	std::string ss = qs.toLatin1().data();
-	printf("%s\n", ss.c_str());
+  QString qs = "test";
+  std::string ss = qs.toLatin1().data();
+  printf("%s\n", ss.c_str());
 }
 
 #endif // GTEST

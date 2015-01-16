@@ -19,10 +19,10 @@
 class VNetSession : public VNet
 {
 public:
-	VNetSession(void* owner = NULL) : VNet(owner) { onceWriteSize = 0; }
+  VNetSession(void* owner = NULL) : VNet(owner) { onceWriteSize = 0; }
 
 public:
-	int onceWriteSize;
+  int onceWriteSize;
 };
 
 #endif // __V_NET_CLIENT_H__

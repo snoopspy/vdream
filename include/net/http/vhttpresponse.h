@@ -19,17 +19,17 @@
 class VHttpStatusLine
 {
 public:
-	VHttpStatusLine();
+  VHttpStatusLine();
 
 public:
-	QByteArray version;
-	int        code;
-	QByteArray text;
+  QByteArray version;
+  int        code;
+  QByteArray text;
 
 public:
-	void clear();
-	bool parse(QByteArray& buffer);
-	QByteArray toByteArray();
+  void clear();
+  bool parse(QByteArray& buffer);
+  QByteArray toByteArray();
 };
 
 // ----------------------------------------------------------------------------
@@ -38,16 +38,16 @@ public:
 class VHttpResponse
 {
 public:
-	VHttpResponse();
+  VHttpResponse();
 
 public:
-	VHttpStatusLine statusLine;
-	VHttpHeader     header;
+  VHttpStatusLine statusLine;
+  VHttpHeader     header;
 
 public:
-	void clear();
-	bool parse(QByteArray& buffer);
-	QByteArray toByteArray();
+  void clear();
+  bool parse(QByteArray& buffer);
+  QByteArray toByteArray();
 };
 
 #endif // __V_HTTP_RESPONSE_H__

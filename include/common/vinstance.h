@@ -18,11 +18,11 @@ template <class T>
 class VInstance : private T
 {
 public:
-	inline static T& instance()
-	{
-		static VInstance<T> g_instance;
-		return  g_instance;
-	}
+  inline static T& instance()
+  {
+    static VInstance<T> g_instance;
+    return  g_instance;
+  }
 };
 
 #endif // __V_INSTANCE_H__

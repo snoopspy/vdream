@@ -6,19 +6,19 @@
 #include <QWidget>
 
 namespace Ui {
-	class VWebProxyWidget;
+  class VWebProxyWidget;
 }
 
 class VWebProxyWidget : public QWidget
 {
-	Q_OBJECT
+  Q_OBJECT
 
 public:
-	explicit VWebProxyWidget(QWidget *parent = 0);
-	~VWebProxyWidget();
+  explicit VWebProxyWidget(QWidget *parent = 0);
+  ~VWebProxyWidget();
 
 public:
-	Ui::VWebProxyWidget *ui;
+  Ui::VWebProxyWidget *ui;
 };
 
 #endif // QT_GUI_LIB

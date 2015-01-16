@@ -3,23 +3,23 @@
 #include <VCommon>
 
 AboutDlg::AboutDlg(QWidget *parent) :
-		QDialog(parent),
-		ui(new Ui::AboutDlg)
+    QDialog(parent),
+    ui(new Ui::AboutDlg)
 {
-		ui->setupUi(this);
+    ui->setupUi(this);
 }
 
 AboutDlg::~AboutDlg()
 {
-		delete ui;
+    delete ui;
 }
 
 void AboutDlg::showEvent(QShowEvent *)
 {
-	ui->lblVDreamVersion->setText(VDREAM_VERSION);
+  ui->lblVDreamVersion->setText(VDREAM_VERSION);
 }
 
 void AboutDlg::on_btnOK_clicked()
 {
-	this->close();
+  this->close();
 }

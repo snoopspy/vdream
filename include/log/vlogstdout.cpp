@@ -8,7 +8,7 @@ REGISTER_METACLASS(VLogStdout, VLog)
 // ----------------------------------------------------------------------------
 VLogStdout::VLogStdout()
 {
-	autoFlush = true;
+  autoFlush = true;
 }
 
 VLogStdout::~VLogStdout()
@@ -17,30 +17,30 @@ VLogStdout::~VLogStdout()
 
 void VLogStdout::write(const char* buf, int len)
 {
-	Q_UNUSED(len)
-	printf("%s\n", buf);
-	if (autoFlush) fflush(stdout);
+  Q_UNUSED(len)
+  printf("%s\n", buf);
+  if (autoFlush) fflush(stdout);
 }
 
 VLog* VLogStdout::createByURI(const QString& uri)
 {
-	if (uri == "stdout")
-	{
-		return new VLogStdout;
-	}
-	return NULL;
+  if (uri == "stdout")
+  {
+    return new VLogStdout;
+  }
+  return NULL;
 }
 
 void VLogStdout::load(VXml xml)
 {
-	VLog::load(xml);
+  VLog::load(xml);
 
-	autoFlush = xml.getBool("autoFlush", autoFlush);
+  autoFlush = xml.getBool("autoFlush", autoFlush);
 }
 
 void VLogStdout::save(VXml xml)
 {
-	VLog::save(xml);
+  VLog::save(xml);
 
-	xml.setBool("autoFlush", autoFlush);
+  xml.setBool("autoFlush", autoFlush);
 }

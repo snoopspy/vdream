@@ -14,17 +14,17 @@
 #include <VRwObject>
 
 #ifdef WIN32
-	#ifndef NOMINMAX
-	#define NOMINMAX
-	#endif // NOMINMAX
-	#include <winSock2.h>
-	#include <windows.h>
+  #ifndef NOMINMAX
+  #define NOMINMAX
+  #endif // NOMINMAX
+  #include <winSock2.h>
+  #include <windows.h>
 #endif // WIN32
 #ifdef linux
-	#include <sys/socket.h>
-	#include <netinet/in.h>
-	#include <arpa/inet.h>
-	#include <netdb.h>
+  #include <sys/socket.h>
+  #include <netinet/in.h>
+  #include <arpa/inet.h>
+  #include <netdb.h>
 #endif // linux
 
 // ----------------------------------------------------------------------------
@@ -49,28 +49,28 @@ typedef int socklen_t;
 class Ip
 {
 protected:
-	quint32 value;
+  quint32 value;
 
 public:
-	Ip()                                 {                        } // default ctor
-	Ip(const quint32 value)              { this->value = value;   } // conversion ctor
-	operator quint32() const             { return value;          } // cast operator
-	// const    quint32* operator &() const { return &value;         } // pointer operator // gilgil temp 2012.06.04
+  Ip()                                 {                        } // default ctor
+  Ip(const quint32 value)              { this->value = value;   } // conversion ctor
+  operator quint32() const             { return value;          } // cast operator
+  // const    quint32* operator &() const { return &value;         } // pointer operator // gilgil temp 2012.06.04
 
 public:
-	Ip(const QString s);
+  Ip(const QString s);
 
 public:
-	void clear();
+  void clear();
 
 public:
-	QString str();
-	QString qformat(QString format);
+  QString str();
+  QString qformat(QString format);
 
 public:
-	bool isLocalHost() { quint8 prefix = (value & 0xFF000000) >> 24; return prefix == 0x7F;                  } // 127.*.*.*
-	bool isBroadcast() { return value == 0xFFFFFF;                                                           } // 255.255.255.255
-	bool isMulticast() { quint8 prefix = (value & 0xFF000000) >> 24; return prefix >= 0xE0 && prefix < 0xF0; } // 224.0.0.0 ~ 239.255.255.255
+  bool isLocalHost() { quint8 prefix = (value & 0xFF000000) >> 24; return prefix == 0x7F;                  } // 127.*.*.*
+  bool isBroadcast() { return value == 0xFFFFFF;                                                           } // 255.255.255.255
+  bool isMulticast() { quint8 prefix = (value & 0xFF000000) >> 24; return prefix >= 0xE0 && prefix < 0xF0; } // 224.0.0.0 ~ 239.255.255.255
 };
 
 // ----------------------------------------------------------------------------
@@ -79,14 +79,14 @@ public:
 class VNetInstance
 {
 private: // singleton
-	VNetInstance();
-	virtual ~VNetInstance();
+  VNetInstance();
+  virtual ~VNetInstance();
 
 public:
-	static VNetInstance& instance();
+  static VNetInstance& instance();
 
 private:
-	Q_DISABLE_COPY(VNetInstance)
+  Q_DISABLE_COPY(VNetInstance)
 };
 
 // ----------------------------------------------------------------------------
@@ -95,12 +95,12 @@ private:
 class VNet : public VRwObject
 {
 public:
-	VNet(void* owner = NULL);
-	virtual ~VNet();
+  VNet(void* owner = NULL);
+  virtual ~VNet();
 
 public:
-	static bool isIPV4Address(const QString host);
-	static Ip   resolve(QString host);
+  static bool isIPV4Address(const QString host);
+  static Ip   resolve(QString host);
 };
 
 // ----------------------------------------------------------------------------

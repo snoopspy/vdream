@@ -8,9 +8,9 @@ REGISTER_METACLASS(VLogNull, VLog)
 // ----------------------------------------------------------------------------
 VLog* VLogNull::createByURI(const QString& uri)
 {
-	if (uri == "null")
-	{
-		return new VLogNull;
-	}
-	return NULL;
+  if (uri == "null")
+  {
+    return new VLogNull;
+  }
+  return NULL;
 }

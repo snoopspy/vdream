@@ -90,19 +90,17 @@ public:
 
 #define SET_ERROR(ERROR_CLASS_NAME, MSG, CODE) \
   { \
-    ERROR_CLASS_NAME tempError; \
-    tempError.msg = tempError.msg; \
-    tempError.code = tempError.code; \
-    error = tempError; \
+    error.ti = (std::type_info*)&typeid(ERROR_CLASS_NAME); \
+    error.msg = MSG; \
+    error.msg = MSG; \
     error.dump(__FILE__, __LINE__, __func__); \
   }
 
 #define SET_DEBUG_ERROR(ERROR_CLASS_NAME, MSG, CODE) \
   { \
-    ERROR_CLASS_NAME tempError; \
-    tempError.msg = tempError.msg; \
-    tempError.code = tempError.code; \
-    error = tempError; \
+    error.ti = (std::type_info*)&typeid(ERROR_CLASS_NAME); \
+    error.msg = MSG; \
+    error.msg = MSG; \
     error.debug(__FILE__, __LINE__, __func__); \
   }
 
@@ -118,7 +116,7 @@ static const int    VERR_CATEGORY_FILE      = 5000;
 //static const int    VERR_CATEGORY_INTERFACE = 6000; // gilgil temp 2015.01.16
 //static const int    VERR_CATEGORY_REGEX     = 7000; // gilgil temp 2015.01.16
 
-//static const int  VERR_CATEGORY_NET         = 10000; // gilgil temp 2015.01.16
+static const int  VERR_CATEGORY_NET         = 10000;
 static const int   VERR_CATEGORY_SNOOP      = 11000;
 static const int   VERR_CATEGORY_SSL        = 12000;
 //static const int   VERR_CATEGORY_VPN_DETECT = 13000; // gilgil temp 2015.01.16

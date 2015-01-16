@@ -31,7 +31,7 @@ bool VFile::doOpen()
 {
   if (fileName == "")
   {
-    SET_ERROR(VFileError, qformat("file name is null"), VERR_FILENAME_NOT_SPECIFIED);
+    SET_ERROR(VFileError, qformat("file name is null"), VFileError::FILENAME_NOT_SPECIFIED);
     return false;
   }
   base.setFileName(fileName);
@@ -41,7 +41,7 @@ bool VFile::doOpen()
     {
       if (!QFile::exists(fileName))
       {
-        SET_ERROR(VFileError, qformat("file not exist(%s)", qPrintable(fileName)), VERR_FILE_NOT_EXIST);
+        SET_ERROR(VFileError, qformat("file not exist(%s)", qPrintable(fileName)), VFileError::FILE_NOT_EXIST);
         return false;
       }
     }

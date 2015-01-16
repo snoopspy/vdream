@@ -57,7 +57,7 @@ bool VUdpClient::doOpen()
   }
   memset(&udpSession->addr.sin_zero, 0, sizeof(udpSession->addr.sin_zero));
 
-  int res = bind(udpSession->handle, (SOCKADDR*)&udpSession->addr, sizeof(udpSession->addr));
+  int res = bind(udpSession->handle, (struct sockaddr*)&udpSession->addr, sizeof(udpSession->addr));
   if (res == SOCKET_ERROR)
   {
     SET_ERROR(VSocketError, qformat("error in bind(%s:%d)", qPrintable(localHost), localPort), WSAGetLastError());

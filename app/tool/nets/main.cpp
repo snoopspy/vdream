@@ -103,7 +103,7 @@ void App::run() // udp
     //
     if (sockAddrList.findBySockAddr(udpSession->addr) == sockAddrList.end())
     {
-      SOCKADDR_IN* newSockAddr = new SOCKADDR_IN;
+      struct sockaddr_in* newSockAddr = new struct sockaddr_in;
       *newSockAddr = udpSession->addr;
       sockAddrList.insert(*newSockAddr);
       LOG_DEBUG("count=%zu", sockAddrList.size()); // gilgi temp 2009.08.16

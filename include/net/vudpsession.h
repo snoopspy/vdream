@@ -29,12 +29,12 @@ protected:
   virtual int  doWrite(char* buf, int size);
 
 private:
-  static void logAddr(SOCKADDR_IN* sockAddr);
+  static void logAddr(struct sockaddr_in* sockAddr);
 public:
   /// socket handle. read only(set in other class)
-  SOCKET      handle;
-  /// SOCKADDR_IN structure. read only(set in other class)
-  SOCKADDR_IN addr;
+  SOCKET handle;
+  /// sockaddr_in structure. read only(set in other class)
+  struct sockaddr_in addr;
 
 public:
   Ip  getLocalIP();

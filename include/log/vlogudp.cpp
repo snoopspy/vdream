@@ -47,7 +47,7 @@ bool VLogUdp::open()
   addr.sin_addr.s_addr = INADDR_ANY;
   memset(addr.sin_zero, 0, sizeof(addr.sin_zero));
 
-  int res = bind(handle, (SOCKADDR*)&addr, sizeof(addr));
+  int res = bind(handle, (struct sockaddr*)&addr, sizeof(addr));
   if (res == SOCKET_ERROR)
   {
     return false;
@@ -97,7 +97,7 @@ bool VLogUdp::close()
 
 void VLogUdp::write(const char* buf, int len)
 {
-  ::sendto(handle, buf, len, 0, (SOCKADDR*)&addr, sizeof(addr));;
+  ::sendto(handle, buf, len, 0, (struct sockaddr*)&addr, sizeof(addr));;
 }
 
 VLog* VLogUdp::createByURI(const QString& uri)

@@ -11,6 +11,7 @@
 #ifndef __V_LOG_UDP_H__
 #define __V_LOG_UDP_H__
 
+#include <netinet/in.h>
 #include <VLog>
 
 // ----------------------------------------------------------------------------
@@ -42,8 +43,8 @@ public:
   virtual VLog* createByURI(const QString& uri);
 
 protected:
-  SOCKET      handle;
-  SOCKADDR_IN addr;
+  SOCKET handle;
+  struct sockaddr_in addr;
 
 public:
   virtual void load(VXml xml);

@@ -68,15 +68,15 @@ bool VUdpSession::doClose()
 }
 
 // ----- gilgil temp 2009.08.16 -----
-void VUdpSession::logAddr(SOCKADDR_IN* sockAddr)
+void VUdpSession::logAddr(struct sockaddr_in* sockAddr)
 {
   LOG_DEBUG("[VDUDPSession.cpp] logAddr sin_family=%d sin_port=%d sin_addr=%d.%d.%d.%d",
     sockAddr->sin_family,
     ntohs(sockAddr->sin_port),
-    (BYTE)((sockAddr->sin_addr.s_addr & 0xFF000000) >> 24),
-    (BYTE)((sockAddr->sin_addr.s_addr & 0x00FF0000) >> 16),
-    (BYTE)((sockAddr->sin_addr.s_addr & 0x0000FF00) >> 8),
-    (BYTE)((sockAddr->sin_addr.s_addr & 0x000000FF) >> 0));
+    (unsigned char)((sockAddr->sin_addr.s_addr & 0xFF000000) >> 24),
+    (unsigned char)((sockAddr->sin_addr.s_addr & 0x00FF0000) >> 16),
+    (unsigned char)((sockAddr->sin_addr.s_addr & 0x0000FF00) >> 8),
+    (unsigned char)((sockAddr->sin_addr.s_addr & 0x000000FF) >> 0));
 }
 // ----------------------------------
 
@@ -84,10 +84,10 @@ int VUdpSession::doRead(char* buf, int size)
 {
   VLock lock(stateReadCs); // gilgil temp 2014.03.14
 
-  SOCKADDR_IN tempAddr;
+  struct sockaddr_in tempAddr;
   socklen_t fromLen = sizeof(tempAddr);
   memset(&tempAddr, 0, sizeof(tempAddr));
-  int res = recvfrom(handle, buf, size, 0, (SOCKADDR*)&tempAddr, &fromLen);
+  int res = recvfrom(handle, buf, size, 0, (struct sockaddr*)&tempAddr, &fromLen);
   // logAddr(&tempAddr); // gilgil temp 2012.05.29
   addr = tempAddr;
   if (res == SOCKET_ERROR)
@@ -116,7 +116,7 @@ int VUdpSession::doWrite(char* buf, int size)
   while (true)
   {
     if (onceWriteSize!= 0 && restSize > onceWriteSize) restSize = onceWriteSize;
-    res = ::sendto(handle, buf, restSize, 0, (SOCKADDR*)&addr, sizeof(addr));;
+    res = ::sendto(handle, buf, restSize, 0, (struct sockaddr*)&addr, sizeof(addr));;
     if (res == SOCKET_ERROR)
     {
       SET_ERROR(VSocketError, "error in send", WSAGetLastError());
@@ -132,11 +132,11 @@ int VUdpSession::doWrite(char* buf, int size)
 Ip VUdpSession::getLocalIP()
 {
   socklen_t size;
-  SOCKADDR_IN sockAddr;
+  struct sockaddr_in sockAddr;
 
   if (handle == INVALID_SOCKET) return 0;
   size = sizeof(sockAddr);
-  if (::getsockname(handle, (SOCKADDR*)&sockAddr, &size) != 0) return 0;
+  if (::getsockname(handle, (struct sockaddr*)&sockAddr, &size) != 0) return 0;
   Ip res = *((Ip*)&(sockAddr.sin_addr));
   res = ntohl(res);
   return res;
@@ -145,11 +145,11 @@ Ip VUdpSession::getLocalIP()
 Ip VUdpSession::getRemoteIP()
 {
   socklen_t size;
-  SOCKADDR_IN sockAddr;
+  struct sockaddr_in sockAddr;
 
   if (handle == INVALID_SOCKET) return 0;
   size = sizeof(sockAddr);
-  if (::getpeername(handle, (SOCKADDR*)&sockAddr, &size) != 0) return 0;
+  if (::getpeername(handle, (struct sockaddr*)&sockAddr, &size) != 0) return 0;
   Ip res = *((Ip*)&(sockAddr.sin_addr));
   res = ntohl(res);
   return res;
@@ -158,11 +158,11 @@ Ip VUdpSession::getRemoteIP()
 int VUdpSession::getLocalPort()
 {
   socklen_t size;
-  SOCKADDR_IN sockAddr;
+  struct sockaddr_in sockAddr;
 
   if (handle == INVALID_SOCKET) return 0;
   size = sizeof(sockAddr);
-  if (::getsockname(handle, (SOCKADDR*)&sockAddr, &size) != 0) return 0;
+  if (::getsockname(handle, (struct sockaddr*)&sockAddr, &size) != 0) return 0;
   int res = ntohs(sockAddr.sin_port);
   return res;
 }
@@ -170,11 +170,11 @@ int VUdpSession::getLocalPort()
 int VUdpSession::getRemotePort()
 {
   socklen_t size;
-  SOCKADDR_IN sockAddr;
+  struct sockaddr_in sockAddr;
 
   if (handle == INVALID_SOCKET) return 0;
   size = sizeof(sockAddr);
-  if (::getpeername(handle, (SOCKADDR*)&sockAddr, &size) != 0) return 0;
+  if (::getpeername(handle, (struct sockaddr*)&sockAddr, &size) != 0) return 0;
   int res = ntohs(sockAddr.sin_port);
   return res;
 }

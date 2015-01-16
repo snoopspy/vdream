@@ -6,24 +6,24 @@ REGISTER_METACLASS(VUdpServer, VNet)
 // ----------------------------------------------------------------------------
 // VSockAddrList
 // ----------------------------------------------------------------------------
-bool operator <(const SOCKADDR_IN& a, const SOCKADDR_IN& b)
+bool operator <(const struct sockaddr_in& a, const struct sockaddr_in& b)
 {
-  return memcmp((void*)&a, (void*)&b, sizeof(SOCKADDR_IN)) < 0;
+  return memcmp((void*)&a, (void*)&b, sizeof(struct sockaddr_in)) < 0;
 }
 
-VSockAddrList::iterator VSockAddrList::findBySockAddr(SOCKADDR_IN sockAddr)
+VSockAddrList::iterator VSockAddrList::findBySockAddr(struct sockaddr_in sockAddr)
 {
   VLock lock(m_cs);
   VSockAddrList::iterator res = this->find(sockAddr);
   return res; 
 }
 
-VSockAddrList::iterator VSockAddrList::findByInAddr(IN_ADDR inAddr)
+VSockAddrList::iterator VSockAddrList::findByInAddr(struct in_addr inAddr)
 {
   VLock lock(m_cs);
   for (VSockAddrList::iterator it = begin(); it != end(); it++)
   {
-    const SOCKADDR_IN& sockAddr = *it;
+    const struct sockaddr_in& sockAddr = *it;
     if (sockAddr.sin_addr.s_addr == inAddr.s_addr) return it;
   }
   return end();
@@ -85,7 +85,7 @@ bool VUdpServer::doOpen()
   }
   memset(&udpSession->addr.sin_zero, 0, sizeof(udpSession->addr.sin_zero));
 
-  int res = ::bind(udpSession->handle, (SOCKADDR*)&udpSession->addr, sizeof(udpSession->addr));
+  int res = ::bind(udpSession->handle, (struct sockaddr*)&udpSession->addr, sizeof(udpSession->addr));
   if (res == SOCKET_ERROR)
   {
     SET_ERROR(VSocketError, QString("error in bind(%1:%2)").arg(localHost).arg(port), WSAGetLastError());
@@ -115,7 +115,7 @@ int VUdpServer::doRead(char* buf, int size)
 {
   VLock lock(stateReadCs); // gilgil temp 2014.03.14
 
-  SOCKADDR_IN sockAddr = udpSession->addr;
+  struct sockaddr_in sockAddr = udpSession->addr;
   sockAddrList.insert(sockAddr);
   return udpSession->read(buf, size);
 }
@@ -127,7 +127,7 @@ int VUdpServer::doWrite(char* buf, int size)
   sockAddrList.lock();
   for (VSockAddrList::iterator it = sockAddrList.begin(); it != sockAddrList.end(); it++)
   {
-    const SOCKADDR_IN& sockAddr = *it;
+    const struct sockaddr_in& sockAddr = *it;
     udpSession->addr = sockAddr;
     udpSession->write(buf, size); // do not check result
   }

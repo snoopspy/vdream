@@ -33,7 +33,7 @@ bool VTcpClient::doOpen()
 
   if (port == 0)
   {
-    SET_ERROR(VNetError, "port is zero", VERR_PORT_IS_ZERO);
+    SET_ERROR(VNetError, "port is zero", VNetError::PORT_IS_ZERO);
     return false;
   }
 
@@ -60,14 +60,14 @@ bool VTcpClient::doOpen()
     Ip ip = VNet::resolve(localHost);
     if (ip == 0)
     {
-      SET_ERROR(VNetError, qformat("can not resolve host(%s)", qPrintable(localHost)), VERR_CAN_NOT_RESOLVE_HOST);
+      SET_ERROR(VNetError, qformat("can not resolve host(%s)", qPrintable(localHost)), VNetError::CAN_NOT_RESOLVE_HOST);
       return false;
     }
     tcpSession->addr.sin_addr.s_addr = htonl(ip);
   }
   memset(&tcpSession->addr.sin_zero, 0, sizeof(tcpSession->addr.sin_zero));
 
-  int res = bind(tcpSession->handle, (SOCKADDR*)&tcpSession->addr, sizeof(tcpSession->addr));
+  int res = bind(tcpSession->handle, (struct sockaddr*)&tcpSession->addr, sizeof(tcpSession->addr));
   if (res == SOCKET_ERROR)
   {
     SET_ERROR(VSocketError, qformat("error in bind(%s:%d)", qPrintable(localHost), localPort), WSAGetLastError());
@@ -81,7 +81,7 @@ bool VTcpClient::doOpen()
   tcpSession->addr.sin_port = htons(quint16(port));
   if (host == "")
   {
-    SET_ERROR(VNetError, "host is invalid", VERR_INVALID_HOST);
+    SET_ERROR(VNetError, "host is invalid", VERR_INVALID_aaHOST);
     return false;
   }
   Ip ip = VNet::resolve(host);
@@ -92,7 +92,7 @@ bool VTcpClient::doOpen()
   }
   tcpSession->addr.sin_addr.s_addr = htonl(ip);
   memset(tcpSession->addr.sin_zero, 0, sizeof(tcpSession->addr.sin_zero));
-  res = ::connect(tcpSession->handle, (SOCKADDR*)&tcpSession->addr, sizeof(tcpSession->addr));
+  res = ::connect(tcpSession->handle, (struct sockaddr*)&tcpSession->addr, sizeof(tcpSession->addr));
   if (res == SOCKET_ERROR)
   {
     int lastError = WSAGetLastError();

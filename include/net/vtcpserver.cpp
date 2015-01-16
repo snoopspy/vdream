@@ -96,7 +96,7 @@ bool VTcpServer::doOpen()
   }
   memset(&acceptSession->addr.sin_zero, 0, sizeof(acceptSession->addr.sin_zero));
 
-  int res = ::bind(acceptSession->handle, (SOCKADDR*)&acceptSession->addr, sizeof(acceptSession->addr));
+  int res = ::bind(acceptSession->handle, (struct sockaddr*)&acceptSession->addr, sizeof(acceptSession->addr));
   if (res == SOCKET_ERROR)
   {
     SET_ERROR(VSocketError, qformat("error in bind(%s:%d)", qPrintable(localHost), port), WSAGetLastError());
@@ -223,7 +223,7 @@ int VTcpServer::doWrite(char* buf, int size)
 VTcpSession* VTcpServer::accept()
 {
   socklen_t size;
-  SOCKADDR_IN sockAddr;
+  struct sockaddr_in sockAddr;
   SOCKET newHandle;
   VTcpSession* newTCPSession;
 
@@ -237,7 +237,7 @@ VTcpSession* VTcpServer::accept()
   // accept
   // ------------------------------------------------------------------------
   size = sizeof(sockAddr);
-  newHandle = ::accept(acceptSession->handle, (SOCKADDR*)&sockAddr, &size);
+  newHandle = ::accept(acceptSession->handle, (struct sockaddr*)&sockAddr, &size);
   if (newHandle == INVALID_SOCKET)
   {
     SET_DEBUG_ERROR(VNetError, "error in accept", WSAGetLastError());

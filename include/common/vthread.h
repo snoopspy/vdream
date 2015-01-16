@@ -201,12 +201,13 @@ public:
 // ----------------------------------------------------------------------------
 // ThreadError
 // ----------------------------------------------------------------------------
-class VThreadError : public VError {};
-
-// ----------------------------------------------------------------------------
-// ThreadError Code
-// ----------------------------------------------------------------------------
-static const int VERROR_IN_WAIT_OPEN        = VERR_CATEGORY_THREAD + 0;
-static const int VERR_CAN_NOT_OPEN_THREAD   = VERR_CATEGORY_THREAD + 1;
+class VThreadError : public VError
+{
+public:
+  enum {
+    IN_WAIT_OPEN = VERR_CATEGORY_THREAD,
+    CAN_NOT_OPEN_THREAD
+  };
+};
 
 #endif // __V_THREAD_H__

@@ -109,11 +109,11 @@ int VTcpSession::doWrite(char* buf, int size)
 Ip VTcpSession::getLocalIP()
 {
   socklen_t size;
-  SOCKADDR_IN sockAddr;
+  struct sockaddr_in sockAddr;
 
   if (handle == INVALID_SOCKET) return 0;
   size = sizeof(sockAddr);
-  if (::getsockname(handle, (SOCKADDR*)&sockAddr, &size) != 0) return 0;
+  if (::getsockname(handle, (struct sockaddr*)&sockAddr, &size) != 0) return 0;
   Ip res = *((Ip*)&(sockAddr.sin_addr));
   res = ntohl(res);
   return res;
@@ -122,11 +122,11 @@ Ip VTcpSession::getLocalIP()
 Ip VTcpSession::getRemoteIP()
 {
   socklen_t size;
-  SOCKADDR_IN sockAddr;
+  struct sockaddr_in sockAddr;
 
   if (handle == INVALID_SOCKET) return 0;
   size = sizeof(sockAddr);
-  if (::getpeername(handle, (SOCKADDR*)&sockAddr, &size) != 0) return 0;
+  if (::getpeername(handle, (struct sockaddr*)&sockAddr, &size) != 0) return 0;
   Ip res = *((Ip*)&(sockAddr.sin_addr));
   res = ntohl(res);
   return res;
@@ -135,11 +135,11 @@ Ip VTcpSession::getRemoteIP()
 int VTcpSession::getLocalPort()
 {
   socklen_t size;
-  SOCKADDR_IN sockAddr;
+  struct sockaddr_in sockAddr;
 
   if (handle == INVALID_SOCKET) return 0;
   size = sizeof(sockAddr);
-  if (::getsockname(handle, (SOCKADDR*)&sockAddr, &size) != 0) return 0;
+  if (::getsockname(handle, (struct sockaddr*)&sockAddr, &size) != 0) return 0;
   int res = ntohs(sockAddr.sin_port);
   return res;
 }
@@ -147,11 +147,11 @@ int VTcpSession::getLocalPort()
 int VTcpSession::getRemotePort()
 {
   socklen_t size;
-  SOCKADDR_IN sockAddr;
+  struct sockaddr_in sockAddr;
 
   if (handle == INVALID_SOCKET) return 0;
   size = sizeof(sockAddr);
-  if (::getpeername(handle, (SOCKADDR*)&sockAddr, &size) != 0) return 0;
+  if (::getpeername(handle, (struct sockaddr*)&sockAddr, &size) != 0) return 0;
   int res = ntohs(sockAddr.sin_port);
   return res;
 }

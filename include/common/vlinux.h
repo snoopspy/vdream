@@ -15,9 +15,13 @@
 // ----------------------------------------------------------------------------
 // Calling Conventions
 // ----------------------------------------------------------------------------
+// ----- gilgil temp 2015.01.16 -----
+/*
 #define __cdecl               __attribute__((__cdecl__))
 #define __stdcall             __attribute__((__stdcall__))
 // #define __declspec(dllexport) // gilgil temp 2012.08.11
+*/
+// ----------------------------------
 
 // ----------------------------------------------------------------------------
 // GetLastError()
@@ -25,8 +29,10 @@
 #include <errno.h>
 inline int GetLastError()    { return errno; }
 inline int WSAGetLastError() { return errno; }
-inline int closesocket(int handle) { return close(handle); }
+// inline int closesocket(int handle) { return close(handle); } // gilgil temp 2015.01.16
 
+// ----- gilgil temp 2015.01.16 -----
+/*
 // ----------------------------------------------------------------------------
 // Other types
 // ----------------------------------------------------------------------------
@@ -38,7 +44,7 @@ typedef signed short       INT16,  *PINT16;
 typedef signed int         INT32,  *PINT32;
 typedef signed long long   INT64,  *PINT64;
 
-typedef unsigned char      UINT8,  *PUINT8;
+typedef unsigned char      uint8_t,  *PUINT8;
 typedef unsigned short     UINT16, *PUINT16;
 typedef unsigned int       UINT32, *PUINT32;
 typedef unsigned long long UINT64, *PUINT64;
@@ -48,7 +54,11 @@ typedef ULONG_PTR          DWORD_PTR, *PDWORD_PTR;
 typedef unsigned char      BYTE,   *PBYTE;
 typedef unsigned short     WORD,   *PWORD;
 typedef unsigned int       DWORD,  *PDWORD;
+*/
+// ----------------------------------
 
+// ----- gilgil temp 2015.01.16 -----
+/*
 // ----------------------------------------------------------------------------
 // Macro
 // ----------------------------------------------------------------------------
@@ -58,19 +68,21 @@ typedef unsigned int       DWORD,  *PDWORD;
 #define HIWORD(l)           ((WORD)((((DWORD_PTR)(l)) >> 16) & 0xffff))
 #define LOBYTE(w)           ((BYTE)(((DWORD_PTR)(w)) & 0xff))
 #define HIBYTE(w)           ((BYTE)((((DWORD_PTR)(w)) >> 8) & 0xff))
+*/
+// ----------------------------------
 
 // ----------------------------------------------------------------------------
 // WinSock
 // ----------------------------------------------------------------------------
-#include <netinet/in.h>
+// #include <netinet/in.h>
 
+typedef int SOCKET;
 #define INVALID_SOCKET  (SOCKET)(~0)
 #define SOCKET_ERROR            (-1)
-typedef int SOCKET;
 
-typedef struct sockaddr    SOCKADDR;
-typedef struct in_addr     IN_ADDR;
-typedef struct sockaddr_in SOCKADDR_IN;
+// typedef struct sockaddr    SOCKADDR; // gilgil temp 2015.01.16
+// typedef struct in_addr     IN_ADDR; // gilgil temp 2015.01.16
+// typedef struct sockaddr_in SOCKADDR_IN; // gilgil temp 2015.01.16
 
 #endif // linux
 

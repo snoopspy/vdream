@@ -18,19 +18,19 @@
 // ----------------------------------------------------------------------------
 // VSockAddrList
 // ----------------------------------------------------------------------------
-struct SOCKADDR_IN_Compare
+struct sockaddr_in_Compare
 {
-  bool operator() (const SOCKADDR_IN& lhs, const SOCKADDR_IN& rhs) const
+  bool operator() (const struct sockaddr_in& lhs, const struct sockaddr_in& rhs) const
   {
-    return memcmp(&lhs, &rhs, sizeof(SOCKADDR_IN)) < 0;
+    return memcmp(&lhs, &rhs, sizeof(struct sockaddr_in)) < 0;
   }
 };
 
-class VSockAddrList : public std::set<SOCKADDR_IN, SOCKADDR_IN_Compare>, public VLockable
+class VSockAddrList : public std::set<struct sockaddr_in, sockaddr_in_Compare>, public VLockable
 {
 public:
-  VSockAddrList::iterator findBySockAddr(SOCKADDR_IN sockAddr);
-  VSockAddrList::iterator findByInAddr(IN_ADDR inAddr);
+  VSockAddrList::iterator findBySockAddr(struct sockaddr_in sockAddr);
+  VSockAddrList::iterator findByInAddr(struct in_addr inAddr);
 };
 
 // ----------------------------------------------------------------------------

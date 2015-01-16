@@ -106,15 +106,21 @@ public:
 // ----------------------------------------------------------------------------
 // VNetError, VSocketError
 // ----------------------------------------------------------------------------
-class VNetError : public VError {};
+class VNetError : public VError
+{
+public:
+  enum {
+    ERROR_IN_RECV = VERR_CATEGORY_NET,
+    PORT_IS_ZERO,
+    INVALID_HOST,
+    CAN_NOT_RESOLVE_HOST,
+  };
+};
 class VSocketError : public VError {};
 
 // ----------------------------------------------------------------------------
 // VNetError code
 // ----------------------------------------------------------------------------
-#define VERR_ERROR_IN_RECV        (VERR_CATEGORY_NET + 0)
-#define VERR_PORT_IS_ZERO         (VERR_CATEGORY_NET + 1)
-#define VERR_INVALID_HOST         (VERR_CATEGORY_NET + 2)
-#define VERR_CAN_NOT_RESOLVE_HOST (VERR_CATEGORY_NET + 3)
+
 
 #endif //__V_NET_H__

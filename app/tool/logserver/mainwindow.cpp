@@ -179,7 +179,7 @@ void MainWindow::on_actionOpen_triggered()
   if (!myLog->open())
   {
     QMessageBox msgBox;
-    msgBox.setText(QString(QString::fromLocal8Bit(myLog->error.msg)));
+    msgBox.setText(myLog->error.msg);
     msgBox.exec();
   }
   setControl();

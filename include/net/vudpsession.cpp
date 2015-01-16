@@ -93,13 +93,13 @@ int VUdpSession::doRead(char* buf, int size)
   if (res == SOCKET_ERROR)
   {
     SET_DEBUG_ERROR(VSocketError, "error in recv", WSAGetLastError());
-    return VERR_FAIL;
+    return VError::FAIL;
   }
   // sometimes, read length can be 0(zero), and check if return value is not zero.
   if (res == 0)
   {
     SET_DEBUG_ERROR(VNetError, "recv return zero", VERR_ERROR_IN_RECV);
-    return VERR_FAIL;
+    return VError::FAIL;
   }
   return res;
 }
@@ -120,7 +120,7 @@ int VUdpSession::doWrite(char* buf, int size)
     if (res == SOCKET_ERROR)
     {
       SET_ERROR(VSocketError, "error in send", WSAGetLastError());
-      return VERR_FAIL;
+      return VError::FAIL;
     }
     buf += res;
     restSize -= res;

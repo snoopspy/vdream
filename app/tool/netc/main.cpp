@@ -55,7 +55,7 @@ void App::inputAndSend()
     std::string s;
     std::getline(std::cin, s);
     int writeLen = netClient->write(s.c_str(), s.length());
-    if (writeLen == VERR_FAIL) break;
+    if (writeLen == VError::FAIL) break;
   }
 
 
@@ -76,7 +76,7 @@ void App::recvAndOutput()
   while (runThread().active())
   {
     int readLen = netClient->read(buf, param->bufSize);
-    if (readLen == VERR_FAIL)
+    if (readLen == VError::FAIL)
     {
       printf("%s\n", netClient->error.msg);
       break;

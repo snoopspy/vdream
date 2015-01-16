@@ -9,7 +9,7 @@ int VRwObject::read(char* buf, int size)
   if (m_state != VState::Opened)
   {
     SET_DEBUG_ERROR(VError, qformat("not opened state(%s %s)", qPrintable(className()), qPrintable(name)), VERR_NOT_OPENED_STATE);
-    return VERR_FAIL;
+    return VError::FAIL;
   }
 
   return doRead(buf, size);
@@ -33,7 +33,7 @@ QByteArray VRwObject::read(int size)
 
   QByteArray ba(size, Qt::Uninitialized);
   int readLen = doRead(ba.data(), ba.size());
-  if (readLen == VERR_FAIL)
+  if (readLen == VError::FAIL)
   {
     return "";
   }
@@ -46,7 +46,7 @@ int VRwObject::write(char* buf, int size)
   if (m_state != VState::Opened)
   {
     SET_DEBUG_ERROR(VError, qformat("not opened state(%s %s)", qPrintable(className()), qPrintable(name)), VERR_NOT_OPENED_STATE);
-    return VERR_FAIL;
+    return VError::FAIL;
   }
 
   return doWrite((char*)buf, size);

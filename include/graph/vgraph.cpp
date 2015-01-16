@@ -326,7 +326,7 @@ bool VGraph::doOpen()
     {
       error = object->error;
       QString msg = QString(error.msg) + "(" + object->name + ")";
-      error.setErrorMsg(qPrintable(msg));
+      error.msg = msg;
       res = false;
       break;
     }

@@ -1,162 +1,141 @@
-#include <VError>
-#include <VDebugNew>
+#include <cxxabi.h>
+#include <QDebug>
+#include "verror.h"
 
-// ----------------------------------------------------------------------------
-// VError
-// ----------------------------------------------------------------------------
-QString VError::className()
+VError::VError(const VError& rhs)
 {
-  return getClassName(ti->name());
+  ti = (std::type_info*)&typeid(rhs);
+  msg = rhs.msg;
+  code = rhs.code;
 }
 
-VError::VError(const char* msg, const int code)
+VError& VError::operator = (const VError& rhs)
 {
-  this->ti = (std::type_info*)&typeid(*this);
-  setErrorMsg(msg);
-  setErrorCode(code);
-}
-
-VError& VError::operator = (const VError& error)
-{
-  if (this->code == VERR_OK)
+  if (code == OK)
   {
-    this->ti = error.ti;
-    memcpy(this->msg, error.msg, DEFAULT_ERR_BUF_SIZE);
-    this->code = error.code;
+    ti = (std::type_info*)&typeid(rhs);
+    msg = rhs.msg;
+    code = rhs.code;
   }
   return *this;
 }
 
+const char* VError::className()
+{
+  const char* name = ti->name();
+  char *res = abi::__cxa_demangle(name, 0, 0, NULL);
+  //char *res = abi::__cxa_demangle(typeid(*this).name(), 0, 0, NULL);
+  return res;
+}
+
 void VError::clear()
 {
-  this->ti = (std::type_info*)&typeid(VError);
-  memset(this->msg, 0, DEFAULT_ERR_BUF_SIZE);
-  this->code = VERR_OK;
+  ti = (std::type_info*)&typeid(*this);
+  msg = "";
+  code = OK;
 }
 
-void VError::setErrorMsg(const char* msg)
+void VError::dump()
 {
-  if (msg != NULL)
-    strncpy(this->msg, msg, DEFAULT_ERR_BUF_SIZE);
-  else
-    memset((void*)this->msg, 0, DEFAULT_ERR_BUF_SIZE);
+  qDebug() << className() << msg << code;
 }
 
-void VError::setErrorCode(int code)
+void VError::dump(const char* file, const int line, const char* func)
 {
-  this->code = code;
+  QString s = QString("[%1:%2] %3() %4 %5:%6").arg(file).arg(line).arg(func).arg(className()).arg(msg).arg(code);
+  qDebug() << s;
+}
+
+void VError::debug(const char* file, const int line, const char* func)
+{
+  Q_UNUSED(file)
+  Q_UNUSED(line)
+  Q_UNUSED(func)
 }
 
 #ifdef GTEST
-#include <VDebugNewCancel>
 #include <gtest/gtest.h>
-#include <VLog>
+#include <QDebug>
 
-TEST( Error, defaultTest )
-{
-  VError error;
-  QString className = error.className();
-  EXPECT_TRUE( className == "VError" );
-  QString s = error.msg;
-  EXPECT_TRUE( s == "" );
-  EXPECT_TRUE( error.code == VERR_OK );
-}
+class VErrTest : public ::testing::Test {};
 
-TEST( Error, classNameTest )
-{
-  VDECLARE_ERROR_CLASS(MyError)
-
-  {
-    MyError myError;
-    QString className = CLASS_NAME(myError);
-    EXPECT_TRUE( className == "MyError" );
-  }
-
-  {
-    VError error;
-    QString className = error.className();
-    EXPECT_TRUE( className == "VError" );
-
-    MyError myError;
-    className = myError.className();
-    EXPECT_TRUE( className == "MyError");
-
-    error = myError;
-    className = error.className();
-    EXPECT_TRUE( className == "MyError" );
-  }
-}
-
-class MyErrorObject
+class ObjError : public VError
 {
 public:
-  VError error;
-  void foo1()
-  {
-    setError<VError>(this->error, "foo1 error", VERR_FAIL);
-  }
+  enum {
+    OBJ_ERR = 999
+  };
 
-  void foo2()
-  {
-    SET_ERROR(VError, "foo2 error", VERR_UNKNOWN);
-  }
-
-  void foo3()
-  {
-    SET_DEBUG_ERROR(VError, "foo3 error", VERR_NOT_SUPPORTED);
-  }
-
-  void testCatch() // gilgil temp 2012.04.30
-  {
-    try
-    {
-      // ----- gilgil temp 2014.12.25 -----
-      /*
-      #ifdef WIN32
-            throw std::exception("std exception");
-      #endif // WIN32
-      #ifdef linux
-            throw std::exception();
-      #endif // linux
-      */
-      throw std::exception();
-      // ----------------------------------
-    }
-    VCATCH;
-  }
+public:
+  VERROR_CTOR(ObjError)
 };
 
-TEST( Error, setErrorTest )
+TEST_F(VErrTest, commonTest)
+{
+  VError error;
+  error.dump();
+  EXPECT_EQ(error.ti, &typeid(VError));
+
+  ObjError objError;
+  objError.dump();
+  EXPECT_EQ(objError.ti, &typeid(ObjError));
+}
+
+TEST_F(VErrTest, clearTest)
+{
+  VError error;
+  error.clear();
+  error.dump();
+  EXPECT_EQ(error.ti, &typeid(VError));
+
+  ObjError objError;
+  objError.clear();
+  objError.dump();
+  EXPECT_EQ(objError.ti, &typeid(ObjError));
+}
+
+TEST_F(VErrTest, copyConTest)
 {
   {
-    MyErrorObject obj;
-    obj.foo1();
-    QString s = obj.error.msg;
-    EXPECT_TRUE( s == "foo1 error" );
-    EXPECT_TRUE( obj.error.code == VERR_FAIL );
+    VError error = ObjError();
+    error.dump();
+    EXPECT_TRUE(error.ti == &typeid(ObjError));
   }
-
   {
-    MyErrorObject obj;
-    obj.foo2();
-    QString s = obj.error.msg;
-    EXPECT_TRUE( s == "foo2 error" );
-    EXPECT_TRUE( obj.error.code == VERR_UNKNOWN );
-  }
-
-  {
-    MyErrorObject obj;
-    obj.foo3();
-    QString s = obj.error.msg;
-    EXPECT_TRUE( s == "foo3 error" );
-    EXPECT_TRUE( obj.error.code == VERR_NOT_SUPPORTED );
+    VError error = ObjError("OBJ_ERR", ObjError::OBJ_ERR);
+    error.dump();
+    EXPECT_TRUE(error.ti == &typeid(ObjError));
   }
 }
 
-TEST( Error, catchTest )
+TEST_F(VErrTest, assignTest)
 {
-  MyErrorObject obj;
-  obj.testCatch();
+  {
+    VError error;
+    error = ObjError();
+    error.dump();
+    EXPECT_TRUE(error.ti == &typeid(ObjError));
+  }
+  {
+    VError error;
+    error = ObjError("OBJ_ERR", ObjError::OBJ_ERR);
+    error.dump();
+    EXPECT_TRUE(error.ti == &typeid(ObjError));
+  }
+}
+
+TEST_F(VErrTest, macroTest)
+{
+  VError error;
+  SET_ERROR(VError, "not closed state", VError::NOT_CLOSED_STATE);
+  EXPECT_TRUE(error.ti == &typeid(VError));
+
+  SET_ERROR(ObjError, "OBJ_ERROR", ObjError::OBJ_ERR);
+  EXPECT_TRUE(error.ti == &typeid(VError));
+
+  error.clear();
+  SET_ERROR(ObjError, "OBJ_ERROR", ObjError::OBJ_ERR);
+  EXPECT_TRUE(error.ti == &typeid(ObjError));
 }
 
 #endif // GTEST

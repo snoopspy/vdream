@@ -161,7 +161,7 @@ int VSslServer::doRead(char* buf, int size)
   Q_UNUSED(buf)
   Q_UNUSED(size)
   SET_ERROR(VError, "not readable", VERR_NOT_READABLE);
-  return VERR_FAIL;
+  return VError::FAIL;
 }
 
 int VSslServer::doWrite(char* buf, int size)
@@ -304,7 +304,7 @@ EVP_PKEY* VSslServer::loadKey(VError& error, QString fileName)
   {
     QString msg = "BIO_s_file return NULL";
     LOG_ERROR("%s", qPrintable(msg));
-    setError<VSslError>(error, msg, VERR_IN_BIO_S_FILE);
+    error = VSslError(msg, VSslError::IN_BIO_S_FILE);
     return NULL;
   }
 
@@ -313,7 +313,7 @@ EVP_PKEY* VSslServer::loadKey(VError& error, QString fileName)
   {
     QString msg = qformat("BIO_read_filename(%s) return %d", qPrintable(fileName), res);
     LOG_ERROR("%s", qPrintable(msg));
-    setError<VSslError>(error, msg, VERR_IN_BIO_READ_FILENAME);
+    error = VSslError(msg, VSslError::IN_BIO_READ_FILENAME);
     BIO_free(bio);
     return NULL;
   }
@@ -326,7 +326,7 @@ EVP_PKEY* VSslServer::loadKey(VError& error, QString fileName)
   {
     QString msg = "PEM_read_bio_PrivateKey return NULL";
     LOG_ERROR("%s", qPrintable(msg));
-    setError<VSslError>(error, msg, VERR_IN_PEM_READ_BIO_PRIVATEKEY);
+    error = VSslError(msg, VSslError::IN_PEM_READ_BIO_PRIVATEKEY);
     BIO_free(bio);
     return NULL;
   }
@@ -342,7 +342,7 @@ X509* VSslServer::loadCrt(VError& error, QString fileName)
   {
     QString msg = "BIO_s_file return NULL";
     LOG_ERROR("%s", qPrintable(msg));
-    setError<VSslError>(error, msg, VERR_IN_BIO_S_FILE);
+    error = VSslError(msg, VSslError::IN_BIO_S_FILE);
     BIO_free(bio);
     return NULL;
   }
@@ -352,7 +352,7 @@ X509* VSslServer::loadCrt(VError& error, QString fileName)
   {
     QString msg = qformat("BIO_read_filename(%s) %d", qPrintable(fileName), res);
     LOG_ERROR("%s", qPrintable(msg));
-    setError<VSslError>(error, msg, VERR_IN_BIO_READ_FILENAME);
+    error = VSslError(msg, VSslError::IN_BIO_READ_FILENAME);
     BIO_free(bio);
     return NULL;
   }
@@ -362,7 +362,7 @@ X509* VSslServer::loadCrt(VError& error, QString fileName)
   {
     QString msg = "PEM_read_bio_X509_AUX return NULL";
     LOG_ERROR("%s", qPrintable(msg));
-    setError<VSslError>(error, msg, VERR_IN_PEM_READ_BIO_X509_AUX);
+    error = VSslError(msg, VSslError::IN_PEM_READ_BIO_X509_AUX);
     BIO_free(bio);
     return NULL;
   }
@@ -379,21 +379,21 @@ bool VSslServer::setKeyCrtStuff(VError& error, SSL_CTX* ctx, EVP_PKEY* key, X509
   int res = SSL_CTX_use_certificate(ctx, crt);
   if (res <= 0)
   {
-    setError<VSslError>(error, qformat("SSL_CTX_use_certificate return %d", res), VERR_IN_SSL_CTX_USE_CERTIFICATE);
+    error = VSslError(qformat("SSL_CTX_use_certificate return %d", res), VSslError::IN_SSL_CTX_USE_CERTIFICATE);
     return false;
   }
 
   res = SSL_CTX_use_PrivateKey(ctx, key);
   if (res <= 0)
   {
-    setError<VSslError>(error, qformat("SSL_CTX_use_PrivateKey return %d", res), VERR_SSL_CTX_USER_PRIVATEKEY);
+    error = VSslError(qformat("SSL_CTX_use_PrivateKey return %d", res), VSslError::SSL_CTX_USER_PRIVATEKEY);
     return false;
   }
 
   res = SSL_CTX_check_private_key(ctx);
   if (!res)
   {
-    setError<VSslError>(error, qformat("SSL_CTX_check_private_key return %d", res), VERR_SSL_CTX_CHECK_PRIVATEKEY);
+    error = VSslError(qformat("SSL_CTX_check_private_key return %d", res), VSslError::SSL_CTX_CHECK_PRIVATEKEY);
     return false;
   }
 
@@ -409,21 +409,21 @@ bool VSslServer::setKeyCrtStuff(VError& error, SSL* con, EVP_PKEY* key, X509* cr
   int res = SSL_use_certificate(con, crt);
   if (res <= 0)
   {
-    setError<VSslError>(error, qformat("SSL_use_certificate return %d", res), VERR_IN_SSL_CTX_USE_CERTIFICATE);
+    error = VSslError(qformat("SSL_use_certificate return %d", res), VSslError::IN_SSL_CTX_USE_CERTIFICATE);
     return false;
   }
 
   res = SSL_use_PrivateKey(con, key);
   if (res <= 0)
   {
-    setError<VSslError>(error, qformat("SSL_use_PrivateKey return %d", res), VERR_SSL_CTX_USER_PRIVATEKEY);
+    error = VSslError(qformat("SSL_use_PrivateKey return %d", res), VSslError::SSL_CTX_USER_PRIVATEKEY);
     return false;
   }
 
   res = SSL_check_private_key(con);
   if (!res)
   {
-    setError<VSslError>(error, qformat("SSL_check_private_key return %d", res), VERR_SSL_CTX_CHECK_PRIVATEKEY);
+    error = VSslError(qformat("SSL_check_private_key return %d", res), VSslError::SSL_CTX_CHECK_PRIVATEKEY);
     return false;
   }
 
@@ -448,7 +448,7 @@ void VSslServer::myRun(VTcpSession* tcpSession)
     {
       QByteArray ba;
       int readLen = tcpSession->read(ba);
-      if (readLen == VERR_FAIL) goto _end;
+      if (readLen == VError::FAIL) goto _end;
       tcpSession->write("HTTP/1.0 200 Connection established\r\n\r\n");
     }
 

@@ -139,7 +139,7 @@ void VWebProxyOutInThread::run()
     //
     QByteArray oneBuffer;
     int readLen = outClient->read(oneBuffer);
-    if (readLen == VERR_FAIL)
+    if (readLen == VError::FAIL)
     {
       if (status == ContentCaching)
       {
@@ -247,7 +247,7 @@ void VWebProxyOutInThread::run()
     if (sendBuffer != "")
     {
       int writeLen = inSession->write(sendBuffer);
-      if (writeLen == VERR_FAIL) break;
+      if (writeLen == VError::FAIL) break;
     }
   }
 
@@ -565,7 +565,7 @@ void VWebProxy::run(VNetSession* inSession)
     //
     QByteArray oneBuffer;
     int readLen = inSession->read(oneBuffer);
-    if (readLen == VERR_FAIL)
+    if (readLen == VError::FAIL)
     {
       if (status == ContentCaching)
       {
@@ -642,7 +642,7 @@ void VWebProxy::run(VNetSession* inSession)
           }
           if (!outClient->open())
           {
-            LOG_ERROR("%s", outClient->error.msg);
+            LOG_ERROR("%s", qPrintable(outClient->error.msg));
             break;
           }
           thread = new VWebProxyOutInThread(&connection, this);
@@ -727,7 +727,7 @@ void VWebProxy::run(VNetSession* inSession)
     if (sendBuffer != "")
     {
       int writeLen = outClient->write(sendBuffer);
-      if (writeLen == VERR_FAIL) break;
+      if (writeLen == VError::FAIL) break;
     }
   }
   // LOG_DEBUG("end inSession=%p", inSession); // gilgil temp 2014.03.14

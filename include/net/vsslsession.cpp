@@ -179,12 +179,12 @@ int VSslSession::doRead(char* buf, int size)
   if (res < 0)
   {
     SET_DEBUG_ERROR(VSslError, qformat("SSL_read return %d", res), SSL_get_error(con, res));
-    return VERR_FAIL;
+    return VError::FAIL;
   }
   if (res == 0) // SSL_ERROR_ZERO_RETURN?
   {
     SET_DEBUG_ERROR(VSslError, "SSL_read return zero", SSL_get_error(con, res));
-    return VERR_FAIL;
+    return VError::FAIL;
   }
   return res;
 }
@@ -197,7 +197,7 @@ int VSslSession::doWrite(char* buf, int size)
   if (res < 0)
   {
     SET_ERROR(VSslError, "SSL_write return zero", SSL_get_error(con, res));
-    return VERR_FAIL;
+    return VError::FAIL;
   }
   return res;
 }

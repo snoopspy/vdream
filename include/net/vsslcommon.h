@@ -78,18 +78,24 @@ public:
 // ----------------------------------------------------------------------------
 // VSslError
 // ----------------------------------------------------------------------------
-VDECLARE_ERROR_CLASS(VSslError)
+class VSslError : public VError
+{
+public:
+  enum {
+    SSL_METHOD = VERR_CATEGORY_SSL,
+    IN_BIO_S_FILE,
+    IN_BIO_READ_FILENAME,
+    IN_PEM_READ_BIO_PRIVATEKEY,
+    IN_PEM_READ_BIO_X509_AUX,
+    IN_SSL_CTX_USE_CERTIFICATE,
+    SSL_CTX_USER_PRIVATEKEY,
+    SSL_CTX_CHECK_PRIVATEKEY
+  };
+  VERROR_CTOR(VSslError)
+};
 
 // ----------------------------------------------------------------------------
 // VDSSLError code
 // ----------------------------------------------------------------------------
-const static int VERR_SSL_METHOD                 = VERR_CATEGORY_SSL + 0;
-const static int VERR_IN_BIO_S_FILE              = VERR_CATEGORY_SSL + 1;
-const static int VERR_IN_BIO_READ_FILENAME       = VERR_CATEGORY_SSL + 2;
-const static int VERR_IN_PEM_READ_BIO_PRIVATEKEY = VERR_CATEGORY_SSL + 3;
-const static int VERR_IN_PEM_READ_BIO_X509_AUX   = VERR_CATEGORY_SSL + 4;
-const static int VERR_IN_SSL_CTX_USE_CERTIFICATE = VERR_CATEGORY_SSL + 5;
-const static int VERR_SSL_CTX_USER_PRIVATEKEY    = VERR_CATEGORY_SSL + 6;
-const static int VERR_SSL_CTX_CHECK_PRIVATEKEY   = VERR_CATEGORY_SSL + 7;
 
 #endif // __V_SSL_COMMON_H__

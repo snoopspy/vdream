@@ -99,6 +99,6 @@ void VLogHttpTcpServer::run(VTcpSession* tcpSession)
   {
     char buf[256];
     int readLen = tcpSession->read(buf, 256);
-    if (readLen == VERR_FAIL) break;
+    if (readLen == VError::FAIL) break;
   }
 }

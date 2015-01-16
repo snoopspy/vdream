@@ -122,7 +122,7 @@ int  VTcpClient::doRead(char* buf, int size)
   // VLock lock(stateReadCs); // gilgil temp 2014.03.14
 
   int res = tcpSession->read(buf, size);
-  if (res == VERR_FAIL)
+  if (res == VError::FAIL)
     error = tcpSession->error;
   return res;
 }
@@ -132,7 +132,7 @@ int  VTcpClient::doWrite(char* buf, int size)
   // VLock lock(stateWriteCs); // gilgil temp 2014.03.14
 
   int res = tcpSession->write(buf, size);
-  if (res == VERR_FAIL)
+  if (res == VError::FAIL)
     error = tcpSession->error;
   return res;
 }

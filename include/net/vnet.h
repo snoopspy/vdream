@@ -106,8 +106,8 @@ public:
 // ----------------------------------------------------------------------------
 // VNetError, VSocketError
 // ----------------------------------------------------------------------------
-VDECLARE_ERROR_CLASS(VNetError)
-VDECLARE_ERROR_CLASS(VSocketError)
+class VNetError : public VError {};
+class VSocketError : public VError {};
 
 // ----------------------------------------------------------------------------
 // VNetError code

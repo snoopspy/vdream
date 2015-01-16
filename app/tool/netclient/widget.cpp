@@ -45,7 +45,7 @@ void ClientThread::run()
     QByteArray ba;
 
     int readLen = netClient->read(ba);
-    if (readLen == VERR_FAIL) break;
+    if (readLen == VError::FAIL) break;
 
     if (widget->ui->chkShowHexa->checkState() == Qt::Checked)
       ba = ba.toHex();

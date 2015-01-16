@@ -105,7 +105,7 @@ int  VUdpClient::doRead(char* buf, int size)
   // VLock lock(stateReadCs); // gilgil temp 2014.03.14
 
   int res = udpSession->read(buf, size);
-  if (res == VERR_FAIL)
+  if (res == VError::FAIL)
     error = udpSession->error;
   return res;
 }
@@ -115,7 +115,7 @@ int  VUdpClient::doWrite(char* buf, int size)
   // VLock lock(stateWriteCs); // gilgil temp 2014.03.14
 
   int res = udpSession->write(buf, size);
-  if (res == VERR_FAIL)
+  if (res == VError::FAIL)
     error = udpSession->error;
   return res;
 }

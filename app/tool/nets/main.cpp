@@ -33,7 +33,7 @@ void App::inputAndSend()
     std::string s;
     std::getline(std::cin, s);
     int writeLen = netServer->write(s.c_str(), s.length());
-    if (writeLen == VERR_FAIL) break;
+    if (writeLen == VError::FAIL) break;
   }
 
   LOG_DEBUG("end");
@@ -74,7 +74,7 @@ void App::run() // udp
     //
     // Delete session
     //
-    if (readLen == VERR_FAIL)
+    if (readLen == VError::FAIL)
     {
       printf("%s\n", udpSession->error.msg);
 
@@ -120,7 +120,7 @@ void App::run() // udp
       } else
       {
         writeLen = udpSession->write(buf, readLen);
-        if (writeLen == VERR_FAIL) break;
+        if (writeLen == VError::FAIL) break;
       }
     }
 
@@ -139,7 +139,7 @@ void App::runned(VTcpSession* tcpSession) // tcp
   while (true)
   {
     int readLen = tcpSession->read(buf, param->bufSize);
-    if (readLen == VERR_FAIL)
+    if (readLen == VError::FAIL)
     {
       printf("%s\n", tcpSession->error.msg);
       break;
@@ -155,7 +155,7 @@ void App::runned(VTcpSession* tcpSession) // tcp
       } else
       {
         writeLen = tcpSession->write(buf, readLen);
-        if (writeLen == VERR_FAIL) break;
+        if (writeLen == VError::FAIL) break;
       }
     }
   }

@@ -138,12 +138,7 @@ bool VObject::open()
   tag     = 0;
   error.clear();
 
-  bool res = false;
-  try
-  {
-    res = doOpen();
-  }
-  VCATCH
+  bool res = doOpen();
 
   if (!res)
   {
@@ -166,12 +161,7 @@ bool VObject::close()
 
   m_state = VState::Closing;
 
-  bool res = false;
-  try
-  {
-    res = doClose();
-  }
-  VCATCH
+  bool res = doClose();
 
   if (!res)
   {

@@ -62,19 +62,19 @@ int VFile::doRead(char* buf,  int size)
   int res = (int)base.read(buf, (qint64)size);
   if (res == -1)
   {
-    SET_ERROR(VFileError, qformat("error in read file(%s)", qPrintable(fileName)), VERR_ERROR_IN_READ_FILE);
-    return VERR_FAIL;
+    SET_ERROR(VFileError, qformat("error in read file(%s)", qPrintable(fileName)), VFileError::ERROR_IN_READ_FILE);
+    return VError::FAIL;
   }
   if (res == 0)
   {
     if (base.atEnd())
     {
-      SET_DEBUG_ERROR(VFileError, qformat("end of file(%s)", qPrintable(fileName)), VERR_END_OF_FILE);
+      SET_DEBUG_ERROR(VFileError, qformat("end of file(%s)", qPrintable(fileName)), VFileError::END_OF_FILE);
     } else
     {
       SET_ERROR(VFileError, qformat("read return 0(%s) %s", qPrintable(fileName), qPrintable(base.errorString())), base.error());
     }
-    return VERR_FAIL;
+    return VError::FAIL;
   }
   return res;
 }
@@ -85,7 +85,7 @@ int VFile::doWrite(char* buf, int size)
   if (res != size)
   {
     SET_ERROR(VFileError, qformat("error in write file(%s) %s", qPrintable(fileName), qPrintable(base.errorString())), base.error());
-    return VERR_FAIL;
+    return VError::FAIL;
   }
   return res;
 }
@@ -170,7 +170,7 @@ TEST( File, readTest )
   {
     char real;
     int readLen = file.read(&real, 1);
-    if (readLen == VERR_FAIL) break;
+    if (readLen == VError::FAIL) break;
     EXPECT_EQ( expect, real );
     expect++;
     readCnt++;

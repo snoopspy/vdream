@@ -36,7 +36,7 @@ void UdpServerThread::run()
     //
     // Delete session
     //
-    if (readLen == VERR_FAIL)
+    if (readLen == VError::FAIL)
     {
       QString msg = udpSession->error.msg;
       fireEvent(new MsgEvent(msg, QThread::currentThreadId()));
@@ -85,7 +85,7 @@ void UdpServerThread::run()
       } else
       {
         int writeLen = udpSession->write(ba);
-        if (writeLen == VERR_FAIL) break;
+        if (writeLen == VError::FAIL) break;
       }
     }
   }
@@ -189,7 +189,7 @@ void Widget::myRun(VNetSession* netSession)
     QByteArray ba;
 
     int readLen = netSession->read(ba);
-    if (readLen == VERR_FAIL) break;
+    if (readLen == VError::FAIL) break;
 
     if (ui->chkShowHexa->checkState() == Qt::Checked)
       ba = ba.toHex();
@@ -204,7 +204,7 @@ void Widget::myRun(VNetSession* netSession)
       } else
       {
         int writeLen = netSession->write(ba);
-        if (writeLen == VERR_FAIL) break;
+        if (writeLen == VError::FAIL) break;
       }
     }
   }

@@ -12,7 +12,7 @@ void MyServer::run___(VSslSession *sslSession)
   {
     QByteArray ba;
     int readLen = sslSession->read(ba);
-    if (readLen == VERR_FAIL) break;
+    if (readLen == VError::FAIL) break;
     LOG_DEBUG("kkk %s", ba.data());
     sslSession->write(ba);
     if (ba.startsWith("q")) break;
@@ -36,7 +36,7 @@ void clientTest()
   client.port = 443;
   if (!client.open())
   {
-    LOG_ERROR("%s", client.error.msg);
+    LOG_ERROR("%s", qPrintable(client.error.msg));
     return;
   }
   client.write("GET / HTTP/1.1\r\nHost: www.twitter.com\r\n\r\n");

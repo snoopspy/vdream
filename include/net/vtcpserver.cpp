@@ -203,7 +203,7 @@ int VTcpServer::doRead(char* buf, int size)
   Q_UNUSED(buf)
   Q_UNUSED(size)
   SET_ERROR(VError, "not readable", VERR_NOT_READABLE);
-  return VERR_FAIL;
+  return VError::FAIL;
 }
 
 int VTcpServer::doWrite(char* buf, int size)

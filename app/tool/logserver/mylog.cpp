@@ -49,7 +49,7 @@ void MyLog::run()
   while (runThread().active())
   {
     int readLen = udpServer->udpSession->read(buf, vd::DEFAULT_BUF_SIZE);
-    if (readLen == VERR_FAIL) continue;
+    if (readLen == VError::FAIL) continue;
     buf[readLen] = '\0';
     QString qs = QString::fromLocal8Bit(buf);
     emit sync.onMessage(qs);

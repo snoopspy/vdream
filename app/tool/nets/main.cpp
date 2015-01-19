@@ -76,7 +76,7 @@ void App::run() // udp
     //
     if (readLen == VError::FAIL)
     {
-      printf("%s\n", udpSession->error.msg);
+      printf("%s\n", qPrintable(udpSession->error.msg));
 
       if (udpSession->error.code == 10054/*WSAECONNRESET*/) // ICMP Destination Unreachable // gilgil temp 2014.04.18
       {
@@ -141,7 +141,7 @@ void App::runned(VTcpSession* tcpSession) // tcp
     int readLen = tcpSession->read(buf, param->bufSize);
     if (readLen == VError::FAIL)
     {
-      printf("%s\n", tcpSession->error.msg);
+      printf("%s\n", qPrintable(tcpSession->error.msg));
       break;
     }
     buf[readLen] = '\0';
@@ -220,7 +220,7 @@ int main(int argc, char* argv[])
   app.createNetServer();
   if (!app.netServer->open())
   {
-    printf("%s\n", app.netServer->error.msg);
+    printf("%s\n", qPrintable(app.netServer->error.msg));
     return -1;
   }
   if (app.param->netType == ntUDP)

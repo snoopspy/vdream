@@ -25,10 +25,14 @@ QString Ip::str()
   return res;
 }
 
-QString Ip::qformat(QString format) // gilgil temp 2015.01.20
+// ----- gilgil temp 2015.01.15 -----
+/*
+QString Ip::qformat(QString format)
 {
   return ::qformat(qPrintable(format), value);
 }
+*/
+// ----------------------------------
 
 // ----------------------------------------------------------------------------
 // VNetInstance

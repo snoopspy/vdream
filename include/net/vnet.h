@@ -65,7 +65,7 @@ public:
 
 public:
   QString str();
-  QString qformat(QString format); // gilgil temp 2015.01.20
+  // QString qformat(QString format); // gilgil temp 2015.01.20
 
 public:
   bool isLocalHost() { quint8 prefix = (value & 0xFF000000) >> 24; return prefix == 0x7F;                  } // 127.*.*.*

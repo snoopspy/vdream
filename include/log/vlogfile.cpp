@@ -17,7 +17,7 @@ REGISTER_METACLASS(VLogFile, VLog)
 // ----------------------------------------------------------------------------
 // VLogFile
 // ----------------------------------------------------------------------------
-const char* VLogFile::DEFAULT_LOG_FILE_NAME = "%04d%02d%02d.log";
+const char* VLogFile::DEFAULT_LOG_FILE_NAME = "%1%2%3.log";
 
 VLogFile::VLogFile()
 {
@@ -54,7 +54,10 @@ void VLogFile::write(const char* buf, int len)
   VLock lock(*this);
 
   QDateTime now = QDateTime::currentDateTime();
-  QString newFileName = qformat(qPrintable(fileName), now.date().year(), now.date().month(), now.date().day()); // gilgil temp 2015.01.20
+  QString newFileName = QString(fileName)
+    .arg(now.date().year(),  4, 10)
+    .arg(now.date().month(), 2, 10)
+    .arg(now.date().day(),   2, 10);
   if (newFileName != m_nowFileName)
   {
     m_file->close();

@@ -178,7 +178,7 @@ int VSslSession::doRead(char* buf, int size)
   // sleep(1); // gilgil temp 2014.02.28
   if (res < 0)
   {
-    SET_DEBUG_ERROR(VSslError, qformat("SSL_read return %d", res), SSL_get_error(con, res));
+    SET_DEBUG_ERROR(VSslError, QString("SSL_read return %1").arg(res), SSL_get_error(con, res));
     return VError::FAIL;
   }
   if (res == 0) // SSL_ERROR_ZERO_RETURN?

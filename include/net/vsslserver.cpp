@@ -91,7 +91,7 @@ bool VSslServer::doOpen()
     case VSslMethodType::mtDTLSv1  : m_meth = (SSL_METHOD*)DTLSv1_server_method();  break;
     case VSslMethodType::mtNone    :
     default                        :
-      SET_ERROR(VSslError, qformat("client method error(%s)", qPrintable(methodType.str())), VSslError::INVALID_SSL_METHOD);
+      SET_ERROR(VSslError, QString("client method error(%1)").arg(methodType.str()), VSslError::INVALID_SSL_METHOD);
       return false;
   }
 
@@ -243,7 +243,7 @@ int VSslServer::ssl_servername_cb(SSL *con, int *ad, void *arg)
       process.setWorkingDirectory(path);
       LOG_DEBUG("working directory=%s", qPrintable(process.workingDirectory())); // gilgil temp 2014.03.01
 
-      QString command = qformat("\"%s_make_site.bat\" %s 2>&1", qPrintable(path), qPrintable(serverName));
+      QString command = QString("\"%1_make_site.bat\" %2 2>&1").arg(path).arg(serverName);
       LOG_INFO("command=%s", qPrintable(command));
 
       process.start(command);
@@ -311,7 +311,7 @@ EVP_PKEY* VSslServer::loadKey(VError& error, QString fileName)
   long res = BIO_read_filename(bio, qPrintable(fileName));
   if (res <= 0)
   {
-    QString msg = qformat("BIO_read_filename(%s) return %d", qPrintable(fileName), res);
+    QString msg = QString("BIO_read_filename(%1) return %2").arg(fileName).arg(res);
     LOG_ERROR("%s", qPrintable(msg));
     error = VSslError(msg, VSslError::IN_BIO_READ_FILENAME);
     BIO_free(bio);
@@ -350,7 +350,7 @@ X509* VSslServer::loadCrt(VError& error, QString fileName)
   long res = BIO_read_filename(bio, qPrintable(fileName));
   if (res <= 0)
   {
-    QString msg = qformat("BIO_read_filename(%s) %d", qPrintable(fileName), res);
+    QString msg = QString("BIO_read_filename(%1) %2").arg(fileName).arg(res);
     LOG_ERROR("%s", qPrintable(msg));
     error = VSslError(msg, VSslError::IN_BIO_READ_FILENAME);
     BIO_free(bio);
@@ -379,21 +379,21 @@ bool VSslServer::setKeyCrtStuff(VError& error, SSL_CTX* ctx, EVP_PKEY* key, X509
   int res = SSL_CTX_use_certificate(ctx, crt);
   if (res <= 0)
   {
-    error = VSslError(qformat("SSL_CTX_use_certificate return %d", res), VSslError::IN_SSL_CTX_USE_CERTIFICATE);
+    error = VSslError(QString("SSL_CTX_use_certificate return %1").arg(res), VSslError::IN_SSL_CTX_USE_CERTIFICATE);
     return false;
   }
 
   res = SSL_CTX_use_PrivateKey(ctx, key);
   if (res <= 0)
   {
-    error = VSslError(qformat("SSL_CTX_use_PrivateKey return %d", res), VSslError::SSL_CTX_USER_PRIVATEKEY);
+    error = VSslError(QString("SSL_CTX_use_PrivateKey return %1").arg(res), VSslError::SSL_CTX_USER_PRIVATEKEY);
     return false;
   }
 
   res = SSL_CTX_check_private_key(ctx);
   if (!res)
   {
-    error = VSslError(qformat("SSL_CTX_check_private_key return %d", res), VSslError::SSL_CTX_CHECK_PRIVATEKEY);
+    error = VSslError(QString("SSL_CTX_check_private_key return %1").arg(res), VSslError::SSL_CTX_CHECK_PRIVATEKEY);
     return false;
   }
 
@@ -409,21 +409,21 @@ bool VSslServer::setKeyCrtStuff(VError& error, SSL* con, EVP_PKEY* key, X509* cr
   int res = SSL_use_certificate(con, crt);
   if (res <= 0)
   {
-    error = VSslError(qformat("SSL_use_certificate return %d", res), VSslError::IN_SSL_CTX_USE_CERTIFICATE);
+    error = VSslError(QString("SSL_use_certificate return %1").arg(res), VSslError::IN_SSL_CTX_USE_CERTIFICATE);
     return false;
   }
 
   res = SSL_use_PrivateKey(con, key);
   if (res <= 0)
   {
-    error = VSslError(qformat("SSL_use_PrivateKey return %d", res), VSslError::SSL_CTX_USER_PRIVATEKEY);
+    error = VSslError(QString("SSL_use_PrivateKey return %1").arg(res), VSslError::SSL_CTX_USER_PRIVATEKEY);
     return false;
   }
 
   res = SSL_check_private_key(con);
   if (!res)
   {
-    error = VSslError(qformat("SSL_check_private_key return %d", res), VSslError::SSL_CTX_CHECK_PRIVATEKEY);
+    error = VSslError(QString("SSL_check_private_key return %1").arg(res), VSslError::SSL_CTX_CHECK_PRIVATEKEY);
     return false;
   }
 

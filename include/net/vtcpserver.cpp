@@ -89,7 +89,7 @@ bool VTcpServer::doOpen()
     Ip ip = VNet::resolve(localHost);
     if (ip == 0)
     {
-      SET_ERROR(VNetError, qformat("can not resolve host(%s)", qPrintable(localHost)), VNetError::CAN_NOT_RESOLVE_HOST);
+      SET_ERROR(VNetError, QString("can not resolve host(%1)").arg(localHost), VNetError::CAN_NOT_RESOLVE_HOST);
       return false;
     }
     acceptSession->addr.sin_addr.s_addr = htonl(ip);
@@ -99,7 +99,7 @@ bool VTcpServer::doOpen()
   int res = ::bind(acceptSession->handle, (struct sockaddr*)&acceptSession->addr, sizeof(acceptSession->addr));
   if (res == SOCKET_ERROR)
   {
-    SET_ERROR(VSocketError, qformat("error in bind(%s:%d)", qPrintable(localHost), port), WSAGetLastError());
+    SET_ERROR(VSocketError, QString("error in bind(%1:%2)").arg(localHost).arg(port), WSAGetLastError());
     return false;
   }
 

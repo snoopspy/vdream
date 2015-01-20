@@ -36,7 +36,7 @@ bool VRegExp::prepare(VError& error)
 
   if (!rx.isValid())
   {
-    SET_ERROR(VError, qformat("rx is not valid(%s)", qPrintable(pattern)), VError::UNKNOWN);
+    SET_ERROR(VError, QString("rx is not valid(%1)").arg(pattern), VError::UNKNOWN);
     return false;
   }
 

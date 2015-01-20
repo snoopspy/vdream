@@ -25,7 +25,7 @@ QString Ip::str()
   return res;
 }
 
-QString Ip::qformat(QString format)
+QString Ip::qformat(QString format) // gilgil temp 2015.01.20
 {
   return ::qformat(qPrintable(format), value);
 }

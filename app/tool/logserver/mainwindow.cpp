@@ -196,7 +196,7 @@ void MainWindow::on_actionEdit_triggered()
   QString qs = ui->plainTextEdit->toPlainText();
   QDateTime now = QDateTime::currentDateTime();
   QString completeBaseName = qformat("%04d%02d%02d%02d%02d%02d",
-    now.date().year(), now.date().month(), now.time().hour(), now.time().minute(), now.time().second());
+    now.date().year(), now.date().month(), now.time().hour(), now.time().minute(), now.time().second()); // gilgil temp 2015.01.20
   QString fileName;
   int index = 0;
   while (true)

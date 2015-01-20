@@ -231,7 +231,7 @@ bool VThread::wait(VTimeout timeout)
     if (!res)
     {
       LOG_ERROR("**********************************************************************");
-      SET_ERROR(VThreadError, qformat("thread(%s) timeout id=0x%08X tag=%d threadTag=%d", qPrintable(name), id(), tag, threadTag), VError::TIMEOUT);
+      SET_ERROR(VThreadError, QString("thread(%1) timeout id=0x%2 tag=%3 threadTag=%4").arg(name).arg((quintptr)id(), 0, 16).arg(tag).arg(threadTag), VError::TIMEOUT);
       LOG_ERROR("**********************************************************************");
       return false;
     }

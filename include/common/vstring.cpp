@@ -9,6 +9,9 @@
 // ----------------------------------------------------------------------------
 // String function
 // ----------------------------------------------------------------------------
+
+// ----- gilgil temp 2015.01.20 -----
+/*
 static const int DEFAULT_STR_BUF_SIZE = 4096; // gilgil temp 2014.12.09
 
 QString qformat(const char* fmt, ...)
@@ -20,6 +23,8 @@ QString qformat(const char* fmt, ...)
   va_end(args);
   return QString(buf);
 }
+*/
+// ----------------------------------
 
 #ifdef GTEST
 #include <VDebugNewCancel>

@@ -129,7 +129,7 @@ bool VObject::open()
 {
   if (m_state != VState::Closed)
   {
-    SET_ERROR(VError, qformat("not closed state(%s) %s %s", qPrintable(m_state.str()), qPrintable(className()), qPrintable(name)), VError::NOT_CLOSED_STATE);
+    SET_ERROR(VError, QString("not closed state(%1) %2 %3").arg(m_state.str()).arg(className()).arg(name), VError::NOT_CLOSED_STATE);
     return false;
   }
 
@@ -190,14 +190,14 @@ bool VObject::wait(VTimeout timeout)
 
 bool VObject::doOpen()
 {
-  SET_ERROR(VError, qformat("virtual function call %s %s", qPrintable(className()), qPrintable(name)), VError::VIRTUAL_FUNCTION_CALL);
+  SET_ERROR(VError, QString("virtual function call %1 %2").arg(className()).arg(name), VError::VIRTUAL_FUNCTION_CALL);
   LOG_FATAL("virtual function call error %s %s", qPrintable(className()), qPrintable(name));
   return false;
 }
 
 bool VObject::doClose()
 {
-  SET_ERROR(VError, qformat("virtual function call %s %s", qPrintable(className()), qPrintable(name)), VError::VIRTUAL_FUNCTION_CALL);
+  SET_ERROR(VError, QString("virtual function call %1 %2").arg(className()).arg(name), VError::VIRTUAL_FUNCTION_CALL);
   LOG_FATAL("virtual function call error %s %s", qPrintable(className()), qPrintable(name));
   return false;
 }

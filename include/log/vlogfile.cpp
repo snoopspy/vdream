@@ -54,7 +54,7 @@ void VLogFile::write(const char* buf, int len)
   VLock lock(*this);
 
   QDateTime now = QDateTime::currentDateTime();
-  QString newFileName = qformat(qPrintable(fileName), now.date().year(), now.date().month(), now.date().day());
+  QString newFileName = qformat(qPrintable(fileName), now.date().year(), now.date().month(), now.date().day()); // gilgil temp 2015.01.20
   if (newFileName != m_nowFileName)
   {
     m_file->close();

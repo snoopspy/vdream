@@ -23,6 +23,10 @@ contains(QT, gui) {
 android-g++ {
   VDREAM_LIB_NAME = $${VDREAM_LIB_NAME}_android
 }
+CONFIG(GTEST) {
+	VDREAM_LIB_NAME = $${VDREAM_LIB_NAME}_test
+}
+message($${VDREAM_LIB_NAME}) # gilgil temp 2015.01.20
 
 #-------------------------------------------------
 # vdream

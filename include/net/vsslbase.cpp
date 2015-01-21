@@ -1,13 +1,13 @@
-#include <VSslCommon>
+#include <VSslBase>
 #include <VThread>
 
 // ----------------------------------------------------------------------------
-// VSslCommon
+// VSslBase
 // ----------------------------------------------------------------------------
-int VSslCommon::numLock = 0;
-VCS *VSslCommon::lockCs = NULL;
+int VSslBase::numLock = 0;
+VCS *VSslBase::lockCs = NULL;
 
-VSslCommon::VSslCommon()
+VSslBase::VSslBase()
 {
   numLock = 0;
   lockCs  = NULL;
@@ -27,7 +27,7 @@ VSslCommon::VSslCommon()
   CRYPTO_set_locking_callback(lockingCallback);
 }
 
-VSslCommon::~VSslCommon()
+VSslBase::~VSslBase()
 {
   if (numLock != 0)
   {
@@ -40,14 +40,14 @@ VSslCommon::~VSslCommon()
   }
 }
 
-unsigned long VSslCommon::threadIdCallback(void)
+unsigned long VSslBase::threadIdCallback(void)
 {
   unsigned long res;
   res = (unsigned long)QThread::currentThreadId();
   return res;
 }
 
-void VSslCommon::lockingCallback(int mode, int type, const char* file, int line)
+void VSslBase::lockingCallback(int mode, int type, const char* file, int line)
 {
   Q_UNUSED(file)
   Q_UNUSED(line)
@@ -66,10 +66,10 @@ void VSslCommon::lockingCallback(int mode, int type, const char* file, int line)
   }
 }
 
-VSslCommon& VSslCommon::instance()
+VSslBase& VSslBase::instance()
 {
-  static VSslCommon _instance;
-  return _instance;
+  static VSslBase sslBase;
+  return sslBase;
 }
 
 // ----------------------------------------------------------------------------

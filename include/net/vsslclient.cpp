@@ -8,7 +8,7 @@ REGISTER_METACLASS(VSslClient, VNet)
 // ----------------------------------------------------------------------------
 VSslClient::VSslClient(void* owner) : VTcpClient(owner)
 {
-  VSslCommon::instance();
+  VSslBase::instance();
 
   sslSession = new VSslSession(this);
   sslSession->tcpSession = tcpSession;

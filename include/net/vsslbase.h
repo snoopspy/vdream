@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------------
 //
-// VDream Component Suite version 9.0
+// VDream Component Suite version 9.01
 //
 // http://www.gilgil.net
 //
@@ -8,8 +8,8 @@
 //
 // ----------------------------------------------------------------------------
 
-#ifndef __V_SSL_COMMON_H__
-#define __V_SSL_COMMON_H__
+#ifndef __V_SSL_BASE_H__
+#define __V_SSL_BASE_H__
 
 #include <VError>
 #include <VLog>
@@ -19,17 +19,17 @@
 #include <openssl/ssl.h>
 
 // ----------------------------------------------------------------------------
-// VSslCommon
+// VSslBase
 // ----------------------------------------------------------------------------
-class VSslCommon
+class VSslBase
 {
 public:
   static const int DEFAULT_SSL_PORT        = 443;
   static const int DEFAULT_SSL_PROXY_PORT  = 4433;
 
 private: // singleton
-  VSslCommon();
-  virtual ~VSslCommon();
+  VSslBase();
+  virtual ~VSslBase();
 
 protected:
   static int numLock;
@@ -40,7 +40,7 @@ protected:
   static void lockingCallback(int mode, int type, const char* file, int line);
 
 public:
-  static VSslCommon& instance();
+  static VSslBase& instance();
 };
 
 // ----------------------------------------------------------------------------
@@ -94,8 +94,4 @@ public:
   VERROR_CTOR(VSslError)
 };
 
-// ----------------------------------------------------------------------------
-// VDSSLError code
-// ----------------------------------------------------------------------------
-
-#endif // __V_SSL_COMMON_H__
+#endif // __V_SSL_BASE_H__

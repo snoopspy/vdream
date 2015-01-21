@@ -8,10 +8,10 @@
 //
 // ----------------------------------------------------------------------------
 
-#ifndef __V_COMMON_H__
-#define __V_COMMON_H__
+#ifndef __V_BASE_H__
+#define __V_BASE_H__
 
-#define WIN32_LEAN_AND_MEAN
+// #define WIN32_LEAN_AND_MEAN // gilgil temp 2015.01.21
 #include <QtCore>
 // #include <VDesign> // gilgil temp 2014.11.27
 #include <VSystem>
@@ -84,34 +84,4 @@ public:
   QString str() const;
 };
 
-// ----- gilgil temp 2014.12.28 -----
-/*
-// ----------------------------------------------------------------------------
-// VMode
-// ----------------------------------------------------------------------------
-class VMode
-{
-  enum _VMode
-  {
-    None,     // 0
-    Read,     // 1
-    Write,    // 2
-    ReadWrite // 3
-  };
-
-protected:
-  _VMode value;
-
-public:
-  VMode()                   {                      } // default ctor
-  VMode(const _VMode value) { this->value = value; } // conversion ctor
-  operator _VMode() const   { return value;        } // cast operator
-
-public:
-  VMode(const QString s);
-  QString str() const;
-};
-*/
-// ----------------------------------
-
-#endif // __V_COMMON_H__
+#endif // __V_BASE_H__

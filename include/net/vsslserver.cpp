@@ -53,7 +53,7 @@ bool VSslServerSession::setup(QString fileName)
 // ----------------------------------------------------------------------------
 VSslServer::VSslServer(void* owner) : VTcpServer(owner)
 {
-  VSslCommon::instance();
+  VSslBase::instance();
 
   methodType             = VSslMethodType::mtSSLv23;
   certificatePath        = QString("certificate") + QDir::separator();

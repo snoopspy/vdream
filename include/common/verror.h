@@ -107,7 +107,7 @@ public:
 // ----------------------------------------------------------------------------
 // Error Category
 // ----------------------------------------------------------------------------
-static const int  VERR_CATEGORY_COMMON      = 0;
+static const int  VERR_CATEGORY_BASE        = 0;
 //static const int    VERR_CATEGORY_BOOST     = 1000; // gilgil temp 2015.01.16
 static const int    VERR_CATEGORY_THREAD    = 2000;
 //static const int    VERR_CATEGORY_XML       = 3000; // gilgil temp 2015.01.16

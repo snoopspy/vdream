@@ -53,7 +53,6 @@ SOURCES += \
   ../include/common/verror.cpp \
   ../include/common/vprimitive.cpp \
   ../include/net/vnetclient.cpp \
-  ../include/net/vsslcommon.cpp \
   ../include/net/vnetfactory.cpp \
   ../include/net/vudpclient.cpp \
   ../include/net/vsslserver.cpp \
@@ -72,7 +71,8 @@ SOURCES += \
   ../include/net/http/vhttpresponse.cpp \
   ../include/net/vtcpserver.cpp \
   ../include/net/vnet.cpp \
-    ../include/common/vbase.cpp
+    ../include/common/vbase.cpp \
+    ../include/net/vsslbase.cpp
 
 HEADERS += \
   ../include/etc/vint.h \
@@ -136,8 +136,8 @@ HEADERS += \
   ../include/net/http/vwebproxywidget.h \
   ../include/net/http/vhttpheader.h \
   ../include/net/http/vhttprequest.h \
-  ../include/net/vsslcommon.h \
   ../include/net/vnetsession.h \
   ../include/net/vtcpsession.h \
   ../include/net/vsslsession.h \
-    ../include/common/vbase.h
+    ../include/common/vbase.h \
+    ../include/net/vsslbase.h

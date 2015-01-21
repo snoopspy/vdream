@@ -12,7 +12,7 @@
 #define __V_SSL_SESSION_H__
 
 #include <VTcpSession>
-#include <VSslCommon>
+#include <VSslBase>
 
 // ----------------------------------------------------------------------------
 // VSslSession

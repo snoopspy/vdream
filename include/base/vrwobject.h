@@ -23,8 +23,8 @@ public:
 
 public:
   int        read(char* buf, int size);
-  int        read(QByteArray& ba, int size = vd::DEFAULT_BUF_SIZE);
-  QByteArray read(int size = vd::DEFAULT_BUF_SIZE);
+  int        read(QByteArray& ba, int size = VBase::BUF_SIZE);
+  QByteArray read(int size = VBase::BUF_SIZE);
 
   int        write(char* buf, int size);
   int        write(char* buf);

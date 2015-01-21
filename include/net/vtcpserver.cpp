@@ -167,7 +167,7 @@ bool VTcpServer::doClose()
     threadList.unlock();
     if (count == 0) break;
     VTick now = tick();
-    if (now - beg > VTick(vd::DEFAULT_TIMEOUT * 2))
+	if (now - beg > VTick(VBase::TIMEOUT * 2))
     {
       LOG_FATAL("timeout session count=%d", threadList.count());
       // break; // gilgil temp 2012.11.27
@@ -180,10 +180,10 @@ bool VTcpServer::doClose()
   for (VTcpSessionThreadList::iterator it = threadList.begin(); it != threadList.end(); it++)
   {
     VTcpSessionThread* thread = *it;
-    thread->wait(vd::DEFAULT_TIMEOUT + 2000); // gilgil temp 2014.04.04
+	thread->wait(VBase::TIMEOUT + 2000); // gilgil temp 2014.04.04
     delete thread;
     VTick now = tick();
-    if (now - beg > vd::DEFAULT_TIMEOUT * 2) // gilgil temp 2014.04.04
+	if (now - beg > VBase::TIMEOUT * 2) // gilgil temp 2014.04.04
     {
       LOG_FATAL("timeout session count=%d", threadList.count());
       // break; // gilgil temp 2012.11.27

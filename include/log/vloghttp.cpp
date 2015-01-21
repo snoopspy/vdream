@@ -6,8 +6,6 @@ REGISTER_METACLASS(VLogHttp, VLog)
 // ----------------------------------------------------------------------------
 // VLogHttp
 // ----------------------------------------------------------------------------
-const int VLogHttp::DEFAULT_PORT = 8908;
-
 VLogHttp::VLogHttp(const int port)
 {
   showDateTime = VShowDateTime::Time;

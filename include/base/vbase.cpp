@@ -16,9 +16,9 @@
 // vdream Version
 // ----------------------------------------------------------------------------
 #ifdef _DEBUG
-const char* VDREAM_VERSION = "VDream 9.1 Debug   Build( " __DATE__ " " __TIME__ " )";
+const char* VBase::VDREAM_VERSION = "VDream 9.1 Debug   Build( " __DATE__ " " __TIME__ " )";
 #else // RELEASE
-const char* VDREAM_VERSION = "VDream 9.1 Release Build( " __DATE__ " " __TIME__ " )";
+const char* VBase::VDREAM_VERSION = "VDream 9.1 Release Build( " __DATE__ " " __TIME__ " )";
 #endif // _DEBUG
 
 // ----------------------------------------------------------------------------
@@ -61,42 +61,13 @@ QString VState::str() const
   return res;
 }
 
-// ----- gilgil temp 2014.12.28 -----
-/*
-// ----------------------------------------------------------------------------
-// VMode
-// ----------------------------------------------------------------------------
-VMode::VMode(const QString s)
-{
-  if (s == "None")           value = None;
-  else if (s == "Read")      value = Read;
-  else if (s == "Write")     value = Write;
-  else if (s == "ReadWrite") value = ReadWrite;
-  else value = None;
-}
-
-QString VMode::str() const
-{
-  QString res;
-  switch (value)
-  {
-  case None      : res = "None";      break;
-  case Read      : res = "Read";      break;
-  case Write     : res = "Write";     break;
-  case ReadWrite : res = "ReadWrite"; break;
-  }
-  return res;
-}
-*/
-// ----------------------------------
-
 #ifdef GTEST
 #include <VDebugNewCancel>
 #include <gtest/gtest.h>
 
 TEST( BaseTest, versionTest )
 {
-  qDebug() << VDREAM_VERSION;
+  qDebug() << VBase::VDREAM_VERSION;
 }
 
 TEST( BaseTest, macroTest )

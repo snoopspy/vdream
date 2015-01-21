@@ -23,9 +23,9 @@ VApp::~VApp()
 
 QString VApp::fileName()
 {
-  char buf[vd::DEFAULT_BUF_SIZE];
-  DWORD res = GetModuleFileNameA(NULL, buf, vd::DEFAULT_BUF_SIZE);
-  if (res == vd::DEFAULT_BUF_SIZE && GetLastError() == ERROR_INSUFFICIENT_BUFFER)
+  char buf[VBase::BUF_SIZE];
+  DWORD res = GetModuleFileNameA(NULL, buf, VBase::BUF_SIZE);
+  if (res == VBase::BUF_SIZE && GetLastError() == ERROR_INSUFFICIENT_BUFFER)
   {
     return "";
   }
@@ -44,11 +44,11 @@ QString VApp::fileName()
   static QString fileName;
   if (fileName == "")
   {
-    char buf[vd::DEFAULT_BUF_SIZE];
-    memset(buf, 0, vd::DEFAULT_BUF_SIZE);
+    char buf[VBase::BUF_SIZE];
+    memset(buf, 0, VBase::BUF_SIZE);
     char tmp[256];
     sprintf(tmp, "/proc/%d/exe", getpid());
-    int res = MIN(readlink(tmp, buf, vd::DEFAULT_BUF_SIZE), vd::DEFAULT_BUF_SIZE - 1);
+    int res = MIN(readlink(tmp, buf, VBase::BUF_SIZE), VBase::BUF_SIZE - 1);
     if(res >= 0)
       buf[res] = '\0';
     fileName = QString(buf);

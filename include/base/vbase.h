@@ -40,22 +40,11 @@ class VBase
 public:
 	static const char* VDREAM_VERSION;
 	static const char* getClassName(const char* value);
-};
 
-// ----------------------------------------------------------------------------
-// Class
-// ----------------------------------------------------------------------------
-// #define CLASS_NAME(obj) getClassName(typeid(obj).name())// gilgil temp 2015.01.21
-
-// ----------------------------------------------------------------------------
-// Constant
-// ----------------------------------------------------------------------------
-namespace vd
-{
-  static const int      DEFAULT_BUF_SIZE          = 65536;  // bytes
-  static const VTimeout DEFAULT_TIMEOUT           = 10000; // 10 sec
-  static const int      DEFAULT_PORT              = 10065;
-  static const int      DEFAULT_MEDIAGATEWAY_PORT = 10066;
+public:
+	static const int      BUF_SIZE          = 65536; // bytes
+	static const VTimeout TIMEOUT           = 10000; // 10 sec
+	static const int      PORT              = 10065;
 };
 
 // ----------------------------------------------------------------------------

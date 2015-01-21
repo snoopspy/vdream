@@ -21,7 +21,7 @@ class VLogHttpTcpServer;
 class VLogHttp : public VLog
 {
 public:
-  static const int DEFAULT_PORT;
+  static const int DEFAULT_PORT = 8908;
 
 public:
   VLogHttp(const int port = DEFAULT_PORT);

@@ -45,10 +45,10 @@ bool MyLog::doClose()
 
 void MyLog::run()
 {
-  char buf[vd::DEFAULT_BUF_SIZE + 1];
+  char buf[VBase::BUF_SIZE + 1];
   while (runThread().active())
   {
-    int readLen = udpServer->udpSession->read(buf, vd::DEFAULT_BUF_SIZE);
+    int readLen = udpServer->udpSession->read(buf, VBase::BUF_SIZE);
     if (readLen == VError::FAIL) continue;
     buf[readLen] = '\0';
     QString qs = QString::fromLocal8Bit(buf);

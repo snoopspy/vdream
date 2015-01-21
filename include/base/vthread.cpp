@@ -88,14 +88,14 @@ void VQThread::run()
 {
   VThread* thread = (VThread*)owner;
 
-  char threadName[vd::DEFAULT_BUF_SIZE];
-  char className [vd::DEFAULT_BUF_SIZE];
+  char threadName[VBase::BUF_SIZE];
+  char className [VBase::BUF_SIZE];
 
   try
   {
     if (thread->name == "") thread->name = thread->className();
-    strncpy(threadName, qPrintable(thread->name), vd::DEFAULT_BUF_SIZE);
-    strncpy(className, qPrintable(thread->className()), vd::DEFAULT_BUF_SIZE);
+	strncpy(threadName, qPrintable(thread->name), VBase::BUF_SIZE);
+	strncpy(className, qPrintable(thread->className()), VBase::BUF_SIZE);
     // _setCurrentThreadName((char*)threadName); // gilgil temp 2014.12.09
 
     thread->m_id = VThread::currentID();

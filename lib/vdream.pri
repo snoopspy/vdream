@@ -14,9 +14,6 @@ CONFIG(release, debug|release) {
 # library name
 #-------------------------------------------------
 VDREAM_LIB_NAME = vdream
-CONFIG(debug, debug|release) {
-  VDREAM_LIB_NAME = $${VDREAM_LIB_NAME}_d
-}
 contains(QT, gui) {
   VDREAM_LIB_NAME = $${VDREAM_LIB_NAME}_gui
 }
@@ -25,6 +22,9 @@ android-g++ {
 }
 CONFIG(GTEST) {
 	VDREAM_LIB_NAME = $${VDREAM_LIB_NAME}_test
+}
+CONFIG(debug, debug|release) {
+	VDREAM_LIB_NAME = $${VDREAM_LIB_NAME}_d
 }
 message($${VDREAM_LIB_NAME}) # gilgil temp 2015.01.20
 

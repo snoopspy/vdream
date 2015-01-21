@@ -14,7 +14,6 @@
 #define WIN32_LEAN_AND_MEAN
 #include <QtCore>
 // #include <VDesign> // gilgil temp 2014.11.27
-#include <VString>
 #include <VSystem>
 #ifdef WIN32
 #include <VWindows>

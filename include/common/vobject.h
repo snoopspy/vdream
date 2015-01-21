@@ -14,7 +14,6 @@
 #include <QObject>
 
 #include <VError>
-#include <VString>
 #include <VXml>
 #include <VLog>
 

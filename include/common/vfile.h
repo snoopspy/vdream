@@ -12,13 +12,13 @@
 #define __V_FILE_H__
 
 #include <QFile>
-#include <VBase>
+#include <VPrimitive>
 #include <VRwObject>
 
 // ----------------------------------------------------------------------------
 // VFile
 // ----------------------------------------------------------------------------
-class VFile : public VRwObject, public VBase<QFile>
+class VFile : public VRwObject, public VPrimitive<QFile>
 {
 public:
   VFile(void* owner = NULL);

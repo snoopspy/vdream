@@ -1,9 +1,9 @@
 #ifdef GTEST
 #include <VDebugNewCancel>
 #include <gtest/gtest.h>
-#include <VBase>
+#include <VPrimitive>
 
-typedef VBase<int> MyInt;
+typedef VPrimitive<int> MyInt;
 
 TEST( Design, baseTest )
 {

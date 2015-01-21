@@ -49,10 +49,10 @@ SOURCES += \
   ../include/common/vfile.cpp \
   ../include/common/vobject.cpp \
   ../include/common/vinstance.cpp \
-  ../include/common/vbase.cpp \
   ../include/common/vdependency.cpp \
   ../include/common/vcommon.cpp \
   ../include/common/verror.cpp \
+  ../include/common/vprimitive.cpp \
   ../include/net/vnetclient.cpp \
   ../include/net/vsslcommon.cpp \
   ../include/net/vnetfactory.cpp \
@@ -97,7 +97,6 @@ HEADERS += \
   ../include/common/vmemoryleak.h \
   ../include/common/verror.h \
   ../include/common/vinstance.h \
-  ../include/common/vbase.h \
   ../include/common/vdependency.h \
   ../include/common/vlinux.h \
   ../include/common/vmetaclass.h \
@@ -119,6 +118,7 @@ HEADERS += \
   ../include/common/vperformance.h \
   ../include/common/vexception.h \
   ../include/common/vxml.h \
+  ../include/common/vprimitive.h \
   ../include/net/vudpsession.h \
   ../include/net/vudpclient.h \
   ../include/net/vudpserver.h \
@@ -140,4 +140,4 @@ HEADERS += \
   ../include/net/vsslcommon.h \
   ../include/net/vnetsession.h \
   ../include/net/vtcpsession.h \
-  ../include/net/vsslsession.h
+  ../include/net/vsslsession.h \

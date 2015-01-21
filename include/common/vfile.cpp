@@ -34,8 +34,8 @@ bool VFile::doOpen()
     SET_ERROR(VFileError, "file name is not specified", VFileError::FILENAME_NOT_SPECIFIED);
     return false;
   }
-  base.setFileName(fileName);
-  if (!base.open(mode))
+  primitive.setFileName(fileName);
+  if (!primitive.open(mode))
   {
     if (mode | QIODevice::ReadOnly)
     {
@@ -45,7 +45,7 @@ bool VFile::doOpen()
         return false;
       }
     }
-    SET_ERROR(VFileError, base.errorString(), base.error());
+	SET_ERROR(VFileError, primitive.errorString(), primitive.error());
     return false;
   }
   return true;
@@ -53,13 +53,13 @@ bool VFile::doOpen()
 
 bool VFile::doClose()
 {
-  base.close();
+  primitive.close();
   return true;
 }
 
 int VFile::doRead(char* buf,  int size)
 {
-  int res = (int)base.read(buf, (qint64)size);
+  int res = (int)primitive.read(buf, (qint64)size);
   if (res == -1)
   {
     SET_ERROR(VFileError, QString("error in read file(%1)").arg(fileName), VFileError::ERROR_IN_READ_FILE);
@@ -67,12 +67,12 @@ int VFile::doRead(char* buf,  int size)
   }
   if (res == 0)
   {
-    if (base.atEnd())
+	if (primitive.atEnd())
     {
       SET_DEBUG_ERROR(VFileError, QString("end of file(%1)").arg(fileName), VFileError::END_OF_FILE);
     } else
     {
-      SET_ERROR(VFileError, QString("read return zero(%1) %2").arg(fileName).arg(base.errorString()), base.error());
+	  SET_ERROR(VFileError, QString("read return zero(%1) %2").arg(fileName).arg(primitive.errorString()), primitive.error());
     }
     return VError::FAIL;
   }
@@ -81,10 +81,10 @@ int VFile::doRead(char* buf,  int size)
 
 int VFile::doWrite(char* buf, int size)
 {
-  int res = (int)base.write(buf, (qint64)size);
+  int res = (int)primitive.write(buf, (qint64)size);
   if (res != size)
   {
-    SET_ERROR(VFileError, QString("error in write file(%1) %2").arg(fileName).arg(base.errorString()), base.error());
+	SET_ERROR(VFileError, QString("error in write file(%1) %2").arg(fileName).arg(primitive.errorString()), primitive.error());
     return VError::FAIL;
   }
   return res;

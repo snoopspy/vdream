@@ -12,19 +12,19 @@ TEMPLATE = app
 
 SOURCES += \
     test1.cpp \
-  ../../../include/common/vbase.cpp \
-  ../../../include/common/vdebugnew.cpp \
-  ../../../include/common/vdependency.cpp \
-  ../../../include/common/vmemoryleak.cpp \
-  ../../../include/common/vinstance.cpp \
-  ../../../include/common/vthread.cpp \
-  ../../../include/common/vapp.cpp
+  ../../../include/base/vbase.cpp \
+  ../../../include/base/vdebugnew.cpp \
+  ../../../include/base/vdependency.cpp \
+  ../../../include/base/vmemoryleak.cpp \
+  ../../../include/base/vinstance.cpp \
+  ../../../include/base/vthread.cpp \
+  ../../../include/base/vapp.cpp
 
 HEADERS += \
-  ../../../include/common/vbase.h \
-  ../../../include/common/vdebugnew.h \
-  ../../../include/common/vdependency.h \
-  ../../../include/common/vmemoryleak.h \
-  ../../../include/common/vinstance.h \
-  ../../../include/common/vthread.h \
-  ../../../include/common/vapp.h
+  ../../../include/base/vbase.h \
+  ../../../include/base/vdebugnew.h \
+  ../../../include/base/vdependency.h \
+  ../../../include/base/vmemoryleak.h \
+  ../../../include/base/vinstance.h \
+  ../../../include/base/vthread.h \
+  ../../../include/base/vapp.h

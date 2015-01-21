@@ -32,26 +32,26 @@ SOURCES += \
   ../include/log/vlogstdout.cpp \
   ../include/log/vloghttp.cpp \
   ../include/log/vlogudp.cpp \
-  ../include/common/vrwobject.cpp \
-  ../include/common/vxmldoc.cpp \
-  ../include/common/vtick.cpp \
-  ../include/common/vperformance.cpp \
-  ../include/common/vexception.cpp \
-  ../include/common/vthread.cpp \
-  ../include/common/vsystem.cpp \
-  ../include/common/vdebugnew.cpp \
-  ../include/common/vobjectwidget.cpp \
-  ../include/common/vapp.cpp \
-  ../include/common/vmemoryleak.cpp \
-  ../include/common/veventhandler.cpp \
-  ../include/common/vmetaclass.cpp \
-  ../include/common/vxml.cpp \
-  ../include/common/vfile.cpp \
-  ../include/common/vobject.cpp \
-  ../include/common/vinstance.cpp \
-  ../include/common/vdependency.cpp \
-  ../include/common/verror.cpp \
-  ../include/common/vprimitive.cpp \
+  ../include/base/vrwobject.cpp \
+  ../include/base/vxmldoc.cpp \
+  ../include/base/vtick.cpp \
+  ../include/base/vperformance.cpp \
+  ../include/base/vexception.cpp \
+  ../include/base/vthread.cpp \
+  ../include/base/vsystem.cpp \
+  ../include/base/vdebugnew.cpp \
+  ../include/base/vobjectwidget.cpp \
+  ../include/base/vapp.cpp \
+  ../include/base/vmemoryleak.cpp \
+  ../include/base/veventhandler.cpp \
+  ../include/base/vmetaclass.cpp \
+  ../include/base/vxml.cpp \
+  ../include/base/vfile.cpp \
+  ../include/base/vobject.cpp \
+  ../include/base/vinstance.cpp \
+  ../include/base/vdependency.cpp \
+  ../include/base/verror.cpp \
+  ../include/base/vprimitive.cpp \
   ../include/net/vnetclient.cpp \
   ../include/net/vnetfactory.cpp \
   ../include/net/vudpclient.cpp \
@@ -71,7 +71,7 @@ SOURCES += \
   ../include/net/http/vhttpresponse.cpp \
   ../include/net/vtcpserver.cpp \
   ../include/net/vnet.cpp \
-    ../include/common/vbase.cpp \
+	../include/base/vbase.cpp \
     ../include/net/vsslbase.cpp
 
 HEADERS += \
@@ -94,30 +94,30 @@ HEADERS += \
   ../include/log/vloghttp.h \
   ../include/log/vlognull.h \
   ../include/log/vlogdbwin32.h \
-  ../include/common/vmemoryleak.h \
-  ../include/common/verror.h \
-  ../include/common/vinstance.h \
-  ../include/common/vdependency.h \
-  ../include/common/vlinux.h \
-  ../include/common/vmetaclass.h \
-  ../include/common/veventhandler.h \
-  ../include/common/vtick.h \
-  ../include/common/vsystem.h \
-  ../include/common/vobject.h \
-  ../include/common/vwindows.h \
-  ../include/common/vfactory.h \
-  ../include/common/vfile.h \
-  ../include/common/vdebugnew.h \
-  ../include/common/vdebugnewcancel.h \
-  ../include/common/vobjectwidget.h \
-  ../include/common/vrwobject.h \
-  ../include/common/vapp.h \
-  ../include/common/vthread.h \
-  ../include/common/vxmldoc.h \
-  ../include/common/vperformance.h \
-  ../include/common/vexception.h \
-  ../include/common/vxml.h \
-  ../include/common/vprimitive.h \
+  ../include/base/vmemoryleak.h \
+  ../include/base/verror.h \
+  ../include/base/vinstance.h \
+  ../include/base/vdependency.h \
+  ../include/base/vlinux.h \
+  ../include/base/vmetaclass.h \
+  ../include/base/veventhandler.h \
+  ../include/base/vtick.h \
+  ../include/base/vsystem.h \
+  ../include/base/vobject.h \
+  ../include/base/vwindows.h \
+  ../include/base/vfactory.h \
+  ../include/base/vfile.h \
+  ../include/base/vdebugnew.h \
+  ../include/base/vdebugnewcancel.h \
+  ../include/base/vobjectwidget.h \
+  ../include/base/vrwobject.h \
+  ../include/base/vapp.h \
+  ../include/base/vthread.h \
+  ../include/base/vxmldoc.h \
+  ../include/base/vperformance.h \
+  ../include/base/vexception.h \
+  ../include/base/vxml.h \
+  ../include/base/vprimitive.h \
   ../include/net/vudpsession.h \
   ../include/net/vudpclient.h \
   ../include/net/vudpserver.h \
@@ -138,6 +138,6 @@ HEADERS += \
   ../include/net/vnetsession.h \
   ../include/net/vtcpsession.h \
   ../include/net/vsslsession.h \
-    ../include/common/vbase.h \
+	../include/base/vbase.h \
     ../include/net/vsslbase.h \
     ../include/net/http/vhttpbase.h

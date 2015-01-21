@@ -95,19 +95,19 @@ QString VMode::str() const
 #include <VDebugNewCancel>
 #include <gtest/gtest.h>
 
-TEST( Common, versionTest )
+TEST( BaseTest, versionTest )
 {
   qDebug() << VDREAM_VERSION;
 }
 
-TEST( Common, macroTest )
+TEST( BaseTest, macroTest )
 {
   qDebug() << "__DATE__    =" << __DATE__;
   qDebug() << "__TIME__    =" << __TIME__;
   qDebug() << "__FILE__    =" << __FILE__;
 }
 
-TEST( Common, classNameTest )
+TEST( BaseTest, classNameTest )
 {
   class MyObject {};
   MyObject obj;

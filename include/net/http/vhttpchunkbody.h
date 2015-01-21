@@ -11,7 +11,7 @@
 #ifndef __V_HTTP_CHUNK_BODY_H__
 #define __V_HTTP_CHUNK_BODY_H__
 
-#include <VHttpCommon>
+#include <VHttpBase>
 
 // ----------------------------------------------------------------------------
 // VHttpChunkBody

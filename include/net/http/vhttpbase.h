@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------------
 //
-// VDream Component Suite version 9.0
+// VDream Component Suite version 9.01
 //
 // http://www.gilgil.net
 //
@@ -8,10 +8,10 @@
 //
 // ----------------------------------------------------------------------------
 
-#ifndef __V_HTTP_COMMON_H__
-#define __V_HTTP_COMMON_H__
+#ifndef __V_HTTP_BASE_H__
+#define __V_HTTP_BASE_H__
 
-#include <VLog>
 #include <QtCore>
+#include <VLog>
 
-#endif // __V_HTTP_COMMON_H__
+#endif // __V_HTTP_BASE_H__

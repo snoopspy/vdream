@@ -129,7 +129,6 @@ HEADERS += \
   ../include/net/vtcpclient.h \
   ../include/net/vnetserver.h \
   ../include/net/vsslserver.h \
-  ../include/net/http/vhttpcommon.h \
   ../include/net/http/vwebproxy.h \
   ../include/net/http/vhttpresponse.h \
   ../include/net/http/vhttpchunkbody.h \
@@ -140,4 +139,5 @@ HEADERS += \
   ../include/net/vtcpsession.h \
   ../include/net/vsslsession.h \
     ../include/common/vbase.h \
-    ../include/net/vsslbase.h
+    ../include/net/vsslbase.h \
+    ../include/net/http/vhttpbase.h

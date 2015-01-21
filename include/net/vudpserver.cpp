@@ -61,7 +61,7 @@ bool VUdpServer::doOpen()
   udpSession->handle = ::socket(AF_INET, SOCK_DGRAM, 0);
   if (udpSession->handle == INVALID_SOCKET)
     {
-    SET_ERROR(VSocketError, "error in socket", WSAGetLastError());
+    SET_ERROR(VSocketError, "error in socket", (int)WSAGetLastError());
     return false;
   }
 
@@ -88,7 +88,7 @@ bool VUdpServer::doOpen()
   int res = ::bind(udpSession->handle, (struct sockaddr*)&udpSession->addr, sizeof(udpSession->addr));
   if (res == SOCKET_ERROR)
   {
-    SET_ERROR(VSocketError, QString("error in bind(%1:%2)").arg(localHost).arg(port), WSAGetLastError());
+    SET_ERROR(VSocketError, QString("error in bind(%1:%2)").arg(localHost).arg(port), (int)WSAGetLastError());
     return false;
   }
 

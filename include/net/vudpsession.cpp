@@ -46,7 +46,7 @@ bool VUdpSession::doClose()
 #ifdef linux
     if (WSAGetLastError() != ENOTCONN)
 #endif // linux
-      SET_ERROR(VSocketError, "error in shutdown", WSAGetLastError());
+      SET_ERROR(VSocketError, "error in shutdown", (int)WSAGetLastError());
   }
 
   //
@@ -60,7 +60,7 @@ bool VUdpSession::doClose()
 #endif // linux
   if (res == SOCKET_ERROR)
   {
-    SET_ERROR(VSocketError, "error in closesocket", WSAGetLastError());
+    SET_ERROR(VSocketError, "error in closesocket", (int)WSAGetLastError());
   }
 
   handle = INVALID_SOCKET;
@@ -92,7 +92,7 @@ int VUdpSession::doRead(char* buf, int size)
   addr = tempAddr;
   if (res == SOCKET_ERROR)
   {
-    SET_DEBUG_ERROR(VSocketError, "error in recv", WSAGetLastError());
+    SET_DEBUG_ERROR(VSocketError, "error in recv", (int)WSAGetLastError());
     return VError::FAIL;
   }
   // sometimes, read length can be 0(zero), and check if return value is not zero.
@@ -119,7 +119,7 @@ int VUdpSession::doWrite(char* buf, int size)
     res = ::sendto(handle, buf, restSize, 0, (struct sockaddr*)&addr, sizeof(addr));;
     if (res == SOCKET_ERROR)
     {
-      SET_ERROR(VSocketError, "error in send", WSAGetLastError());
+      SET_ERROR(VSocketError, "error in send", (int)WSAGetLastError());
       return VError::FAIL;
     }
     buf += res;

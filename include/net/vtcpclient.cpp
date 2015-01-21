@@ -43,7 +43,7 @@ bool VTcpClient::doOpen()
   tcpSession->handle = socket(AF_INET, SOCK_STREAM, 0);
   if (tcpSession->handle == INVALID_SOCKET)
   {
-    SET_ERROR(VSocketError, "error in socket", WSAGetLastError());
+    SET_ERROR(VSocketError, "error in socket", (int)WSAGetLastError());
     return false;
   }
 
@@ -70,7 +70,7 @@ bool VTcpClient::doOpen()
   int res = bind(tcpSession->handle, (struct sockaddr*)&tcpSession->addr, sizeof(tcpSession->addr));
   if (res == SOCKET_ERROR)
   {
-    SET_ERROR(VSocketError, QString("error in bind(%1:%2)").arg(localHost).arg(localPort), WSAGetLastError());
+    SET_ERROR(VSocketError, QString("error in bind(%1:%2)").arg(localHost).arg(localPort), (int)WSAGetLastError());
     return false;
   }
 
@@ -95,7 +95,7 @@ bool VTcpClient::doOpen()
   res = ::connect(tcpSession->handle, (struct sockaddr*)&tcpSession->addr, sizeof(tcpSession->addr));
   if (res == SOCKET_ERROR)
   {
-    int lastError = WSAGetLastError();
+    int lastError = (int)WSAGetLastError();
     SET_ERROR(VSocketError, QString("error in connect(%1:%2)").arg(host).arg(port), lastError);
     return false;
   }

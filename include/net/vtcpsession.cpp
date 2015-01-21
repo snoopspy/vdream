@@ -43,7 +43,7 @@ bool VTcpSession::doClose()
   int res = ::shutdown(handle, SD_BOTH);
   if (res == SOCKET_ERROR)
   {
-    SET_DEBUG_ERROR(VSocketError, "error in shutdown", WSAGetLastError());
+    SET_DEBUG_ERROR(VSocketError, "error in shutdown", (int)WSAGetLastError());
   }
 
   //
@@ -57,7 +57,7 @@ bool VTcpSession::doClose()
 #endif // linux
   if (res == SOCKET_ERROR)
   {
-    SET_ERROR(VSocketError, "error in closesocket", WSAGetLastError());
+    SET_ERROR(VSocketError, "error in closesocket", (int)WSAGetLastError());
   }
 
   handle = INVALID_SOCKET;
@@ -71,7 +71,7 @@ int VTcpSession::doRead(char* buf, int size)
   int res = ::recv(handle, buf, size, 0);
   if (res == SOCKET_ERROR)
   {
-    SET_DEBUG_ERROR(VSocketError, "error in recv", WSAGetLastError());
+    SET_DEBUG_ERROR(VSocketError, "error in recv", (int)WSAGetLastError());
     return VError::FAIL;
   }
   // sometimes, read length can be 0(zero), and check if return value is not zero.
@@ -96,7 +96,7 @@ int VTcpSession::doWrite(char* buf, int size)
     res = ::send(handle, buf, restSize, 0);
     if (res == SOCKET_ERROR)
     {
-      SET_ERROR(VSocketError, "error in send", WSAGetLastError());
+      SET_ERROR(VSocketError, "error in send", (int)WSAGetLastError());
       return VError::FAIL;
     }
     buf += res;

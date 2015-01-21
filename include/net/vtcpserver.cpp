@@ -72,7 +72,7 @@ bool VTcpServer::doOpen()
   acceptSession->handle = ::socket(AF_INET, SOCK_STREAM, 0);
   if (acceptSession->handle == INVALID_SOCKET)
   {
-    SET_ERROR(VSocketError, "error in socket", WSAGetLastError());
+    SET_ERROR(VSocketError, "error in socket", (int)WSAGetLastError());
     return false;
   }
 
@@ -99,7 +99,7 @@ bool VTcpServer::doOpen()
   int res = ::bind(acceptSession->handle, (struct sockaddr*)&acceptSession->addr, sizeof(acceptSession->addr));
   if (res == SOCKET_ERROR)
   {
-    SET_ERROR(VSocketError, QString("error in bind(%1:%2)").arg(localHost).arg(port), WSAGetLastError());
+    SET_ERROR(VSocketError, QString("error in bind(%1:%2)").arg(localHost).arg(port), (int)WSAGetLastError());
     return false;
   }
 
@@ -109,7 +109,7 @@ bool VTcpServer::doOpen()
   res = ::listen(acceptSession->handle, BACKLOG);
   if (res == SOCKET_ERROR)
   {
-    SET_ERROR(VSocketError, "error in listen", WSAGetLastError());
+    SET_ERROR(VSocketError, "error in listen", (int)WSAGetLastError());
     return false;
   }
 
@@ -240,7 +240,7 @@ VTcpSession* VTcpServer::accept()
   newHandle = ::accept(acceptSession->handle, (struct sockaddr*)&sockAddr, &size);
   if (newHandle == INVALID_SOCKET)
   {
-    SET_DEBUG_ERROR(VNetError, "error in accept", WSAGetLastError());
+    SET_DEBUG_ERROR(VNetError, "error in accept", (int)WSAGetLastError());
     goto _error;
   }
 
@@ -261,7 +261,7 @@ void VTcpServer::run()
     VTcpSession* newTCPSession = accept();
     if (newTCPSession == NULL)
     {
-      SET_DEBUG_ERROR(VNetError, "error in accept", WSAGetLastError());
+      SET_DEBUG_ERROR(VNetError, "error in accept", (int)WSAGetLastError());
       break;
     }
     if (!newTCPSession->open())

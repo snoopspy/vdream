@@ -159,7 +159,7 @@ Ip VNet::resolve(QString host)
 #endif // linux
   return ntohl(*((Ip*)&addr));
 _error:
-  lastError = GetLastError();
+  lastError = (int)GetLastError();
   {
     LOG_ERROR("[VNet.cpp] -------------------------------------");
     LOG_ERROR("[VNet.cpp] VNet::resolve host=%s GetLastError=%d", qPrintable(host), lastError);

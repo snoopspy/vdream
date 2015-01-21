@@ -11,7 +11,7 @@
 #ifndef __V_LOG_H__
 #define __V_LOG_H__
 
-#include <VCommon>
+#include <VBase>
 #include <VMetaClass>
 #include <VXml>
 

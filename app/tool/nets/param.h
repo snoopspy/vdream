@@ -11,8 +11,7 @@
 #ifndef paramh
 #define paramh
 
-#include <VCommon>
-// #include "VDDelphi.h" // gilgil temp 2012.04.15
+#include <VBase>
 
 #define DEFAULT_BUF_SIZE 8192
 // ----------------------------------------------------------------------------

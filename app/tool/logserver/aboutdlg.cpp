@@ -1,6 +1,6 @@
 #include "aboutdlg.h"
 #include "ui_aboutdlg.h"
-#include <VCommon>
+#include <VBase>
 
 AboutDlg::AboutDlg(QWidget *parent) :
     QDialog(parent),

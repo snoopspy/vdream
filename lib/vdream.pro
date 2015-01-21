@@ -50,7 +50,6 @@ SOURCES += \
   ../include/common/vobject.cpp \
   ../include/common/vinstance.cpp \
   ../include/common/vdependency.cpp \
-  ../include/common/vcommon.cpp \
   ../include/common/verror.cpp \
   ../include/common/vprimitive.cpp \
   ../include/net/vnetclient.cpp \
@@ -72,7 +71,8 @@ SOURCES += \
   ../include/net/http/vhttpheader.cpp \
   ../include/net/http/vhttpresponse.cpp \
   ../include/net/vtcpserver.cpp \
-  ../include/net/vnet.cpp
+  ../include/net/vnet.cpp \
+    ../include/common/vbase.cpp
 
 HEADERS += \
   ../include/etc/vint.h \
@@ -103,7 +103,6 @@ HEADERS += \
   ../include/common/veventhandler.h \
   ../include/common/vtick.h \
   ../include/common/vsystem.h \
-  ../include/common/vcommon.h \
   ../include/common/vobject.h \
   ../include/common/vwindows.h \
   ../include/common/vfactory.h \
@@ -141,3 +140,4 @@ HEADERS += \
   ../include/net/vnetsession.h \
   ../include/net/vtcpsession.h \
   ../include/net/vsslsession.h \
+    ../include/common/vbase.h

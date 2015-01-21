@@ -393,7 +393,7 @@ bool VSimpleThread::open()
     {
       try
       {
-        name = CLASS_NAME(*m_runnable) + "::run";
+		name = QString(VBase::getClassName(typeid(*m_runnable).name()))+ "::run";
       }
       catch(...)
       {
@@ -402,7 +402,7 @@ bool VSimpleThread::open()
     }
     else
     {
-      name = CLASS_NAME(*this);
+	  name = VBase::getClassName(typeid(*this).name());
     }
   }
   return VThread::open();

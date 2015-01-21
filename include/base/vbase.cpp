@@ -27,10 +27,9 @@ const char* VDREAM_VERSION = "VDream 9.1 Release Build( " __DATE__ " " __TIME__ 
 QString getClassName(const char* value)
 {
   int status;
-  char *realname = abi::__cxa_demangle(value, 0, 0, &status);
-  QString res = realname;
-  int pos = res.lastIndexOf("::");
-  if (pos != -1) res = res.mid(pos + 2);
+  char* res = abi::__cxa_demangle(value, 0, 0, &status);
+  char* p = strstr(res, "::");
+  if (p != NULL) res = p + 2;
   return res;
 }
 
@@ -111,7 +110,7 @@ TEST( BaseTest, classNameTest )
 {
   class MyObject {};
   MyObject obj;
-  QString className = CLASS_NAME(obj);
+  QString className = VBase::getClassName(typeid(obj).name());
   qDebug() << "MyObject class name is " << className;
   EXPECT_TRUE( className == "MyObject" );
 }

@@ -13,7 +13,6 @@
 
 // #define WIN32_LEAN_AND_MEAN // gilgil temp 2015.01.21
 #include <QtCore>
-// #include <VDesign> // gilgil temp 2014.11.27
 #include <VSystem>
 #ifdef WIN32
 #include <VWindows>
@@ -21,11 +20,6 @@
 #ifdef linux
 #include <VLinux>
 #endif // linux
-
-// ----------------------------------------------------------------------------
-// VDream Version
-// ----------------------------------------------------------------------------
-extern const char* VDREAM_VERSION;
 
 // ----------------------------------------------------------------------------
 // Common Define
@@ -39,11 +33,19 @@ extern const char* VDREAM_VERSION;
 #endif // SAFE_FREE
 
 // ----------------------------------------------------------------------------
+// VBase
+// ----------------------------------------------------------------------------
+class VBase
+{
+public:
+	static const char* VDREAM_VERSION;
+	static const char* getClassName(const char* value);
+};
+
+// ----------------------------------------------------------------------------
 // Class
 // ----------------------------------------------------------------------------
-QString getClassName(const char* value);
-// #define IS_CLASS(obj, type) (dynamic_cast<type>(obj)!=NULL) // gilgil temp 2014.12.28
-#define CLASS_NAME(obj)     getClassName(typeid(obj).name())
+// #define CLASS_NAME(obj) getClassName(typeid(obj).name())// gilgil temp 2015.01.21
 
 // ----------------------------------------------------------------------------
 // Constant

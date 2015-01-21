@@ -26,7 +26,7 @@ public:
   //
   static T* createByClassName(const QString& className)
   {
-    QString parentClassName = CLASS_NAME(T);
+	QString parentClassName = VBase::getClassName(typeid(T).name());
     VMetaClassList& list = VMetaClassMap::getList((char*)qPrintable(parentClassName));
     T* res = (T*)list.createByClassName((char*)qPrintable(className));
     if (res == NULL)

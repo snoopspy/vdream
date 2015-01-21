@@ -79,7 +79,7 @@ public:
   int     tag; // used for debugging
   QString name;
   VState  state()     { return m_state;                   }
-  QString className() { return CLASS_NAME(*this);         }
+  QString className() { return this->metaObject()->className(); }
   bool    active()    { return m_state == VState::Opened; }
 
   //

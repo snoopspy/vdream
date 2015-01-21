@@ -284,7 +284,7 @@ void VLog::load(VXml xml)
 
 void VLog::save(VXml xml)
 {
-  xml.setStr("_class", CLASS_NAME(*this));
+  xml.setStr("_class", VBase::getClassName(typeid(*this).name()));
   xml.setInt("level", level);
   xml.setStr("showDateTime", showDateTime.str());
   xml.setBool("showThreadID", showThreadID);
@@ -437,7 +437,7 @@ TEST ( Log, uriTest )
     EXPECT_TRUE( log != NULL );
     if (log != NULL)
     {
-      QString className = CLASS_NAME(*log);
+	  QString className = VBase::getClassName(typeid(*log).name());
       EXPECT_TRUE( className == className );
       log->trace("[%s:%d] uri=%s className=%s", __FILENAME__, __LINE__, qPrintable(uri), qPrintable(className));
       delete log;

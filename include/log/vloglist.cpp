@@ -193,7 +193,7 @@ void VLogList::save(VXml xml)
   xml.clearChild();
   foreach(VLog* childLog, items)
   {
-    QString className = CLASS_NAME(*childLog);
+	QString className = VBase::getClassName(typeid(*childLog).name());
     VXml childXml = xml.addChild("log");
     childLog->save(childXml);
   }

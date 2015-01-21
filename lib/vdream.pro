@@ -44,7 +44,6 @@ SOURCES += \
   ../include/common/vapp.cpp \
   ../include/common/vmemoryleak.cpp \
   ../include/common/veventhandler.cpp \
-  ../include/common/vstring.cpp \
   ../include/common/vmetaclass.cpp \
   ../include/common/vxml.cpp \
   ../include/common/vfile.cpp \
@@ -102,7 +101,6 @@ HEADERS += \
   ../include/common/vdependency.h \
   ../include/common/vlinux.h \
   ../include/common/vmetaclass.h \
-  ../include/common/vstring.h \
   ../include/common/veventhandler.h \
   ../include/common/vtick.h \
   ../include/common/vsystem.h \

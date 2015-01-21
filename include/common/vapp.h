@@ -11,7 +11,6 @@
 #ifndef __V_APP_H__
 #define __V_APP_H__
 
-#include <VCommon>
 #include <VXmlDoc>
 #include <VLogFactory>
 

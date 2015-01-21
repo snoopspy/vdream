@@ -1,7 +1,6 @@
-#include "vlistwidget.h"
-
 #ifdef QT_GUI_LIB
 
+#include "vlistwidget.h"
 #include "ui_vlistwidget.h"
 
 // ----------------------------------------------------------------------------
@@ -73,6 +72,4 @@ void VListWidget::__on_pbDel_clicked()
   }
 };
 
-#else // QT_GUI_LIB
-void VListWidget_foo() {} // for remove warning
 #endif // QT_GUI_LIB

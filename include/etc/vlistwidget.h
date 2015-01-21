@@ -1,5 +1,15 @@
-#ifndef VLISTWIDGET_H
-#define VLISTWIDGET_H
+// ----------------------------------------------------------------------------
+//
+// VDream Component Suite version 9.01
+//
+// http://www.gilgil.net
+//
+// Copyright (c) Gilbert Lee All rights reserved
+//
+// ----------------------------------------------------------------------------
+
+#ifndef __V_LIST_WIDGET_H__
+#define __V_LIST_WIDGET_H__
 
 #ifdef QT_GUI_LIB
 
@@ -56,4 +66,4 @@ public:
 class VListWidgetAccessible {};
 #endif // QT_GUI_LIB
 
-#endif // VLISTWIDGET_H
+#endif // __V_LIST_WIDGET_H__

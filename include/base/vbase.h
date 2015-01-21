@@ -22,7 +22,7 @@
 #endif // linux
 
 // ----------------------------------------------------------------------------
-// Common Define
+// Define
 // ----------------------------------------------------------------------------
 #ifndef SAFE_DELETE
 #define SAFE_DELETE(A) { if(A != NULL) { delete A; A = NULL; } }
@@ -41,10 +41,9 @@ public:
 	static const char* VDREAM_VERSION;
 	static const char* getClassName(const char* value);
 
-public:
-	static const int      BUF_SIZE          = 65536; // bytes
-	static const VTimeout TIMEOUT           = 10000; // 10 sec
-	static const int      PORT              = 10065;
+	static const int      BUF_SIZE = 65536; // bytes
+	static const VTimeout TIMEOUT  = 10000; // 10 sec
+	static const int      PORT     = 10065;
 };
 
 // ----------------------------------------------------------------------------

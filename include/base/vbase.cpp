@@ -24,7 +24,7 @@ const char* VBase::VDREAM_VERSION = "VDream 9.1 Release Build( " __DATE__ " " __
 // ----------------------------------------------------------------------------
 // Class
 // ----------------------------------------------------------------------------
-QString getClassName(const char* value)
+const char* VBase::getClassName(const char* value)
 {
   int status;
   char* res = abi::__cxa_demangle(value, 0, 0, &status);

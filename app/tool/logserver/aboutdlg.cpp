@@ -16,7 +16,7 @@ AboutDlg::~AboutDlg()
 
 void AboutDlg::showEvent(QShowEvent *)
 {
-  ui->lblVDreamVersion->setText(VDREAM_VERSION);
+  ui->lblVDreamVersion->setText(VBase::VDREAM_VERSION);
 }
 
 void AboutDlg::on_btnOK_clicked()

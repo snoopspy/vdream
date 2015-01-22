@@ -13,7 +13,6 @@
 
 #include <QThread>
 #include <VObject>
-#include <VException>
 
 // ----------------------------------------------------------------------------
 // VQThread

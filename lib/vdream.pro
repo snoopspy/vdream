@@ -36,7 +36,6 @@ SOURCES += \
   ../include/base/vxmldoc.cpp \
   ../include/base/vtick.cpp \
   ../include/base/vperformance.cpp \
-  ../include/base/vexception.cpp \
   ../include/base/vthread.cpp \
   ../include/base/vsystem.cpp \
   ../include/base/vdebugnew.cpp \
@@ -113,7 +112,6 @@ HEADERS += \
   ../include/base/vthread.h \
   ../include/base/vxmldoc.h \
   ../include/base/vperformance.h \
-  ../include/base/vexception.h \
   ../include/base/vxml.h \
   ../include/base/vprimitive.h \
   ../include/net/vudpsession.h \

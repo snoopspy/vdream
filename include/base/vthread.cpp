@@ -1,5 +1,4 @@
 #include <VThread>
-#include <VEventHandler>
 #include <VDebugNew>
 
 // ----- gilgil temp 2014.12.25 -----
@@ -112,11 +111,14 @@ void VQThread::run()
     bool freeThread = thread->freeOnTerminate;
     if (freeThread)
     {
-      // ----- gilgil temp 2012.08.15 -----
-      //delete thread;
+      // ----- gilgil temp 2015.01.22 -----
+      /*
       VDeleteObjectEvent* event = new VDeleteObjectEvent(thread);
       VEventHandler::instance().postEvent(event);
       // msleep(1000); // gilgil temp 2012.12.10
+      */
+      thread->deleteLater();
+      // ----------------------------------
     }
   }
   catch(...)

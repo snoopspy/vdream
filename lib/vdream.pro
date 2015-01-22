@@ -43,7 +43,6 @@ SOURCES += \
   ../include/base/vobjectwidget.cpp \
   ../include/base/vapp.cpp \
   ../include/base/vmemoryleak.cpp \
-  ../include/base/veventhandler.cpp \
   ../include/base/vmetaclass.cpp \
   ../include/base/vxml.cpp \
   ../include/base/vfile.cpp \
@@ -100,7 +99,6 @@ HEADERS += \
   ../include/base/vdependency.h \
   ../include/base/vlinux.h \
   ../include/base/vmetaclass.h \
-  ../include/base/veventhandler.h \
   ../include/base/vtick.h \
   ../include/base/vsystem.h \
   ../include/base/vobject.h \

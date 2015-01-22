@@ -81,7 +81,7 @@ public:
   QThread::Priority threadPriority;
 
 public:
-  static Qt::HANDLE currentID() { return QThread::currentThreadId(); }
+  static Qt::HANDLE currentId() { return QThread::currentThreadId(); }
 
 public:
   virtual void load(VXml xml);

@@ -97,7 +97,7 @@ void VQThread::run()
 	strncpy(className, qPrintable(thread->className()), VBase::BUF_SIZE);
     // _setCurrentThreadName((char*)threadName); // gilgil temp 2014.12.09
 
-    thread->m_id = VThread::currentID();
+    thread->m_id = VThread::currentId();
 
     try
     {
@@ -215,7 +215,7 @@ bool VThread::wait(VTimeout timeout)
   VLock lock(m_cs);
 
   {
-    Qt::HANDLE calling_id = currentID();
+    Qt::HANDLE calling_id = currentId();
     Qt::HANDLE closing_id = this->id();
     if (calling_id == closing_id)
     {

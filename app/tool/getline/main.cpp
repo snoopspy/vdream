@@ -5,7 +5,7 @@
 // ----------------------------------------------------------------------------
 void usage()
 {
-  printf("getline version 8.0\n");
+  printf("getline version 9.1\n");
   printf("Copyright (c) Gilbert Lee All rights reserved\n");
   printf("\n");
   printf("getline [-f <root folder>] <list of files>\n");

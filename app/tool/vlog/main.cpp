@@ -1,11 +1,9 @@
 #include <iostream>
 #include <string>
 
-//#include <QFile> // gilgil temp 2013.02.19
+#include <QCoreApplication>
 
 #include <VApp>
-//#include <VFile> // gilgil temp 2013.02.19
-
 #include <VLogUdp>
 #include <VLogStdout>
 #include <VLogFile>
@@ -39,8 +37,9 @@ void changeLog()
   VLog::changeLog(logList);
 }
 
-int main()
+int main(int argc, char* argv[])
 {
+  QCoreApplication a(argc, argv);
   bool fileExist = QFile::exists(VXmlDoc::defaultFileName());
   VApp::initialize();
   if (!fileExist) changeLog();

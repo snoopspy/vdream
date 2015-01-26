@@ -106,8 +106,8 @@ void App::run()
 // ----------------------------------------------------------------------------
 void usage()
 {
-  printf("Network Client verion 5.0\n");
-  printf("Copyright (c) NetworkLab Corporation All rights reserved\n");
+  printf("Network Client verion 9.1\n");
+  printf("Copyright (c) Gilbert Lee All rights reserved\n");
   printf("\n");
   printf("nc [tcp|udp] <host> <port> [option]\n");
   printf("\n");

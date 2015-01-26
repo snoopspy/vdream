@@ -3,9 +3,8 @@
 
 #include <VApp>
 
-int run(int argc, char* argv[])
+int run(QApplication& a)
 {
-  QApplication a(argc, argv);
   Widget w;
   w.show();
   return a.exec();
@@ -13,9 +12,10 @@ int run(int argc, char* argv[])
 
 int main(int argc, char* argv[])
 {
+  QApplication a(argc, argv);
   VApp::initialize();
   LOG_INFO("webproxy started %s", VBase::VDREAM_VERSION);
-  int res = run(argc, argv);
+  int res = run(a);
   VApp::finalize();
   LOG_INFO("webproxy terminated");
   return res;

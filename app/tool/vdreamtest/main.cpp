@@ -1,3 +1,4 @@
+#include <QCoreApplication>
 #include "main.h"
 
 MyServer::MyServer(void* owner) : VSslServer(owner)
@@ -58,9 +59,9 @@ void serverTest()
   sleep(1000000);
 }
 
-int main()
+int main(int argc, char* argv[])
 {
-  //clientTest();
+  QCoreApplication a(argc, argv);
   serverTest();
 
   return 0;

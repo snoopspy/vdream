@@ -1,10 +1,10 @@
 // ----------------------------------------------------------------------------
 //
-// VDream Component Suite version 5.0
+// VDream Component Suite version 9.0
 //
-// http://www.vdream.co.kr
+// http://www.gilgil.net
 //
-// Copyright (c) NetworkLab Corporation All rights reserved
+// Copyright (c) Gilbert Lee All rights reserved
 //
 // ----------------------------------------------------------------------------
 

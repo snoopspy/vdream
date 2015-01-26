@@ -170,8 +170,8 @@ void App::runned(VTcpSession* tcpSession) // tcp
 // ----------------------------------------------------------------------------
 void usage()
 {
-  printf("Network Server verion 5.0\n");
-  printf("Copyright (c) NetworkLab Corporation All rights reserved\n");
+  printf("Network Server verion 9.1\n");
+  printf("Copyright (c) Gilbert Lee All rights reserved\n");
   printf("\n");
   printf("nc [tcp|udp] <port> [option]\n");
   printf("\n");

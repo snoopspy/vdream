@@ -11,7 +11,7 @@ include(../../../lib/vdream.pri)
 
 TARGET        = logserver
 TEMPLATE      = app
-DESTDIR       = ../../bin
+DESTDIR       = $${PWD}/../../../bin
 win32:LIBS   += -lshell32
 win32:RC_FILE = logserver.rc
 

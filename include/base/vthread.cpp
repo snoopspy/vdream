@@ -436,7 +436,7 @@ protected:
     for (int i = 0; i < 3; i ++)
     {
       msleep(100);
-      printf("%p thread %d\n", VThread::currentID(), m_n);
+      printf("%p thread %d\n", VThread::currentId(), m_n);
     }
   }
 };
@@ -451,13 +451,13 @@ TEST( Thread, basicThreadTest )
     myThread[i] = new MyThread(i);
     myThread[i]->open();
   }
-  printf("%p closing all threads...\n", VThread::currentID());
+  printf("%p closing all threads...\n", VThread::currentId());
   for (int i = 0; i < THREAD_CNT; i++)
   {
     myThread[i]->close();
     delete myThread[i];
   }
-  printf("%p all threads closed\n", VThread::currentID());
+  printf("%p all threads closed\n", VThread::currentId());
 }
 
 // ----------------------------------------------------------------------------

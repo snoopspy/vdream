@@ -10,7 +10,7 @@ include(../../../lib/vdream.pri)
 
 TARGET   = netclient
 TEMPLATE = app
-DESTDIR  = ../../bin
+DESTDIR   = $${PWD}/../../../bin
 
 SOURCES += main.cpp \
     widget.cpp

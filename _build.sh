@@ -1,37 +1,14 @@
 # ---------------------------------------------------------------------------
-# vdream
+# lib
 # ---------------------------------------------------------------------------
-
-# vdreamd.lib
 cd lib
-qmake "CONFIG+=debug" "QT-=gui"
-make
-make clean
-cd ..
-
-# vdreamd_gui.lib
-cd lib
-qmake "CONFIG+=debug" "QT+=gui" "QT+=widgets"
-make
-make clean
-cd ..
-
-# vdream.lib
-cd lib
-qmake "CONFIG+=release" "QT-=gui"
-make
-make clean
-cd ..
-
-# vdream_gui.lib
-cd lib
-qmake "CONFIG+=release" "QT+=gui" "QT+=widgets"
-make
-# make clean
+make release -f make.file
 cd ..
 
 # ---------------------------------------------------------------------------
 # app
 # ---------------------------------------------------------------------------
-qmake
+cd app
+qmake "CONFIG+=release"
 make
+

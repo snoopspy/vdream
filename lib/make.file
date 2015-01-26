@@ -17,6 +17,7 @@ vdream_d:
 vdream_gui_d:
 	qmake vdream_gui.pro "CONFIG+=debug" "QT-=gui"
 	make -f Makefile
+	cp ui_* ../include
 	make clean -f Makefile
 
 vdream_test:
@@ -32,6 +33,7 @@ vdream:
 vdream_gui:
 	qmake vdream_gui.pro "CONFIG+=release" "QT-=gui"
 	make -f Makefile
+	cp ui_* ../include
 	make clean -f Makefile
 
 clean:

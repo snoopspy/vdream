@@ -13,7 +13,7 @@
 
 #include <VBase>
 #include <VMetaClass>
-#include <VXml>
+#include <VSerializable>
 
 // ----------------------------------------------------------------------------
 // VShowDateTime
@@ -41,7 +41,7 @@ public:
   QString str() const;
 };
 
-class VLog : public VXmlable
+class VLog : public VSerializable
 {
   friend class VLogList;
   friend class VLogFactory;
@@ -119,8 +119,8 @@ public:
   // XML
   //
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
   //
   // Global

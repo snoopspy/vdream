@@ -11,7 +11,7 @@
 #ifndef __V_APP_H__
 #define __V_APP_H__
 
-#include <VXmlDoc>
+// #include <VXmlDoc> // gilgil temp 2015.01.27
 #include <VLogFactory>
 
 // ----------------------------------------------------------------------------

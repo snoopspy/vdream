@@ -13,18 +13,18 @@ VWebProxyOutPolicy::VWebProxyOutPolicy()
   port   = 0;
 }
 
-void VWebProxyOutPolicy::load(VXml xml)
+void VWebProxyOutPolicy::load(VRep& rep)
 {
-  method = (Method)xml.getInt("method", (int)method);
-  host   = xml.getStr("host", host);
-  port   = xml.getInt("port", port);
+  method = (Method)rep.getInt("method", (int)method);
+  host   = rep.getStr("host", host);
+  port   = rep.getInt("port", port);
 }
 
-void VWebProxyOutPolicy::save(VXml xml)
+void VWebProxyOutPolicy::save(VRep& rep)
 {
-  xml.setInt("method", (int)method);
-  xml.setStr("host", host);
-  xml.setInt("port", port);
+  rep.setInt("method", (int)method);
+  rep.setStr("host", host);
+  rep.setInt("port", port);
 }
 
 #ifdef QT_GUI_LIB
@@ -755,40 +755,40 @@ void VWebProxy::run(VNetSession* inSession)
   delete outClient;
 }
 
-void VWebProxy::load(VXml xml)
+void VWebProxy::load(VRep& rep)
 {
   VObject::load(xml);
 
-  enabled                   = xml.getBool("enabled",                   enabled);
-  httpEnabled               = xml.getBool("httpEnabled",               httpEnabled);
-  httpsEnabled              = xml.getBool("httpsEnabled",              httpsEnabled);
-  maxContentCacheSize       = xml.getInt("maxContentCacheSize",        maxContentCacheSize);
-  disableLoopbackConnection = xml.getBool("disableLoopbackConnection", disableLoopbackConnection);
-  keepAliveTimeout          = xml.getULong("keepAliveTimeout",         keepAliveTimeout);
-  outInThreadTimeout        = xml.getULong("outInThreadTimeout",       outInThreadTimeout);
-  outPolicy.load(xml.gotoChild("outPolicy"));
-  tcpServer.load(xml.gotoChild("tcpServer"));
-  sslServer.load(xml.gotoChild("sslServer"));
-  if (!(xml.findChild("inboundDataChange").isNull()))  inboundDataChange.load(xml.gotoChild("inboundDataChange"));
-  if (!(xml.findChild("outboundDataChange").isNull())) outboundDataChange.load(xml.gotoChild("outboundDataChange"));
+  enabled                   = rep.getBool("enabled",                   enabled);
+  httpEnabled               = rep.getBool("httpEnabled",               httpEnabled);
+  httpsEnabled              = rep.getBool("httpsEnabled",              httpsEnabled);
+  maxContentCacheSize       = rep.getInt("maxContentCacheSize",        maxContentCacheSize);
+  disableLoopbackConnection = rep.getBool("disableLoopbackConnection", disableLoopbackConnection);
+  keepAliveTimeout          = rep.getULong("keepAliveTimeout",         keepAliveTimeout);
+  outInThreadTimeout        = rep.getULong("outInThreadTimeout",       outInThreadTimeout);
+  outPolicy.load(rep.gotoChild("outPolicy"));
+  tcpServer.load(rep.gotoChild("tcpServer"));
+  sslServer.load(rep.gotoChild("sslServer"));
+  if (!(rep.findChild("inboundDataChange").isNull()))  inboundDataChange.load(rep.gotoChild("inboundDataChange"));
+  if (!(rep.findChild("outboundDataChange").isNull())) outboundDataChange.load(rep.gotoChild("outboundDataChange"));
 }
 
-void VWebProxy::save(VXml xml)
+void VWebProxy::save(VRep& rep)
 {
   VObject::save(xml);
 
-  xml.setBool("enabled",                   enabled);
-  xml.setBool("httpEnabled",               httpEnabled);
-  xml.setBool("httpsEnabled",              httpsEnabled);
-  xml.setInt("maxContentCacheSize",        maxContentCacheSize);
-  xml.setBool("disableLoopbackConnection", disableLoopbackConnection);
-  xml.setULong("keepAliveTimeout",         keepAliveTimeout);
-  xml.setULong("outInThreadTimeout",       outInThreadTimeout);
-  outPolicy.save(xml.gotoChild("outPolicy"));
-  tcpServer.save(xml.gotoChild("tcpServer"));
-  sslServer.save(xml.gotoChild("sslServer"));
-  inboundDataChange.save(xml.gotoChild("inboundDataChange"));
-  outboundDataChange.save(xml.gotoChild("outboundDataChange"));
+  rep.setBool("enabled",                   enabled);
+  rep.setBool("httpEnabled",               httpEnabled);
+  rep.setBool("httpsEnabled",              httpsEnabled);
+  rep.setInt("maxContentCacheSize",        maxContentCacheSize);
+  rep.setBool("disableLoopbackConnection", disableLoopbackConnection);
+  rep.setULong("keepAliveTimeout",         keepAliveTimeout);
+  rep.setULong("outInThreadTimeout",       outInThreadTimeout);
+  outPolicy.save(rep.gotoChild("outPolicy"));
+  tcpServer.save(rep.gotoChild("tcpServer"));
+  sslServer.save(rep.gotoChild("sslServer"));
+  inboundDataChange.save(rep.gotoChild("inboundDataChange"));
+  outboundDataChange.save(rep.gotoChild("outboundDataChange"));
 }
 
 #ifdef QT_GUI_LIB

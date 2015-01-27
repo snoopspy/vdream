@@ -30,8 +30,8 @@ public:
   int change(QByteArray& ba, int offset = 0);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
 #ifdef QT_GUI_LIB
 public:
@@ -52,7 +52,7 @@ void operator << (VDataChangeItem& item, QTreeWidgetItem& treeWidgetItem);
 // ----------------------------------------------------------------------------
 // VDataChange
 // ----------------------------------------------------------------------------
-class VDataChange : public QObject, public QList<VDataChangeItem>, public VXmlable, public VOptionable, public VListWidgetAccessible
+class VDataChange : public QObject, public QList<VDataChangeItem>, public VSerializable, public VOptionable, public VListWidgetAccessible
 {
   Q_OBJECT
 
@@ -65,8 +65,8 @@ public:
   bool change(QByteArray& ba);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
 #ifdef QT_GUI_LIB
 public: // VOptionable

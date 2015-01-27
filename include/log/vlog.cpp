@@ -275,19 +275,19 @@ VLog* VLog::createByURI(const QString& uri)
   return NULL;
 }
 
-void VLog::load(VXml xml)
+void VLog::load(VRep& rep)
 {
-  level        = xml.getInt("level", level);
-  showDateTime = xml.getStr("showDateTime", showDateTime.str());
-  showThreadID = xml.getBool("showThreadID", showThreadID);
+  level        = rep.getInt("level", level);
+  showDateTime = rep.getStr("showDateTime", showDateTime.str());
+  showThreadID = rep.getBool("showThreadID", showThreadID);
 }
 
-void VLog::save(VXml xml)
+void VLog::save(VRep& rep)
 {
-  xml.setStr("_class", VBase::getClassName(typeid(*this).name()));
-  xml.setInt("level", level);
-  xml.setStr("showDateTime", showDateTime.str());
-  xml.setBool("showThreadID", showThreadID);
+  rep.setStr("_class", VBase::getClassName(typeid(*this).name()));
+  rep.setInt("level", level);
+  rep.setStr("showDateTime", showDateTime.str());
+  rep.setBool("showThreadID", showThreadID);
 }
 
 VLog* VLog::getLog()
@@ -316,12 +316,12 @@ VLog* VLog::changeLog(VLog* log)
 /*
 bool VLog::loadFromDefaultDoc(const QString& path)
 {
-  return VXmlable::loadFromDefaultDoc(path);
+  return VSerializable::loadFromDefaultDoc(path);
 }
 
 bool VLog::saveToDefaultDoc(const QString& path)
 {
-  return VXmlable::saveToDefaultDoc(path);
+  return VSerializable::saveToDefaultDoc(path);
 }
 */
 // -----------------------------------

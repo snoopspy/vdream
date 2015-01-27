@@ -14,7 +14,7 @@
 #include <QObject>
 
 #include <VError>
-#include <VXml>
+#include <VSerializable>
 #include <VLog>
 
 // ----------------------------------------------------------------------------
@@ -48,7 +48,7 @@ class VObjectConnections : public QList<VObjectConnection>
 class VObject :
   public QObject,
   // public VGetLoggable, // gilgil temp 2012.09.18
-  public VXmlable
+  public VSerializable
 {
   Q_OBJECT
 
@@ -111,8 +111,8 @@ signals:
   // load and save
   //
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 };
 
 #endif // __V_OBJECT_H__

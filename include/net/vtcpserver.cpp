@@ -283,12 +283,12 @@ void VTcpServer::run()
   }
 }
 
-void VTcpServer::load(VXml xml)
+void VTcpServer::load(VRep& rep)
 {
   VNetServer::load(xml);
 }
 
-void VTcpServer::save(VXml xml)
+void VTcpServer::save(VRep& rep)
 {
   VNetServer::save(xml);
 }

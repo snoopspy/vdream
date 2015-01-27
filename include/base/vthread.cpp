@@ -270,20 +270,20 @@ void VThread::run()
   LOG_ERROR("****************************************************");
 }
 
-void VThread::load(VXml xml)
+void VThread::load(VRep& rep)
 {
   VObject::load(xml);
 
-  freeOnTerminate = xml.getBool("freeOnTerminate", freeOnTerminate);
-  threadPriority  = (QThread::Priority) xml.getInt("threadPriority", (int)threadPriority);
+  freeOnTerminate = rep.getBool("freeOnTerminate", freeOnTerminate);
+  threadPriority  = (QThread::Priority) rep.getInt("threadPriority", (int)threadPriority);
 }
 
-void VThread::save(VXml xml)
+void VThread::save(VRep& rep)
 {
   VObject::save(xml);
 
-  xml.setBool("freeOnTerminate", freeOnTerminate);
-  xml.setInt("threadPriority", (int)threadPriority);
+  rep.setBool("freeOnTerminate", freeOnTerminate);
+  rep.setInt("threadPriority", (int)threadPriority);
 }
 
 // ----------------------------------------------------------------------------

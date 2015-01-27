@@ -31,22 +31,22 @@ int VDataChangeItem::change(QByteArray& ba, int offset)
   return index + replace.length();
 }
 
-void VDataChangeItem::load(VXml xml)
+void VDataChangeItem::load(VRep& rep)
 {
   VRegExp::load(xml);
 
-  enabled  = xml.getBool("enabled", enabled);
-  log      = xml.getBool("log", log);
-  replace  = xml.getArr("replace", replace);
+  enabled  = rep.getBool("enabled", enabled);
+  log      = rep.getBool("log", log);
+  replace  = rep.getArr("replace", replace);
 }
 
-void VDataChangeItem::save(VXml xml)
+void VDataChangeItem::save(VRep& rep)
 {
   VRegExp::save(xml);
 
-  xml.setBool("enabled", enabled);
-  xml.setBool("log",     log);
-  xml.setArr("replace",  replace);
+  rep.setBool("enabled", enabled);
+  rep.setBool("log",     log);
+  rep.setArr("replace",  replace);
 }
 
 #ifdef QT_GUI_LIB
@@ -128,11 +128,11 @@ bool VDataChange::change(QByteArray& ba)
   return res;
 }
 
-void VDataChange::load(VXml xml)
+void VDataChange::load(VRep& rep)
 {
   clear();
   {
-    xml_foreach (childXml, xml.childs())
+    xml_foreach (childXml, rep.childs())
     {
       VDataChangeItem item;
       item.load(childXml);
@@ -141,13 +141,13 @@ void VDataChange::load(VXml xml)
   }
 }
 
-void VDataChange::save(VXml xml)
+void VDataChange::save(VRep& rep)
 {
-  xml.clearChild();
+  rep.clearChild();
   for (VDataChange::iterator it = begin(); it != end(); it++)
   {
     VDataChangeItem& item = *it;
-    VXml childXml = xml.addChild("item");
+    VXml childXml = rep.addChild("item");
     item.save(childXml);
   }
 }

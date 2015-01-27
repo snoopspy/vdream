@@ -31,16 +31,16 @@ VLog* VLogStderr::createByURI(const QString& uri)
   return NULL;
 }
 
-void VLogStderr::load(VXml xml)
+void VLogStderr::load(VRep& rep)
 {
   VLog::load(xml);
 
-  autoFlush = xml.getBool("autoFlush", autoFlush);
+  autoFlush = rep.getBool("autoFlush", autoFlush);
 }
 
-void VLogStderr::save(VXml xml)
+void VLogStderr::save(VRep& rep)
 {
   VLog::save(xml);
 
-  xml.setBool("autoFlush", autoFlush);
+  rep.setBool("autoFlush", autoFlush);
 }

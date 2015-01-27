@@ -255,10 +255,10 @@ void Widget::showMessage(MsgEvent* event)
   ui->pteRecv->ensureCursorVisible();
 }
 
-void Widget::load(VXml xml)
+void Widget::load(VRep& rep)
 {
   {
-    VXml coordXml = xml.findChild("coord");
+    VXml coordXml = rep.findChild("coord");
     if (!coordXml.isNull())
     {
       QRect rect = geometry();
@@ -270,18 +270,18 @@ void Widget::load(VXml xml)
     }
   }
 
-  ui->chkShowHexa->setCheckState((Qt::CheckState)xml.getInt("showHexa", (int)ui->chkShowHexa->checkState()));
-  ui->chkSendHexa->setCheckState((Qt::CheckState)xml.getInt("sendHexa", (int)ui->chkSendHexa->checkState()));
-  ui->chkEcho->setCheckState((Qt::CheckState)xml.getInt("echo", (int)ui->chkEcho->checkState()));
-  ui->chkEchoBroadcast->setCheckState((Qt::CheckState)xml.getInt("echoBroadcast", (int)ui->chkEchoBroadcast->checkState()));
-  ui->tabOption->setCurrentIndex(xml.getInt("currentIndex", 0));
-  ui->leTcpPort->setText(xml.getStr("tcpPort", ui->leTcpPort->text()));
-  ui->leUdpPort->setText(xml.getStr("udpPort", ui->leUdpPort->text()));
-  ui->leSslPort->setText(xml.getStr("sslPort", ui->leSslPort->text()));
-  ui->pteSend->insertPlainText(xml.getStr("sendText", ui->pteSend->toPlainText()));
+  ui->chkShowHexa->setCheckState((Qt::CheckState)rep.getInt("showHexa", (int)ui->chkShowHexa->checkState()));
+  ui->chkSendHexa->setCheckState((Qt::CheckState)rep.getInt("sendHexa", (int)ui->chkSendHexa->checkState()));
+  ui->chkEcho->setCheckState((Qt::CheckState)rep.getInt("echo", (int)ui->chkEcho->checkState()));
+  ui->chkEchoBroadcast->setCheckState((Qt::CheckState)rep.getInt("echoBroadcast", (int)ui->chkEchoBroadcast->checkState()));
+  ui->tabOption->setCurrentIndex(rep.getInt("currentIndex", 0));
+  ui->leTcpPort->setText(rep.getStr("tcpPort", ui->leTcpPort->text()));
+  ui->leUdpPort->setText(rep.getStr("udpPort", ui->leUdpPort->text()));
+  ui->leSslPort->setText(rep.getStr("sslPort", ui->leSslPort->text()));
+  ui->pteSend->insertPlainText(rep.getStr("sendText", ui->pteSend->toPlainText()));
 
   {
-    VXml sizesXml = xml.findChild("sizes");
+    VXml sizesXml = rep.findChild("sizes");
     QList<int> sizes;
     if (!sizesXml.isNull())
     {
@@ -291,15 +291,15 @@ void Widget::load(VXml xml)
     }
   }
 
-  tcpServer.load(xml.gotoChilds("netClient/tcpServer"));
-  udpServer.load(xml.gotoChilds("netClient/udpServer"));
-  sslServer.load(xml.gotoChilds("netClient/sslServer"));
+  tcpServer.load(rep.gotoChilds("netClient/tcpServer"));
+  udpServer.load(rep.gotoChilds("netClient/udpServer"));
+  sslServer.load(rep.gotoChilds("netClient/sslServer"));
 }
 
-void Widget::save(VXml xml)
+void Widget::save(VRep& rep)
 {
   {
-    VXml coordXml = xml.gotoChild("coord");
+    VXml coordXml = rep.gotoChild("coord");
     QRect rect = geometry();
     coordXml.setInt("left",   rect.left());
     coordXml.setInt("top",    rect.top());
@@ -307,18 +307,18 @@ void Widget::save(VXml xml)
     coordXml.setInt("height", rect.height());
   }
 
-  xml.setInt("showHexa", (int)ui->chkShowHexa->checkState());
-  xml.setInt("sendHexa", (int)ui->chkSendHexa->checkState());
-  xml.setInt("echo", (int)ui->chkEcho->checkState());
-  xml.setInt("echoBroadcast", (int)ui->chkEchoBroadcast->checkState());
-  xml.setInt("currentIndex", ui->tabOption->currentIndex());
-  xml.setStr("tcpPort", ui->leTcpPort->text());
-  xml.setStr("udpPort", ui->leUdpPort->text());
-  xml.setStr("sslPort", ui->leSslPort->text());
-  xml.setStr("sendText", ui->pteSend->toPlainText());
+  rep.setInt("showHexa", (int)ui->chkShowHexa->checkState());
+  rep.setInt("sendHexa", (int)ui->chkSendHexa->checkState());
+  rep.setInt("echo", (int)ui->chkEcho->checkState());
+  rep.setInt("echoBroadcast", (int)ui->chkEchoBroadcast->checkState());
+  rep.setInt("currentIndex", ui->tabOption->currentIndex());
+  rep.setStr("tcpPort", ui->leTcpPort->text());
+  rep.setStr("udpPort", ui->leUdpPort->text());
+  rep.setStr("sslPort", ui->leSslPort->text());
+  rep.setStr("sendText", ui->pteSend->toPlainText());
 
   {
-    VXml sizesXml = xml.gotoChild("sizes");
+    VXml sizesXml = rep.gotoChild("sizes");
     QList<int> sizes = ui->splitter->sizes();
     QString strList;
     strList.clear(); foreach (int size, sizes) strList += QString::number(size) + ",";
@@ -326,9 +326,9 @@ void Widget::save(VXml xml)
     sizesXml.setStr("splitter", strList);
   }
 
-  tcpServer.save(xml.gotoChilds("netClient/tcpServer"));
-  udpServer.save(xml.gotoChilds("netClient/udpServer"));
-  sslServer.save(xml.gotoChilds("netClient/sslServer"));
+  tcpServer.save(rep.gotoChilds("netClient/tcpServer"));
+  udpServer.save(rep.gotoChilds("netClient/udpServer"));
+  sslServer.save(rep.gotoChilds("netClient/sslServer"));
 }
 
 void Widget::on_pbOpen_clicked()

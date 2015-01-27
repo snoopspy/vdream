@@ -135,12 +135,12 @@ int VUdpServer::doWrite(char* buf, int size)
   return size;
 }
 
-void VUdpServer::load(VXml xml)
+void VUdpServer::load(VRep& rep)
 {
   VNetServer::load(xml);
 }
 
-void VUdpServer::save(VXml xml)
+void VUdpServer::save(VRep& rep)
 {
   VNetServer::save(xml);
 }

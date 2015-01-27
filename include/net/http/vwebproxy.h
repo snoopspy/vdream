@@ -25,7 +25,7 @@
 // ----------------------------------------------------------------------------
 // VWebProxyOutPolicy
 // ----------------------------------------------------------------------------
-class VWebProxyOutPolicy : public VXmlable, public VOptionable
+class VWebProxyOutPolicy : public VSerializable, public VOptionable
 {
 public:
   enum Method {
@@ -44,8 +44,8 @@ public:
   int     port;
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
 #ifdef QT_GUI_LIB
 public: // for VOptionable
@@ -199,8 +199,8 @@ signals:
   void onHttpResponseBody  (QByteArray*    body,     VWebProxyConnection* connection);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
 #ifdef QT_GUI_LIB
 public: // for VOptionable

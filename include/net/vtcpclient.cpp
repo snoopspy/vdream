@@ -137,12 +137,12 @@ int  VTcpClient::doWrite(char* buf, int size)
   return res;
 }
 
-void VTcpClient::load(VXml xml)
+void VTcpClient::load(VRep& rep)
 {
   VNetClient::load(xml);
 }
 
-void VTcpClient::save(VXml xml)
+void VTcpClient::save(VRep& rep)
 {
   VNetClient::save(xml);
 }

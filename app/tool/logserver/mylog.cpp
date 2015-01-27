@@ -56,20 +56,20 @@ void MyLog::run()
   }
 }
 
-void MyLog::load(VXml xml)
+void MyLog::load(VRep& rep)
 {
   VObject::load(xml);
-  udpServer->load(xml.gotoChild("udpServer"));
-  runThread().load(xml.gotoChild("thread"));
-  autoOpen = xml.getBool("autoOpen", autoOpen);
-  timeShow = xml.getBool("timeShow", timeShow);
+  udpServer->load(rep.gotoChild("udpServer"));
+  runThread().load(rep.gotoChild("thread"));
+  autoOpen = rep.getBool("autoOpen", autoOpen);
+  timeShow = rep.getBool("timeShow", timeShow);
 }
 
-void MyLog::save(VXml xml)
+void MyLog::save(VRep& rep)
 {
   VObject::save(xml);
-  udpServer->save(xml.gotoChild("udpServer"));
-  runThread().save(xml.gotoChild("thread"));
-  xml.setBool("autoOpen", autoOpen);
-  xml.setBool("timeShow", timeShow);
+  udpServer->save(rep.gotoChild("udpServer"));
+  runThread().save(rep.gotoChild("thread"));
+  rep.setBool("autoOpen", autoOpen);
+  rep.setBool("timeShow", timeShow);
 }

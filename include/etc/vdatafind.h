@@ -22,7 +22,7 @@
 // ----------------------------------------------------------------------------
 // VRegExp
 // ----------------------------------------------------------------------------
-class VRegExp : public VXmlable
+class VRegExp : public VSerializable
 {
 public:
   VRegExp();
@@ -41,8 +41,8 @@ public:
   bool prepare(VError& error);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
 #ifdef QT_GUI_LIB
 public:
@@ -75,8 +75,8 @@ public:
   int find(QByteArray& ba, int offset = 0);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
 #ifdef QT_GUI_LIB
 public:
@@ -95,7 +95,7 @@ void operator << (VDataFindItem& item, QTreeWidgetItem& treeWidgetItem);
 // ----------------------------------------------------------------------------
 // VDataFind
 // ----------------------------------------------------------------------------
-class VDataFind : public QObject, public QList<VDataFindItem>, public VXmlable, public VOptionable, public VListWidgetAccessible
+class VDataFind : public QObject, public QList<VDataFindItem>, public VSerializable, public VOptionable, public VListWidgetAccessible
 {
   Q_OBJECT
 
@@ -108,8 +108,8 @@ public:
   bool find(QByteArray& ba);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
 #ifdef QT_GUI_LIB
 public: // VOptionable

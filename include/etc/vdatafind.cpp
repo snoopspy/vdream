@@ -43,20 +43,20 @@ bool VRegExp::prepare(VError& error)
   return true;
 }
 
-void VRegExp::load(VXml xml)
+void VRegExp::load(VRep& rep)
 {
-  pattern  = xml.getStr("pattern", pattern);
-  syntax   = (QRegExp::PatternSyntax)xml.getInt("syntax", (int)syntax);
-  cs       = (Qt::CaseSensitivity)xml.getInt("cs", (int)cs);
-  minimal  = xml.getBool("minimal", minimal);
+  pattern  = rep.getStr("pattern", pattern);
+  syntax   = (QRegExp::PatternSyntax)rep.getInt("syntax", (int)syntax);
+  cs       = (Qt::CaseSensitivity)rep.getInt("cs", (int)cs);
+  minimal  = rep.getBool("minimal", minimal);
 }
 
-void VRegExp::save(VXml xml)
+void VRegExp::save(VRep& rep)
 {
-  xml.setStr("pattern", pattern);
-  xml.setInt("syntax", (int)syntax);
-  xml.setInt("cs", (int)cs);
-  xml.setBool("minimal", minimal);
+  rep.setStr("pattern", pattern);
+  rep.setInt("syntax", (int)syntax);
+  rep.setInt("cs", (int)cs);
+  rep.setBool("minimal", minimal);
 }
 
 #ifdef QT_GUI_LIB
@@ -126,18 +126,18 @@ int VDataFindItem::find(QByteArray& ba, int offset)
   return index + found.length();
 }
 
-void VDataFindItem::load(VXml xml)
+void VDataFindItem::load(VRep& rep)
 {
   VRegExp::load(xml);
 
-  enabled = xml.getBool("enabled", enabled);
+  enabled = rep.getBool("enabled", enabled);
 }
 
-void VDataFindItem::save(VXml xml)
+void VDataFindItem::save(VRep& rep)
 {
   VRegExp::save(xml);
 
-  xml.setBool("enabled", enabled);
+  rep.setBool("enabled", enabled);
 }
 
 #ifdef QT_GUI_LIB
@@ -215,11 +215,11 @@ bool VDataFind::find(QByteArray& ba)
   return res;
 }
 
-void VDataFind::load(VXml xml)
+void VDataFind::load(VRep& rep)
 {
   clear();
   {
-    xml_foreach (childXml, xml.childs())
+    xml_foreach (childXml, rep.childs())
     {
       VDataFindItem item;
       item.load(childXml);
@@ -228,13 +228,13 @@ void VDataFind::load(VXml xml)
   }
 }
 
-void VDataFind::save(VXml xml)
+void VDataFind::save(VRep& rep)
 {
-  xml.clearChild();
+  rep.clearChild();
   for (VDataFind::iterator it = begin(); it != end(); it++)
   {
     VDataFindItem& item = *it;
-    VXml childXml = xml.addChild("item");
+    VXml childXml = rep.addChild("item");
     item.save(childXml);
   }
 }

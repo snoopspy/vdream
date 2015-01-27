@@ -125,10 +125,10 @@ void Widget::httpResponseBody(QByteArray* body, VWebProxyConnection* connection)
   QApplication::postEvent(this, new MsgEvent(*body, false));
 }
 
-void Widget::load(VXml xml)
+void Widget::load(VRep& rep)
 {
   {
-    VXml coordXml = xml.findChild("coord");
+    VXml coordXml = rep.findChild("coord");
     if (!coordXml.isNull())
     {
       QRect rect = geometry();
@@ -140,16 +140,16 @@ void Widget::load(VXml xml)
     }
   }
 
-  showMsg = xml.getBool("showMsg", showMsg);
+  showMsg = rep.getBool("showMsg", showMsg);
   ui->chkShowMsg->setCheckState(showMsg ? Qt::Checked : Qt::Unchecked);
 
-  proxy.load(xml.gotoChild("webProxy"));
+  proxy.load(rep.gotoChild("webProxy"));
 }
 
-void Widget::save(VXml xml)
+void Widget::save(VRep& rep)
 {
   {
-    VXml coordXml = xml.gotoChild("coord");
+    VXml coordXml = rep.gotoChild("coord");
     QRect rect = geometry();
     coordXml.setInt("left",   rect.left());
     coordXml.setInt("top",    rect.top());
@@ -157,9 +157,9 @@ void Widget::save(VXml xml)
     coordXml.setInt("height", rect.height());
   }
 
-  xml.setBool("showMsg", showMsg);
+  rep.setBool("showMsg", showMsg);
 
-  proxy.save(xml.gotoChild("webProxy"));
+  proxy.save(rep.gotoChild("webProxy"));
 }
 
 void Widget::on_pbOpen_clicked()

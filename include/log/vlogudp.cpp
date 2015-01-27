@@ -116,20 +116,20 @@ VLog* VLogUdp::createByURI(const QString& uri)
   return NULL;
 }
 
-void VLogUdp::load(VXml xml)
+void VLogUdp::load(VRep& rep)
 {
   VLog::load(xml);
 
-  host = xml.getStr("host", host);
-  port = xml.getInt("port", port);
+  host = rep.getStr("host", host);
+  port = rep.getInt("port", port);
   close();
   open();
 }
 
-void VLogUdp::save(VXml xml)
+void VLogUdp::save(VRep& rep)
 {
   VLog::save(xml);
 
-  xml.setStr("host", host);
-  xml.setInt("port", port);
+  rep.setStr("host", host);
+  rep.setInt("port", port);
 }

@@ -113,10 +113,10 @@ QStringList VGraphObjectList::findNamesByCategoryName(QString categoryName)
   return res;
 }
 
-void VGraphObjectList::load(VXml xml)
+void VGraphObjectList::load(VRep& rep)
 {
   clear();
-  xml_foreach (childXml, xml.childs())
+  xml_foreach (childXml, rep.childs())
   {
     QString className = childXml.getStr("_class");
     if (className == "")
@@ -135,14 +135,14 @@ void VGraphObjectList::load(VXml xml)
   }
 }
 
-void VGraphObjectList::save(VXml xml)
+void VGraphObjectList::save(VRep& rep)
 {
-  xml.clearChild();
+  rep.clearChild();
   int _count = this->count();
   for (int i = 0; i < _count; i++)
   {
     VObject* object = this->at(i);
-    VXml childXml = xml.addChild("object");
+    VXml childXml = rep.addChild("object");
     object->save(childXml);
   }
 }
@@ -171,20 +171,20 @@ bool VGraphConnect::operator == (const VGraphConnect& rhs)
   return true;
 }
 
-void VGraphConnect::load(VXml xml)
+void VGraphConnect::load(VRep& rep)
 {
-  sender   = xml.getStr("sender",   sender);
-  signal   = xml.getStr("signal",   signal);
-  receiver = xml.getStr("receiver", receiver);
-  slot     = xml.getStr("slot",     slot);
+  sender   = rep.getStr("sender",   sender);
+  signal   = rep.getStr("signal",   signal);
+  receiver = rep.getStr("receiver", receiver);
+  slot     = rep.getStr("slot",     slot);
 }
 
-void VGraphConnect::save(VXml xml)
+void VGraphConnect::save(VRep& rep)
 {
-  xml.setStr("sender",   sender);
-  xml.setStr("signal",   signal);
-  xml.setStr("receiver", receiver);
-  xml.setStr("slot",     slot);
+  rep.setStr("sender",   sender);
+  rep.setStr("signal",   signal);
+  rep.setStr("receiver", receiver);
+  rep.setStr("slot",     slot);
 }
 
 // ----------------------------------------------------------------------------
@@ -269,10 +269,10 @@ bool VGraphConnectList::delConnect(VGraphConnect connect)
   return true;
 }
 
-void VGraphConnectList::load(VXml xml)
+void VGraphConnectList::load(VRep& rep)
 {
   clear();
-  xml_foreach (childXml, xml.childs())
+  xml_foreach (childXml, rep.childs())
   {
     VGraphConnect connect;
     connect.load(childXml);
@@ -280,14 +280,14 @@ void VGraphConnectList::load(VXml xml)
   }
 }
 
-void VGraphConnectList::save(VXml xml)
+void VGraphConnectList::save(VRep& rep)
 {
-  xml.clearChild();
+  rep.clearChild();
   int _count = this->count();
   for (int i = 0; i < _count; i++)
   {
     VGraphConnect connect = at(i);
-    connect.save(xml.addChild("connect"));
+    connect.save(rep.addChild("connect"));
   }
 }
 
@@ -377,14 +377,14 @@ QStringList VGraph::slotList(VObject *object)
   return methodList(object, QMetaMethod::Slot);
 }
 
-void VGraph::load(VXml xml)
+void VGraph::load(VRep& rep)
 {
-  objectList.load(xml.gotoChild("objectList"));
-  connectList.load(xml.gotoChild("connectList"));
+  objectList.load(rep.gotoChild("objectList"));
+  connectList.load(rep.gotoChild("connectList"));
 }
 
-void VGraph::save(VXml xml)
+void VGraph::save(VRep& rep)
 {
-  objectList.save(xml.gotoChild("objectList"));
-  connectList.save(xml.gotoChild("connectList"));
+  objectList.save(rep.gotoChild("objectList"));
+  connectList.save(rep.gotoChild("connectList"));
 }

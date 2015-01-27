@@ -32,8 +32,8 @@ public:
   virtual VLog* createByURI(const QString& uri);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 };
 
 #endif // __V_LOG_STDERR_H__

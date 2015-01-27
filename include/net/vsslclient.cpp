@@ -122,18 +122,18 @@ int VSslClient::doWrite(char* buf, int size)
   return sslSession->write(buf, size);
 }
 
-void VSslClient::load(VXml xml)
+void VSslClient::load(VRep& rep)
 {
   VTcpClient::load(xml);
 
-  methodType = xml.getInt("methodType", (int)methodType);
+  methodType = rep.getInt("methodType", (int)methodType);
 }
 
-void VSslClient::save(VXml xml)
+void VSslClient::save(VRep& rep)
 {
   VTcpClient::save(xml);
 
-  xml.setInt("methodType", (int)methodType);
+  rep.setInt("methodType", (int)methodType);
 }
 
 #ifdef QT_GUI_LIB

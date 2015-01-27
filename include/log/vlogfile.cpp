@@ -110,20 +110,20 @@ void VLogFile::setFolder(QString folder)
   this->m_folder = folder;
 }
 
-void VLogFile::load(VXml xml)
+void VLogFile::load(VRep& rep)
 {
   VLog::load(xml);
 
-  QString _folder = xml.getStr("folder", folder()); setFolder(_folder);
-  fileName        = xml.getStr("fileName", fileName);
-  closeOnWrite    = xml.getBool("closeOnWrite", closeOnWrite);
+  QString _folder = rep.getStr("folder", folder()); setFolder(_folder);
+  fileName        = rep.getStr("fileName", fileName);
+  closeOnWrite    = rep.getBool("closeOnWrite", closeOnWrite);
 }
 
-void VLogFile::save(VXml xml)
+void VLogFile::save(VRep& rep)
 {
   VLog::save(xml);
 
-  xml.setStr("folder",        folder());
-  xml.setStr("fileName",      fileName);
-  xml.setBool("closeOnWrite", closeOnWrite);
+  rep.setStr("folder",        folder());
+  rep.setStr("fileName",      fileName);
+  rep.setBool("closeOnWrite", closeOnWrite);
 }

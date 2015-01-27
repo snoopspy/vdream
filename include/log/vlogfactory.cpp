@@ -1,5 +1,5 @@
 #include <VLogFactory>
-#include <VXmlDoc>
+// #include <VXmlDoc> // gilgil temp 2015.01.27
 #include <VLogDBWin32>
 #include <VLogFile>
 #include <VLogHttp>

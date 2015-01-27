@@ -33,7 +33,7 @@ SOURCES += \
   ../include/log/vloghttp.cpp \
   ../include/log/vlogudp.cpp \
   ../include/base/vrwobject.cpp \
-  ../include/base/vxmldoc.cpp \
+#  ../include/base/vxmldoc.cpp \
   ../include/base/vtick.cpp \
   ../include/base/vperformance.cpp \
   ../include/base/vthread.cpp \
@@ -43,7 +43,7 @@ SOURCES += \
   ../include/base/vapp.cpp \
   ../include/base/vmemoryleak.cpp \
   ../include/base/vmetaclass.cpp \
-  ../include/base/vxml.cpp \
+#  ../include/base/vrep.cpp \
   ../include/base/vfile.cpp \
   ../include/base/vobject.cpp \
   ../include/base/vinstance.cpp \
@@ -70,7 +70,10 @@ SOURCES += \
   ../include/net/vtcpserver.cpp \
   ../include/net/vnet.cpp \
 	../include/base/vbase.cpp \
-    ../include/net/vsslbase.cpp
+	../include/net/vsslbase.cpp \
+	../include/base/vrep.cpp \
+	../include/base/vserializable.cpp \
+	../include/base/vserializer.cpp
 
 HEADERS += \
   ../include/etc/vint.h \
@@ -110,9 +113,9 @@ HEADERS += \
   ../include/base/vrwobject.h \
   ../include/base/vapp.h \
   ../include/base/vthread.h \
-  ../include/base/vxmldoc.h \
+#  ../include/base/vxmldoc.h \
   ../include/base/vperformance.h \
-  ../include/base/vxml.h \
+#  ../include/base/vrep.h \
   ../include/base/vprimitive.h \
   ../include/net/vudpsession.h \
   ../include/net/vudpclient.h \
@@ -135,5 +138,8 @@ HEADERS += \
   ../include/net/vtcpsession.h \
   ../include/net/vsslsession.h \
 	../include/base/vbase.h \
-    ../include/net/vsslbase.h \
-    ../include/net/http/vhttpbase.h
+	../include/net/vsslbase.h \
+	../include/net/http/vhttpbase.h \
+	../include/base/vrep.h \
+	../include/base/vserializable.h \
+	../include/base/vserializer.h

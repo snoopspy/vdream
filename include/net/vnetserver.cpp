@@ -18,18 +18,18 @@ void VNetServer::load(VXml &xml)
 {
   VNet::load(xml);
 
-  onceWriteSize = xml.getInt("onceWriteSize", onceWriteSize);
-  port          = xml.getInt("port", port);
-  localHost     = xml.getStr("localHost", localHost);
+  onceWriteSize = rep.getInt("onceWriteSize", onceWriteSize);
+  port          = rep.getInt("port", port);
+  localHost     = rep.getStr("localHost", localHost);
 }
 
 void VNetServer::save(VXml &xml)
 {
   VNet::save(xml);
 
-  xml.setInt("onceWriteSize", onceWriteSize);
-  xml.setInt("port", port);
-  xml.setStr("localHost", localHost);
+  rep.setInt("onceWriteSize", onceWriteSize);
+  rep.setInt("port", port);
+  rep.setStr("localHost", localHost);
 }
 
 #ifdef QT_GUI_LIB

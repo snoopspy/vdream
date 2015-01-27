@@ -167,12 +167,12 @@ VLog* VLogList::createByURI(const QString& uri)
   return NULL;
 }
 
-void VLogList::load(VXml xml)
+void VLogList::load(VRep& rep)
 {
   VLog::load(xml);
 
   clear();
-  xml_foreach(childXml, xml.childs())
+  xml_foreach(childXml, rep.childs())
   {
     QString className = childXml.getStr("_class", "");
     VLog* childLog = VLogFactory::createByClassName(className);
@@ -186,15 +186,15 @@ void VLogList::load(VXml xml)
   }
 }
 
-void VLogList::save(VXml xml)
+void VLogList::save(VRep& rep)
 {
   VLog::save(xml);
 
-  xml.clearChild();
+  rep.clearChild();
   foreach(VLog* childLog, items)
   {
 	QString className = VBase::getClassName(typeid(*childLog).name());
-    VXml childXml = xml.addChild("log");
+    VXml childXml = rep.addChild("log");
     childLog->save(childXml);
   }
 }

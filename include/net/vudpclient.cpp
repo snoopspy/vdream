@@ -120,12 +120,12 @@ int  VUdpClient::doWrite(char* buf, int size)
   return res;
 }
 
-void VUdpClient::load(VXml xml)
+void VUdpClient::load(VRep& rep)
 {
   VNetClient::load(xml);
 }
 
-void VUdpClient::save(VXml xml)
+void VUdpClient::save(VRep& rep)
 {
   VNetClient::save(xml);
 }

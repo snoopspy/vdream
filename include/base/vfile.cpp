@@ -126,20 +126,20 @@ bool VFile::createFolder(QString folder)
   return true;
 }
 
-void VFile::load(VXml xml)
+void VFile::load(VRep& rep)
 {
   VRwObject::load(xml);
 
-  fileName = xml.getStr("fileName", fileName);
-  mode = (QIODevice::OpenMode)xml.getInt("mode", (int)mode);
+  fileName = rep.getStr("fileName", fileName);
+  mode = (QIODevice::OpenMode)rep.getInt("mode", (int)mode);
 }
 
-void VFile::save(VXml xml)
+void VFile::save(VRep& rep)
 {
   VRwObject::save(xml);
 
-  xml.setStr("fileName", fileName);
-  xml.setInt("mode", (int)mode);
+  rep.setStr("fileName", fileName);
+  rep.setInt("mode", (int)mode);
 }
 
 #ifdef GTEST

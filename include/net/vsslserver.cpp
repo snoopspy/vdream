@@ -493,24 +493,24 @@ _end:
   tag = 4000; // gilgil temp 2014.04.04
 }
 
-void VSslServer::load(VXml xml)
+void VSslServer::load(VRep& rep)
 {
   VTcpServer::load(xml);
 
-  methodType            = xml.getInt("methodType", (int)methodType);
-  certificatePath       = xml.getStr("certificatePath", certificatePath);
-  defaultKeyCrtFileName = xml.getStr("defaultKeyCrtFileName", defaultKeyCrtFileName);
-  processConnectMessage  = xml.getBool("processConnectMessage", processConnectMessage);
+  methodType            = rep.getInt("methodType", (int)methodType);
+  certificatePath       = rep.getStr("certificatePath", certificatePath);
+  defaultKeyCrtFileName = rep.getStr("defaultKeyCrtFileName", defaultKeyCrtFileName);
+  processConnectMessage  = rep.getBool("processConnectMessage", processConnectMessage);
 }
 
-void VSslServer::save(VXml xml)
+void VSslServer::save(VRep& rep)
 {
   VTcpServer::save(xml);
 
-  xml.setInt("methodType", (int)methodType);
-  xml.setStr("certificatePath", certificatePath);
-  xml.setStr("defaultKeyCrtFileName", defaultKeyCrtFileName);
-  xml.setBool("processConnectMessage", processConnectMessage);
+  rep.setInt("methodType", (int)methodType);
+  rep.setStr("certificatePath", certificatePath);
+  rep.setStr("defaultKeyCrtFileName", defaultKeyCrtFileName);
+  rep.setBool("processConnectMessage", processConnectMessage);
 }
 
 #ifdef QT_GUI_LIB

@@ -35,8 +35,8 @@ public:
   virtual bool link(VGraphNode* sender, VGraphNode* receiver);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 };
 */
 // ----------------------------------

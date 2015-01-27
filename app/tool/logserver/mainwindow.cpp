@@ -119,10 +119,10 @@ void MainWindow::showEvent(QShowEvent* showEvent)
   if (myLog->autoOpen) on_actionOpen_triggered();
 }
 
-void MainWindow::load(VXml xml)
+void MainWindow::load(VRep& rep)
 {
   {
-    VXml coordXml = xml.findChild("coord");
+    VXml coordXml = rep.findChild("coord");
     if (!coordXml.isNull())
     {
       QRect rect = geometry();
@@ -134,15 +134,15 @@ void MainWindow::load(VXml xml)
     }
   }
 
-  ui->actionShowLog->setChecked(xml.getBool("showLog", ui->actionShowLog->isChecked()));
-  ui->actionAlwaysOnTop->setChecked(xml.getBool("alwaysOnTop", ui->actionAlwaysOnTop->isChecked()));
-  ui->actionWordWrap->setChecked(xml.getBool("wordWrap", ui->actionWordWrap->isChecked()));
+  ui->actionShowLog->setChecked(rep.getBool("showLog", ui->actionShowLog->isChecked()));
+  ui->actionAlwaysOnTop->setChecked(rep.getBool("alwaysOnTop", ui->actionAlwaysOnTop->isChecked()));
+  ui->actionWordWrap->setChecked(rep.getBool("wordWrap", ui->actionWordWrap->isChecked()));
 }
 
-void MainWindow::save(VXml xml)
+void MainWindow::save(VRep& rep)
 {
   {
-    VXml coordXml = xml.gotoChild("coord");
+    VXml coordXml = rep.gotoChild("coord");
     QRect rect = geometry();
     coordXml.setInt("left",   rect.left());
     coordXml.setInt("top",    rect.top());
@@ -150,9 +150,9 @@ void MainWindow::save(VXml xml)
     coordXml.setInt("height", rect.height());
   }
 
-  xml.setBool("showLog", ui->actionShowLog->isChecked());
-  xml.setBool("alwaysOnTop", ui->actionAlwaysOnTop->isChecked());
-  xml.setBool("wordWrap", ui->actionWordWrap->isChecked());
+  rep.setBool("showLog", ui->actionShowLog->isChecked());
+  rep.setBool("alwaysOnTop", ui->actionAlwaysOnTop->isChecked());
+  rep.setBool("wordWrap", ui->actionWordWrap->isChecked());
 }
 
 #include <qmessagebox.h>

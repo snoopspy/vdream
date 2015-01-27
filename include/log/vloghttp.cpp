@@ -52,20 +52,20 @@ VLog* VLogHttp::createByURI(const QString& uri)
   return NULL;
 }
 
-void VLogHttp::load(VXml xml)
+void VLogHttp::load(VRep& rep)
 {
   VLog::load(xml);
 
-  port = xml.getInt("port", port);
+  port = rep.getInt("port", port);
   close();
   open();
 }
 
-void VLogHttp::save(VXml xml)
+void VLogHttp::save(VRep& rep)
 {
   VLog::save(xml);
 
-  xml.setInt("port", port);
+  rep.setInt("port", port);
 }
 
 

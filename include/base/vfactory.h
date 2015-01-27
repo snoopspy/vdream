@@ -12,7 +12,7 @@
 #define __V_FACTORY_H__
 
 #include <VLog>
-#include <VXmlDoc>
+// #include <VXmlDoc> // gilgil temp 2015.01.27
 
 // ----------------------------------------------------------------------------
 // VFactory
@@ -41,7 +41,7 @@ public:
   //
   static T* createByXML(VXml xml)
   {
-    QString className = xml.getStr("_class", "");
+    QString className = rep.getStr("_class", "");
     if (className == "")
     {
       return NULL;
@@ -74,7 +74,7 @@ public:
   {
     VXmlDoc& doc = VXmlDoc::instance();
     VXml xml = doc.root().findChilds(path);
-    if (xml.isNull()) return NULL;
+    if (rep.isNull()) return NULL;
     return createByXML(xml);
   }
 };

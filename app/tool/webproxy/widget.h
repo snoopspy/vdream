@@ -27,7 +27,7 @@ namespace Ui {
   class Widget;
 }
 
-class Widget : public QWidget, public VXmlable
+class Widget : public QWidget, public VSerializable
 {
   Q_OBJECT
 
@@ -58,8 +58,8 @@ public slots:
   void httpResponseBody  (QByteArray*    body,     VWebProxyConnection* connection);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
 private slots:
   void on_pbOpen_clicked();

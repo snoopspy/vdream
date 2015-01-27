@@ -11,7 +11,7 @@ namespace Ui {
   class MainWindow;
 }
 
-class MainWindow : public QMainWindow, public VXmlable
+class MainWindow : public QMainWindow, public VSerializable
 {
   Q_OBJECT
 
@@ -37,8 +37,8 @@ public:
   AboutDlg*  aboutDlg;
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
 private slots:
   void _onMessage(QString qs);

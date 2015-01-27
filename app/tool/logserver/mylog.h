@@ -13,7 +13,7 @@
 
 #include <QObject>
 #include <VThread>
-#include <VXmlDoc>
+// #include <VXmlDoc> // gilgil temp 2015.01.27
 #include <VLogUdp>
 #include <VUdpServer>
 
@@ -55,8 +55,8 @@ protected:
   virtual void run();
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 };
 
 #endif // __MY_LOG_H__

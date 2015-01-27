@@ -202,13 +202,13 @@ bool VObject::doClose()
   return false;
 }
 
-void VObject::load(VXml xml)
+void VObject::load(VRep& rep)
 {
-  name = xml.getStr("name", name);
+  name = rep.getStr("name", name);
 }
 
-void VObject::save(VXml xml)
+void VObject::save(VRep& rep)
 {
-  xml.setStr("_class", className());
-  if (name != "" && name != className()) xml.setStr("name", name);
+  rep.setStr("_class", className());
+  if (name != "" && name != className()) rep.setStr("name", name);
 }

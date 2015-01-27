@@ -18,7 +18,7 @@
 // VGraphObjectList
 // ----------------------------------------------------------------------------
 class VGraph;
-class VGraphObjectList : public QList<VObject*>, public VXmlable
+class VGraphObjectList : public QList<VObject*>, public VSerializable
 {
 protected:
   VGraph* m_graph;
@@ -45,14 +45,14 @@ public:
   QStringList findNamesByCategoryName(QString categoryName);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 };
 
 // ----------------------------------------------------------------------------
 // VGraphConnect
 // ----------------------------------------------------------------------------
-class VGraphConnect : public VXmlable
+class VGraphConnect : public VSerializable
 {
 public:
   VGraphConnect();
@@ -68,14 +68,14 @@ public:
   bool operator == (const VGraphConnect& rhs);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 };
 
 // ----------------------------------------------------------------------------
 // VGraphConnectList
 // ----------------------------------------------------------------------------
-class VGraphConnectList : public QList<VGraphConnect>, public VXmlable
+class VGraphConnectList : public QList<VGraphConnect>, public VSerializable
 {
 protected:
   VGraph* m_graph;
@@ -92,8 +92,8 @@ public:
   bool delConnect(VGraphConnect connect);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 };
 
 // ----------------------------------------------------------------------------
@@ -125,8 +125,8 @@ public:
   static QStringList slotList(VObject* object);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 };
 
 #endif // __V_GRAPH_H__

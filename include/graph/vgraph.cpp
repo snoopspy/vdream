@@ -47,7 +47,7 @@ VObject* VGraphObjectList::findByName(QString name)
   for (int i = 0; i < _count; i++)
   {
     VObject* object = this->at(i);
-    if (object->name == name) return object;
+    if (object->objectName() == name) return object;
   }
   LOG_ERROR("can not find object for ('%s')", qPrintable(name));
   return NULL;
@@ -101,7 +101,7 @@ QStringList VGraphObjectList::findNamesByClassName(QString className)
 {
   QList<VObject*> objectList = findObjectsByClassName(className);
   QStringList res;
-  foreach(VObject* object, objectList) res.push_back(object->name);
+  foreach(VObject* object, objectList) res.push_back(object->objectName());
   return res;
 }
 
@@ -109,7 +109,7 @@ QStringList VGraphObjectList::findNamesByCategoryName(QString categoryName)
 {
   QList<VObject*> objectList = findObjectsByCategoryName(categoryName);
   QStringList res;
-  foreach(VObject* object, objectList) res.push_back(object->name);
+  foreach(VObject* object, objectList) res.push_back(object->objectName());
   return res;
 }
 
@@ -231,8 +231,8 @@ bool VGraphConnectList::addConnect(const VGraphConnect connect)
   if (!res)
   {
     LOG_ERROR("VObject::connect(%s %s %s %s) return false",
-      qPrintable(sender->name),   qPrintable(connect.signal),
-      qPrintable(receiver->name), qPrintable(connect.slot));
+      qPrintable(sender->objectName()),   qPrintable(connect.signal),
+      qPrintable(receiver->objectName()), qPrintable(connect.slot));
     return false;
   }
 
@@ -325,14 +325,14 @@ bool VGraph::doOpen()
     if (!object->open())
     {
       error = object->error;
-      QString msg = QString(error.msg) + "(" + object->name + ")";
+      QString msg = QString(error.msg) + "(" + object->objectName() + ")";
       error.msg = msg;
       res = false;
       break;
     }
     if (!VObject::connect(object, SIGNAL(closed()), this, SLOT(close())))
     {
-      LOG_ERROR("connect %s closed > this close() return false", qPrintable(object->name));
+      LOG_ERROR("connect %s closed > this close() return false", qPrintable(object->objectName()));
     }
   }
   mgr.resume();

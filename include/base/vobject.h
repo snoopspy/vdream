@@ -47,7 +47,6 @@ class VObjectConnections : public QList<VObjectConnection>
 // ----------------------------------------------------------------------------
 class VObject :
   public QObject,
-  // public VGetLoggable, // gilgil temp 2012.09.18
   public VSerializable
 {
   Q_OBJECT
@@ -77,7 +76,6 @@ protected:
 
 public:
   int     tag; // used for debugging
-  QString name;
   VState  state()     { return m_state;                   }
   QString className() { return this->metaObject()->className(); }
   bool    active()    { return m_state == VState::Opened; }

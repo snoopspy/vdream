@@ -271,7 +271,7 @@ void VTcpServer::run()
     }
     VTcpSessionThread* thread = new VTcpSessionThread(this, newTCPSession);
     //thread->moveToThread(runThread().m_qthread); // gilgil temp 2012.08.16
-    thread->name = className();
+    thread->setObjectName(className());
     threadList.lock();
     threadList.append(thread);
     threadList.unlock();

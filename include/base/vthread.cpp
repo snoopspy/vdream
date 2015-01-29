@@ -92,9 +92,9 @@ void VQThread::run()
 
   try
   {
-    if (thread->name == "") thread->name = thread->className();
-	strncpy(threadName, qPrintable(thread->name), VBase::BUF_SIZE);
-	strncpy(className, qPrintable(thread->className()), VBase::BUF_SIZE);
+    if (thread->objectName() == "") thread->setObjectName(thread->className());
+    strncpy(threadName, qPrintable(thread->objectName()), VBase::BUF_SIZE);
+    strncpy(className, qPrintable(thread->className()), VBase::BUF_SIZE);
     // _setCurrentThreadName((char*)threadName); // gilgil temp 2014.12.09
 
     thread->m_id = VThread::currentId();
@@ -233,7 +233,7 @@ bool VThread::wait(VTimeout timeout)
     if (!res)
     {
       LOG_ERROR("**********************************************************************");
-      SET_ERROR(VThreadError, QString("thread(%1) timeout id=0x%2 tag=%3 threadTag=%4").arg(name).arg((quintptr)id(), 0, 16).arg(tag).arg(threadTag), VError::TIMEOUT);
+      SET_ERROR(VThreadError, QString("thread(%1) timeout id=0x%2 tag=%3 threadTag=%4").arg(objectName()).arg((quintptr)id(), 0, 16).arg(tag).arg(threadTag), VError::TIMEOUT);
       LOG_ERROR("**********************************************************************");
       return false;
     }
@@ -264,7 +264,7 @@ bool VThread::doClose()
 void VThread::run()
 {
   LOG_ERROR("****************************************************");
-  LOG_ERROR("%s : virtual function call error.", qPrintable(name));
+  LOG_ERROR("%s : virtual function call error.", qPrintable(objectName()));
   LOG_ERROR("'virtual void run()' must be implemented in descendant class of VThread.");
   LOG_ERROR("if descendant class has destructor, close() must be called explicitly in its destructor");
   LOG_ERROR("****************************************************");
@@ -389,22 +389,22 @@ VSimpleThread::~VSimpleThread()
 
 bool VSimpleThread::open()
 {
-  if (name == "")
+  if (objectName() == "")
   {
     if (m_runnable != NULL)
     {
       try
       {
-		name = QString(VBase::getClassName(typeid(*m_runnable).name()))+ "::run";
+        setObjectName(QString(VBase::getClassName(typeid(*m_runnable).name()))+ "::run");
       }
       catch(...)
       {
-        name = "SimpleThread";
+        setObjectName("SimpleThread");
       }
     }
     else
     {
-	  name = VBase::getClassName(typeid(*this).name());
+      setObjectName(VBase::getClassName(typeid(*this).name()));
     }
   }
   return VThread::open();

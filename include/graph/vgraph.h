@@ -120,6 +120,7 @@ public:
 
 protected:
   static QStringList methodList(VObject* object, QMetaMethod::MethodType methodType);
+
 public:
   static QStringList signalList(VObject* object);
   static QStringList slotList(VObject* object);

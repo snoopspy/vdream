@@ -3,6 +3,28 @@
 #include <QJsonObject>
 #include "vrep.h"
 
+QList<VRep> VRep::childs()
+{
+  QList<VRep> res;
+  for (iterator it = begin(); it != end(); it++)
+  {
+    QVariant variant = it.value();
+    if (variant.userType() == qMetaTypeId<VRep>())
+      res.push_back(variant.value<VRep>());
+  }
+  return res;
+}
+
+void VRep::clearChilds()
+{
+  for (iterator it = begin(); it != end(); it++)
+  {
+    QVariant variant = it.value();
+    if (variant.userType() == qMetaTypeId<VRep>())
+      this->remove(*it);
+  }
+}
+
 bool VRep::loadFromFile(QString fileName)
 {
   QFile file(fileName);

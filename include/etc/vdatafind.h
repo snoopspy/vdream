@@ -22,8 +22,17 @@
 // ----------------------------------------------------------------------------
 // VRegExp
 // ----------------------------------------------------------------------------
-class VRegExp : public VSerializable
+class VRegExp : public VObject
 {
+  Q_OBJECT
+  Q_ENUMS(QRegExp::PatternSyntax) // gilgil temp 2015.01.29 serialize
+  Q_ENUMS(Qt::CaseSensitivity) // gilgil temp 2015.01.29 serialize
+
+  Q_PROPERTY(QString pattern MEMBER pattern)
+  Q_PROPERTY(QRegExp::PatternSyntax syntax MEMBER syntax)
+  Q_PROPERTY(Qt::CaseSensitivity cs MEMBER cs)
+  Q_PROPERTY(bool minimal MEMBER minimal)
+
 public:
   VRegExp();
   VRegExp(const VRegExp& b);
@@ -40,9 +49,13 @@ public:
   QRegExp rx;
   bool prepare(VError& error);
 
+  // ----- gilgil temp 2015.01.29 ----- serialize
+  /*
 public:
   virtual void load(VRep& rep);
   virtual void save(VRep& rep);
+  */
+  // ----------------------------------
 
 #ifdef QT_GUI_LIB
 public:
@@ -58,12 +71,18 @@ public:
 void operator << (QTreeWidgetItem& treeWidgetItem, VRegExp& regexp);
 void operator << (VRegExp& regexp, QTreeWidgetItem& treeWidgetItem);
 #endif // QT_GUI_LIB
+Q_DECLARE_METATYPE(QRegExp::PatternSyntax)
+Q_DECLARE_METATYPE(Qt::CaseSensitivity)
 
 // ----------------------------------------------------------------------------
 // VDataFindItem
 // ----------------------------------------------------------------------------
 class VDataFindItem : public VRegExp
 {
+  Q_OBJECT
+  Q_PROPERTY(bool enabled MEMBER enabled)
+  Q_PROPERTY(bool log MEMBER log)
+
 public:
   VDataFindItem();
 
@@ -74,9 +93,13 @@ public:
 public:
   int find(QByteArray& ba, int offset = 0);
 
+  // ----- gilgil temp 2015.01.29 ----- serialize
+  /*
 public:
   virtual void load(VRep& rep);
   virtual void save(VRep& rep);
+  */
+  // ----------------------------------
 
 #ifdef QT_GUI_LIB
 public:
@@ -95,21 +118,31 @@ void operator << (VDataFindItem& item, QTreeWidgetItem& treeWidgetItem);
 // ----------------------------------------------------------------------------
 // VDataFind
 // ----------------------------------------------------------------------------
-class VDataFind : public QObject, public QList<VDataFindItem>, public VSerializable, public VOptionable, public VListWidgetAccessible
+typedef _VObjectList<VDataFindItem> VDataFindItemList;
+class VDataFind : public VObject, public VOptionable, public VListWidgetAccessible
 {
   Q_OBJECT
+  Q_PROPERTY(VObjectList* items READ getItems)
 
 public:
   VDataFind();
   virtual ~VDataFind();
 
 public:
+  VDataFindItemList items;
+  VObjectList* getItems() { return &items; }
+
+public:
   bool prepare(VError& error);
   bool find(QByteArray& ba);
 
+  // ----- gilgil temp 2015.01.29 ----- serialize
+  /*
 public:
   virtual void load(VRep& rep);
   virtual void save(VRep& rep);
+  */
+  // ----------------------------------
 
 #ifdef QT_GUI_LIB
 public: // VOptionable

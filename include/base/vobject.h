@@ -60,6 +60,7 @@ public:
 
 public:
   VObject(void* owner = NULL);
+  VObject(const VObject& rhs) : QObject(NULL) { Q_UNUSED(rhs) }
   virtual ~VObject();
 
 public:
@@ -111,6 +112,36 @@ signals:
 public:
   virtual void load(VRep& rep);
   virtual void save(VRep& rep);
+
+#ifdef QT_GUI_LIB
+public:
+  virtual QWidget* createWidget(QWidget* parent);
+  virtual void createTreeWidgetItems(VTreeWidgetItem* parent);
+
+public slots:
+  void objectNameEditingFinished();
+  void textEditingFinished();
+  void boolStateChanged(int state);
+  void enumCurrentIndexChanged(int index);
+  void pbAddClicked();
+  void pbDelClicked();
+#endif // QT_GUI_LIB
+};
+Q_DECLARE_METATYPE(VObject*)
+
+class VObjectList : public QList<VObject*>
+{
+public:
+  virtual VObject* createObject() { return new VObject; }
+  virtual ~VObjectList() {}
+};
+Q_DECLARE_METATYPE(VObjectList*)
+
+template <class T>
+class _VObjectList : public VObjectList
+{
+public:
+  virtual VObject* createObject() { return new T; }
 };
 
 #endif // __V_OBJECT_H__

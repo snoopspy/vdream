@@ -3,7 +3,7 @@
 // ----------------------------------------------------------------------------
 // VRegExp
 // ----------------------------------------------------------------------------
-VRegExp::VRegExp()
+VRegExp::VRegExp() : VObject(NULL)
 {
   pattern  = "";
   syntax   = QRegExp::FixedString;
@@ -12,7 +12,7 @@ VRegExp::VRegExp()
   pCs      = new VCS;
 }
 
-VRegExp::VRegExp(const VRegExp& b)
+VRegExp::VRegExp(const VRegExp& b) : VObject(NULL)
 {
   this->pattern  = b.pattern;
   this->syntax   = b.syntax;
@@ -43,6 +43,8 @@ bool VRegExp::prepare(VError& error)
   return true;
 }
 
+// ----- gilgil temp 2015.01.29 ----- serialize
+/*
 void VRegExp::load(VRep& rep)
 {
   pattern  = rep.getStr("pattern", pattern);
@@ -58,6 +60,8 @@ void VRegExp::save(VRep& rep)
   rep.setInt("cs", (int)cs);
   rep.setBool("minimal", minimal);
 }
+*/
+// ----------------------------------
 
 #ifdef QT_GUI_LIB
 void VRegExp::initialize(QTreeWidget* treeWidget)
@@ -126,6 +130,8 @@ int VDataFindItem::find(QByteArray& ba, int offset)
   return index + found.length();
 }
 
+// ----- gilgil temp 2015.01.29 ----- serialize
+/*
 void VDataFindItem::load(VRep& rep)
 {
   VRegExp::load(xml);
@@ -139,6 +145,8 @@ void VDataFindItem::save(VRep& rep)
 
   rep.setBool("enabled", enabled);
 }
+*/
+// ----------------------------------
 
 #ifdef QT_GUI_LIB
 void VDataFindItem::initialize(QTreeWidget* treeWidget)
@@ -189,10 +197,10 @@ VDataFind::~VDataFind()
 
 bool VDataFind::prepare(VError& error)
 {
-  for (int i = 0; i < count(); i++)
+  for (int i = 0; i < items.count(); i++)
   {
-    VDataFindItem& item = (VDataFindItem&)at(i);
-    if (!item.prepare(error)) return false;
+    VDataFindItem* item = (VDataFindItem*)items.at(i);;
+    if (!item->prepare(error)) return false;
   }
   return true;
 }
@@ -200,14 +208,14 @@ bool VDataFind::prepare(VError& error)
 bool VDataFind::find(QByteArray& ba)
 {
   bool res = false;
-  for (int i = 0; i < count(); i++)
+  for (int i = 0; i < items.count(); i++)
   {
-    VDataFindItem& item = (VDataFindItem&)at(i);
-    if (!item.enabled) continue;
+    VDataFindItem* item = (VDataFindItem*)items.at(i);;
+    if (!item->enabled) continue;
     int offset = 0;
     while (true)
     {
-      offset = item.find(ba, offset);
+      offset = item->find(ba, offset);
       if (offset == -1) break;
       res = true;
     }
@@ -215,6 +223,8 @@ bool VDataFind::find(QByteArray& ba)
   return res;
 }
 
+// ----- gilgil temp 2015.01.29 ----- serialize
+/*
 void VDataFind::load(VRep& rep)
 {
   clear();
@@ -238,6 +248,8 @@ void VDataFind::save(VRep& rep)
     item.save(childXml);
   }
 }
+*/
+// ----------------------------------
 
 #ifdef QT_GUI_LIB
 #include "ui_vlistwidget.h"

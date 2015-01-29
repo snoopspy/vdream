@@ -18,6 +18,11 @@
 // ----------------------------------------------------------------------------
 class VDataChangeItem : public VRegExp
 {
+  Q_OBJECT
+  Q_PROPERTY(bool enabled MEMBER enabled)
+  Q_PROPERTY(bool log MEMBER log)
+  Q_PROPERTY(QByteArray replace MEMBER replace)// gilgil temp 2015.01.29 serialize
+
 public:
   VDataChangeItem();
 
@@ -29,9 +34,13 @@ public:
 public:
   int change(QByteArray& ba, int offset = 0);
 
+  // ----- gilgil temp 2015.01.29 ----- serialize
+  /*
 public:
   virtual void load(VRep& rep);
   virtual void save(VRep& rep);
+  */
+  // ----------------------------------
 
 #ifdef QT_GUI_LIB
 public:
@@ -52,21 +61,31 @@ void operator << (VDataChangeItem& item, QTreeWidgetItem& treeWidgetItem);
 // ----------------------------------------------------------------------------
 // VDataChange
 // ----------------------------------------------------------------------------
-class VDataChange : public QObject, public QList<VDataChangeItem>, public VSerializable, public VOptionable, public VListWidgetAccessible
+typedef _VObjectList<VDataChangeItem> VDataChangeItemList;
+class VDataChange : public VObject, public VOptionable, public VListWidgetAccessible
 {
   Q_OBJECT
+  Q_PROPERTY(VObjectList* items READ getItems)
 
 public:
   VDataChange();
   virtual ~VDataChange();
 
 public:
+  VDataChangeItemList items;
+  VObjectList* getItems() { return &items; }
+
+public:
   bool prepare(VError& error);
   bool change(QByteArray& ba);
 
+  // ----- gilgil temp 2015.01.29 ----- serialize
+  /*
 public:
   virtual void load(VRep& rep);
   virtual void save(VRep& rep);
+  */
+  // ----------------------------------
 
 #ifdef QT_GUI_LIB
 public: // VOptionable

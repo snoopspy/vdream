@@ -31,6 +31,8 @@ int VDataChangeItem::change(QByteArray& ba, int offset)
   return index + replace.length();
 }
 
+// ----- gilgil temp 2015.01.29 ----- serialize
+/*
 void VDataChangeItem::load(VRep& rep)
 {
   VRegExp::load(xml);
@@ -48,6 +50,8 @@ void VDataChangeItem::save(VRep& rep)
   rep.setBool("log",     log);
   rep.setArr("replace",  replace);
 }
+*/
+// ----------------------------------
 
 #ifdef QT_GUI_LIB
 void VDataChangeItem::initialize(QTreeWidget* treeWidget)
@@ -102,10 +106,10 @@ VDataChange::~VDataChange()
 
 bool VDataChange::prepare(VError& error)
 {
-  for (int i = 0; i < count(); i++)
+  for (int i = 0; i < items.count(); i++)
   {
-    VDataChangeItem& item = (VDataChangeItem&)at(i);
-    if (!item.prepare(error)) return false;
+    VDataChangeItem* item = (VDataChangeItem*)items.at(i);
+    if (!item->prepare(error)) return false;
   }
   return true;
 }
@@ -113,14 +117,14 @@ bool VDataChange::prepare(VError& error)
 bool VDataChange::change(QByteArray& ba)
 {
   bool res = false;
-  for (int i = 0; i < count(); i++)
+  for (int i = 0; i < items.count(); i++)
   {
-    VDataChangeItem& item = (VDataChangeItem&)at(i);
-    if (!item.enabled) continue;
+    VDataChangeItem* item = (VDataChangeItem*)items.at(i);
+    if (!item->enabled) continue;
     int offset = 0;
     while (true)
     {
-      offset = item.change(ba, offset);
+      offset = item->change(ba, offset);
       if (offset == -1) break;
       res = true;
     }
@@ -128,6 +132,8 @@ bool VDataChange::change(QByteArray& ba)
   return res;
 }
 
+// ----- gilgil temp 2015.01.29 ----- serialize
+/*
 void VDataChange::load(VRep& rep)
 {
   clear();
@@ -151,6 +157,8 @@ void VDataChange::save(VRep& rep)
     item.save(childXml);
   }
 }
+*/
+// ----------------------------------
 
 #ifdef QT_GUI_LIB
 #include "ui_vlistwidget.h"

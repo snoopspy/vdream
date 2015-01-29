@@ -113,37 +113,39 @@ QStringList VGraphObjectList::findNamesByCategoryName(QString categoryName)
   return res;
 }
 
+#include <QMetaType>
 void VGraphObjectList::load(VRep& rep)
 {
   clear();
-  xml_foreach (childXml, rep.childs())
+  foreach (const VRep& childRep, rep.childs())
   {
-    QString className = childXml.getStr("_class");
+    QString className = childRep["_class"].toString();
     if (className == "")
     {
       LOG_ERROR("_class is null");
       return;
     }
-    VObject* object = (VObject*)VMetaClassMgr::createByClassName((char*)qPrintable(className));
+    VObject* object = (VObject*)VFactory::instance().createByClassName(className);
     if (object == NULL)
     {
       LOG_ERROR("can not create instance for %s", qPrintable(className));
     }
     object->owner = this->m_graph;
-    object->load(childXml);
+    object->load((VRep&)childRep);
     this->push_back(object);
   }
 }
 
 void VGraphObjectList::save(VRep& rep)
 {
-  rep.clearChild();
+  rep.clearChilds();
   int _count = this->count();
   for (int i = 0; i < _count; i++)
   {
     VObject* object = this->at(i);
-    VXml childXml = rep.addChild("object");
-    object->save(childXml);
+    VRep childRep;
+    object->save(childRep);
+    rep.insert(QString("object") + QString::number(i), childRep);
   }
 }
 

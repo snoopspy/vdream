@@ -5,33 +5,33 @@ debug: vdream_test_d vdream_d vdream_gui_d
 release: vdream_test vdream vdream_gui
 
 vdream_test_d:
-	qmake vdream_test.pro "CONFIG+=debug" "QT-=gui"
+	qmake vdream_test.pro "CONFIG+=debug"
 	make -f Makefile
 	make clean -f Makefile
 
 vdream_d:
-	qmake vdream.pro "CONFIG+=debug" "QT-=gui"
+	qmake vdream.pro "CONFIG+=debug"
 	make -f Makefile
 	make clean -f Makefile
 
 vdream_gui_d:
-	qmake vdream_gui.pro "CONFIG+=debug" "QT-=gui"
+	qmake vdream_gui.pro "CONFIG+=debug"
 	make -f Makefile
 	cp ui_* ../include
 	make clean -f Makefile
 
 vdream_test:
-	qmake vdream_test.pro "CONFIG+=release" "QT-=gui"
+	qmake vdream_test.pro "CONFIG+=release"
 	make -f Makefile
 	make clean -f Makefile
 
 vdream:
-	qmake vdream.pro "CONFIG+=release" "QT-=gui"
+	qmake vdream.pro "CONFIG+=release"
 	make -f Makefile
 	make clean -f Makefile
 
 vdream_gui:
-	qmake vdream_gui.pro "CONFIG+=release" "QT-=gui"
+	qmake vdream_gui.pro "CONFIG+=release"
 	make -f Makefile
 	cp ui_* ../include
 	make clean -f Makefile

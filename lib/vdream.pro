@@ -134,6 +134,13 @@ HEADERS += \
   ../include/net/vnetsession.h \
   ../include/net/vtcpsession.h \
   ../include/net/vsslsession.h \
-	../include/base/vbase.h \
-    ../include/net/vsslbase.h \
-    ../include/net/http/vhttpbase.h
+  ../include/base/vbase.h \
+  ../include/net/vsslbase.h \
+  ../include/net/http/vhttpbase.h
+
+CONFIG(VDREAM_LIB_BUILD_GUI) {
+FORMS += \
+	../include/etc/vlistwidget.ui \
+	../include/net/http/vwebproxywidget.ui
+}
+

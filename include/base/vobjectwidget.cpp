@@ -13,7 +13,7 @@ QDialog* VOptionable::optionCreateDlg(QWidget* parent)
   QDialog* dialog = new QDialog(parent);
   VObject* object = dynamic_cast<VObject*>(this);
   if (object != NULL)
-    dialog->setWindowTitle(object->name == "" ? "Option" : object->name + " Option");
+    dialog->setWindowTitle(object->objectName() == "" ? "Option" : object->objectName() + " Option");
   new QGridLayout(dialog);
   return dialog;
 }

@@ -14,11 +14,11 @@ CONFIG(release, debug|release) {
 # library name
 #-------------------------------------------------
 VDREAM_LIB_NAME = vdream
-contains(QT, gui) {
-  VDREAM_LIB_NAME = $${VDREAM_LIB_NAME}_gui
-}
 android-g++ {
   VDREAM_LIB_NAME = $${VDREAM_LIB_NAME}_android
+}
+contains(QT, gui) {
+  VDREAM_LIB_NAME = $${VDREAM_LIB_NAME}_gui
 }
 CONFIG(GTEST) {
 	VDREAM_LIB_NAME = $${VDREAM_LIB_NAME}_test
@@ -32,8 +32,7 @@ message($${VDREAM_LIB_NAME}) # gilgil temp 2015.01.20
 # vdream
 #-------------------------------------------------
 VDREAM_PATH  = $${PWD}/..
-INCLUDEPATH += $${VDREAM_PATH}/include
-# DEPENDPATH  += $${VDREAM_PATH} ## gilgil temp 2014.12.02
+INCLUDEPATH += $${VDREAM_PATH}/src
 !CONFIG(VDREAM_LIB_BUILD) {
   gcc:PRE_TARGETDEPS +=  $${VDREAM_PATH}/lib/lib$${VDREAM_LIB_NAME}.a
   LIBS               += -L$${VDREAM_PATH}/lib -l$${VDREAM_LIB_NAME}
@@ -64,3 +63,4 @@ win32 {
 linux {
   LIBS        += -lssl -lcrypto
 }
+

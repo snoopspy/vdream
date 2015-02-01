@@ -1,4 +1,4 @@
-#include "vdatachange.h"
+#include <VDataChange>
 
 // ----------------------------------------------------------------------------
 // VDataChangeItem

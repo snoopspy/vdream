@@ -1,3 +1,3 @@
-CONFIG += VDREAM_LIB_BUILD_GUI
+QT += gui widgets
 include (vdream.pro)
 

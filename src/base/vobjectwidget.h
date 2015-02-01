@@ -11,6 +11,7 @@
 #ifndef __V_OBJECT_WIDGET_H__
 #define __V_OBJECT_WIDGET_H__
 
+#include <VLog>
 #include <VObject>
 
 #ifdef QT_GUI_LIB

@@ -2,7 +2,7 @@
 #include <VTick> // for tick()
 #include <VDebugNew>
 
-REGISTER_METACLASS(VTcpServer, VNet)
+// REGISTER_METACLASS(VTcpServer, VNet) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // VTcpSessionThread

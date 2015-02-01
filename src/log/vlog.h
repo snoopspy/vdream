@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------------
 //
-// VDream Component Suite version 9.0
+// VDream Component Suite version 9.01
 //
 // http://www.gilgil.net
 //
@@ -11,9 +11,9 @@
 #ifndef __V_LOG_H__
 #define __V_LOG_H__
 
-#include <VBase>
-#include <VMetaClass>
-#include <VXml>
+// #include <VBase> // gilgil temp 2015.02.01
+// #include <VMetaClass> // gilgil temp 2015.02.01
+#include <VObject>
 
 // ----------------------------------------------------------------------------
 // VShowDateTime
@@ -41,18 +41,20 @@ public:
   QString str() const;
 };
 
-class VLog : public VXmlable
+class VLog : public VObject
 {
   friend class VLogList;
   friend class VLogFactory;
 
 public:
-  static const int LEVEL_DEBUG = 0;
-  static const int LEVEL_INFO  = 1;
-  static const int LEVEL_WARN  = 2;
-  static const int LEVEL_ERROR = 3;
-  static const int LEVEL_FATAL = 4;
-  static const int LEVEL_NONE  = 5;
+  enum {
+    LEVEL_NONE = 0,
+    LEVEL_DEBUG,
+    LEVEL_INFO,
+    LEVEL_WARN,
+    LEVEL_ERROR,
+    LEVEL_FATAL
+  };
 
 public:
   static const int DEFAULT_LOG_BUF_SIZE = 65536;
@@ -73,7 +75,7 @@ public:
   // Constructor and destructor
   //
 public:
-  VLog();
+  VLog(void* owner = NULL);
   virtual ~VLog();
 
   //

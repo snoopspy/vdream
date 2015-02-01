@@ -14,6 +14,8 @@
 #include <VFactory>
 #include <VNet>
 
+// ----- gilgil temp 2015.02.01 -----
+/*
 // ----------------------------------------------------------------------------
 // VNetFactory
 // ----------------------------------------------------------------------------
@@ -21,7 +23,9 @@ class VNetFactory : public VFactory<VNet>
 {
 public:
   static void explicitLink();
-  static VNet* createByClassName(const QString& className);
+  static VNet* createObjectByClassName(const QString& className);
 };
+*/
+// ----------------------------------
 
 #endif // __V_NET_FACTORY_H__

@@ -2,7 +2,7 @@
 #include <VNet> // for Ip
 #include <VDebugNew>
 
-REGISTER_METACLASS(VLogUdp, VLog)
+// REGISTER_METACLASS(VLogUdp, VLog) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // VLogUdp

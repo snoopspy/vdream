@@ -11,8 +11,9 @@
 #ifndef __V_MY_OBJECT_H__
 #define __V_MY_OBJECT_H__
 
+#include <VFactory>
+#include <VLog>
 #include <VObject>
-#include <VMetaClass>
 
 // ----------------------------------------------------------------------------
 // VMyObject

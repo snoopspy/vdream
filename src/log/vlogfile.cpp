@@ -12,7 +12,7 @@ public:
   VLog* getLog() { return NULL; }
 };
 
-REGISTER_METACLASS(VLogFile, VLog)
+// REGISTER_METACLASS(VLogFile, VLog) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // VLogFile

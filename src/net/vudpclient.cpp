@@ -1,7 +1,7 @@
 #include <VUdpClient>
 #include <VDebugNew>
 
-REGISTER_METACLASS(VUdpClient, VNet)
+// REGISTER_METACLASS(VUdpClient, VNet) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // VUdpClient

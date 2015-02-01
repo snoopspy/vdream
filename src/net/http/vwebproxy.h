@@ -11,6 +11,7 @@
 #ifndef __V_HTTP_PROXY_H__
 #define __V_HTTP_PROXY_H__
 
+#include <VLog>
 #include <VObject>
 #include <VTcpServer>
 #include <VTcpClient>

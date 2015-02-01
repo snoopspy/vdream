@@ -1,4 +1,5 @@
 #include <VDataChange>
+#include <VLog>
 
 // ----------------------------------------------------------------------------
 // VDataChangeItem

@@ -14,8 +14,8 @@
 #include <QObject>
 
 #include <VError>
+#include <VBase>
 #include <VXml>
-#include <VLog>
 
 // ----------------------------------------------------------------------------
 // VObjectConnection

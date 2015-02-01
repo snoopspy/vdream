@@ -11,6 +11,7 @@
 #ifndef __V_GRAPH_H__
 #define __V_GRAPH_H__
 
+#include <VLog>
 #include <VObject>
 #include <VFactory>
 
@@ -35,14 +36,14 @@ public:
   bool delObject(VObject* object);
 
 public:
-  VObject* findByName(QString name);
-  VObject* findByClassName(QString className);
+  VObject* findObjectByName(QString name);
+  VObject* findObjectByClassName(QString className);
 
   QList<VObject*> findObjectsByClassName(QString className);
   QList<VObject*> findObjectsByCategoryName(QString categoryName);
 
-  QStringList findNamesByClassName(QString className);
-  QStringList findNamesByCategoryName(QString categoryName);
+  QStringList findObjectNamesByClassName(QString className);
+  QStringList findObjectNamesByCategoryName(QString categoryName);
 
 public:
   virtual void load(VXml xml);

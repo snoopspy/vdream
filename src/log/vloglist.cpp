@@ -2,12 +2,12 @@
 #include <VLogFactory>
 #include <VDebugNew>
 
-REGISTER_METACLASS(VLogList, VLog)
+// REGISTER_METACLASS(VLogList, VLog) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // VLogList
 // ----------------------------------------------------------------------------
-VLogList::VLogList()
+VLogList::VLogList(void* owner) : VLog(owner)
 {
   clear();
 }

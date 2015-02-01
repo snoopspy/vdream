@@ -88,7 +88,7 @@ const char* VLog::__extractFuncName__(const char* funcName)
 #endif // linux
 }
 
-VLog::VLog()
+VLog::VLog(void* owner) : VObject(owner)
 {
 #if _DEBUG
   level = LEVEL_DEBUG;
@@ -397,10 +397,12 @@ TEST ( Log, setLogTest )
 
 TEST ( Log, factoryTest )
 {
-  VMetaClassList& list = VMetaClassMap::getList("VLog");
-  foreach(VMetaClass* metaClass, list)
+  VFactory& factory = VFactory::instance();
+  VFactory::VMetaObjectList mobjList = factory.findMetaObjectsByAncestorClassName("VLog");
+  foreach(const QMetaObject* mobj, mobjList)
   {
-    VLog* log = (VLog*)metaClass->createInstance();
+    VLog* log = dynamic_cast<VLog*>(factory.createObjectByClassName(mobj->className()));
+    EXPECT_TRUE(log != NULL);
     log->trace("testFactory");
     delete log;
   }
@@ -434,11 +436,11 @@ TEST ( Log, uriTest )
     if (uri == "__gilgil_end") break;
 
     VLog* log = VLogFactory::createByURI(uri);
-    EXPECT_TRUE( log != NULL );
+    EXPECT_TRUE(log != NULL);
     if (log != NULL)
     {
-	  QString className = VBase::getClassName(typeid(*log).name());
-      EXPECT_TRUE( className == className );
+      QString _className = VBase::getClassName(typeid(*log).name());
+      EXPECT_TRUE( className == _className );
       log->trace("[%s:%d] uri=%s className=%s", __FILENAME__, __LINE__, qPrintable(uri), qPrintable(className));
       delete log;
     }

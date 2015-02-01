@@ -1,7 +1,7 @@
 #include <VUdpServer>
 #include <VDebugNew>
 
-REGISTER_METACLASS(VUdpServer, VNet)
+// REGISTER_METACLASS(VUdpServer, VNet) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // VSockAddrList

@@ -20,7 +20,7 @@
 class VLogList : public VLog
 {
 public:
-  VLogList();
+  VLogList(void* owner = NULL);
   virtual ~VLogList();
   void clear();
 

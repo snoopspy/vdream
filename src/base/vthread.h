@@ -12,6 +12,7 @@
 #define __V_THREAD_H__
 
 #include <QThread>
+#include <VLog>
 #include <VObject>
 
 // ----------------------------------------------------------------------------

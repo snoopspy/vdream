@@ -11,6 +11,7 @@
 #ifndef __V_GRAPH_LINK_H__
 #define __V_GRAPH_LINK_H__
 
+#include <VLog>
 #include <VObject>
 
 // ----------------------------------------------------------------------------

@@ -16,6 +16,7 @@
 #include <QWidget>
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
+#include <VLog>
 #include <VObject>
 
 // ----------------------------------------------------------------------------

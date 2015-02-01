@@ -1,7 +1,7 @@
 #include <VSslClient>
 #include <VDebugNew>
 
-REGISTER_METACLASS(VSslClient, VNet)
+// REGISTER_METACLASS(VSslClient, VNet) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // VSslClient

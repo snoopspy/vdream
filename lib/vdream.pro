@@ -36,7 +36,6 @@ SOURCES += \
   ../src/base/vobjectwidget.cpp \
   ../src/base/vapp.cpp \
   ../src/base/vmemoryleak.cpp \
-  ../src/base/vmetaclass.cpp \
   ../src/base/vxml.cpp \
   ../src/base/vfile.cpp \
   ../src/base/vobject.cpp \
@@ -64,7 +63,8 @@ SOURCES += \
   ../src/net/vtcpserver.cpp \
   ../src/net/vnet.cpp \
   ../src/base/vbase.cpp \
-  ../src/net/vsslbase.cpp
+  ../src/net/vsslbase.cpp \
+  ../src/base/vfactory.cpp
 
 HEADERS += \
   ../src/etc/vint.h \
@@ -91,7 +91,6 @@ HEADERS += \
   ../src/base/vinstance.h \
   ../src/base/vdependency.h \
   ../src/base/vlinux.h \
-  ../src/base/vmetaclass.h \
   ../src/base/vtick.h \
   ../src/base/vsystem.h \
   ../src/base/vobject.h \

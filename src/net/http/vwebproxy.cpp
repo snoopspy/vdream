@@ -1,7 +1,7 @@
 #include <VWebProxy>
 #include <VDebugNew>
 
-REGISTER_METACLASS(VWebProxy, VNet)
+// REGISTER_METACLASS(VWebProxy, VNet) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // VWebProxyOutPolicy

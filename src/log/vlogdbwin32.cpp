@@ -5,7 +5,7 @@
 #include <windows.h> // for OutputDebugString 
 #include <VDebugNew>
 
-REGISTER_METACLASS(VLogDBWin32, VLog)
+// REGISTER_METACLASS(VLogDBWin32, VLog) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // VLogDBWin32

@@ -8,6 +8,8 @@
 #include <VWebProxy>
 #include <VDebugNew>
 
+// ----- gilgil temp 2015.02.01 -----
+/*
 // ----------------------------------------------------------------------------
 // VNetFactory
 // ----------------------------------------------------------------------------
@@ -22,8 +24,9 @@ void VNetFactory::explicitLink()
   VWebProxy  webProxy;
 }
 
-VNet* VNetFactory::createByClassName(const QString& className)
+VNet* VNetFactory::createObjectByClassName(const QString& className)
 {
-  return VFactory<VNet>::createByClassName(className);
+  return VFactory<VNet>::createObjectByClassName(className);
 }
-
+*/
+// ----------------------------------

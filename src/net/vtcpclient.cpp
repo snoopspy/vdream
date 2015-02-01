@@ -1,7 +1,7 @@
 #include <VTcpClient>
 #include <VDebugNew>
 
-REGISTER_METACLASS(VTcpClient, VNet)
+// REGISTER_METACLASS(VTcpClient, VNet) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // VTcpClient

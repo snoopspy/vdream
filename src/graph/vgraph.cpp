@@ -41,25 +41,25 @@ bool VGraphObjectList::delObject(VObject* object)
   return true;
 }
 
-VObject* VGraphObjectList::findByName(QString name)
+VObject* VGraphObjectList::findObjectByName(QString name)
 {
   int _count = this->count();
   for (int i = 0; i < _count; i++)
   {
-    VObject* object = this->at(i);
-    if (object->objectName() == name) return object;
+    VObject* obj = this->at(i);
+    if (obj->objectName() == name) return obj;
   }
   LOG_ERROR("can not find object for ('%s')", qPrintable(name));
   return NULL;
 }
 
-VObject* VGraphObjectList::findByClassName(QString className)
+VObject* VGraphObjectList::findObjectByClassName(QString className)
 {
   int _count = this->count();
   for (int i = 0; i < _count; i++)
   {
-    VObject* object = this->at(i);
-    if (object->className() == className) return object;
+    VObject* obj = this->at(i);
+    if (obj->className() == className) return obj;
   }
   LOG_ERROR("can not find object for ('%s')", qPrintable(className));
   return NULL;
@@ -67,49 +67,50 @@ VObject* VGraphObjectList::findByClassName(QString className)
 
 QList<VObject*> VGraphObjectList::findObjectsByClassName(QString className)
 {
-  QList<VObject*> res;
-  int _count = this->count();
-  for (int i = 0; i < _count; i++)
-  {
-    VObject* object = this->at(i);
-    if (object->className() == className) res.push_back(object);
-  }
-  return res;
-}
-
-QList<VObject*> VGraphObjectList::findObjectsByCategoryName(QString categoryName)
-{
-  VMetaClassMap& map  = VMetaClassMap::instance();
-  VMetaClassList& list = map[(char*)qPrintable(categoryName)];
-
-  QList<VObject*> res;
+  QList<VObject*> ret;
   int _count = this->count();
   for (int i = 0; i < _count; i++)
   {
     VObject* obj = this->at(i);
-    for (VMetaClassList::iterator it = list.begin(); it != list.end(); it++)
+    if (obj->className() == className) ret.push_back(obj);
+  }
+  return ret;
+}
+
+QList<VObject*> VGraphObjectList::findObjectsByCategoryName(QString categoryName)
+{
+  VFactory& factory = VFactory::instance();
+  VFactory::VMetaObjectList mobjList = factory.findMetaObjectsByCategoryName(categoryName);
+
+  QList<VObject*> ret;
+  int _count = this->count();
+  for (int i = 0; i < _count; i++)
+  {
+    VObject* obj = this->at(i);
+    foreach (const QMetaObject* mobj, mobjList)
     {
-      VMetaClass* metaClass = *it;
-      if (QString(metaClass->className()) == obj->className())
-        res.push_back(obj);
+      if (QString(mobj->className()) == obj->className())
+      {
+        ret.push_back(obj);
+      }
     }
   }
-  return res;
+  return ret;
 }
 
-QStringList VGraphObjectList::findNamesByClassName(QString className)
+QStringList VGraphObjectList::findObjectNamesByClassName(QString className)
 {
-  QList<VObject*> objectList = findObjectsByClassName(className);
-  QStringList res;
-  foreach(VObject* object, objectList) res.push_back(object->objectName());
-  return res;
+  QList<VObject*> objList = findObjectsByClassName(className);
+  QStringList ret;
+  foreach (VObject* object, objList) ret.push_back(object->objectName());
+  return ret;
 }
 
-QStringList VGraphObjectList::findNamesByCategoryName(QString categoryName)
+QStringList VGraphObjectList::findObjectNamesByCategoryName(QString categoryName)
 {
-  QList<VObject*> objectList = findObjectsByCategoryName(categoryName);
+  QList<VObject*> objList = findObjectsByCategoryName(categoryName);
   QStringList res;
-  foreach(VObject* object, objectList) res.push_back(object->objectName());
+  foreach (VObject* object, objList) res.push_back(object->objectName());
   return res;
 }
 
@@ -124,14 +125,14 @@ void VGraphObjectList::load(VXml xml)
       LOG_ERROR("_class is null");
       return;
     }
-    VObject* object = (VObject*)VMetaClassMgr::createByClassName((char*)qPrintable(className));
-    if (object == NULL)
+    VObject* obj = dynamic_cast<VObject*>(VFactory::instance().createObjectByClassName(className));
+    if (obj == NULL)
     {
       LOG_ERROR("can not create instance for %s", qPrintable(className));
     }
-    object->owner = this->m_graph;
-    object->load(childXml);
-    this->push_back(object);
+    obj->owner = this->m_graph;
+    obj->load(childXml);
+    this->push_back(obj);
   }
 }
 
@@ -141,9 +142,9 @@ void VGraphObjectList::save(VXml xml)
   int _count = this->count();
   for (int i = 0; i < _count; i++)
   {
-    VObject* object = this->at(i);
+    VObject* obj = this->at(i);
     VXml childXml = xml.addChild("object");
-    object->save(childXml);
+    obj->save(childXml);
   }
 }
 
@@ -218,10 +219,10 @@ bool VGraphConnectList::addConnect(const VGraphConnect connect)
     return false;
   }
 
-  VObject*    sender   = m_graph->objectList.findByName(connect.sender);
+  VObject*    sender   = m_graph->objectList.findObjectByName(connect.sender);
   QMetaMethod signal   = VObject::findMethod(sender, connect.signal);
 
-  VObject*    receiver = m_graph->objectList.findByName(connect.receiver);
+  VObject*    receiver = m_graph->objectList.findObjectByName(connect.receiver);
   QMetaMethod slot     = VObject::findMethod(receiver, connect.slot);
 
   if (sender == NULL)   return false;
@@ -253,10 +254,10 @@ bool VGraphConnectList::delConnect(VGraphConnect connect)
     return false;
   }
 
-  VObject*    sender   = m_graph->objectList.findByName(connect.sender);
+  VObject*    sender   = m_graph->objectList.findObjectByName(connect.sender);
   QMetaMethod signal   = VObject::findMethod(sender, connect.signal);
 
-  VObject*    receiver = m_graph->objectList.findByName(connect.receiver);
+  VObject*    receiver = m_graph->objectList.findObjectByName(connect.receiver);
   QMetaMethod slot     = VObject::findMethod(receiver, connect.slot);
 
   if (sender == NULL)   return false;

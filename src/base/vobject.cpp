@@ -1,3 +1,4 @@
+#include <VLog>
 #include <VObject>
 #include <VDebugNew>
 

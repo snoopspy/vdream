@@ -3,7 +3,7 @@
 #include <VFile>
 #include <VDebugNew>
 
-REGISTER_METACLASS(VSslServer, VNet)
+// REGISTER_METACLASS(VSslServer, VNet) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // VSslServerSession

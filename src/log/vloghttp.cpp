@@ -1,7 +1,7 @@
 #include <VLogHttp>
 #include <VDebugNew>
 
-REGISTER_METACLASS(VLogHttp, VLog)
+// REGISTER_METACLASS(VLogHttp, VLog) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // VLogHttp

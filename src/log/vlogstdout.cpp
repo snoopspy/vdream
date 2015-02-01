@@ -1,7 +1,7 @@
 #include <VLogStdout>
 #include <VDebugNew>
 
-REGISTER_METACLASS(VLogStdout, VLog)
+// REGISTER_METACLASS(VLogStdout, VLog) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // VLogStdout

@@ -11,6 +11,7 @@
 #ifndef __V_RW_OBJECT_H__
 #define __V_RW_OBJECT_H__
 
+#include <VLog>
 #include <VObject>
 
 // ----------------------------------------------------------------------------

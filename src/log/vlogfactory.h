@@ -17,7 +17,7 @@
 // ----------------------------------------------------------------------------
 // VLogFactory
 // ----------------------------------------------------------------------------
-class VLogFactory : public VFactory<VLog>
+class VLogFactory
 {
 public:
   static void  explicitLink();

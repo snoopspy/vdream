@@ -97,6 +97,28 @@ QObject* VFactory::createObjectByClassName(QString className)
   return obj;
 }
 
+#include <VObject>
+#include <VXmlDoc>
+QObject* VFactory::createObjectByDefaultDoc(const QString& path)
+{
+  VXmlDoc& doc = VXmlDoc::instance();
+  VXml xml = doc.root().findChilds(path);
+  if (xml.isNull()) return NULL;
+
+  QString className = xml.getStr("_class", "");
+  if (className == "")
+  {
+    return NULL;
+  }
+  VObject* obj = dynamic_cast<VObject*>(VFactory::instance().createObjectByClassName(className));
+  if (obj == NULL)
+  {
+    return NULL;
+  }
+  obj->load(xml);
+  return obj;
+}
+
 bool VFactory::isAncestor(const QMetaObject* mobj, QString className)
 {
   while (mobj != NULL)

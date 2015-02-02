@@ -105,6 +105,7 @@ void VApp::initialize(bool path, bool xml, QString uri)
   //---------------------------------------------------------------------------
   if (uri != "")
   {
+    VLogFactory::explicitLink();
     VLog* log = VLogFactory::createByDefaultDoc("log");
     if (log == NULL)
     {

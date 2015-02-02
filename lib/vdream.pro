@@ -64,7 +64,9 @@ SOURCES += \
   ../src/net/vnet.cpp \
   ../src/base/vbase.cpp \
   ../src/net/vsslbase.cpp \
-  ../src/base/vfactory.cpp
+  ../src/base/vfactory.cpp \
+    ../src/base/vstateobject.cpp \
+    ../src/base/vstate.cpp
 
 HEADERS += \
   ../src/etc/vint.h \
@@ -129,7 +131,9 @@ HEADERS += \
   ../src/net/vsslsession.h \
   ../src/base/vbase.h \
   ../src/net/vsslbase.h \
-  ../src/net/http/vhttpbase.h
+  ../src/net/http/vhttpbase.h \
+    ../src/base/vstateobject.h \
+    ../src/base/vstate.h
 
 contains(QT, gui) {
 FORMS += \

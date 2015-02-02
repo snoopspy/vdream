@@ -1,3 +1,3 @@
 QT += gui widgets
-include (vdream.pro)
+include(vdream.pro)
 

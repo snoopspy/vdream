@@ -13,8 +13,9 @@
 
 #include <QObject>
 
-#include <VError>
 #include <VBase>
+#include <VError>
+#include <VState>
 #include <VXml>
 
 // ----------------------------------------------------------------------------
@@ -52,10 +53,6 @@ class VObject :
   Q_OBJECT
 
 public:
-  //
-  // constructor and destructor
-  //
-public:
   void* owner;
 
 public:
@@ -63,7 +60,6 @@ public:
   virtual ~VObject();
 
 public:
-
   VObjectConnections connections;
   static bool connect(QObject* sender, const char* signal, QObject* receiver, const char* slot, Qt::ConnectionType type = Qt::AutoConnection);
   static bool connect(QObject *sender, const QMetaMethod &signal, QObject *receiver, const QMetaMethod &slot, Qt::ConnectionType type = Qt::AutoConnection);
@@ -71,43 +67,13 @@ public:
   static bool disconnect(QObject *sender, const QMetaMethod &signal, QObject *receiver, const QMetaMethod &slot);
   static QMetaMethod findMethod(QObject* object, QString methodName);
 
-protected:
-  VState m_state;
-
 public:
   int     tag; // used for debugging
-  VState  state()     { return m_state;                   }
   QString className() { return this->metaObject()->className(); }
-  bool    active()    { return m_state == VState::Opened; }
 
-  //
-  // error
-  //
 public:
   VError error;
 
-  //
-  // open and close
-  //
-public slots:
-  virtual bool open();
-  virtual bool close();
-
-public:
-  virtual bool close(bool wait, VTimeout timeout = VBase::TIMEOUT);
-  virtual bool wait(VTimeout timeout = VBase::TIMEOUT);
-
-protected:
-  virtual bool doOpen();
-  virtual bool doClose();
-
-signals:
-  void opened();
-  void closed();
-
-  //
-  // load and save
-  //
 public:
   virtual void load(VXml xml);
   virtual void save(VXml xml);

@@ -33,34 +33,6 @@ const char* VBase::getClassName(const char* value)
   return res;
 }
 
-// ----------------------------------------------------------------------------
-// VState
-// ----------------------------------------------------------------------------
-VState::VState(const QString s)
-{
-  if (s == "None")         value = None;
-  else if (s == "Closed")  value = Closed;
-  else if (s == "Opening") value = Opening;
-  else if (s == "Opened")  value = Opened;
-  else if (s == "Closing") value = Closing;
-  else value = None;
-}
-
-QString VState::str() const
-{
-  QString res;
-  switch (value)
-  {
-    case None:    res = "None";    break;
-    case Closed:  res = "Closed";  break;
-    case Opening: res = "Opening"; break;
-    case Opened:  res = "Opened";  break;
-    case Closing: res = "Closing"; break;
-    default:      res = "None";    break;
-  }
-  return res;
-}
-
 #ifdef GTEST
 #include <VDebugNewCancel>
 #include <gtest/gtest.h>

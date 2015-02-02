@@ -33,7 +33,6 @@ bool VObjectConnection::operator == (const VObjectConnection& r) const
 VObject::VObject(void* owner) : QObject((QObject*)owner) // gilgil temp 2012.05.29
 {
   this->owner = owner;
-  m_state     = VState::Closed;
   tag         = 0;
   error.clear();
 }

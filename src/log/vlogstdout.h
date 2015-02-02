@@ -18,6 +18,8 @@
 // ----------------------------------------------------------------------------
 class VLogStdout : public VLog
 {
+  Q_OBJECT
+
 public:
   VLogStdout();
   virtual ~VLogStdout();

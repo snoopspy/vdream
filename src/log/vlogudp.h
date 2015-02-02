@@ -28,6 +28,8 @@
 class VMyLogUDPClient;
 class VLogUdp : public VLog
 {
+  Q_OBJECT
+
 public:
   static const char* DEFAULT_HOST; // "127.0.0.1"
   static const int   DEFAULT_PORT; // 8908

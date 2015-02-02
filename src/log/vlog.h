@@ -43,6 +43,8 @@ public:
 
 class VLog : public VObject
 {
+  Q_OBJECT
+
   friend class VLogList;
   friend class VLogFactory;
 

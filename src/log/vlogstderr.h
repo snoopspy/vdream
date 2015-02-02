@@ -18,6 +18,8 @@
 // ----------------------------------------------------------------------------
 class VLogStderr : public VLog
 {
+  Q_OBJECT
+
 public:
   VLogStderr();
   virtual ~VLogStderr();

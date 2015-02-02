@@ -16,7 +16,7 @@
 void VLogFactory::explicitLink()
 {
   VFactory& factory = VFactory::instance();
-#ifdef WIN32
+#ifdef WIN32Z
   VLogDBWin32 logDBWin32; factory.registerMetaObject(logDBWin32.metaObject());
 #endif // WIN32
   VLogFile    logFile;   factory.registerMetaObject(logFile.metaObject());
@@ -46,7 +46,7 @@ VLog* VLogFactory::createByURI(const QString& uri)
   VLog* ret = NULL;
   foreach (const QMetaObject* mobj, mobjList)
   {
-    VLog* _log = dynamic_cast<VLog*>(mobj->newInstance());
+    VLog* _log = dynamic_cast<VLog*>(factory.createObjectByClassName(mobj->className()));
     if (_log == NULL)
     {
       LOG_FATAL("can not create log for '%s'", mobj->className());

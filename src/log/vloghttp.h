@@ -20,6 +20,8 @@
 class VLogHttpTcpServer;
 class VLogHttp : public VLog
 {
+  Q_OBJECT
+
 public:
   static const int DEFAULT_PORT = 8908;
 

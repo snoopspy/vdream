@@ -18,6 +18,8 @@
 // ----------------------------------------------------------------------------
 class VLogNull : public VLog
 {
+  Q_OBJECT
+
 public:
   VLogNull()
   {

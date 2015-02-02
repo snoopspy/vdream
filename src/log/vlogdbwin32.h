@@ -20,6 +20,8 @@
 // ----------------------------------------------------------------------------
 class VLogDBWin32 : public VLog
 {
+  Q_OBJECT
+
 protected:
   virtual void write(const char* buf, int len);
 

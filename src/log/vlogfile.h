@@ -20,6 +20,8 @@
 class VMyLogFile;
 class VLogFile : public VLog, public VLockable
 {
+  Q_OBJECT
+
 public:
   static const char* DEFAULT_LOG_FILE_NAME;
 

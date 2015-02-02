@@ -19,6 +19,8 @@
 // ----------------------------------------------------------------------------
 class VLogList : public VLog
 {
+  Q_OBJECT
+
 public:
   VLogList(void* owner = NULL);
   virtual ~VLogList();

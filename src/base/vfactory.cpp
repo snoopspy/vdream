@@ -1,3 +1,4 @@
+#include <stdio.h> // for fprintf
 #include "vfactory.h"
 
 VFactory::VFactory()
@@ -32,6 +33,11 @@ void VFactory::registerMetaObject(const QMetaObject* mobj)
 
 void VFactory::registerMetaObjectByCategoryName(const QMetaObject* mobj, QString categoryName)
 {
+  if (QString(mobj->className()) == categoryName)
+  {
+    fprintf(stderr, "className is equal to categoryName (%s)\n", mobj->className());
+    return;
+  }
   registerMetaObject(mobj);
   VMetaObjectList& mobjList = categoryMap[categoryName];
   if (mobjList.indexOf(mobj) == -1)

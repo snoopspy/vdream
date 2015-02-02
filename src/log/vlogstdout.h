@@ -21,7 +21,7 @@ class VLogStdout : public VLog
   Q_OBJECT
 
 public:
-  VLogStdout();
+  Q_INVOKABLE VLogStdout(void* owner = NULL);
   virtual ~VLogStdout();
 
 public:

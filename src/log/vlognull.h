@@ -21,7 +21,7 @@ class VLogNull : public VLog
   Q_OBJECT
 
 public:
-  VLogNull()
+  Q_INVOKABLE VLogNull(void* owner = NULL) : VLog(owner)
   {
     level        = LEVEL_NONE;
     showDateTime = VShowDateTime::None;

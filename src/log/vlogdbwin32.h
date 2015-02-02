@@ -22,6 +22,10 @@ class VLogDBWin32 : public VLog
 {
   Q_OBJECT
 
+public:
+  Q_INVOKABLE VLogDBWin32(void* owner = NULL) : VLog(owner) {}
+  virtual ~VLogDBWin32() {}
+
 protected:
   virtual void write(const char* buf, int len);
 

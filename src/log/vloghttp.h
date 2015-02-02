@@ -26,7 +26,7 @@ public:
   static const int DEFAULT_PORT = 8908;
 
 public:
-  VLogHttp(const int port = DEFAULT_PORT);
+  Q_INVOKABLE VLogHttp(void* owner = NULL, const int port = DEFAULT_PORT);
   virtual ~VLogHttp();
 
 public:

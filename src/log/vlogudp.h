@@ -35,7 +35,7 @@ public:
   static const int   DEFAULT_PORT; // 8908
 
 public:
-  VLogUdp(const char* host = DEFAULT_HOST, const int port = DEFAULT_PORT);
+  Q_INVOKABLE VLogUdp(void* owner = NULL, const char* host = DEFAULT_HOST, const int port = DEFAULT_PORT);
   virtual ~VLogUdp();
 
 public:

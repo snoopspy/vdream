@@ -21,7 +21,7 @@ class VLogStderr : public VLog
   Q_OBJECT
 
 public:
-  VLogStderr();
+  Q_INVOKABLE VLogStderr(void* owner = NULL);
   virtual ~VLogStderr();
 
 public:

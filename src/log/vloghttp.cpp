@@ -6,7 +6,7 @@
 // ----------------------------------------------------------------------------
 // VLogHttp
 // ----------------------------------------------------------------------------
-VLogHttp::VLogHttp(const int port)
+VLogHttp::VLogHttp(void* owner, const int port) : VLog(owner)
 {
   showDateTime = VShowDateTime::Time;
   this->port = port;
@@ -46,7 +46,7 @@ VLog* VLogHttp::createByURI(const QString& uri)
     int port = _url.port();
     if (port == 0 || port == -1) port = DEFAULT_PORT;
 
-    VLogHttp* logHTTP= new VLogHttp(port);
+    VLogHttp* logHTTP= new VLogHttp(NULL, port);
     return logHTTP;
   }
   return NULL;

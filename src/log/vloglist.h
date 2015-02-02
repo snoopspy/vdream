@@ -22,7 +22,7 @@ class VLogList : public VLog
   Q_OBJECT
 
 public:
-  VLogList(void* owner = NULL);
+  Q_INVOKABLE VLogList(void* owner = NULL);
   virtual ~VLogList();
   void clear();
 

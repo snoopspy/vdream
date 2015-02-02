@@ -10,7 +10,7 @@
 const char* VLogUdp::DEFAULT_HOST = "127.0.0.1";
 const int   VLogUdp::DEFAULT_PORT = 8908;
 
-VLogUdp::VLogUdp(const char* host, const int port)
+VLogUdp::VLogUdp(void* owner, const char* host, const int port) : VLog(owner)
 {
   VNetInstance::instance();
 
@@ -110,7 +110,7 @@ VLog* VLogUdp::createByURI(const QString& uri)
     int port = _url.port();
     if (port == 0 || port == -1) port = DEFAULT_PORT;
 
-    VLogUdp* logUDP = new VLogUdp(qPrintable(host), port);
+    VLogUdp* logUDP = new VLogUdp(NULL, qPrintable(host), port);
     return logUDP;
   }
   return NULL;

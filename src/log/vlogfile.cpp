@@ -19,7 +19,7 @@ public:
 // ----------------------------------------------------------------------------
 const char* VLogFile::DEFAULT_LOG_FILE_NAME = "%1%2%3.log";
 
-VLogFile::VLogFile()
+VLogFile::VLogFile(void* owner) : VLog(owner)
 {
   showDateTime = VShowDateTime::DateTime;
   setFolder("");
@@ -30,7 +30,7 @@ VLogFile::VLogFile()
   closeOnWrite = true;
 }
 
-VLogFile::VLogFile(QString filePath)
+VLogFile::VLogFile(QString filePath) : VLog(NULL)
 {
   showDateTime = VShowDateTime::DateTime;
   QString _path     = QFileInfo(filePath).path();

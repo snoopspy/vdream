@@ -26,7 +26,7 @@ public:
   static const char* DEFAULT_LOG_FILE_NAME;
 
 public:
-  VLogFile();
+  Q_INVOKABLE VLogFile(void* owner = NULL);
   VLogFile(QString filePath);
   virtual ~VLogFile();
 

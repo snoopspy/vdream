@@ -11,16 +11,15 @@
 #ifndef __V_RW_OBJECT_H__
 #define __V_RW_OBJECT_H__
 
-#include <VLog>
-#include <VObject>
+#include <VStateObject>
 
 // ----------------------------------------------------------------------------
 // VRwObject
 // ----------------------------------------------------------------------------
-class VRwObject : public VObject
+class VRwObject : public VStateObject
 {
 public:
-  VRwObject(void* owner = NULL) : VObject(owner) {}
+  VRwObject(void* owner = NULL) : VStateObject(owner) {}
 
 public:
   int        read(char* buf, int size);

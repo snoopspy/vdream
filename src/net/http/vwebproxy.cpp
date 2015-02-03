@@ -260,7 +260,7 @@ void VWebProxyOutInThread::run()
 // ----------------------------------------------------------------------------
 // VWebProxy
 // ----------------------------------------------------------------------------
-VWebProxy::VWebProxy(void* owner) : VObject(owner)
+VWebProxy::VWebProxy(void* owner) : VStateObject(owner)
 {
   enabled                   = true;
   httpEnabled               = true;

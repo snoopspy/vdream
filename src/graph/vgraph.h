@@ -11,15 +11,14 @@
 #ifndef __V_GRAPH_H__
 #define __V_GRAPH_H__
 
-#include <VLog>
-#include <VObject>
+#include <VStateObject>
 #include <VFactory>
 
 // ----------------------------------------------------------------------------
 // VGraphObjectList
 // ----------------------------------------------------------------------------
 class VGraph;
-class VGraphObjectList : public QList<VObject*>, public VXmlable
+class VGraphObjectList : public QList<VStateObject*>, public VXmlable
 {
 protected:
   VGraph* m_graph;
@@ -32,15 +31,15 @@ public:
   void clear();
 
 public:
-  bool addObject(VObject* object);
-  bool delObject(VObject* object);
+  bool addObject(VStateObject* object);
+  bool delObject(VStateObject* object);
 
 public:
-  VObject* findObjectByName(QString name);
-  VObject* findObjectByClassName(QString className);
+  VStateObject* findObjectByName(QString name);
+  VStateObject* findObjectByClassName(QString className);
 
-  QList<VObject*> findObjectsByClassName(QString className);
-  QList<VObject*> findObjectsByCategoryName(QString categoryName);
+  QList<VStateObject*> findObjectsByClassName(QString className);
+  QList<VStateObject*> findObjectsByCategoryName(QString categoryName);
 
   QStringList findObjectNamesByClassName(QString className);
   QStringList findObjectNamesByCategoryName(QString categoryName);
@@ -100,7 +99,7 @@ public:
 // ----------------------------------------------------------------------------
 // VGraph
 // ----------------------------------------------------------------------------
-class VGraph : public VObject
+class VGraph : public VStateObject
 {
   Q_OBJECT
 
@@ -120,10 +119,10 @@ public:
   VGraphConnectList connectList;
 
 protected:
-  static QStringList methodList(VObject* object, QMetaMethod::MethodType methodType);
+  static QStringList methodList(VStateObject* object, QMetaMethod::MethodType methodType);
 public:
-  static QStringList signalList(VObject* object);
-  static QStringList slotList(VObject* object);
+  static QStringList signalList(VStateObject* object);
+  static QStringList slotList(VStateObject* object);
 
 public:
   virtual void load(VXml xml);

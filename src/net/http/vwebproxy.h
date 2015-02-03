@@ -11,8 +11,7 @@
 #ifndef __V_HTTP_PROXY_H__
 #define __V_HTTP_PROXY_H__
 
-#include <VLog>
-#include <VObject>
+#include <VStateObject>
 #include <VTcpServer>
 #include <VTcpClient>
 #include <VSslServer>
@@ -132,7 +131,7 @@ protected:
 // ----------------------------------------------------------------------------
 // VWebProxy
 // ----------------------------------------------------------------------------
-class VWebProxy : public VObject, public VOptionable
+class VWebProxy : public VStateObject, public VOptionable
 {
   Q_OBJECT
 

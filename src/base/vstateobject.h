@@ -21,7 +21,7 @@
 class VStateObject : public VObject
 {
   Q_OBJECT
-  Q_PROPERTY(VState::VState state READ state)
+  Q_PROPERTY(VState::_VState state READ state)
   Q_PROPERTY(bool active READ active)
 
 public:

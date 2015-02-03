@@ -12,8 +12,7 @@
 #define __V_THREAD_H__
 
 #include <QThread>
-#include <VLog>
-#include <VObject>
+#include <VStateObject>
 
 // ----------------------------------------------------------------------------
 // VQThread
@@ -47,7 +46,7 @@ protected:
 // VThread
 // ----------------------------------------------------------------------------
 class VThread :
-  public  VObject,
+  public  VStateObject,
   public  VLockable,
   public  IVRunnable
 {

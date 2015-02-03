@@ -50,7 +50,7 @@ TEST(VStateTest, varTest)
   int userType = var.userType();
   EXPECT_TRUE(userType == qMetaTypeId<VState>());
 
-  QVariant::Type type = var.type();
+  QVariant::Type type = var.type();  // deprecated
   EXPECT_TRUE((int)type == QMetaType::User);
 
   QString typeName = var.typeName();

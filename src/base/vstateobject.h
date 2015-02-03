@@ -21,8 +21,6 @@
 class VStateObject : public VObject
 {
   Q_OBJECT
-  Q_PROPERTY(VState::_VState state READ state)
-  Q_PROPERTY(bool active READ active)
 
 public:
   VStateObject(void* owner = NULL);
@@ -34,6 +32,10 @@ protected:
 public:
   VState state() { return m_state; }
   bool active() { return m_state == VState::Opened; }
+
+public:
+  int tag; // used for debugging
+  VError error;
 
 public slots:
   virtual bool open();

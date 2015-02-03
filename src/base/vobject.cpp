@@ -33,13 +33,10 @@ bool VObjectConnection::operator == (const VObjectConnection& r) const
 VObject::VObject(void* owner) : QObject((QObject*)owner) // gilgil temp 2012.05.29
 {
   this->owner = owner;
-  tag = 0;
-  error.clear();
 }
 
 VObject::~VObject()
 {
-
 }
 
 bool VObject::connect(QObject* sender, const char* signal, QObject* receiver, const char* slot, Qt::ConnectionType type)

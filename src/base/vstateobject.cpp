@@ -3,7 +3,8 @@
 VStateObject::VStateObject(void* owner) : VObject(owner)
 {
   m_state = VState::Closed;
-
+  tag = 0;
+  error.clear();
 }
 
 VStateObject::~VStateObject()

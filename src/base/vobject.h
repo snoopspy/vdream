@@ -68,11 +68,7 @@ public:
   static QMetaMethod findMethod(QObject* object, QString methodName);
 
 public:
-  int     tag; // used for debugging
   QString className() { return this->metaObject()->className(); }
-
-public:
-  VError error;
 
 public:
   virtual void load(VXml xml);

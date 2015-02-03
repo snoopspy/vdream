@@ -45,6 +45,6 @@ public:
   */
   // ----------------------------------
 };
-Q_DECLARE_METATYPE(VState::_VState)
+//Q_DECLARE_METATYPE(VState::_VState) // gilgil temp 2015.02.03
 
 #endif // __V_STATE_H__

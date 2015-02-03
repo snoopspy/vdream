@@ -85,7 +85,6 @@ void Widget::initializeControl()
 
   move(0, 0); resize(640, 480);
 
-  setLayout(ui->mainLayout);
   ui->mainLayout->setSpacing(0);
   ui->pteRecv->setWordWrapMode(QTextOption::NoWrap);
   ui->pteSend->setWordWrapMode(QTextOption::NoWrap);

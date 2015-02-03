@@ -30,7 +30,7 @@ signals:
 // ----------------------------------------------------------------------------
 // MyLog
 // ----------------------------------------------------------------------------
-class MyLog : public VObject, public VRunnable
+class MyLog : public VStateObject, public VRunnable
 {
 public:
   MyLog();

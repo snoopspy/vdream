@@ -12,7 +12,7 @@
 #define __V_STATE_H__
 
 #include <QMetaType>
-#include <QString>
+//#include <QString> // gilgil temp 2015.02.03
 
 // ----------------------------------------------------------------------------
 // VState
@@ -38,9 +38,13 @@ public:
   VState(const _VState value) { this->value = value; }
   operator _VState() const { return value; }
 
+  // ----- gilgil temp 2015.02.03 -----
+  /*
   VState(const QString s);
   operator QString() const;
+  */
+  // ----------------------------------
 };
-Q_DECLARE_METATYPE(VState)
+Q_DECLARE_METATYPE(VState::_VState)
 
 #endif // __V_STATE_H__

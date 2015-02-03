@@ -11,6 +11,7 @@
 #ifndef __V_STATE_OBJECT_H__
 #define __V_STATE_OBJECT_H__
 
+#include <VLog>
 #include <VObject>
 #include <VState>
 
@@ -20,8 +21,8 @@
 class VStateObject : public VObject
 {
   Q_OBJECT
-  Q_PROPERTY(VState READ state)
-  Q_PROPERTY(bool READ active)
+  Q_PROPERTY(VState::VState state READ state)
+  Q_PROPERTY(bool active READ active)
 
 public:
   VStateObject(void* owner = NULL);

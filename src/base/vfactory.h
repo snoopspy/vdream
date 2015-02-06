@@ -25,9 +25,9 @@ public:
   void registerMetaObject(const QMetaObject* mobj);
   void registerMetaObjectByCategoryName(const QMetaObject* mobj, QString categoryName);
 
-  VMetaObjectList findMetaObjectsByParentClassName(QString parentClassName);
-  VMetaObjectList findMetaObjectsByAncestorClassName(QString ancestorClassName);
-  VMetaObjectList findMetaObjectsByCategoryName(QString categoryName);
+  VMetaObjectList getMetaObjectsByParentClassName(QString parentClassName);
+  VMetaObjectList getMetaObjectsByAncestorClassName(QString ancestorClassName);
+  VMetaObjectList getMetaObjectsByCategoryName(QString categoryName);
 
   QObject* createObjectByClassName(QString className);
   static QObject* createObjectByDefaultDoc(const QString& path); // gilgil temp 2015.01.29 serialize

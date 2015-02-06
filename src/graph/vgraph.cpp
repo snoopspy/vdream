@@ -80,7 +80,7 @@ QList<VStateObject*> VGraphObjectList::findObjectsByClassName(QString className)
 QList<VStateObject*> VGraphObjectList::findObjectsByCategoryName(QString categoryName)
 {
   VFactory& factory = VFactory::instance();
-  VFactory::VMetaObjectList mobjList = factory.findMetaObjectsByCategoryName(categoryName);
+  VFactory::VMetaObjectList mobjList = factory.getMetaObjectsByCategoryName(categoryName);
 
   QList<VStateObject*> res;
   int _count = this->count();

@@ -44,7 +44,7 @@ void VFactory::registerMetaObjectByCategoryName(const QMetaObject* mobj, QString
     mobjList.push_back(mobj);
 }
 
-VFactory::VMetaObjectList VFactory::findMetaObjectsByParentClassName(QString parentClassName)
+VFactory::VMetaObjectList VFactory::getMetaObjectsByParentClassName(QString parentClassName)
 {
   for (VHierachyMap::iterator it = hierachyMap.begin(); it != hierachyMap.end(); it++)
   {
@@ -59,7 +59,7 @@ VFactory::VMetaObjectList VFactory::findMetaObjectsByParentClassName(QString par
   return VMetaObjectList();
 }
 
-VFactory::VMetaObjectList VFactory::findMetaObjectsByAncestorClassName(QString ancestorClassName)
+VFactory::VMetaObjectList VFactory::getMetaObjectsByAncestorClassName(QString ancestorClassName)
 {
   VMetaObjectList res;
   for (VHierachyMap::iterator it = hierachyMap.begin(); it != hierachyMap.end(); it++)
@@ -75,7 +75,7 @@ VFactory::VMetaObjectList VFactory::findMetaObjectsByAncestorClassName(QString a
   return res;
 }
 
-VFactory::VMetaObjectList VFactory::findMetaObjectsByCategoryName(QString categoryName)
+VFactory::VMetaObjectList VFactory::getMetaObjectsByCategoryName(QString categoryName)
 {
   for (VCategoryMap::iterator it = categoryMap.begin(); it != categoryMap.end(); it++)
   {

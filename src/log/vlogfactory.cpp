@@ -41,7 +41,7 @@ VLog* VLogFactory::createByDefaultDoc(const QString& path)
 VLog* VLogFactory::createByURI(const QString& uri)
 {
   VFactory& factory = VFactory::instance();
-  VFactory::VMetaObjectList mobjList = factory.findMetaObjectsByAncestorClassName("VLog");
+  VFactory::VMetaObjectList mobjList = factory.getMetaObjectsByAncestorClassName("VLog");
 
   VLog* ret = NULL;
   foreach (const QMetaObject* mobj, mobjList)

@@ -217,7 +217,7 @@ TEST_F(VFactoryTest, createObjectTest)
 TEST_F(VFactoryTest, parentClassNameTest)
 {
   {
-    VFactory::VMetaObjectList mobjList = factory.findMetaObjectsByParentClassName("Obj");
+    VFactory::VMetaObjectList mobjList = factory.getMetaObjectsByParentClassName("Obj");
     foreach (const QMetaObject* mobj, mobjList)
     {
       printf("%s ", mobj->className());
@@ -226,7 +226,7 @@ TEST_F(VFactoryTest, parentClassNameTest)
     EXPECT_EQ(mobjList.size(), 3); // Obj1, Obj2, Obj3
   }
   {
-    VFactory::VMetaObjectList mobjList = factory.findMetaObjectsByParentClassName("Obj3");
+    VFactory::VMetaObjectList mobjList = factory.getMetaObjectsByParentClassName("Obj3");
     foreach (const QMetaObject* mobj, mobjList)
     {
       printf("%s ", mobj->className());
@@ -239,7 +239,7 @@ TEST_F(VFactoryTest, parentClassNameTest)
 TEST_F(VFactoryTest, ancestorClassNameTest)
 {
   {
-    VFactory::VMetaObjectList mobjList = factory.findMetaObjectsByAncestorClassName("Obj");
+    VFactory::VMetaObjectList mobjList = factory.getMetaObjectsByAncestorClassName("Obj");
     foreach (const QMetaObject* mobj, mobjList)
     {
       printf("%s ", mobj->className());
@@ -248,7 +248,7 @@ TEST_F(VFactoryTest, ancestorClassNameTest)
     EXPECT_EQ(mobjList.size(), 7); // Obj1, Obj2, Obj3, Obj31, Obj32, Obj33, Obj34
   }
   {
-    VFactory::VMetaObjectList mobjList = factory.findMetaObjectsByParentClassName("Obj3");
+    VFactory::VMetaObjectList mobjList = factory.getMetaObjectsByParentClassName("Obj3");
     foreach (const QMetaObject* mobj, mobjList)
     {
       printf("%s ", mobj->className());

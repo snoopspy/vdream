@@ -53,7 +53,7 @@ void VMyObject::recv(int i)
 TEST(VMyObjectTest, factoryTest)
 {
   VFactory& factory = VFactory::instance();
-  VFactory::VMetaObjectList objList = factory.findMetaObjectsByAncestorClassName("VMyObject");
+  VFactory::VMetaObjectList objList = factory.getMetaObjectsByAncestorClassName("VMyObject");
   EXPECT_TRUE(objList.count() == 8);
 }
 

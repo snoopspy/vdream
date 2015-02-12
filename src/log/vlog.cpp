@@ -398,7 +398,7 @@ TEST ( Log, setLogTest )
 TEST ( Log, factoryTest )
 {
   VFactory& factory = VFactory::instance();
-  VFactory::VMetaObjectList mobjList = factory.findMetaObjectsByAncestorClassName("VLog");
+  VFactory::VMetaObjectList mobjList = factory.getMetaObjectsByAncestorClassName("VLog");
   foreach(const QMetaObject* mobj, mobjList)
   {
     VLog* log = dynamic_cast<VLog*>(factory.createObjectByClassName(mobj->className()));

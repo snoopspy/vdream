@@ -31,7 +31,7 @@ message($${VDREAM_LIB_NAME}) # gilgil temp 2015.01.20
 #-------------------------------------------------
 # vdream
 #-------------------------------------------------
-VDREAM_PATH  = $${PWD}/..
+VDREAM_PATH  = $${PWD}
 INCLUDEPATH += $${VDREAM_PATH}/src
 !CONFIG(VDREAM_LIB_BUILD) {
   gcc:PRE_TARGETDEPS +=  $${VDREAM_PATH}/lib/lib$${VDREAM_LIB_NAME}.a

@@ -1,8 +1,8 @@
 QT += core
 QT -= gui
 
-include(../../../../../google/gtest/gtest.pri)
-include(../../../lib/vdream.pri)
+include(../../../../google/gtest/gtest.pri)
+include(../../../vdream.pri)
 
 TARGET    = common_test
 CONFIG   += console

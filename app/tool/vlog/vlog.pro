@@ -6,7 +6,7 @@
 
 QT -= gui
 
-include(../../../lib/vdream.pri)
+include(../../../vdream.pri)
 
 TARGET    = vlog
 CONFIG   += console

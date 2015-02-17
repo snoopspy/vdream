@@ -6,7 +6,7 @@
 
 QT       += core gui widgets
 
-include(../../../lib/vdream.pri)
+include(../../../vdream.pri)
 
 TARGET   = webproxy
 TEMPLATE = app

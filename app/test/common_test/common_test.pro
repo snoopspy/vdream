@@ -1,14 +1,13 @@
 QT += core
 QT -= gui
 
-include(../../../../google/gtest/gtest.pri)
 include(../../../vdream.pri)
+include(../../../../../google/gtest/gtest.pri)
 
 TARGET    = common_test
 CONFIG   += console
 CONFIG   -= app_bundle
 DESTDIR   = $${PWD}/../../../bin
-
 TEMPLATE = app
 
 SOURCES += \

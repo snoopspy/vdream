@@ -3,12 +3,8 @@ QT += core xml
 #
 # debug and release
 #
-CONFIG(debug, debug|release) {
-  DEFINES += _DEBUG
-}
-CONFIG(release, debug|release) {
-  DEFINES += _RELEASE
-}
+CONFIG(debug, debug|release)   DEFINES += _DEBUG
+CONFIG(release, debug|release) DEFINES += _RELEASE
 
 #
 # library name

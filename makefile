@@ -1,8 +1,8 @@
 define makelib # $(1)filename, $(2)config
 	cd lib && \
 	qmake $(1) CONFIG+=$(2) && \
-	make && \
-	cp ui_* src \
+	make -j8 && \
+	cp -f ui_* ../src | true && \
 	make clean && \
 	cd ..
 endef

@@ -19,6 +19,12 @@
 // ----------------------------------------------------------------------------
 class VNetClient : public VNet, public VOptionable
 {
+  Q_OBJECT
+  Q_PROPERTY(QString host MEMBER host)
+  Q_PROPERTY(int port MEMBER port)
+  Q_PROPERTY(QString localHost MEMBER localHost)
+  Q_PROPERTY(int localPort MEMBER localPort)
+
 public:
   VNetClient(void* owner = NULL);
   virtual ~VNetClient();

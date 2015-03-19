@@ -77,6 +77,16 @@ bool VTcpServer::doOpen()
   }
 
   // ------------------------------------------------------------------------
+  // setsockopt
+  // ------------------------------------------------------------------------
+  int optval = 1;
+  int res = ::setsockopt(acceptSession->handle, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof(optval));
+  if (res == -1) {
+    SET_ERROR(VNetError, "error in setsockopt", (int)WSAGetLastError());
+    return false;
+  }
+
+  // ------------------------------------------------------------------------
   // bind
   // ------------------------------------------------------------------------
   acceptSession->addr.sin_family = AF_INET;
@@ -96,7 +106,7 @@ bool VTcpServer::doOpen()
   }
   memset(&acceptSession->addr.sin_zero, 0, sizeof(acceptSession->addr.sin_zero));
 
-  int res = ::bind(acceptSession->handle, (struct sockaddr*)&acceptSession->addr, sizeof(acceptSession->addr));
+  res = ::bind(acceptSession->handle, (struct sockaddr*)&acceptSession->addr, sizeof(acceptSession->addr));
   if (res == SOCKET_ERROR)
   {
     SET_ERROR(VSocketError, QString("error in bind(%1:%2)").arg(localHost).arg(port), (int)WSAGetLastError());

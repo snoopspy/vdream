@@ -14,12 +14,12 @@
 // #define WIN32_LEAN_AND_MEAN // gilgil temp 2015.01.21
 #include <QtCore>
 #include <VSystem>
-#ifdef WIN32
+#ifdef _WIN32
 #include <VWindows>
-#endif // WIN32
-#ifdef linux
+#endif // _WIN32
+#ifdef __linux__
 #include <VLinux>
-#endif // linux
+#endif // __linux__
 
 // ----------------------------------------------------------------------------
 // Define

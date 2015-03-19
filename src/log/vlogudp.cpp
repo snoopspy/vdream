@@ -83,12 +83,12 @@ bool VLogUdp::close()
   //
   // closesocket
   //
-#ifdef WIN32
+#ifdef _WIN32
   ::closesocket(handle);
-#endif // WIN32
-#ifdef linux
+#endif // _WIN32
+#ifdef __linux__
   ::close(handle);
-#endif // linux
+#endif // __linux__
 
   handle = INVALID_SOCKET;
 

@@ -46,7 +46,7 @@ app_:
 	cd app && qmake && make && make clean && cd ..
 
 clean:
-	find -type d -name 'build-*'    -exec rm -r {} \;
+	find -type d -name 'build-*'    -exec rm -r {} \; | true
 	find -type f -name '*.o'        -delete
 	find -type f -name '*.pro.user' -delete
 	find -type f -name 'Makefile*'  -delete

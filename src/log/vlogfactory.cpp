@@ -16,9 +16,9 @@
 void VLogFactory::explicitLink()
 {
   VFactory& factory = VFactory::instance();
-#ifdef WIN32Z
+#ifdef _WIN32Z
   VLogDBWin32 logDBWin32; factory.registerMetaObject(logDBWin32.metaObject());
-#endif // WIN32
+#endif // _WIN32
   VLogFile    logFile;   factory.registerMetaObject(logFile.metaObject());
   VLogHttp    logHTTP;   factory.registerMetaObject(logHTTP.metaObject());
   VLogNull    logNull;   factory.registerMetaObject(logNull.metaObject());

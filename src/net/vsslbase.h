@@ -13,9 +13,9 @@
 
 #include <VError>
 #include <VLog>
-#ifdef WIN32
+#ifdef _WIN32
 #define _WINSOCKAPI_ // for compiler error in openssl module
-#endif // WIN32
+#endif // _WIN32
 #include <openssl/ssl.h>
 
 // ----------------------------------------------------------------------------

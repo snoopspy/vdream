@@ -1,9 +1,9 @@
 #include <VUdpSession>
 #include <VDebugNew>
 
-#ifdef linux
+#ifdef __linux__
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
-#endif // linux
+#endif // __linux__
 
 // ----------------------------------------------------------------------------
 // VUdpSession
@@ -43,21 +43,21 @@ bool VUdpSession::doClose()
   int res = ::shutdown(handle, SD_BOTH);
   if (res == SOCKET_ERROR)
   {
-#ifdef linux
+#ifdef __linux__
     if (WSAGetLastError() != ENOTCONN)
-#endif // linux
+#endif // __linux__
       SET_ERROR(VSocketError, "error in shutdown", (int)WSAGetLastError());
   }
 
   //
   // closesocket
   //
-#ifdef WIN32
+#ifdef _WIN32
   res = ::closesocket(handle);
-#endif // WIN32
-#ifdef linux
+#endif // _WIN32
+#ifdef __linux__
   res = ::close(handle);
-#endif // linux
+#endif // __linux__
   if (res == SOCKET_ERROR)
   {
     SET_ERROR(VSocketError, "error in closesocket", (int)WSAGetLastError());

@@ -11,7 +11,7 @@
 #ifndef __V_LOG_DBWIN32_H__
 #define __V_LOG_DBWIN32_H__
 
-#ifdef WIN32
+#ifdef _WIN32
 
 #include <VLog>
 
@@ -33,6 +33,6 @@ public:
   virtual VLog* createByURI(const QString& uri);
 };
 
-#endif // WIN32
+#endif // _WIN32
 
 #endif // __V_LOG_DBWIN32_H__

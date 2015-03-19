@@ -1,4 +1,4 @@
-#ifdef WIN32
+#ifdef _WIN32
 
 #include <VLogDBWin32>
 #include <winsock2.h>
@@ -41,4 +41,4 @@ VLog* VLogDBWin32::createByURI(const QString& uri)
   return NULL;
 }
 
-#endif // WIN32
+#endif // _WIN32

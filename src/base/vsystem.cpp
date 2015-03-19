@@ -22,7 +22,7 @@ void msleep(VTimeout msecs)
   __VMyThread__::msleep(msecs);
 }
 
-#ifdef WIN32
+#ifdef _WIN32
 void sleep(VTimeout secs)
 {
   __VMyThread__::sleep(secs);
@@ -32,7 +32,7 @@ void usleep(VTimeout usecs)
 {
   __VMyThread__::usleep(usecs);
 }
-#endif // WIN32
+#endif // _WIN32
 
 // ----------------------------------------------------------------------------
 // VEvent
@@ -78,7 +78,7 @@ bool VEvent::wait(VTimeout timeout)
 // ----------------------------------------------------------------------------
 bool VProcess::run(const char* command)
 {
-#ifdef WIN32
+#ifdef _WIN32
   UINT nRes = WinExec(command, SW_HIDE);
   if (nRes <= 31)
   {
@@ -86,8 +86,8 @@ bool VProcess::run(const char* command)
     return true;
   }
   return false;
-#endif // WIN32
-#ifdef linux
+#endif // _WIN32
+#ifdef __linux__
   int nRes = system(command);
   if (nRes == -1)
   {
@@ -95,7 +95,7 @@ bool VProcess::run(const char* command)
     return false;
   }
   return true;
-#endif // linux
+#endif // __linux__
 }
 
 #ifdef GTEST

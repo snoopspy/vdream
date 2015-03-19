@@ -66,26 +66,26 @@ VLog* VLog::g_log = NULL;
 
 const char* VLog::__extractFileName__(const char* fileName)
 {
-#ifdef WIN32
+#ifdef _WIN32
   const char* p1 = strrchr(fileName, '\\');
   const char* p2 = strrchr(fileName, '/');
   const char* p  = p1 > p2 ? p1 : p2;
-#endif // WIN32
-#ifdef linux
+#endif // _WIN32
+#ifdef __linux__
   const char* p = strrchr(fileName, '/');
-#endif // linux
+#endif // __linux__
   return (p == NULL ? fileName : p + 1);
 }
 
 const char* VLog::__extractFuncName__(const char* funcName)
 {
-#ifdef WIN32
+#ifdef _WIN32
   const char* p = strrchr(funcName, ':');
   return (p == NULL ? funcName : p + 1);
-#endif // WIN32
-#ifdef linux
+#endif // _WIN32
+#ifdef __linux__
   return funcName;
-#endif // linux
+#endif // __linux__
 }
 
 VLog::VLog(void* owner) : VObject(owner)
@@ -412,9 +412,9 @@ TEST ( Log, uriTest )
 {
   static const char* uriList[][2] =
   {
-  #ifdef WIN32
+  #ifdef _WIN32
     { "dbwin32",                     "VLogDBWin32" },
-  #endif // WIN32
+  #endif // _WIN32
     { "file",                        "VLogFile"    },
     { "file://log/",                 "VLogFile"    },
     { "file://access.log",           "VLogFile"    },
@@ -448,7 +448,7 @@ TEST ( Log, uriTest )
   }
 }
 
-#ifdef WIN32
+#ifdef _WIN32
 TEST ( Log, logDBWin32Test )
 {
   VLog* log = new VLogDBWin32;
@@ -456,7 +456,7 @@ TEST ( Log, logDBWin32Test )
   log->trace("[%s:%d] logDBWin32Test", __FILENAME__, __LINE__);
   delete log;
 }
-#endif // WIN32
+#endif // _WIN32
 
 TEST ( Log, logFileTest )
 {

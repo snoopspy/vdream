@@ -11,7 +11,7 @@
 #ifndef __V_LINUX_H__
 #define __V_LINUX_H__
 
-#ifdef linux
+#ifdef __linux__
 
 // ----------------------------------------------------------------------------
 // SOCKET
@@ -27,6 +27,6 @@ typedef int SOCKET;
 inline int GetLastError()    { return errno; }
 inline int WSAGetLastError() { return errno; }
 
-#endif // linux
+#endif // __linux__
 
 #endif // __V_LINUX_H__

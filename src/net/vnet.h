@@ -13,19 +13,19 @@
 
 #include <VRwObject>
 
-#ifdef WIN32
+#ifdef _WIN32
   #ifndef NOMINMAX
   #define NOMINMAX
   #endif // NOMINMAX
   #include <winsock2.h>
   #include <windows.h>
-#endif // WIN32
-#ifdef linux
+#endif // _WIN32
+#ifdef __linux__
   #include <sys/socket.h>
   #include <netinet/in.h>
   #include <arpa/inet.h>
   #include <netdb.h>
-#endif // linux
+#endif // __linux__
 
 // ----------------------------------------------------------------------------
 // Defines
@@ -39,9 +39,9 @@
 // ----------------------------------------------------------------------------
 // Type Definition
 // ----------------------------------------------------------------------------
-#ifdef WIN32
+#ifdef _WIN32
 typedef int socklen_t;
-#endif // WIN32
+#endif // _WIN32
 
 // ----------------------------------------------------------------------------
 // Ip

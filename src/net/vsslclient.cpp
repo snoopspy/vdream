@@ -45,9 +45,9 @@ bool VSslClient::doOpen()
   LOG_DEBUG("method=%s", qPrintable(methodType.str()));
   switch (methodType)
   {
-    #ifdef WIN32 // Linux openssl does not support SSLv2_client_method
+    #ifdef _WIN32 // Linux openssl does not support SSLv2_client_method
     case VSslMethodType::mtSSLv2   : m_meth = (SSL_METHOD*)SSLv2_client_method();   break;
-    #endif // WIN32
+    #endif // _WIN32
     case VSslMethodType::mtSSLv3   : m_meth = (SSL_METHOD*)SSLv3_client_method();   break;
     case VSslMethodType::mtSSLv23  : m_meth = (SSL_METHOD*)SSLv23_client_method();  break;
     case VSslMethodType::mtTLSv1   : m_meth = (SSL_METHOD*)TLSv1_client_method();   break;

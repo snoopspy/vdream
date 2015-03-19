@@ -14,7 +14,7 @@ VApp::~VApp()
 
 // ----- gilgil temp 2014.12.25 -----
 /*
-#ifdef WIN32
+#ifdef _WIN32
 #ifndef NOMINMAX
 #define NOMINMAX
 #endif // NOMINMAX
@@ -31,9 +31,9 @@ QString VApp::fileName()
   }
   return QString(buf);
 }
-#endif // WIN32
+#endif // _WIN32
 
-#ifdef linux
+#ifdef __linux__
 
 #ifndef MIN
 #define MIN(a,b) (((a)<(b))?(a):(b))
@@ -55,7 +55,7 @@ QString VApp::fileName()
   }
   return fileName;
 }
-#endif // linux
+#endif // __linux__
 
 QString VApp::_filePath()
 {

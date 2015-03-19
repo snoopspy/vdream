@@ -1,9 +1,9 @@
 #include <VNet>
 #include <VDebugNew>
 
-#ifdef linux
+#ifdef __linux__
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
-#endif // linux
+#endif // __linux__
 
 // ----------------------------------------------------------------------------
 // Ip
@@ -39,15 +39,15 @@ QString Ip::qformat(QString format)
 // ----------------------------------------------------------------------------
 VNetInstance::VNetInstance()
 {
-  #ifdef WIN32
+  #ifdef _WIN32
     WSADATA wsaData;
     WSAStartup(0x0202, &wsaData);
-  #endif // WIN32
+  #endif // _WIN32
 }
 
 VNetInstance::~VNetInstance()
 {
-  #ifdef WIN32
+  #ifdef _WIN32
     //
     // If WSACleanup is called with QT IDE debugging, the following exception occurs.
     // So do not call WSACleanup.
@@ -58,7 +58,7 @@ VNetInstance::~VNetInstance()
     // Exception at 0x75aad09c, code: 0xc0000005: read access violation at: 0x0, flags=0x0.
     //
     // WSACleanup();
-  #endif // WIN32
+  #endif // _WIN32
 }
 
 VNetInstance& VNetInstance::instance()
@@ -151,12 +151,12 @@ Ip VNet::resolve(QString host)
   }
 
   //addr.s_addr = ntohl(*((uint32_t*)pAddr));
-#ifdef WIN32
+#ifdef _WIN32
   addr.s_addr = *((ULONG*)pAddr);
-#endif // WIN32
-#ifdef linux
+#endif // _WIN32
+#ifdef __linux__
   addr.s_addr = *((in_addr_t*)pAddr);
-#endif // linux
+#endif // __linux__
   return ntohl(*((Ip*)&addr));
 _error:
   lastError = (int)GetLastError();

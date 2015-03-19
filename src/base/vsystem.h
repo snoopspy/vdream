@@ -11,17 +11,17 @@
 #ifndef __V_SYSTEM_H__
 #define __V_SYSTEM_H__
 
-#ifdef WIN32
+#ifdef _WIN32
   #ifndef NOMINMAX
   #define NOMINMAX
   #endif // NOMINMAX
   #include <winsock2.h>
   #define WIN32_LEAN_AND_MEAN
   #include <windows.h>
-#endif // WIN32
-#ifdef linux
+#endif // _WIN32
+#ifdef __linux__
   #include <unistd.h>
-#endif // linux
+#endif // __linux__
 
 // ----------------------------------------------------------------------------
 // VTimeout
@@ -32,10 +32,10 @@ typedef unsigned long VTimeout;
 // sleep
 // ----------------------------------------------------------------------------
 void msleep(VTimeout msecs);
-#ifdef WIN32
+#ifdef _WIN32
 void sleep (VTimeout secs);
 void usleep(VTimeout usecs);
-#endif // WIN32
+#endif // _WIN32
 
 #include <QMutex>
 #include <QWaitCondition>

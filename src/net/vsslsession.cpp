@@ -134,9 +134,9 @@ bool VSslSession::doOpen()
 
 // ----- gilgil temp 2014.02.25 -----
 /*
-#ifdef linux
+#ifdef __linux__
 #include <sys/socket.h> // for shutdown // gilgil temp 2011.10.31
-#endif // linux
+#endif // __linux__
 #ifndef SD_BOTH
 #define SD_BOTH 0x02
 */
@@ -162,9 +162,9 @@ bool VSslSession::doClose()
 
 // ----- gilgil temp 2014.02.28 -----
 /*
-#ifdef WIN32
+#ifdef _WIN32
   shutdown(handle, SD_BOTH);
-#endif // WIN32
+#endif // _WIN32
 */
 // ----------------------------------
   return true;

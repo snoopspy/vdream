@@ -92,14 +92,14 @@ int VFile::doWrite(char* buf, int size)
 
 bool VFile::createFolder(QString folder)
 {
-#ifdef WIN32
+#ifdef _WIN32
   while (true)
   {
     int pos = folder.indexOf("/");
     if (pos == -1) break;
     folder = folder.replace(pos, 1, "\\");
   }
-#endif // WIN32
+#endif // _WIN32
   if (folder != "")
   {
     // ----- gilgil temp 2012.05.26 -----

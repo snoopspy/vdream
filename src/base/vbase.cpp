@@ -3,7 +3,7 @@
 
 // ----- gilgil temp 2014.12.25 -----
 /*
-#ifdef linux
+#ifdef __linux__
 #include <cxxabi.h> // for __cxa_demangle
 #endif // lunux
 */

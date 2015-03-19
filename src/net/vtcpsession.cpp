@@ -1,9 +1,9 @@
 #include <VTcpSession>
 #include <VDebugNew>
 
-#ifdef linux
+#ifdef __linux__
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
-#endif // linux
+#endif // __linux__
 
 // ----------------------------------------------------------------------------
 // VTcpSession
@@ -49,12 +49,12 @@ bool VTcpSession::doClose()
   //
   // closesocket
   //
-#ifdef WIN32
+#ifdef _WIN32
   res = ::closesocket(handle);
-#endif // WIN32
-#ifdef linux
+#endif // _WIN32
+#ifdef __linux__
   res = ::close(handle);
-#endif // linux
+#endif // __linux__
   if (res == SOCKET_ERROR)
   {
     SET_ERROR(VSocketError, "error in closesocket", (int)WSAGetLastError());
